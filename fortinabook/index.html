@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>爱的五种语言 💕</title>
+<style>
+  :root {
+    --bg: #fdf6f0;
+    --card: #fff;
+    --accent: #e8786a;
+    --accent2: #f4a261;
+    --accent3: #2a9d8f;
+    --accent4: #7c5cbf;
+    --accent5: #e76f51;
+    --text: #3d3d3d;
+    --dim: #888;
+    --soft: #f0e6df;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-snap-type: y mandatory; }
+  body { font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+
+  .slide {
+    width: 100%; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 48px 32px;
+    scroll-snap-align: start;
+    position: relative;
+  }
+  .slide-inner { max-width: 720px; width: 100%; }
+
+  .slide-num {
+    position: absolute; bottom: 16px; right: 24px;
+    font-size: 0.75em; color: #ccc;
+  }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, #fdf6f0 0%, #fce4d8 50%, #f8d5c8 100%);
+    text-align: center;
+  }
+  .cover .heart { font-size: 4em; margin-bottom: 16px; animation: pulse 2s infinite; }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  .cover h1 {
+    font-size: 2.8em; font-weight: 800; margin-bottom: 12px;
+    color: var(--accent);
+  }
+  .cover .sub { font-size: 1.2em; color: var(--dim); margin-bottom: 32px; }
+  .cover .for {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+  .cover .hint { margin-top: 48px; font-size: 0.85em; color: #bbb; }
+
+  /* Section divider */
+  .section-div {
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--soft) 100%);
+  }
+  .section-div .icon { font-size: 3em; margin-bottom: 12px; }
+  .section-div h2 { font-size: 2.2em; font-weight: 800; color: var(--accent); margin-bottom: 12px; }
+  .section-div .tagline { font-size: 1.1em; color: var(--dim); max-width: 500px; margin: 0 auto; }
+
+  /* Content */
+  h2 { font-size: 1.7em; font-weight: 700; margin-bottom: 24px; color: var(--accent); }
+  h3 { font-size: 1.2em; font-weight: 600; margin-bottom: 12px; color: var(--accent3); }
+
+  .quote {
+    background: #fff;
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    margin: 20px 0;
+    border-radius: 0 16px 16px 0;
+    font-size: 1.1em;
+    font-style: italic;
+    color: #555;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .love-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+    margin: 16px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  .love-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+  .love-card .lc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .love-card .lc-icon { font-size: 2em; }
+  .love-card .lc-title { font-size: 1.3em; font-weight: 700; }
+  .love-card .lc-desc { font-size: 1em; color: #666; line-height: 1.8; }
+  .love-card .lc-example {
+    margin-top: 14px; padding: 14px 16px;
+    background: var(--soft); border-radius: 12px;
+    font-size: 0.95em; color: #555;
+  }
+  .love-card .lc-example strong { color: var(--accent); }
+
+  .lc1 { border-color: #fce4d8; } .lc1 .lc-title { color: #e8786a; }
+  .lc2 { border-color: #d4edda; } .lc2 .lc-title { color: #2a9d8f; }
+  .lc3 { border-color: #fff3cd; } .lc3 .lc-title { color: #f4a261; }
+  .lc4 { border-color: #e8daef; } .lc4 .lc-title { color: #7c5cbf; }
+  .lc5 { border-color: #fadbd8; } .lc5 .lc-title { color: #e76f51; }
+
+  .step-list { list-style: none; counter-reset: steps; }
+  .step-list li {
+    counter-increment: steps;
+    padding: 16px 20px 16px 56px;
+    margin: 12px 0;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    position: relative;
+    font-size: 1.05em;
+  }
+  .step-list li::before {
+    content: counter(steps);
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9em;
+  }
+
+  .insight-box {
+    background: linear-gradient(135deg, #fce4d8, #fff);
+    border-radius: 20px;
+    padding: 28px;
+    margin: 16px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .insight-box .ib-icon { font-size: 1.8em; margin-bottom: 8px; }
+  .insight-box h4 { font-size: 1.15em; margin-bottom: 10px; color: var(--accent); }
+  .insight-box p { font-size: 1em; color: #555; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+
+  /* Test section */
+  .test-intro {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+    margin: 16px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .test-intro .ti-icon { font-size: 2.5em; margin-bottom: 12px; }
+
+  /* Interactive test */
+  #test-area { display: none; }
+  #test-area.active { display: block; }
+  .q-card {
+    background: #fff; border-radius: 20px; padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06); margin: 16px 0;
+  }
+  .q-card .q-num { font-size: 0.85em; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+  .q-option {
+    display: block; width: 100%; text-align: left;
+    padding: 14px 18px; margin: 8px 0;
+    border: 2px solid #eee; border-radius: 14px;
+    background: #fafafa; cursor: pointer;
+    font-size: 1em; font-family: inherit; color: var(--text);
+    transition: all 0.2s;
+  }
+  .q-option:hover { border-color: var(--accent); background: #fff5f3; }
+  .q-option.selected { border-color: var(--accent); background: #fce4d8; font-weight: 600; }
+  .q-nav { display: flex; justify-content: space-between; margin-top: 20px; }
+  .q-btn {
+    padding: 12px 28px; border: none; border-radius: 30px;
+    font-size: 1em; font-family: inherit; cursor: pointer;
+    font-weight: 600; transition: all 0.2s;
+  }
+  .q-btn.primary { background: var(--accent); color: #fff; }
+  .q-btn.primary:hover { background: #d4665a; }
+  .q-btn.secondary { background: #eee; color: #666; }
+  .q-progress { height: 4px; background: #eee; border-radius: 4px; margin-bottom: 16px; }
+  .q-progress-bar { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.3s; }
+
+  #result-area { display: none; }
+  #result-area.active { display: block; }
+  .result-card {
+    background: #fff; border-radius: 20px; padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06); text-align: center;
+  }
+  .result-bar-wrap { margin: 8px 0; text-align: left; }
+  .result-label { font-size: 0.95em; font-weight: 600; margin-bottom: 4px; }
+  .result-bar { height: 24px; background: #f0e6df; border-radius: 12px; overflow: hidden; }
+  .result-bar-fill { height: 100%; border-radius: 12px; transition: width 1s ease; display: flex; align-items: center; padding-left: 10px; color: #fff; font-size: 0.8em; font-weight: 600; }
+
+  .ending {
+    text-align: center;
+    background: linear-gradient(135deg, #fce4d8, #fdf6f0);
+  }
+  .ending .heart-big { font-size: 4em; margin-bottom: 16px; }
+  .ending h2 { color: var(--accent); font-size: 2em; margin-bottom: 16px; }
+  .ending p { font-size: 1.15em; color: #666; max-width: 500px; margin: 0 auto; line-height: 2; }
+
+  .kb-hint { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); font-size: 0.7em; color: #ccc; z-index: 10; }
+
+  @media (max-width: 768px) {
+    .slide { padding: 32px 20px; }
+    .cover h1 { font-size: 2em; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- S1: Cover -->
+<div class="slide cover" id="s1">
+  <div class="slide-inner">
+    <div class="heart">💕</div>
+    <h1>爱的五种语言</h1>
+    <div class="sub">每个人表达爱的方式都不同<br>找到彼此的语言，爱才能被听见</div>
+    <div class="for">For Tina ❤️</div>
+    <div class="hint">↓ 向下滑动开始阅读</div>
+  </div>
+  <div class="slide-num">1</div>
+</div>
+
+<!-- S2: 核心概念 -->
+<div class="slide" id="s2">
+  <div class="slide-inner">
+    <h2>💡 一个简单但重要的发现</h2>
+    <div class="quote">
+      婚姻问题的普遍原因，不是不够爱，而是<strong>爱的语言不通</strong>。
+    </div>
+    <p style="margin: 20px 0; font-size: 1.05em;">每个人心里都有一个<strong>「情绪的爱箱」</strong>，就像汽车的油箱——保持充满才能全速前进。</p>
+    <p style="font-size: 1.05em;">问题是：<strong>我们习惯用自己的语言表达爱，却忘了对方可能听不懂。</strong></p>
+    <div class="quote" style="border-color: var(--accent3);">
+      你精心准备的礼物，可能不如安静地坐下来听她说话。<br>
+      你做了一桌好菜，可能不如一句「你辛苦了」更暖心。
+    </div>
+  </div>
+  <div class="slide-num">2</div>
+</div>
+
+<!-- S3: Section -->
+<div class="slide section-div" id="s3">
+  <div class="slide-inner">
+    <div class="icon">🗝️</div>
+    <h2>五种爱的语言</h2>
+    <div class="tagline">了解这五种语言<br>找到属于你们的那一种</div>
+  </div>
+  <div class="slide-num">3</div>
+</div>
+
+<!-- S4: 语言1 -->
+<div class="slide" id="s4">
+  <div class="slide-inner">
+    <div class="love-card lc1">
+      <div class="lc-head">
+        <div class="lc-icon">💬</div>
+        <div class="lc-title">第一种：肯定的言词</div>
+      </div>
+      <div class="lc-desc">
+        用语言表达对另一半的欣赏、鼓励和感谢。<br>
+        <strong>不是敷衍的「挺好的」，而是具体的、真诚的赞美。</strong>
+      </div>
+      <div class="lc-example">
+        💡 <strong>例子：</strong>一位妻子热爱写作却不敢投稿。丈夫认真读了她的文章后说：「亲爱的，你写得非常好，清晰又生动。这篇应该刊登出来。」在丈夫的鼓励下，妻子开始投稿，后来有了无数文章发表，甚至签下了书约。
+      </div>
+    </div>
+    <div class="quote" style="border-color: #e8786a;">
+      心理学家威廉·詹姆斯说：人类最深处的需要，可能就是感觉被人欣赏。
+    </div>
+  </div>
+  <div class="slide-num">4</div>
+</div>
+
+<!-- S5: 语言2 -->
+<div class="slide" id="s5">
+  <div class="slide-inner">
+    <div class="love-card lc2">
+      <div class="lc-head">
+        <div class="lc-icon">⏰</div>
+        <div class="lc-title">第二种：精心的时刻</div>
+      </div>
+      <div class="lc-desc">
+        两个人一起<strong>专注地</strong>做一件事，给彼此全部的注意力。<br>
+        不是各自刷手机坐在同一张沙发上，而是<strong>真正地在一起</strong>。
+      </div>
+      <div class="lc-example">
+        💡 <strong>例子：</strong>一位妻子总抱怨丈夫不花时间陪她。丈夫列了一张清单：一起听交响乐、去山里度周末、安排保姆后两人单独吃晚餐、晚上回家聊聊彼此的一天……坚持每周做一件。多年后，他们都说这是最好的日子。
+      </div>
+    </div>
+    <div class="quote" style="border-color: #2a9d8f;">
+      重点不是做什么，而是<strong>在一起</strong>。全部的注意力，就是最好的礼物。
+    </div>
+  </div>
+  <div class="slide-num">5</div>
+</div>
+
+<!-- S6: 语言3 -->
+<div class="slide" id="s6">
+  <div class="slide-inner">
+    <div class="love-card lc3">
+      <div class="lc-head">
+        <div class="lc-icon">🎁</div>
+        <div class="lc-title">第三种：接受礼物</div>
+      </div>
+      <div class="lc-desc">
+        礼物是爱的<strong>视觉象征</strong>。<br>
+        不在于贵重，在于<strong>心意</strong>——「你看到这个东西的时候，想到了我」。
+      </div>
+      <div class="lc-example">
+        💡 <strong>可以是：</strong>路过花店带回的一朵花、看到她喜欢的零食顺手买回来、出差时带个小纪念品，甚至一张手写的便条。礼物可以买来、找来、或自己做——有形的无形的都算。
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">6</div>
+</div>
+
+<!-- S7: 语言4 -->
+<div class="slide" id="s7">
+  <div class="slide-inner">
+    <div class="love-card lc4">
+      <div class="lc-head">
+        <div class="lc-icon">🤲</div>
+        <div class="lc-title">第四种：服务的行动</div>
+      </div>
+      <div class="lc-desc">
+        做另一半想让你做的事，通过<strong>行动</strong>表达爱。<br>
+        不是嘴上说「我爱你」，而是默默地<strong>做出来</strong>。
+      </div>
+      <div class="lc-example">
+        💡 <strong>例子：</strong>作者从小讨厌吸地，发誓长大后绝不再碰吸尘器。但他发现妻子的爱语是「服务的行动」，于是他开始定期吸地——不是因为喜欢，而是<strong>因为爱</strong>。妻子知道他是出于100%纯净的爱时，备受感动，爱箱满满。
+      </div>
+    </div>
+    <div class="quote" style="border-color: #7c5cbf;">
+      做饭、倒垃圾、洗碗、遛狗……别小看这些小事，对于爱语是「服务」的人来说，每一件都在说「我爱你」。
+    </div>
+  </div>
+  <div class="slide-num">7</div>
+</div>
+
+<!-- S8: 语言5 -->
+<div class="slide" id="s8">
+  <div class="slide-inner">
+    <div class="love-card lc5">
+      <div class="lc-head">
+        <div class="lc-icon">🤗</div>
+        <div class="lc-title">第五种：身体的接触</div>
+      </div>
+      <div class="lc-desc">
+        通过<strong>牵手、拥抱、亲吻、依偎</strong>来传递爱。<br>
+        身体的接触是最直接的情感通道。
+      </div>
+      <div class="lc-example">
+        💡 <strong>不只是亲密关系：</strong>出门前的一个拥抱、沙发上看电视时靠在一起、走路时牵着手、难过时轻轻拍拍肩膀……这些日常的身体接触，对于这种爱语的人来说，意义重大。
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">8</div>
+</div>
+
+<!-- S9: 怎么找到爱语 -->
+<div class="slide section-div" id="s9">
+  <div class="slide-inner">
+    <div class="icon">🔍</div>
+    <h2>如何找到你的爱语？</h2>
+    <div class="tagline">三个简单的问题，帮你找到答案</div>
+  </div>
+  <div class="slide-num">9</div>
+</div>
+
+<!-- S10: 三个方法 -->
+<div class="slide" id="s10">
+  <div class="slide-inner">
+    <h2>🪞 找到自己的爱语</h2>
+    <ol class="step-list">
+      <li><strong>什么事最伤你？</strong><br>另一半做过什么（或不做什么）让你最受伤？跟这件事相反的，很可能就是你的爱语。</li>
+      <li><strong>你最常请求什么？</strong><br>你最常要求另一半做的事，就是最能让你感到被爱的事。</li>
+      <li><strong>你怎么表达爱？</strong><br>你习惯怎样对另一半示爱？你的方式往往反映了你自己想要被爱的方式。</li>
+    </ol>
+  </div>
+  <div class="slide-num">10</div>
+</div>
+
+<!-- S11: 找对方的 -->
+<div class="slide" id="s11">
+  <div class="slide-inner">
+    <h2>👀 发现另一半的爱语</h2>
+    <ol class="step-list">
+      <li><strong>他/她最常抱怨什么？</strong><br>抱怨背后藏着最真实的需求。「你从来不陪我」= 精心的时刻。「你从来不夸我」= 肯定的言词。</li>
+      <li><strong>他/她怎么对你表达爱？</strong><br>一个人对你做的事，往往就是他希望你也对他做的事。</li>
+      <li><strong>五周实验法</strong><br>每周专注说一种爱语，观察另一半哪一周反应最不同——那就是答案。</li>
+    </ol>
+    <div class="quote">
+      💡 小提示：另一半的抱怨可能让你烦躁，但它其实在告诉你<strong>「我需要什么」</strong>。下次听到抱怨时，试着把它翻译成爱语。
+    </div>
+  </div>
+  <div class="slide-num">11</div>
+</div>
+
+<!-- S12: 核心道理 -->
+<div class="slide" id="s12">
+  <div class="slide-inner">
+    <h2>❤️ 最重要的一件事</h2>
+    <div class="quote" style="font-size: 1.2em; border-color: var(--accent);">
+      爱不只是一种感觉，更是一种<strong>选择</strong>。
+    </div>
+    <p style="margin: 20px 0; font-size: 1.05em;">学习另一半的爱语可能让你不舒服——因为那不是你的本能。</p>
+    <p style="font-size: 1.05em;">就像每天早上起床对抗地心引力一样——不舒服，但值得。</p>
+
+    <div class="grid-2" style="margin-top: 24px;">
+      <div class="insight-box">
+        <div class="ib-icon">🔄</div>
+        <h4>良性循环</h4>
+        <p>当你主动说对方的爱语 → 对方爱箱被填满 → 对方也会回报你 → 你的爱箱也满了 → 婚姻越来越好</p>
+      </div>
+      <div class="insight-box">
+        <div class="ib-icon">🌱</div>
+        <h4>走出舒适区</h4>
+        <p>为了爱，选择去做不那么自然的事。行动在前，感觉在后。当你开始做，爱的感觉会跟着来。</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">12</div>
+</div>
+
+<!-- S13: 测试入口 -->
+<div class="slide" id="s13">
+  <div class="slide-inner">
+    <div class="test-intro">
+      <div class="ti-icon">📝</div>
+      <h2 style="color: var(--accent); margin-bottom: 12px;">测一测你的爱语</h2>
+      <p style="color: #666; margin-bottom: 24px;">30道选择题，花15分钟<br>找到你的主要爱语</p>
+      <button class="q-btn primary" onclick="startTest('female')" style="margin: 6px;">👩 女士版</button>
+      <button class="q-btn primary" onclick="startTest('male')" style="margin: 6px; background: var(--accent3);">👨 男士版</button>
+    </div>
+
+    <div id="test-area">
+      <div class="q-card">
+        <div class="q-progress"><div class="q-progress-bar" id="progressBar"></div></div>
+        <div class="q-num" id="qNum"></div>
+        <button class="q-option" id="optA" onclick="selectOption('a')"></button>
+        <button class="q-option" id="optB" onclick="selectOption('b')"></button>
+        <div class="q-nav">
+          <button class="q-btn secondary" onclick="prevQ()">← 上一题</button>
+          <button class="q-btn primary" onclick="nextQ()">下一题 →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="result-area">
+      <div class="result-card">
+        <h2 style="color: var(--accent); margin-bottom: 8px;">你的爱语结果 💕</h2>
+        <p style="color: #666; margin-bottom: 20px;">得分最高的就是你的主要爱语</p>
+        <div id="resultBars"></div>
+        <p id="resultText" style="margin-top: 20px; font-size: 1.1em; font-weight: 600; color: var(--accent);"></p>
+        <button class="q-btn secondary" onclick="resetTest()" style="margin-top: 16px;">重新测试</button>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">13</div>
+</div>
+
+<!-- S14: Ending -->
+<div class="slide ending" id="s14">
+  <div class="slide-inner">
+    <div class="heart-big">💕</div>
+    <h2>爱是一种勇敢的选择</h2>
+    <p>
+      每段婚姻都有难走的路<br>
+      但当两个人都愿意<br>
+      学说对方的语言<br>
+      <strong>爱箱就永远不会空</strong>
+    </p>
+    <br>
+    <p style="font-size: 0.9em; color: #aaa;">
+      — 盖瑞·查普曼《爱的五种语言》—
+    </p>
+  </div>
+  <div class="slide-num">14</div>
+</div>
+
+<div class="kb-hint">↑↓ 滑动翻页</div>
+
+<script>
+// Questions data
+const femaleQ = [
+  ["丈夫写的爱的短笺让我感觉很好","A","我喜欢丈夫给我的拥抱","E"],
+  ["我喜欢和丈夫单独呆在一起","B","当丈夫帮我洗车时，我感觉到他的爱","D"],
+  ["从丈夫那里收到特别的礼物让我很开心","C","我喜欢与丈夫一道做长途旅行","B"],
+  ["当丈夫帮着做洗衣服的工作时，我感觉他爱我","D","我喜欢丈夫抚摸我","E"],
+  ["当丈夫搂着我时，我感受到他的爱","E","丈夫送礼物给我让我惊喜，我知道他爱我","C"],
+  ["我不管去哪里，都愿意和丈夫一起","B","我喜欢牵着丈夫的手","E"],
+  ["我很珍惜丈夫送给我的礼物","C","我喜欢听丈夫对我说他爱我","A"],
+  ["我喜欢丈夫坐在我旁边","E","我喜欢听丈夫告诉我说我很漂亮","A"],
+  ["能和丈夫在一起，会令我很兴奋","B","丈夫送给我的即使是最小的礼物，对我都很重要","C"],
+  ["当丈夫告诉我他以我为骄傲时，我感觉到他爱我","A","当丈夫在饭后帮着收拾餐桌时，我知道他爱我","D"],
+  ["不管做什么，我都喜欢和丈夫一起","B","丈夫给我的支持意见让我感觉很好","A"],
+  ["丈夫为我做的那些小事比他说的话更重要","D","我喜欢拥抱丈夫","E"],
+  ["丈夫的赞扬对我来说意义重大","A","丈夫送我很喜欢的礼物，对我很重要","C"],
+  ["只要在丈夫身边就让我感觉很好","B","我喜欢丈夫帮我按摩","E"],
+  ["丈夫对我成就的反应让我很受鼓舞","A","丈夫能帮助做他很讨厌的事，对我意义重大","D"],
+  ["我从来没有厌倦过丈夫的亲吻","E","我喜欢丈夫对我做的事表示出真正的兴趣","B"],
+  ["我可以指望丈夫帮助我完成任务","D","打开丈夫送的礼物时，我仍然感到很兴奋","C"],
+  ["我喜欢丈夫称赞我的外表","A","我喜欢丈夫倾听并尊重我的想法","B"],
+  ["当丈夫在我旁边时，我忍不住要触摸他","E","当丈夫有时为我跑腿时，我很感谢他","D"],
+  ["丈夫应该为他帮助我所做的一切得到奖赏","D","丈夫送给我的礼物总是那么用心让我惊奇","C"],
+  ["我喜欢丈夫给我他全部的注意力","B","我喜欢丈夫帮着做清洁","D"],
+  ["我期待看到丈夫会送什么生日礼物给我","C","我从没厌倦过听丈夫告诉我，我对他有多重要","A"],
+  ["丈夫通过送礼物给我让我知道他爱我","C","丈夫不需要我出声就主动帮助我，表达了他的爱","D"],
+  ["在我说话时丈夫不会打断我，我喜欢这一点","B","我从来没有厌倦过收丈夫送的礼物","C"],
+  ["在我累了的时候，丈夫善于问他能帮着做些什么","D","我们去哪里不重要，重要的是和丈夫一起","B"],
+  ["我喜欢拥抱丈夫","E","我喜欢从丈夫那里收到礼物得到惊喜","C"],
+  ["丈夫鼓励的话语给了我信心","A","我喜欢与丈夫一起看电影","B"],
+  ["没有哪些礼物比丈夫送给我的更好","C","我简直无法把手从丈夫身上收回来","E"],
+  ["丈夫尽管有其他事情要做却来帮助我，对我很重要","D","当丈夫告诉我他很欣赏我时，让我感觉非常好","A"],
+  ["分开一段时间后，我喜欢拥抱和亲吻丈夫","E","我喜欢听到丈夫告诉我他想念我","A"]
+];
+
+const maleQ = [
+  ["妻子写的爱的短笺让我感觉很好","A","我喜欢妻子给我的拥抱","E"],
+  ["我喜欢和妻子单独呆在一起","B","当妻子帮助我做工作时，我感觉到她的爱","D"],
+  ["从妻子那里收到特别的礼物让我很开心","C","我喜欢与妻子一道做长途旅行","B"],
+  ["当妻子帮着做洗衣服的工作时，我感觉她爱我","D","我喜欢妻子抚摸我","E"],
+  ["当妻子搂着我时，我感受到她的爱","E","妻子送礼物给我让我惊喜，我知道她爱我","C"],
+  ["我不管去哪里，都愿意和妻子一起","B","我喜欢牵着妻子的手","E"],
+  ["我很珍惜妻子送给我的礼物","C","我喜欢听妻子对我说她爱我","A"],
+  ["我喜欢妻子坐在我旁边","E","我喜欢听妻子告诉我说我很帅","A"],
+  ["能和妻子呆在一起，会令我很兴奋","B","妻子送给我的即使是最小的礼物，对我都很重要","C"],
+  ["当妻子告诉我她以我为骄傲时，我感觉到她爱我","A","当妻子喂我饭吃时，我知道她爱我","D"],
+  ["不管做什么，我都喜欢和妻子一起","B","妻子给我的支持意见让我感觉很好","A"],
+  ["妻子为我做的那些小事比她说的话更重要","D","我喜欢拥抱妻子","E"],
+  ["妻子的赞扬对我来说意义重大","A","妻子送我很喜欢的礼物，对我很重要","C"],
+  ["只要在妻子身边就让我感觉很好","B","我喜欢妻子揉我的背部","E"],
+  ["妻子对我成就的反应让我很受鼓舞","A","妻子能帮助做她很讨厌的事，对我意义重大","D"],
+  ["我从来没有厌倦过妻子的亲吻","E","我喜欢妻子对我做的事表示出真正的兴趣","B"],
+  ["我可以指望妻子帮助我完成任务","D","打开妻子送的礼物时，我仍然感到很兴奋","C"],
+  ["我喜欢妻子称赞我的外表","A","我喜欢妻子聆听我的想法而不急着批评","B"],
+  ["当妻子在我旁边时，我忍不住要触摸她","E","当妻子有时为我跑腿时，我很感谢她","D"],
+  ["妻子应该为她帮助我所做的一切得到奖赏","D","妻子送给我的礼物总是那么用心让我惊奇","C"],
+  ["我喜欢妻子给我她全部的注意力","B","保持家里清洁是一项很重要的服务行动","D"],
+  ["我期待看到妻子会送什么生日礼物给我","C","我从没厌倦过听妻子告诉我，我对她有多重要","A"],
+  ["妻子通过送礼物给我让我知道她爱我","C","妻子通过在家帮我赶工完成任务，表达了她的爱","D"],
+  ["在我说话时妻子不会打断我，我喜欢这一点","B","我从来没有厌倦过收妻子送的礼物","C"],
+  ["在我累了的时候，妻子善于问她能帮着做些什么","D","我们去哪里不重要，重要的是和妻子一起","B"],
+  ["我喜欢和妻子做爱","E","我喜欢从妻子那里收到礼物得到惊喜","C"],
+  ["妻子鼓励的话语给了我信心","A","我喜欢与妻子一起看电影","B"],
+  ["没有哪些礼物比妻子送给我的更好","C","我简直无法把手从妻子身上收回来","E"],
+  ["妻子尽管有其他事情要做却来帮助我，对我很重要","D","当妻子告诉我她很欣赏我时，让我感觉非常好","A"],
+  ["分开一段时间后，我喜欢拥抱和亲吻妻子","E","我喜欢听到妻子告诉我她相信我","A"]
+];
+
+let questions = [];
+let current = 0;
+let answers = new Array(30).fill(null);
+
+const langNames = {A:"💬 肯定的言词", B:"⏰ 精心的时刻", C:"🎁 接受礼物", D:"🤲 服务的行动", E:"🤗 身体的接触"};
+const langColors = {A:"#e8786a", B:"#2a9d8f", C:"#f4a261", D:"#7c5cbf", E:"#e76f51"};
+
+function startTest(gender) {
+  questions = gender === 'female' ? femaleQ : maleQ;
+  current = 0;
+  answers = new Array(30).fill(null);
+  document.getElementById('test-area').classList.add('active');
+  document.getElementById('result-area').classList.remove('active');
+  showQ();
+}
+
+function showQ() {
+  const q = questions[current];
+  document.getElementById('qNum').textContent = `第 ${current+1} / 30 题`;
+  document.getElementById('progressBar').style.width = ((current+1)/30*100)+'%';
+  document.getElementById('optA').textContent = q[0];
+  document.getElementById('optB').textContent = q[2];
+  document.getElementById('optA').className = 'q-option' + (answers[current]===q[1]?' selected':'');
+  document.getElementById('optB').className = 'q-option' + (answers[current]===q[3]?' selected':'');
+}
+
+function selectOption(which) {
+  const q = questions[current];
+  answers[current] = which === 'a' ? q[1] : q[3];
+  document.getElementById('optA').className = 'q-option' + (answers[current]===q[1]?' selected':'');
+  document.getElementById('optB').className = 'q-option' + (answers[current]===q[3]?' selected':'');
+  setTimeout(() => { if(current < 29) { current++; showQ(); } }, 300);
+}
+
+function nextQ() {
+  if(current < 29) { current++; showQ(); }
+  else { showResult(); }
+}
+function prevQ() {
+  if(current > 0) { current--; showQ(); }
+}
+
+function showResult() {
+  const counts = {A:0, B:0, C:0, D:0, E:0};
+  answers.forEach(a => { if(a) counts[a]++; });
+  const max = Math.max(...Object.values(counts));
+  const winner = Object.keys(counts).find(k => counts[k]===max);
+
+  let html = '';
+  for(const k of ['A','B','C','D','E']) {
+    const pct = (counts[k]/30*100);
+    html += `<div class="result-bar-wrap">
+      <div class="result-label">${langNames[k]}: ${counts[k]}分</div>
+      <div class="result-bar"><div class="result-bar-fill" style="width:${pct}%;background:${langColors[k]}">${counts[k]}</div></div>
+    </div>`;
+  }
+  document.getElementById('resultBars').innerHTML = html;
+  document.getElementById('resultText').textContent = `你的主要爱语是：${langNames[winner]}`;
+
+  document.getElementById('test-area').classList.remove('active');
+  document.getElementById('result-area').classList.add('active');
+}
+
+function resetTest() {
+  document.getElementById('test-area').classList.remove('active');
+  document.getElementById('result-area').classList.remove('active');
+}
+
+// Keyboard nav
+const slides = document.querySelectorAll('.slide');
+let slideIdx = 0;
+document.addEventListener('keydown', (e) => {
+  if(e.key==='ArrowDown'||e.key==='ArrowRight') { e.preventDefault(); slideIdx=Math.min(slideIdx+1,slides.length-1); slides[slideIdx].scrollIntoView({behavior:'smooth'}); }
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft') { e.preventDefault(); slideIdx=Math.max(slideIdx-1,0); slides[slideIdx].scrollIntoView({behavior:'smooth'}); }
+});
+</script>
+</body>
+</html>
