@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>波浪碰撞 — 秩序重构期的战争、技术与投资</title>
+<meta name="description" content="从俄乌到AI，从拼多多到以色列核选项——关于世界秩序重构的结构性对话">
+<meta property="og:title" content="波浪碰撞 — 秩序重构期的战争、技术与投资">
+<meta property="og:description" content="从俄乌到AI，从拼多多到以色列核选项——关于世界秩序重构的结构性对话">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{font-family:-apple-system,'PingFang SC','Noto Sans SC','Helvetica Neue',sans-serif;background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ── slide system ── */
+.slide{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:clamp(2rem,6vw,5rem) clamp(1.5rem,8vw,8rem);scroll-snap-align:start;position:relative;overflow:hidden}
+.slide::before{content:'';position:absolute;inset:0;z-index:0}
+
+/* backgrounds */
+.s-dark::before{background:linear-gradient(135deg,#0a0a0a 0%,#111 100%)}
+.s-accent::before{background:linear-gradient(135deg,#1a0f00 0%,#0a0a0a 100%)}
+.s-blue::before{background:linear-gradient(135deg,#050d1a 0%,#0a0a0a 100%)}
+.s-red::before{background:linear-gradient(135deg,#1a0508 0%,#0a0a0a 100%)}
+.s-green::before{background:linear-gradient(135deg,#051a0a 0%,#0a0a0a 100%)}
+.s-purple::before{background:linear-gradient(135deg,#0f051a 0%,#0a0a0a 100%)}
+
+.slide>*{position:relative;z-index:1;max-width:900px;width:100%}
+
+/* ── typography ── */
+.slide-num{font-size:0.75rem;font-weight:700;color:#f59e0b;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;opacity:0.7}
+h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.15;letter-spacing:-0.03em;margin-bottom:1rem}
+h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-0.02em;margin-bottom:0.8rem}
+h3{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:600;margin-bottom:0.6rem}
+p,.desc{font-size:clamp(1rem,1.8vw,1.2rem);line-height:1.75;color:#ccc;margin-bottom:0.8rem}
+.lead{font-size:clamp(1.15rem,2vw,1.4rem);color:#e0e0e0;line-height:1.7}
+.dim{color:#777}
+.accent{color:#f59e0b}
+.red{color:#ef4444}
+.blue{color:#60a5fa}
+.green{color:#34d399}
+
+/* ── big quote ── */
+.bigquote{font-size:clamp(1.3rem,3vw,2rem);font-weight:600;line-height:1.5;border-left:4px solid #f59e0b;padding-left:1.2rem;margin:1.5rem 0;color:#e0e0e0}
+
+/* ── cards ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1.5rem 0}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.2rem 1.4rem}
+.card h4{font-size:1rem;margin-bottom:0.5rem;color:#f59e0b}
+.card li{font-size:0.92rem;color:#aaa;padding:0.15rem 0;list-style:none}
+.card li::before{content:"→ ";color:#f59e0b}
+
+/* ── chain ── */
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:0.4rem;margin:1.2rem 0}
+.chain .n{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:0.35rem 0.85rem;border-radius:8px;font-size:0.95rem;font-weight:500}
+.chain .a{color:#f59e0b;font-weight:700;font-size:1.1rem}
+
+/* ── bullet list ── */
+.points{margin:1rem 0}
+.points li{list-style:none;padding:0.4rem 0;font-size:clamp(0.95rem,1.6vw,1.1rem);color:#ccc}
+.points li .icon{margin-right:0.5rem}
+
+/* ── thesis box ── */
+.thesis{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:12px;padding:1.2rem 1.5rem;margin:1.2rem 0}
+.thesis p{margin-bottom:0.3rem;color:#e0e0e0}
+.thesis p:last-child{margin-bottom:0}
+
+/* ── 3-question ── */
+.q-list{margin:1.5rem 0}
+.q-item{display:flex;align-items:flex-start;gap:0.8rem;margin-bottom:1rem}
+.q-mark{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#f59e0b;color:#000;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;margin-top:0.15rem}
+.q-text{font-size:clamp(1rem,1.8vw,1.15rem);color:#ccc;line-height:1.6}
+.q-text strong{color:#fff}
+.q-answer{color:#f59e0b;font-weight:700}
+
+/* ── nav dots ── */
+.nav{position:fixed;right:1.2rem;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:8px}
+.nav a{display:block;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.3s}
+.nav a:hover,.nav a.active{background:#f59e0b;transform:scale(1.4)}
+@media(max-width:600px){.nav{display:none}}
+
+/* ── footer ── */
+.footer{text-align:center;padding:3rem 1.5rem;font-size:0.85rem;color:#555}
+
+/* ── animate ── */
+.fade-in{opacity:0;transform:translateY(30px);transition:all 0.7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ── progress bar ── */
+.progress{position:fixed;top:0;left:0;height:3px;background:#f59e0b;z-index:200;transition:width 0.2s}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav class="nav" id="nav"></nav>
+
+<!-- ========== SLIDE 0: COVER ========== -->
+<section class="slide s-accent" id="s0">
+  <div>
+    <div class="slide-num">Jocy × 逍遥 🦞 · 2026.03.21</div>
+    <h1>波浪碰撞</h1>
+    <h2 class="dim" style="font-weight:400;margin-top:0.5rem">秩序重构期的战争、技术与投资</h2>
+    <p class="lead" style="margin-top:2rem;max-width:600px">从俄乌到 AI，从拼多多到以色列核选项——一次关于世界秩序重构的结构性对话。</p>
+    <p class="dim" style="margin-top:3rem;font-size:0.85rem">↓ 向下滑动阅读</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 1: 核心命题 ========== -->
+<section class="slide s-dark" id="s1">
+  <div class="fade-in">
+    <div class="slide-num">01 / 核心命题</div>
+    <h2>俄乌就是三战的开始</h2>
+    <div class="bigquote">所有大的国际力量都已经加入了，只是要结束以后大家才能醒悟——当时就是三战。</div>
+    <p class="lead">生产力变化导致既有国际秩序无法容纳新的力量对比。碰撞不可避免。</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 2: 三个反问 ========== -->
+<section class="slide s-red" id="s2">
+  <div class="fade-in">
+    <div class="slide-num">02 / 三个不可能</div>
+    <h2>三个"你真的相信吗？"</h2>
+    <div class="q-list">
+      <div class="q-item">
+        <div class="q-mark">1</div>
+        <div class="q-text">中国持续增长之后，能接受处处被美国定义和限制的国际秩序吗？<br><span class="q-answer">不能。</span></div>
+      </div>
+      <div class="q-item">
+        <div class="q-mark">2</div>
+        <div class="q-text">欧美会甘愿永远成为中国产品倾销地而无力抵抗吗？<br><span class="q-answer">不会。</span></div>
+      </div>
+      <div class="q-item">
+        <div class="q-mark">3</div>
+        <div class="q-text">中国通缩生产、欧美负债消费——这是可持续循环，还是一个长周期浪潮？<br><span class="q-answer">不可持续。</span></div>
+      </div>
+    </div>
+    <p>这些矛盾综合起来只有两种出路：<strong class="accent">战争</strong>，或<strong class="green">生产力再次突破</strong>。<br>目前看来，<strong>两条路在一起走。</strong></p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 3: 非对称三战 ========== -->
+<section class="slide s-dark" id="s3">
+  <div class="fade-in">
+    <div class="slide-num">03 / 非对称三战</div>
+    <h2>一场看不见的世界大战</h2>
+    <p class="lead">热战被核威慑封顶，但每一个其他维度都已全面展开。</p>
+    <ul class="points" style="margin-top:1.5rem">
+      <li><span class="icon">⚔️</span> 代理战争 — 俄乌、中东</li>
+      <li><span class="icon">💰</span> 经济战 — 关税、制裁、金融武器化</li>
+      <li><span class="icon">🔬</span> 技术脱钩 — 芯片禁令、AI 算力封锁</li>
+      <li><span class="icon">📡</span> 信息战 — 叙事控制、舆论塑造</li>
+    </ul>
+    <p style="margin-top:1.5rem">战场不是地理的，是<strong>秩序的</strong>。参战方式不是宣战，是<strong>选边</strong>。<br>没有珍珠港时刻，只有持续的结构性对抗升级。</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 4: 两条路径 ========== -->
+<section class="slide s-accent" id="s4">
+  <div class="fade-in">
+    <div class="slide-num">04 / 两条出路</div>
+    <h2>消耗战 × 生产力突破<br><span class="dim" style="font-size:0.7em;font-weight:400">同时在走</span></h2>
+    <div class="cards">
+      <div class="card">
+        <h4>🔥 路径 1：消耗战</h4>
+        <ul>
+          <li>俄乌 → 消耗俄常规军力</li>
+          <li>芯片禁令 → 卡 AI 算力</li>
+          <li>关税战 → 互抬成本</li>
+          <li>金融制裁 → 武器化 SWIFT</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>🚀 路径 2：生产力突破</h4>
+        <ul>
+          <li>AI → 谁先转化为生产力</li>
+          <li>新能源 → 中国结构性优势</li>
+          <li>通用机器人 → 重定义制造业</li>
+          <li>量子/生物 → 潜在秩序改写者</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:1rem"><strong>双方都在赌对方先撑不住。</strong><br><span class="dim">美国赌中国内需不足 + 人口拐点 | 中国赌美国财政赤字 + 社会撕裂</span></p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 5: 波浪模型 ========== -->
+<section class="slide s-blue" id="s5">
+  <div class="fade-in">
+    <div class="slide-num">05 / 波浪模型</div>
+    <h2>战争是波浪碰撞的涟漪</h2>
+    <div class="bigquote">技术发展和可组合性导致不同国家的实力如波浪般起伏。战争就是这些波浪互相碰撞的涟漪。根本停不下来。</div>
+    <div class="chain">
+      <span class="n">技术发展</span><span class="a">→</span>
+      <span class="n">生产力不均</span><span class="a">→</span>
+      <span class="n">国力变化</span><span class="a">→</span>
+      <span class="n">秩序失衡</span><span class="a">→</span>
+      <span class="n">碰撞</span><span class="a">→</span>
+      <span class="n">新秩序</span><span class="a">→</span>
+      <span class="n">🔄</span>
+    </div>
+    <ul class="points" style="margin-top:1.5rem">
+      <li><span class="icon">📈</span> <strong>频率加快</strong> — 大航海→一战 400 年 | 一战→二战 20 年 | 冷战结束→新冷战 30 年</li>
+      <li><span class="icon">📊</span> <strong>振幅变大</strong> — 每次涉及的资源、技术复杂度都在上升</li>
+      <li><span class="icon">⚡</span> <strong>传导加速</strong> — 区域冲突实时全球联动</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== SLIDE 6: 和平是间歇期 ========== -->
+<section class="slide s-dark" id="s6">
+  <div class="fade-in">
+    <div class="slide-num">06 / 关键推论</div>
+    <h2>"和平"从来不是常态</h2>
+    <p class="lead">1991-2022 的 31 年不是人类学会了和平共处，而是单极格局下<strong>没有足够大的浪能碰到美国</strong>。</p>
+    <p class="lead" style="margin-top:1rem">中国这个浪起来了，碰撞就重新开始了。</p>
+    <p class="lead accent" style="margin-top:1rem;font-weight:600">这不是谁的错，是物理。</p>
+    <div class="thesis" style="margin-top:2rem">
+      <p><strong>Escape Condition：</strong>如果技术突破大到重新定义"国家"这个单位——比如 AGI 让生产力脱离人口和地理——波浪的载体就变了。</p>
+      <p>我们可能正处于<strong>旧波浪碰撞 + 载体切换</strong>的双重转型期。上一次类似：工业革命 + 拿破仑战争。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 7: 拼多多 ========== -->
+<section class="slide s-accent" id="s7">
+  <div class="fade-in">
+    <div class="slide-num">07 / 拼多多悖论</div>
+    <h2>站在塌缩范式上的效率冠军</h2>
+    <p class="lead">你站在一个长期浪潮的风口浪尖，你就是那个全世界都想解决的问题，然后你还指望世界会按你的利益发展。</p>
+    <div class="cards" style="margin-top:1.5rem">
+      <div class="card">
+        <h4>⚡ 政治反弹</h4>
+        <ul>
+          <li>越成功，反弹越猛</li>
+          <li>关税、合规审查、de minimis 改革</li>
+          <li>战术优势 vs 结构性逆风</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>🤖 技术替代</h4>
+        <ul>
+          <li>Optimus 量产 → 劳动力优势归零</li>
+          <li>"工业霸主" → 像"农业霸主"般失去意义</li>
+          <li>制造能力 ≈ 资本+能源+AI，不≈ 人口</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bigquote" style="margin-top:1.5rem;font-size:clamp(1rem,2vw,1.3rem)">最危险的时候不是业绩差的时候，是业绩最好、所有人都觉得逻辑没问题的时候。</div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 8: 耗散结构 ========== -->
+<section class="slide s-purple" id="s8">
+  <div class="fade-in">
+    <div class="slide-num">08 / 耗散结构</div>
+    <h2>为什么好团队救不了坏公司</h2>
+    <div class="bigquote">公司本质上是正反馈下的最小阻力路径。路径依赖不是"习惯"，是整个系统的能量地形。</div>
+    <ul class="points" style="margin-top:1.5rem">
+      <li><span class="icon">🏔️</span> 每个决策节点、激励机制都在强化现有的沟——越流越深</li>
+      <li><span class="icon">🔒</span> 新团队被嵌入旧结构——无法用系统内部能量重组系统本身</li>
+      <li><span class="icon">🌱</span> <strong>相变只能从外部发生</strong> — 竞争对手在空白地形上建立新路径</li>
+    </ul>
+    <p style="margin-top:1.5rem"><strong>延伸到国家：</strong>中国的"中国制造"路径依赖、美国的"金融+消费"路径依赖——几十年正反馈形成的深沟。内部改良阻力极大，<strong class="accent">外部冲击才是相变触发器</strong>。</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 9: 以色列 ========== -->
+<section class="slide s-red" id="s9">
+  <div class="fade-in">
+    <div class="slide-num">09 / 以色列核选项</div>
+    <h2>安全感缺失下的最小阻力路径</h2>
+    <div class="cards">
+      <div class="card" style="border-color:rgba(239,68,68,0.3)">
+        <h4 style="color:#ef4444">危机 A：伊朗拥核（慢性）</h4>
+        <ul>
+          <li>被核威慑永久压制</li>
+          <li>丧失军事主动权</li>
+          <li>持续被消耗</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(239,68,68,0.3)">
+        <h4 style="color:#ef4444">危机 B：动用核武（急性）</h4>
+        <ul>
+          <li>打破核禁忌</li>
+          <li>无纵深，成为靶心</li>
+          <li>Samson 选项 — 同归于尽</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem"><strong>一个没有安全感的个体（或国家），具有最强的攻击性。</strong></p>
+    <p>1973 年斋月战争已讨论过核选项。如果全世界有一个国家有动力用核武器——那就是以色列。</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 10: 打架逻辑 ========== -->
+<section class="slide s-dark" id="s10">
+  <div class="fade-in">
+    <div class="slide-num">10 / 博弈的本质</div>
+    <h2>你的动作取决于别人的动作</h2>
+    <div class="bigquote">打架就是这样——到最后你采用什么动作，从来不取决于你的决定，而往往取决于别人的动作。</div>
+    <ul class="points" style="margin-top:1.5rem">
+      <li><span class="icon">🎯</span> 以色列用不用核武 → 取决于伊朗核进度、美国介入程度、常规手段是否耗尽</li>
+      <li><span class="icon">🌀</span> 每一个变量都不在以色列控制范围内</li>
+      <li><span class="icon">💣</span> 核讨论的两层意图：最后手段 + 迫使美国介入的信号博弈</li>
+      <li><span class="icon">⚠️</span> 如果杠杆失效——"信号"就可能变成"行动"</li>
+    </ul>
+    <p style="margin-top:1.5rem" class="dim">一旦秩序崩坏，世界就进入另一个秩序逻辑。整个系统变成耦合度极高的混沌系统。</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 11: 涟漪扩散 ========== -->
+<section class="slide s-blue" id="s11">
+  <div class="fade-in">
+    <div class="slide-num">11 / 涟漪扩散</div>
+    <h2>巴尔干再次绷紧</h2>
+    <p class="lead">武契奇公开指控：阿尔巴尼亚、克罗地亚、科索沃正在"等世界陷入混乱就动手"。</p>
+    <p style="margin-top:1rem">巴尔干的规律：<strong>大国秩序稳定时安静，秩序松动时爆发。</strong></p>
+    <p>1990 年代南斯拉夫解体 = 冷战结束的直接后果。<br>现在的紧张 = 新秩序瓦解的涟漪。</p>
+    <p style="margin-top:1rem" class="dim">美国注意力被多线消耗 → 每条前线威慑力减弱 → 又一块多米诺骨牌在晃。</p>
+  </div>
+</section>
+
+<!-- ========== SLIDE 12: 投资框架 ========== -->
+<section class="slide s-green" id="s12">
+  <div class="fade-in">
+    <div class="slide-num">12 / 投资含义</div>
+    <h2>押注路径 2 的基础设施</h2>
+    <div class="thesis">
+      <p>不管谁赢，AI 算力、能源转型、供应链重构都是确定性需求。</p>
+    </div>
+    <ul class="points" style="margin-top:1.5rem">
+      <li><span class="icon">🟢</span> <strong>主仓</strong> — AI 算力 · 能源转型 · 供应链重构（路径 2 基础设施）</li>
+      <li><span class="icon">🟡</span> <strong>对冲</strong> — 军工 · 战略资源（路径 1 受益者，不是主仓）</li>
+      <li><span class="icon">🔴</span> <strong>警惕</strong> — 塌缩范式上的"效率冠军"（底层假设正在瓦解）</li>
+      <li><span class="icon">⏰</span> <strong>时间锚</strong> — Optimus 量产（乐观 2028 / 保守 2030-32）是分水岭</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== SLIDE 13: 结语 ========== -->
+<section class="slide s-dark" id="s13">
+  <div class="fade-in" style="text-align:center">
+    <div class="slide-num" style="text-align:center">尾声</div>
+    <h2 style="max-width:650px;margin:0 auto 1.5rem">在混沌系统里<br>承认不可预测<br>本身就是最准确的预测</h2>
+    <p class="lead dim" style="max-width:500px;margin:0 auto">能做的只是识别哪些节点<br>一旦触发就不可逆。</p>
+    <p style="margin-top:2rem;font-weight:600;color:#f59e0b">理解结构，比预测结果重要得多。</p>
+    <p class="dim" style="margin-top:3rem;font-size:0.85rem">Jocy (@Jocyiosg) × 逍遥 🦞<br>2026年3月21日 · 香港</p>
+    <p class="dim" style="margin-top:0.5rem;font-size:0.8rem">观点仅代表讨论当时的思考框架，不构成投资建议。</p>
+  </div>
+</section>
+
+<div class="footer">
+  <p>← 用键盘方向键或滑动翻页 →</p>
+</div>
+
+<script>
+// nav dots
+const slides=document.querySelectorAll('.slide');
+const nav=document.getElementById('nav');
+slides.forEach((_,i)=>{const a=document.createElement('a');a.href='#s'+i;nav.appendChild(a)});
+
+// progress + active dot
+function onScroll(){
+  const st=window.scrollY,sh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progress').style.width=(st/sh*100)+'%';
+  const dots=nav.querySelectorAll('a');
+  slides.forEach((s,i)=>{
+    const r=s.getBoundingClientRect();
+    if(r.top<window.innerHeight*0.5&&r.bottom>window.innerHeight*0.3){
+      dots.forEach(d=>d.classList.remove('active'));
+      dots[i]&&dots[i].classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+
+// fade in
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.15});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// keyboard nav
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'){
+    e.preventDefault();
+    const next=[...slides].find(s=>s.getBoundingClientRect().top>10);
+    next&&next.scrollIntoView({behavior:'smooth'});
+  }
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft'){
+    e.preventDefault();
+    const prev=[...slides].reverse().find(s=>s.getBoundingClientRect().top<-10);
+    prev&&prev.scrollIntoView({behavior:'smooth'});
+  }
+});
+</script>
+</body>
+</html>
