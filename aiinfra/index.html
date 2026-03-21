@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Selling Tokens to Dyson Spheres — The Thermodynamic Endgame of AI Infrastructure</title>
+<meta name="description" content="从卖Token到戴森球：用耗散结构理论重新理解AI基础设施的终局。五代基础设施演进、能量指数增长、太空算力必然性。">
+<meta property="og:title" content="From Selling Tokens to Dyson Spheres">
+<meta property="og:description" content="用耗散结构理论重新理解AI基础设施的终局">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="From Selling Tokens to Dyson Spheres">
+<meta name="twitter:description" content="The Thermodynamic Endgame of AI Infrastructure">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
+  :root {
+    --bg: #0a0a0b;
+    --surface: #141416;
+    --surface-2: #1c1c20;
+    --border: #2a2a30;
+    --text: #e8e6e3;
+    --text-secondary: #9a9a9a;
+    --accent: #f97316;
+    --accent-dim: rgba(249, 115, 22, 0.12);
+    --blue: #3b82f6;
+    --green: #22c55e;
+    --purple: #a855f7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Serif SC', 'Inter', serif;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(249, 115, 22, 0.06) 0%, transparent 60%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero .cn-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .meta-line {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .meta-line a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  section {
+    margin-bottom: 5rem;
+  }
+
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem;
+    color: var(--text);
+  }
+
+  p {
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+  }
+
+  p strong, p b {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .highlight-box {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .gen-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .gen-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .gen-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  .gen-table tr:hover td {
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  .gen-table td:first-child {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .chain-node {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .chain-arrow {
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+
+  .dissipation-stack {
+    margin: 2rem 0;
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 0;
+  }
+
+  .stack-bar {
+    width: 4px;
+    background: linear-gradient(180deg, var(--accent), var(--purple));
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .stack-content {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    flex: 1;
+  }
+
+  .stack-item:last-child .stack-content {
+    border-bottom: none;
+  }
+
+  .stack-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .stack-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .numbered-list {
+    list-style: none;
+    counter-reset: item;
+    margin: 1.5rem 0;
+  }
+
+  .numbered-list li {
+    counter-increment: item;
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+  }
+
+  .numbered-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    width: 2rem;
+    height: 2rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .musk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 600px) {
+    .musk-grid { grid-template-columns: 1fr; }
+  }
+
+  .musk-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .musk-card .card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .musk-card .card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .verdict .verdict-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .investment-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .inv-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .inv-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 2.5rem;
+    text-align: center;
+  }
+
+  .inv-content .inv-title {
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+  }
+
+  .inv-content .inv-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .closing {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+  }
+
+  .closing .final-chain {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+  }
+
+  .closing .final-line {
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .en-title-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-top: 2rem;
+  }
+
+  .en-title-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-secondary);
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="cn-title">从卖 Token 到戴森球</div>
+    <h1>The Thermodynamic Endgame<br>of AI Infrastructure</h1>
+    <p class="subtitle">用耗散结构理论重新理解五代基础设施演进、<br>能量指数增长与文明的必然去向</p>
+    <p class="meta-line">Jocy · <a href="https://x.com/Jocyiosg" target="_blank">@Jocyiosg</a> · IOSG Ventures</p>
+    <p class="meta-line">2026.03</p>
+  </div>
+  <div class="scroll-hint">↓ 向下阅读</div>
+</div>
+
+<div class="container">
+
+  <!-- Part 1: 五代基础设施 -->
+  <section>
+    <div class="section-label">Part I</div>
+    <h2>五代基础设施：从运力到智力</h2>
+
+    <p>人类文明的底层基础设施经历了五次跃迁。每一次跃迁都把一种稀缺资源变成通用服务，从而释放出新一轮的大规模创新。</p>
+
+    <table class="gen-table">
+      <thead>
+        <tr><th>代际</th><th>基础设施</th><th>起点标志</th><th>本质</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>第一代</td><td>运力</td><td>铁路 → 公路 → 海运 → 航空</td><td>物质的移动</td></tr>
+        <tr><td>第二代</td><td>电力</td><td>1913 福特电驱流水线</td><td>能量的通用化</td></tr>
+        <tr><td>第三代</td><td>通信</td><td>~2000 洲际光纤网络</td><td>信息的移动</td></tr>
+        <tr><td>第四代</td><td>算力</td><td>2006 AWS 发布</td><td>计算的通用化</td></tr>
+        <tr><td>第五代</td><td>智力</td><td>2021 OpenAI 开放 API</td><td>智能的通用化</td></tr>
+      </tbody>
+    </table>
+
+    <p>今天大模型公司的激烈竞争，本质上是<strong>智力基础设施的建设期</strong>。几年后行业整合完成，卖 Token 提供通用智能服务，就会像卖电、卖算力一样——摩尔定律会把智力的边际成本压到接近零。</p>
+
+    <p>每一代基础设施的商业终局都是 <strong>public utility</strong>：标准化接入、充分竞争、利润率收敛。</p>
+
+    <div class="highlight-box">
+      这不是 AI 的终局，这只是 AI 的开局。<br>
+      基础设施成熟后，真正的大创新才刚刚开始。
+    </div>
+
+    <p>历史反复证明：<strong>杀手级应用从来不是基础设施提供商做出来的</strong>——铁路公司没做出沃尔玛，电力公司没做出福特，AWS 没做出 Uber。卖 Token 的公司大概率也不会是 AI 时代最大的赢家。</p>
+  </section>
+
+  <!-- Part 2: 耗散结构 -->
+  <section>
+    <div class="section-label">Part II</div>
+    <h2>耗散结构：把框架往上拉一层</h2>
+
+    <p>Ilya Prigogine 的耗散结构理论提供了一个更深层的解释框架：</p>
+
+    <div class="highlight-box">
+      复杂系统通过消耗更多能量来维持更高层次的秩序。
+    </div>
+
+    <p>每一代基础设施本质上都是一个<strong>新的耗散层级</strong>——把低阶能量转化为高阶秩序：</p>
+
+    <div class="dissipation-stack">
+      <div class="stack-item">
+        <div class="stack-bar"></div>
+        <div class="stack-content">
+          <div class="stack-label">铁路</div>
+          <div class="stack-desc">煤的化学能 → 运力</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-bar"></div>
+        <div class="stack-content">
+          <div class="stack-label">电网</div>
+          <div class="stack-desc">一次能源 → 通用能量形式</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-bar"></div>
+        <div class="stack-content">
+          <div class="stack-label">互联网</div>
+          <div class="stack-desc">电力 → 信息流动</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-bar"></div>
+        <div class="stack-content">
+          <div class="stack-label">云计算</div>
+          <div class="stack-desc">电力 → 计算能力</div>
+        </div>
+      </div>
+      <div class="stack-item">
+        <div class="stack-bar"></div>
+        <div class="stack-content">
+          <div class="stack-label">大模型</div>
+          <div class="stack-desc">算力 → 智力</div>
+        </div>
+      </div>
+    </div>
+
+    <p>每一层都消耗更多能量，也产生更高阶的秩序。这不是浪费，这是复杂系统演化的基本规律。</p>
+
+    <p>效率提升当然会发生——汽车越来越省油，芯片越来越省电，模型推理成本在指数下降。但每一轮效率红利都会被<strong>新一层需求的爆炸</strong>吃掉。</p>
+
+    <div class="verdict">
+      <div class="verdict-text">
+        "省电"从来不是文明演化的方向。<br>
+        "找到更多电"才是。
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 3: 戴森球 -->
+  <section>
+    <div class="section-label">Part III</div>
+    <h2>戴森球：不是科幻，是热力学必然</h2>
+
+    <p>1960年，物理学家 Freeman Dyson 提出：<strong>一个足够先进的文明，最终会把整颗恒星包起来，截获它全部的能量输出。</strong></p>
+
+    <p>太阳每秒释放 3.8×10²⁶ 瓦的能量，地球只接收到其中的<strong>二十亿分之一</strong>。剩下的全浪费了。</p>
+
+    <table class="gen-table">
+      <thead>
+        <tr><th>文明级别</th><th>能力</th><th>人类现状</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>I 型</td><td>利用整个行星的全部能量</td><td>我们约在 0.7，还没到 I 型</td></tr>
+        <tr><td>II 型</td><td>利用整颗恒星的全部能量</td><td>这就是戴森球</td></tr>
+        <tr><td>III 型</td><td>利用整个星系的能量</td><td>纯理论</td></tr>
+      </tbody>
+    </table>
+
+    <p>从耗散结构的逻辑推：<strong>只要文明的能量需求持续指数增长，向恒星级能量获取迈进就不是选择题，是必答题。</strong></p>
+
+    <p>AI 算力的爆炸式增长正在加速这个进程。训练一个前沿大模型的耗电量已经相当于一个小城市一年的用电。这条曲线外推下去，地面能源的天花板几十年内就会撞到。</p>
+
+    <div class="highlight-box">
+      热力学第二定律不允许文明在地面停下来。
+    </div>
+  </section>
+
+  <!-- Part 4: 太空算力 -->
+  <section>
+    <div class="section-label">Part IV</div>
+    <h2>太空算力：戴森球的 0.01 版</h2>
+
+    <p><strong>太空算力和太空制造是绕不过去的方向，且长期必然成功。</strong>逻辑只有三步：</p>
+
+    <ol class="numbered-list">
+      <li><strong>地面能量有上限。</strong>地球截获的太阳能是固定的，化石能源在耗尽，核能有政治和物理约束。AI 算力需求如果继续指数增长，地面供能几十年内就会撞墙。</li>
+      <li><strong>太空没有这些约束。</strong>无限太阳能、真空散热效率高（算力的物理瓶颈其实是散热不是供电）、零重力环境对某些制造工艺有天然优势（晶体生长、光纤拉制）。</li>
+      <li><strong>经济性正在跨过临界点。</strong>SpaceX 把发射成本从 $50,000/kg 压到 Starship 目标的 &lt;$100/kg。太空基建正从国家工程变成商业可行。</li>
+    </ol>
+
+    <h3>Musk 的布局：一条线串起来</h3>
+
+    <div class="musk-grid">
+      <div class="musk-card">
+        <div class="card-title">🚀 SpaceX</div>
+        <div class="card-desc">发射成本降100倍，太空准入门槛从国家级降到商业级</div>
+      </div>
+      <div class="musk-card">
+        <div class="card-title">🛰️ Starlink</div>
+        <div class="card-desc">太空通信网络，未来太空算力的数据回传通道</div>
+      </div>
+      <div class="musk-card">
+        <div class="card-title">☀️ Tesla Energy</div>
+        <div class="card-desc">地面太阳能采集 + Megapack 储能，能源端布局</div>
+      </div>
+      <div class="musk-card">
+        <div class="card-title">🧠 xAI</div>
+        <div class="card-desc">超级算力中心，对电力需求已到自建发电的程度</div>
+      </div>
+    </div>
+
+    <p>降低太空准入成本 → 构建太空通信网 → 部署太空太阳能采集 → 为地面/太空算力供电。<strong>这就是戴森球的第一步。</strong></p>
+
+    <p>太空太阳能发电站——在轨道上铺太阳能板，用微波传回地球——中国、日本、ESA 都在认真研究。这不是科幻，是正在推进的工程项目。</p>
+  </section>
+
+  <!-- Part 5: 核能 -->
+  <section>
+    <div class="section-label">Part V</div>
+    <h2>核能注定是小众市场</h2>
+
+    <p>从耗散结构的视角，核能有一个致命的结构性缺陷：</p>
+
+    <div class="highlight-box">
+      核能是从地面有限的铀/钍矿中提取能量，本质上还是在"地球存量"里打转。<br>
+      而太阳能是直接接入恒星的"增量"。
+    </div>
+
+    <p>太阳每秒的能量输出，比人类挖出的所有铀全部裂变还多不知道多少倍。核能的宿命 = <strong>过渡方案</strong>，就像煤炭之于石油——不是不能用，而是在更大尺度的能量获取方式面前，它天然是小众的。</p>
+
+    <p>核能的甜蜜点在<strong>"阳光不够的角落"</strong>：高纬度地区、军事潜艇、深空探测。这些都是太阳光照不到的特殊场景。一旦太空太阳能采集成熟，连这些角落都会被挤压。</p>
+
+    <div class="verdict">
+      <div class="verdict-text">
+        文明的能量来源最终会收敛到离恒星最近的路径。<br>
+        核能离恒星太远了——它是拆原子，不是接恒星。
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 6: 投资启示 -->
+  <section>
+    <div class="section-label">Part VI</div>
+    <h2>投资启示：跟着能量流向投</h2>
+
+    <div class="investment-grid">
+      <div class="inv-item">
+        <div class="inv-icon">🏭</div>
+        <div class="inv-content">
+          <div class="inv-title">模型层是 utility 生意</div>
+          <div class="inv-desc">激烈竞争 → 行业整合 → 利润率压缩。现在 all-in 模型层的资本，赌的是建设期超额利润，但终局是 utility 级回报。</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-icon">🚀</div>
+        <div class="inv-content">
+          <div class="inv-title">应用层的 alpha 还没出现</div>
+          <div class="inv-desc">每一代基础设施成熟后，最大赢家都在应用层。现在太早，但方向确定。最大的 AI 公司可能还没有被创立。</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-icon">🛰️</div>
+        <div class="inv-content">
+          <div class="inv-title">太空基建是 30-50 年的确定性方向</div>
+          <div class="inv-desc">发射成本下降 + 算力需求指数增长，会把太空算力从科幻推向商业现实。</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-icon">⚛️</div>
+        <div class="inv-content">
+          <div class="inv-title">核能是过渡性配置</div>
+          <div class="inv-desc">适合当前能源缺口，但长期会被太阳能（地面+太空）取代。配置可以，重仓要谨慎。</div>
+        </div>
+      </div>
+      <div class="inv-item">
+        <div class="inv-icon">⚡</div>
+        <div class="inv-content">
+          <div class="inv-title">跟着能量流向投</div>
+          <div class="inv-desc">耗散结构告诉我们：资本最终会流向能更高效获取和消耗能量的方向。这是比任何行业分析都更底层的投资逻辑。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 思维链 -->
+  <section>
+    <div class="section-label">推导链</div>
+    <div class="chain">
+      <span class="chain-node">五代基础设施</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">耗散结构</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">能量指数增长</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">戴森球必然性</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">太空算力/制造</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">核能小众化</span>
+    </div>
+    <p style="text-align: center; font-style: italic; margin-top: 1rem;">这条链上的每一环都是热力学推出来的，不是想象出来的。</p>
+  </section>
+
+</div>
+
+<!-- Closing -->
+<div class="closing">
+  <p class="final-chain">
+    基于曾教授的五代基础设施框架与群内讨论延伸。<br>
+    耗散结构 × 卡尔达肖夫尺度 × 第一性原理。
+  </p>
+  <p class="final-line">
+    "这不是 AI 的终局，这只是 AI 的开局。"
+  </p>
+</div>
+
+<div class="en-title-section">
+  <h2>From Selling Tokens to Dyson Spheres:<br>The Thermodynamic Endgame of AI Infrastructure</h2>
+</div>
+
+<div class="footer">
+  <p>Jocy · <a href="https://x.com/Jocyiosg" target="_blank">@Jocyiosg</a> · IOSG Ventures · 2026</p>
+</div>
+
+</body>
+</html>
