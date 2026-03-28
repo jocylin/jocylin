@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>正反馈是一切的底层逻辑</title>
+  <style>
+    :root {
+      --bg: #0d0d0d; --surface: #141414; --border: #222; --text: #e8e8e8;
+      --muted: #888; --accent: #c8a96e; --accent2: #7eb8c8;
+      --red: #c86e6e; --green: #6ec87e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; line-height: 1.8; padding: 2rem 1rem 6rem; }
+    .container { max-width: 720px; margin: 0 auto; }
+    header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 700; line-height: 1.3; margin-bottom: 1rem; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; font-style: italic; }
+    section { margin-bottom: 3rem; }
+    h2 { font-size: 1.1rem; font-weight: 600; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+    p { margin-bottom: 1rem; color: #ccc; font-size: 0.97rem; }
+    .chain { display: flex; flex-direction: column; gap: 0; margin: 1.5rem 0; }
+    .chain-item { display: flex; align-items: stretch; gap: 1rem; }
+    .chain-left { display: flex; flex-direction: column; align-items: center; width: 2.5rem; flex-shrink: 0; }
+    .chain-dot { width: 0.75rem; height: 0.75rem; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.35rem; }
+    .chain-line { width: 2px; flex: 1; background: var(--border); margin: 0.2rem 0; }
+    .chain-item:last-child .chain-line { display: none; }
+    .chain-content { padding-bottom: 1.4rem; flex: 1; }
+    .chain-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.2rem; }
+    .chain-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+    .chain-body { font-size: 0.87rem; color: var(--muted); }
+    .probe-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 1.2rem 0; }
+    @media (max-width: 520px) { .probe-grid { grid-template-columns: 1fr; } }
+    .probe-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; }
+    .probe-card.bad-strong { border-top: 3px solid var(--red); }
+    .probe-card.bad-weak { border-top: 3px solid #444; }
+    .probe-card.good { border-top: 3px solid var(--green); }
+    .probe-type { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+    .probe-card.bad-strong .probe-type { color: var(--red); }
+    .probe-card.bad-weak .probe-type { color: #555; }
+    .probe-card.good .probe-type { color: var(--green); }
+    .probe-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; }
+    .probe-desc { font-size: 0.82rem; color: #888; }
+    blockquote { border-left: 3px solid var(--accent); padding: 0.8rem 1.2rem; margin: 1.2rem 0; color: var(--muted); font-style: italic; font-size: 0.93rem; background: var(--surface); }
+    blockquote cite { display: block; margin-top: 0.4rem; font-size: 0.8rem; color: #555; font-style: normal; }
+    .domains { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 1.2rem 0; }
+    @media (max-width: 520px) { .domains { grid-template-columns: 1fr; } }
+    .domain-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1rem; text-align: center; }
+    .domain-icon { font-size: 1.6rem; margin-bottom: 0.4rem; }
+    .domain-name { font-size: 0.8rem; font-weight: 600; color: var(--accent2); margin-bottom: 0.5rem; }
+    .domain-probe { font-size: 0.78rem; color: #888; line-height: 1.7; }
+    .domain-probe strong { color: #bbb; font-weight: 500; }
+    .density-block { background: var(--surface); border: 1px solid var(--border); padding: 1.4rem 1.6rem; border-radius: 6px; margin: 1.2rem 0; }
+    .density-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    @media (max-width: 480px) { .density-compare { grid-template-columns: 1fr; } }
+    .density-item { padding: 0.8rem; background: #111; border-radius: 4px; border: 1px solid var(--border); }
+    .density-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.35rem; }
+    .density-item.bad .density-label { color: var(--red); }
+    .density-item.good .density-label { color: var(--green); }
+    .density-desc { font-size: 0.85rem; color: #888; }
+    .formula-box { background: #0d1a0d; border: 1px solid #1a3a1a; border-left: 3px solid var(--green); padding: 1.4rem 1.6rem; border-radius: 6px; margin: 1.5rem 0; }
+    .formula-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--green); margin-bottom: 0.6rem; }
+    .formula-text { font-size: 1rem; color: var(--text); font-weight: 500; line-height: 1.7; }
+    .formula-text strong { color: var(--accent); }
+    .formula-sub { font-size: 0.85rem; color: var(--muted); margin-top: 0.6rem; }
+    .conclusion { background: var(--surface); border: 1px solid var(--border); padding: 1.6rem 2rem; border-radius: 8px; }
+    .related { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .related-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.8rem; }
+    .related a { display: inline-block; background: var(--surface); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 4px; color: var(--accent2); text-decoration: none; font-size: 0.88rem; }
+    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--muted); text-align: center; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="eyebrow">创业 · 投资 · 耗散结构</div>
+    <h1>正反馈是一切的底层逻辑</h1>
+    <p class="subtitle">从地缘政治到创业投资，同一套机制在不同尺度上的映射。</p>
+  </header>
+
+  <section>
+    <h2>完整推导链</h2>
+    <p>这五层是同一个耗散结构在不同尺度上的表现：</p>
+    <div class="chain">
+      <div class="chain-item">
+        <div class="chain-left"><div class="chain-dot"></div><div class="chain-line"></div></div>
+        <div class="chain-content">
+          <div class="chain-label">Layer 1</div>
+          <div class="chain-title">高质量信息密度</div>
+          <div class="chain-body">决定你所有猜想的质量上限。不是信息量，是密度——单位信息中的有效信号比例。这是整条链的源头。</div>
+        </div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-left"><div class="chain-dot"></div><div class="chain-line"></div></div>
+        <div class="chain-content">
+          <div class="chain-label">Layer 2</div>
+          <div class="chain-title">猜想质量</div>
+          <div class="chain-body">你对"哪里可能存在正反馈"的预判精度。猜想质量的上限由信息密度决定，执行只是把猜想变成现实。</div>
+        </div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-left"><div class="chain-dot"></div><div class="chain-line"></div></div>
+        <div class="chain-content">
+          <div class="chain-label">Layer 3</div>
+          <div class="chain-title">纠错反馈循环</div>
+          <div class="chain-body">用弱探针验证猜想，观察有没有正反馈信号。有→加注；没有→快速纠错，换方向继续探。循环能否维持，取决于猜想质量。</div>
+        </div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-left"><div class="chain-dot"></div><div class="chain-line"></div></div>
+        <div class="chain-content">
+          <div class="chain-label">Layer 4</div>
+          <div class="chain-title">正反馈</div>
+          <div class="chain-body">找到了真正有正反馈的路径。所有没有正反馈的路径本质上都是错的——就算没有短期经济正反馈，局部数据上一定能看见信号。</div>
+        </div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-left"><div class="chain-dot" style="background:var(--green)"></div><div class="chain-line"></div></div>
+        <div class="chain-content">
+          <div class="chain-label">Layer 5</div>
+          <div class="chain-title">成功</div>
+          <div class="chain-body">维持正反馈的耗散结构自然生长。这不是终点，而是一个新的非平衡稳态的开始——需要持续的能量输入来维持。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>弱探针：MVP 与定投的底层逻辑</h2>
+    <p>MVP和定投看起来是两件事，底层机制是同一个：<strong style="color:var(--accent)">用最小的能量输入，探测系统是否存在正反馈</strong>。</p>
+    <div class="probe-grid">
+      <div class="probe-card bad-strong">
+        <div class="probe-type">探针过强</div>
+        <div class="probe-title">烧钱扩张 / 重仓押注</div>
+        <div class="probe-desc">噪音太大，分不清是真正的正反馈还是惯性。一旦错了，没有资源继续探。</div>
+      </div>
+      <div class="probe-card bad-weak">
+        <div class="probe-type">探针过弱</div>
+        <div class="probe-title">永远在研究不行动</div>
+        <div class="probe-desc">根本没有信号。再多的信息密度，没有探针就无法验证猜想。</div>
+      </div>
+      <div class="probe-card good">
+        <div class="probe-type">弱探针 ✓</div>
+        <div class="probe-title">MVP / 小仓位试错</div>
+        <div class="probe-desc">够强到产生可观测信号，够弱到错了还能活着继续探。这是最优解。</div>
+      </div>
+    </div>
+    <blockquote>
+      不要让任何一次错误大到切断你继续探测的能力。
+      <cite>— Musk「保持纠错反馈循环」的物理学翻译</cite>
+    </blockquote>
+  </section>
+
+  <section>
+    <h2>三个域的映射</h2>
+    <p>同一套机制，在不同尺度下的具体形态：</p>
+    <div class="domains">
+      <div class="domain-card">
+        <div class="domain-icon">🌍</div>
+        <div class="domain-name">地缘政治</div>
+        <div class="domain-probe">
+          弱探针 = <strong>代理人战争 / 制裁试探</strong><br>
+          正反馈 = <strong>政权更迭 / 势力扩张</strong><br>
+          无正反馈 = <strong>越南 / 阿富汗困境</strong>
+        </div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-icon">🚀</div>
+        <div class="domain-name">创业</div>
+        <div class="domain-probe">
+          弱探针 = <strong>MVP / 最小可行产品</strong><br>
+          正反馈 = <strong>用户留存 / 口碑传播</strong><br>
+          无正反馈 = <strong>方向根本性错误</strong>
+        </div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-icon">📈</div>
+        <div class="domain-name">投资</div>
+        <div class="domain-probe">
+          弱探针 = <strong>定投 / 小仓位建仓</strong><br>
+          正反馈 = <strong>价格趋势 / 基本面验证</strong><br>
+          无正反馈 = <strong>价值陷阱 / 趋势反转</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>信息密度：最容易被忽视的变量</h2>
+    <p>大多数人把精力放在"执行"上，但执行只是把猜想变成现实。猜想的质量上限，已经被信息密度决定了。</p>
+    <div class="density-block">
+      <p style="font-size:0.88rem;color:#777;margin-bottom:0;">信息量 ≠ 信息密度</p>
+      <div class="density-compare">
+        <div class="density-item bad">
+          <div class="density-label">高信息量 / 低密度</div>
+          <div class="density-desc">大量资讯，但信号与噪声混杂。读了很多，猜想质量没有提升。消耗时间和注意力。</div>
+        </div>
+        <div class="density-item good">
+          <div class="density-label">精选信息 / 高密度</div>
+          <div class="density-desc">少但精准。每条信息都在更新你对世界运作机制的理解。猜想质量的真正驱动力。</div>
+        </div>
+      </div>
+    </div>
+    <div class="formula-box">
+      <div class="formula-label">核心推论</div>
+      <div class="formula-text">最值得投资的事，不是执行能力，而是<strong>提高自己的信息密度</strong>。<br>信息密度 → 猜想质量 → 纠错循环维持 → 找到正反馈。</div>
+      <div class="formula-sub">跨领域的模型映射能力，是信息密度最高的形式之一——同一套机制在三个域里验证，比在单一域里看三倍的信息更有价值。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>底层统一</h2>
+    <div class="conclusion">
+      <p>耗散结构告诉我们：任何能持续存在的有序结构，都需要持续的能量输入和正反馈来维持。这不只是物理学，是所有复杂系统的底层逻辑。</p>
+      <p>政权、公司、投资组合、个人成长——本质上都是耗散结构。能维持的就活，维持不了的就消散。</p>
+      <p style="margin-bottom:0;"><em style="color:var(--muted)">所以「低能量持续探索正反馈」不是一个技巧，是整个游戏的底层规则：保持能探测的能力，直到找到真正有正反馈的路径，然后把能量集中投入进去。</em></p>
+    </div>
+  </section>
+
+  <div class="related">
+    <div class="related-label">相关框架</div>
+    <a href="/yl/">→ 耗散结构与政权更迭：为什么轰炸建不了国</a>
+  </div>
+
+  <footer>
+    耗散结构 · 创业投资底层逻辑 · 2026 · jocylin.pages.dev
+  </footer>
+
+</div>
+</body>
+</html>
