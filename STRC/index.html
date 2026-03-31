@@ -302,6 +302,18 @@
     .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); }
     @media (max-width: 500px) { .nav-links { display: none; } }
+    .lang-switch { display: flex; gap: 8px; align-items: center; }
+    .lang-switch a {
+      font-size: 12px; padding: 3px 10px; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--muted);
+      text-decoration: none; transition: all 0.2s;
+    }
+    .lang-switch a.active {
+      background: rgba(247,147,26,0.15);
+      border-color: rgba(247,147,26,0.4);
+      color: var(--orange);
+    }
+    .lang-switch a:hover { color: var(--text); border-color: #444; }
 
     footer {
       padding: 40px 24px; text-align: center;
@@ -316,12 +328,18 @@
 <nav class="nav">
   <div class="nav-inner">
     <div class="nav-logo">₿ STRC 深度分析</div>
+    <div style="display:flex;align-items:center;gap:24px">
     <div class="nav-links">
       <a href="#what">产品结构</a>
       <a href="#risk">风险框架</a>
       <a href="#stress">压力测试</a>
       <a href="#vs">对比分析</a>
       <a href="#conclusion">结论</a>
+    </div>
+    <div class="lang-switch">
+      <a href="./index.html" class="active">中文</a>
+      <a href="./en.html">EN</a>
+    </div>
     </div>
   </div>
 </nav>
