@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STRC 深度分析 — 数字信用的边界</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --surface2: #1e1e1e;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+      --orange: #f7931a;
+      --blue: #3b82f6;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #eab308;
+      --purple: #a855f7;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+      background: linear-gradient(180deg, #1a0f00 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(247,147,26,0.15);
+      border: 1px solid rgba(247,147,26,0.4);
+      color: var(--orange);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero-sub {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-value { font-size: 28px; font-weight: 700; color: var(--orange); }
+    .hero-stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+    h3 { font-size: 18px; font-weight: 600; margin: 28px 0 12px; }
+    p { color: #ccc; margin-bottom: 14px; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card-icon { font-size: 24px; margin-bottom: 10px; }
+    .card-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .card-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    thead th {
+      background: var(--surface2);
+      color: var(--muted);
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: #ccc; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--surface); }
+    .rate-high { color: var(--green); font-weight: 600; }
+    .rate-tbd { color: var(--muted); }
+    .rate-rising { color: var(--yellow); font-weight: 600; }
+
+    .spectrum {
+      margin: 28px 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .spectrum-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 40%, var(--orange) 70%, var(--red) 100%);
+      border-radius: 4px;
+      margin: 16px 0 24px;
+    }
+    .spectrum-markers {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .marker { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .marker-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .marker-label { font-size: 12px; color: var(--muted); text-align: center; }
+    .marker-sublabel { font-size: 11px; color: #555; }
+    .marker.highlight .marker-label { color: var(--orange); font-weight: 700; }
+    .marker.highlight .marker-dot { background: var(--orange); box-shadow: 0 0 8px var(--orange); }
+
+    .quote-block {
+      border-left: 3px solid var(--orange);
+      padding: 12px 20px;
+      margin: 20px 0;
+      background: rgba(247,147,26,0.05);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: #ccc;
+    }
+    .quote-author { font-style: normal; font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+    .stress-table { margin: 20px 0; }
+    .stress-row {
+      display: grid;
+      grid-template-columns: 90px 1fr 1fr 110px;
+      gap: 8px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      align-items: center;
+    }
+    .stress-row.header {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .zone-ok { color: var(--green); }
+    .zone-warn { color: var(--yellow); }
+    .zone-danger { color: var(--orange); }
+    .zone-red { color: var(--red); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 24px 0;
+    }
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+      .stress-row { grid-template-columns: 80px 1fr 1fr; font-size: 12px; }
+      .stress-row > *:last-child { display: none; }
+    }
+    .compare-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .compare-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .compare-card ul { list-style: none; font-size: 14px; color: var(--muted); }
+    .compare-card li { padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+    .compare-card li:last-child { border-bottom: none; }
+    .check { color: var(--green); }
+    .cross { color: var(--red); }
+    .warn { color: var(--yellow); }
+
+    .callout {
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .callout.warning { background: rgba(234,179,8,0.08); border-color: rgba(234,179,8,0.3); }
+    .callout.danger { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.3); }
+    .callout-title {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+    }
+    .callout.warning .callout-title { color: var(--yellow); }
+    .callout.danger .callout-title { color: var(--red); }
+    .callout p { color: #ccc; margin: 0; font-size: 14px; }
+
+    .formula {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 14px;
+      color: var(--orange);
+      margin: 16px 0;
+      line-height: 1.8;
+    }
+
+    .timeline { margin: 24px 0; }
+    .tl-item { display: flex; gap: 16px; padding-bottom: 20px; position: relative; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: 14px; top: 28px; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-item:last-child::before { display: none; }
+    .tl-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--surface2);
+      border: 2px solid var(--orange);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--orange);
+      z-index: 1;
+    }
+    .tl-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .tl-content p { font-size: 14px; color: var(--muted); margin: 0; }
+
+    .tag {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .tag-green { background: rgba(34,197,94,0.15); color: var(--green); }
+    .tag-red { background: rgba(239,68,68,0.15); color: var(--red); }
+    .tag-yellow { background: rgba(234,179,8,0.15); color: var(--yellow); }
+    .tag-orange { background: rgba(247,147,26,0.15); color: var(--orange); }
+
+    .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo { font-size: 15px; font-weight: 700; color: var(--orange); }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 500px) { .nav-links { display: none; } }
+
+    footer {
+      padding: 40px 24px; text-align: center;
+      color: var(--muted); font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--orange); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">₿ STRC 深度分析</div>
+    <div class="nav-links">
+      <a href="#what">产品结构</a>
+      <a href="#risk">风险框架</a>
+      <a href="#stress">压力测试</a>
+      <a href="#vs">对比分析</a>
+      <a href="#conclusion">结论</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Strategy · STRC · 深度研究</div>
+  <h1>数字信用的<span>边界</span></h1>
+  <p class="hero-sub">STRC 不是短债替代品——它是 BTC 波动率货币化的高收益信用工具</p>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <div class="hero-stat-value">11.50%</div>
+      <div class="hero-stat-label">当前年化股息率</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">$5.02B</div>
+      <div class="hero-stat-label">已发行规模</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">$100</div>
+      <div class="hero-stat-label">面值 Par Value</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-value">~500K</div>
+      <div class="hero-stat-label">Strategy BTC 持仓</div>
+    </div>
+  </div>
+</div>
+
+<!-- Part 01 -->
+<section id="what">
+  <div class="container">
+    <div class="section-label">Part 01</div>
+    <h2>STRC 是什么</h2>
+    <p>STRC（Strategy Stretch）是 Strategy（前 MicroStrategy）发行的<strong>永续优先股</strong>，在 Nasdaq 交易。股息按月支付，利率每月动态调整以维持价格接近 $100 面值。</p>
+    <p>本质是：<strong>BTC 期权内嵌的高收益固收</strong>。Saylor 把 BTC 的波动率货币化——用公司结构作为桥梁，将 BTC 资产的未来增值能力转换成当期现金股息。</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">💹</div>
+        <div class="card-title">透明度</div>
+        <div class="card-body">BTC 持仓链上可查，比任何传统企业资产负债表都透明</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏦</div>
+        <div class="card-title">流动性</div>
+        <div class="card-body">Nasdaq 上市，主要券商均可交易（远超私募信贷）</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <div class="card-title">收益率</div>
+        <div class="card-body">11.5% vs 同类企业债 4-6%，溢价来自 BTC 尾部风险</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-title">vs 私募信贷</div>
+        <div class="card-body">链上透明 + 交易所流动性 + 主体公开，降维打击私募信贷</div>
+      </div>
+    </div>
+
+    <h3>股息历史（Aug 2025 – Apr 2026）</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>股息期</th>
+            <th>登记日</th>
+            <th>派发日</th>
+            <th>年化利率</th>
+            <th>每股股息</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Aug 2025</td><td>08/15/2025</td><td>08/29/2025</td><td class="rate-rising">9.00%</td><td>$0.80</td></tr>
+          <tr><td>Sep 2025</td><td>09/15/2025</td><td>09/30/2025</td><td class="rate-rising">9.50%</td><td>$0.80</td></tr>
+          <tr><td>Oct 2025</td><td>10/15/2025</td><td>10/31/2025</td><td class="rate-rising">10.00%</td><td>$0.84</td></tr>
+          <tr><td>Nov 2025</td><td>11/15/2025</td><td>11/28/2025</td><td class="rate-rising">10.50%</td><td>$0.88</td></tr>
+          <tr><td>Dec 2025</td><td>12/15/2025</td><td>12/31/2025</td><td class="rate-rising">11.00%</td><td>$0.92</td></tr>
+          <tr><td>Jan 2026</td><td>01/15/2026</td><td>01/31/2026</td><td class="rate-high">11.50%</td><td>$0.96</td></tr>
+          <tr><td>Feb 2026</td><td>02/15/2026</td><td>02/28/2026</td><td class="rate-high">11.50%</td><td>$0.88</td></tr>
+          <tr><td>Mar 2026</td><td>03/15/2026</td><td>03/31/2026</td><td class="rate-high">11.50%</td><td>$0.96</td></tr>
+          <tr><td>Apr 2026</td><td>04/15/2026</td><td>04/30/2026</td><td class="rate-tbd">TBD</td><td class="rate-tbd">TBD</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted)">股息率从 9% 爬升到 11.5%，反映 Strategy 通过提高票息维持优先股吸引力，融资成本趋势性上升。</p>
+  </div>
+</section>
+
+<!-- Part 02 -->
+<section id="risk">
+  <div class="container">
+    <div class="section-label">Part 02</div>
+    <h2>风险框架</h2>
+
+    <div class="callout warning">
+      <div class="callout-title">⚠ 核心结论</div>
+      <p>STRC 最大的风险不是 Saylor 的个人信用，而是 BTC 价格长期低迷时的<strong>流动性陷阱</strong>——你想卖的时候找不到买家。</p>
+    </div>
+
+    <h3>资产风险谱</h3>
+    <div class="spectrum">
+      <div style="font-size:13px;color:var(--muted);margin-bottom:8px">低风险 ←————————————————————→ 高风险</div>
+      <div class="spectrum-bar"></div>
+      <div class="spectrum-markers">
+        <div class="marker">
+          <div class="marker-dot" style="background:var(--green)"></div>
+          <div class="marker-label">短期国债</div>
+          <div class="marker-sublabel">现金等价物</div>
+        </div>
+        <div class="marker">
+          <div class="marker-dot" style="background:#6ee7b7"></div>
+          <div class="marker-label">长期国债</div>
+          <div class="marker-sublabel">利率风险</div>
+        </div>
+        <div class="marker">
+          <div class="marker-dot" style="background:var(--yellow)"></div>
+          <div class="marker-label">IG 企业债</div>
+          <div class="marker-sublabel">4-6%</div>
+        </div>
+        <div class="marker">
+          <div class="marker-dot" style="background:#fb923c"></div>
+          <div class="marker-label">高收益债</div>
+          <div class="marker-sublabel">8-10%</div>
+        </div>
+        <div class="marker highlight">
+          <div class="marker-dot"></div>
+          <div class="marker-label">🎯 STRC</div>
+          <div class="marker-sublabel">11.5%</div>
+        </div>
+        <div class="marker">
+          <div class="marker-dot" style="background:#f87171"></div>
+          <div class="marker-label">MSTR 股票</div>
+          <div class="marker-sublabel">BTC 杠杆</div>
+        </div>
+        <div class="marker">
+          <div class="marker-dot" style="background:var(--red)"></div>
+          <div class="marker-label">BTC</div>
+          <div class="marker-sublabel">原生资产</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>五大结构性风险</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div class="tl-content">
+          <h4>流动性集中风险</h4>
+          <p>STRC 的边际买家是 BTC 多头。熊市时 BTC 多头减仓恐慌，STRC 买家同步消失——正是最需要流动性时，流动性最差。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-content">
+          <h4>股息可延缓（非刚性债）</h4>
+          <p>STRC 是优先股，不是债。法律结构允许 Strategy 延缓付息而无需触发违约，与国债的"法定义务"有本质区别。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-content">
+          <h4>再融资悬崖（2027-2028）</h4>
+          <p>Strategy 约 $70 亿可转债集中到期。若届时 BTC 价格低迷，再融资能力受限，整体资本结构承压。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-content">
+          <h4>单因子相关性</h4>
+          <p>STRC 与 BTC 高度正相关。若已持有 BTC，增加 STRC 不提供真正分散化，而是 BTC 押注的杠杆增强版。</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <div class="tl-content">
+          <h4>国债网络效应护城河</h4>
+          <p>美债 = 全球美元结算体系 = Repo 市场流动性底层。这个 70 年自我强化的循环，不是任何单一主体信用能比拟的。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      "没有经历过深熊的工具，不知道它的真实属性。"
+      <div class="quote-author">— 王川思路，对所有未经周期验证工具的基本态度</div>
+    </div>
+  </div>
+</section>
+
+<!-- Part 03 -->
+<section id="stress">
+  <div class="container">
+    <div class="section-label">Part 03</div>
+    <h2>BTC 价格压力测试</h2>
+    <p>Strategy 持仓约 50 万 BTC，均价约 $67K。以下是不同 BTC 价格情景分析：</p>
+
+    <div class="stress-table">
+      <div class="stress-row header">
+        <div>BTC 价格</div>
+        <div>账面浮亏/盈</div>
+        <div>STRC 状态</div>
+        <div>风险级别</div>
+      </div>
+      <div class="stress-row">
+        <div class="zone-ok" style="font-weight:700">$90K+</div>
+        <div style="color:var(--green)">+$115亿+</div>
+        <div>股息持续，再融资容易</div>
+        <div><span class="tag tag-green">舒适区</span></div>
+      </div>
+      <div class="stress-row">
+        <div class="zone-ok" style="font-weight:700">$67K</div>
+        <div style="color:var(--muted)">±$0（成本线）</div>
+        <div>正常运营，现金储备完整</div>
+        <div><span class="tag tag-green">正常</span></div>
+      </div>
+      <div class="stress-row">
+        <div class="zone-warn" style="font-weight:700">$50K</div>
+        <div style="color:var(--red)">-$85亿</div>
+        <div>市场开始定价风险，STRC 折价</div>
+        <div><span class="tag tag-yellow">压力区</span></div>
+      </div>
+      <div class="stress-row">
+        <div class="zone-danger" style="font-weight:700">$40K</div>
+        <div style="color:var(--red)">-$135亿</div>
+        <div>新发 STRC 几乎不可能，二级折价扩大</div>
+        <div><span class="tag tag-orange">危险区</span></div>
+      </div>
+      <div class="stress-row">
+        <div class="zone-red" style="font-weight:700">$30K</div>
+        <div style="color:var(--red)">-$185亿</div>
+        <div>债务到期压力，流动性枯竭</div>
+        <div><span class="tag tag-red">末日情境</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🛡 Saylor 的真实护城河</div>
+      <p>可转债<strong>无追加保证金条款（No Margin Call）</strong>。持有人不能强制清算 BTC。除非公司破产，否则 Saylor 不需要在任何价格被迫卖出。$40K 不是终局——$40K 持续 2-3 年且债务到期无法再融资，才是真正危机。</p>
+    </div>
+
+    <h3>$40K 场景下的连锁反应</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <div class="card-title">STRC 付息能力</div>
+        <div class="card-body">$22.5 亿现金储备仍在，短期付息不受影响</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📉</div>
+        <div class="card-title">二级市场价格</div>
+        <div class="card-body">STRC 大幅折价，可能低于面值 20-40%</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚫</div>
+        <div class="card-title">新发能力</div>
+        <div class="card-body">熊市无人愿以面值买入 STRC，ATM 停止</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚠️</div>
+        <div class="card-title">真正风险</div>
+        <div class="card-body">流动性陷阱——想卖时找不到买家，被迫折价成交</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Part 04 -->
+<section id="vs">
+  <div class="container">
+    <div class="section-label">Part 04</div>
+    <h2>横向对比</h2>
+
+    <h3>STRC vs 短期国债</h3>
+    <div class="two-col">
+      <div class="compare-card">
+        <h4><span style="color:var(--orange)">🪙</span> STRC</h4>
+        <ul>
+          <li><span class="warn">⚠</span> 信用主体：Strategy（单一BTC公司）</li>
+          <li><span class="check">✓</span> 年化收益：11.5%</li>
+          <li><span class="cross">✗</span> 流动性：二级市场，熊市极薄</li>
+          <li><span class="cross">✗</span> 本金保障：无法定强制赎回</li>
+          <li><span class="check">✓</span> 透明度：BTC 持仓链上可查</li>
+          <li><span class="cross">✗</span> 熊市表现：与 BTC 高度相关</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <h4><span style="color:var(--green)">🏛</span> 短期美债</h4>
+        <ul>
+          <li><span class="check">✓</span> 信用主体：美国政府（税收背书）</li>
+          <li><span class="warn">⚠</span> 年化收益：4-5%</li>
+          <li><span class="check">✓</span> 流动性：全球最深流动性</li>
+          <li><span class="check">✓</span> 本金保障：法定到期偿付</li>
+          <li><span class="check">✓</span> 网络效应：Repo 市场底层抵押品</li>
+          <li><span class="check">✓</span> 熊市表现：避险属性，通常升值</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout danger">
+      <div class="callout-title">❌ 功能错位是最大风险</div>
+      <p>短债的核心功能是<strong>在最差市场环境下也能以接近面值卖出</strong>。STRC 做不到。把 STRC 当现金等价物是功能认知错误，不是产品本身的问题。</p>
+    </div>
+
+    <h3>ETH 财库公司资本纪律对比：SharpLink vs BMNR</h3>
+    <p>用 Saylor 核心公式衡量：</p>
+    <div class="formula">
+      ETH 年化回报 &gt; 融资成本  →  Accretive（每股 ETH 含量上升）<br>
+      ETH 年化回报 &lt; 融资成本  →  Dilutive（每股 ETH 含量被稀释）<br><br>
+      BMNR 折价 19% ATM + ETH staking 3.5%/年  →  需 ≈5.4 年才能弥补一次稀释
+    </div>
+
+    <div class="two-col">
+      <div class="compare-card">
+        <h4><span style="color:var(--green)">✓</span> SharpLink (SBET) — 纪律正确</h4>
+        <ul>
+          <li><span class="check">✓</span> MNAV 0.75，折价时暂停 ATM</li>
+          <li><span class="check">✓</span> 回购股票，保护每股 ETH 含量</li>
+          <li><span class="check">✓</span> 等 MNAV &gt; 1 再融资</li>
+          <li><span class="warn">⚠</span> 出售质押 ETH 换现金，小代价</li>
+        </ul>
+      </div>
+      <div class="compare-card">
+        <h4><span style="color:var(--red)">✗</span> BMNR — 违背原则</h4>
+        <ul>
+          <li><span class="cross">✗</span> MNAV 0.81，折价仍大幅 ATM</li>
+          <li><span class="cross">✗</span> 每发一股，老股东 ETH 含量稀释 19%</li>
+          <li><span class="cross">✗</span> 管理层 ETH 集邮目标 &gt; 股东利益</li>
+          <li><span class="cross">✗</span> 违背"提升美股 ETH 含量"使命</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Part 05 -->
+<section id="conclusion">
+  <div class="container">
+    <div class="section-label">Part 05</div>
+    <h2>配置建议与结论</h2>
+
+    <p>STRC 是<strong>可以配置的资产</strong>，前提是清楚它的功能定位：高收益 BTC 相关固收，不是现金等价物，不是短债替代品。</p>
+
+    <h3>$100 万参考配置（5-10 年视角）</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div style="font-size:28px;font-weight:800;color:var(--orange)">40%</div>
+        <div class="card-title">BTC</div>
+        <div class="card-body">核心资产，长持，接受高波动</div>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;font-weight:800;color:var(--yellow)">20%</div>
+        <div class="card-title">STRC</div>
+        <div class="card-body">固收增强，接受流动性风险，不超过固收仓位 30%</div>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;font-weight:800;color:var(--green)">30%</div>
+        <div class="card-title">短债 / 现金</div>
+        <div class="card-body">流动性储备，熊市弹药，不可替代</div>
+      </div>
+      <div class="card">
+        <div style="font-size:28px;font-weight:800;color:var(--blue)">10%</div>
+        <div class="card-title">黄金 / 其他</div>
+        <div class="card-body">真正的非相关对冲</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>六条核心结论</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">功能定位正确</div>
+        <div class="card-body">STRC = BTC 信用衍生品。配置比例取决于你能承受多少 BTC 单因子风险。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌊</div>
+        <div class="card-title">流动性压力测试</div>
+        <div class="card-body">"需要钱卖掉"在熊市失效。真正安全的资产，是在最差环境下也有买家的资产。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔐</div>
+        <div class="card-title">护城河是真实的</div>
+        <div class="card-body">$22.5B 现金 + 无 Margin Call 结构，短期违约风险极低。但 BTC 3 年深熊不在覆盖范围内。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <div class="card-title">终局叙事</div>
+        <div class="card-body">STRC 是过渡期产品。BTC 成为真正储备资产后，持有 BTC 本身可能比 STRC 更接近"数字国债"。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">ETH 财库纪律</div>
+        <div class="card-body">MNAV &lt; 1 时 ATM 是稀释，不是积累。SharpLink 懂 Saylor 真正在做什么，BMNR 不懂。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <div class="card-title">比例感 &gt; 信誉</div>
+        <div class="card-body">Saylor 9/10 信誉合理，但好的配置不依赖任何单一主体，哪怕是 9/10。</div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      "可以配，但别把它当现金用。功能错位才是最大的风险，不是产品本身。"
+      <div class="quote-author">— 本次讨论核心结论</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>本页内容为投资研究讨论记录，不构成投资建议。</p>
+  <p style="margin-top:8px">Strategy 官方 → <a href="https://www.strategy.com/stretch" target="_blank">strategy.com/stretch</a> &nbsp;·&nbsp; 更新于 2026-03-31</p>
+</footer>
+
+</body>
+</html>
