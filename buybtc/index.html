@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitcoin Sacred Law</title>
+  <meta name="description" content="Bitcoin Sacred Law slide deck">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050507;
+      --panel: rgba(16, 16, 20, .82);
+      --text: #f4f1ea;
+      --muted: #aaa39a;
+      --line: rgba(255, 255, 255, .14);
+      --accent: #f4b942;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+    }
+
+    .bar {
+      width: min(1200px, calc(100% - 32px));
+      min-height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 680;
+      letter-spacing: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 620;
+      background: rgba(255, 255, 255, .06);
+    }
+
+    a.button.primary {
+      border-color: rgba(244, 185, 66, .5);
+      color: #1a1204;
+      background: var(--accent);
+    }
+
+    main {
+      width: min(1200px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 24px 0 44px;
+    }
+
+    .deck {
+      display: grid;
+      gap: 24px;
+    }
+
+    .slide {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, .36);
+    }
+
+    .slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .slide figcaption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 12px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      background: rgba(0, 0, 0, .55);
+    }
+
+    footer {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .bar {
+        width: min(100% - 20px, 1200px);
+        min-height: 58px;
+        gap: 10px;
+      }
+
+      h1 { font-size: 14px; }
+
+      .meta { font-size: 11px; }
+
+      .actions { gap: 6px; }
+
+      a.button {
+        min-height: 34px;
+        padding: 0 10px;
+        font-size: 12px;
+      }
+
+      main {
+        width: min(100% - 12px, 1200px);
+        padding-top: 12px;
+      }
+
+      .deck { gap: 12px; }
+
+      .slide { border-radius: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="title">
+        <h1>Bitcoin Sacred Law</h1>
+        <div class="meta">20 slides · Web deck</div>
+      </div>
+      <nav class="actions" aria-label="Deck actions">
+        <a class="button" href="#slide-01">Top</a>
+        <a class="button primary" href="bitcoin-sacred-law.pdf" download>PDF</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="deck" aria-label="Bitcoin Sacred Law slides">
+      <figure class="slide" id="slide-01"><img src="assets/slide-01.webp" alt="Slide 1" loading="eager"><figcaption><span>Slide 1</span><span>01 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-02"><img src="assets/slide-02.webp" alt="Slide 2" loading="lazy"><figcaption><span>Slide 2</span><span>02 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-03"><img src="assets/slide-03.webp" alt="Slide 3" loading="lazy"><figcaption><span>Slide 3</span><span>03 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-04"><img src="assets/slide-04.webp" alt="Slide 4" loading="lazy"><figcaption><span>Slide 4</span><span>04 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-05"><img src="assets/slide-05.webp" alt="Slide 5" loading="lazy"><figcaption><span>Slide 5</span><span>05 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-06"><img src="assets/slide-06.webp" alt="Slide 6" loading="lazy"><figcaption><span>Slide 6</span><span>06 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-07"><img src="assets/slide-07.webp" alt="Slide 7" loading="lazy"><figcaption><span>Slide 7</span><span>07 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-08"><img src="assets/slide-08.webp" alt="Slide 8" loading="lazy"><figcaption><span>Slide 8</span><span>08 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-09"><img src="assets/slide-09.webp" alt="Slide 9" loading="lazy"><figcaption><span>Slide 9</span><span>09 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-10"><img src="assets/slide-10.webp" alt="Slide 10" loading="lazy"><figcaption><span>Slide 10</span><span>10 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-11"><img src="assets/slide-11.webp" alt="Slide 11" loading="lazy"><figcaption><span>Slide 11</span><span>11 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-12"><img src="assets/slide-12.webp" alt="Slide 12" loading="lazy"><figcaption><span>Slide 12</span><span>12 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-13"><img src="assets/slide-13.webp" alt="Slide 13" loading="lazy"><figcaption><span>Slide 13</span><span>13 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-14"><img src="assets/slide-14.webp" alt="Slide 14" loading="lazy"><figcaption><span>Slide 14</span><span>14 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-15"><img src="assets/slide-15.webp" alt="Slide 15" loading="lazy"><figcaption><span>Slide 15</span><span>15 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-16"><img src="assets/slide-16.webp" alt="Slide 16" loading="lazy"><figcaption><span>Slide 16</span><span>16 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-17"><img src="assets/slide-17.webp" alt="Slide 17" loading="lazy"><figcaption><span>Slide 17</span><span>17 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-18"><img src="assets/slide-18.webp" alt="Slide 18" loading="lazy"><figcaption><span>Slide 18</span><span>18 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-19"><img src="assets/slide-19.webp" alt="Slide 19" loading="lazy"><figcaption><span>Slide 19</span><span>19 / 20</span></figcaption></figure>
+      <figure class="slide" id="slide-20"><img src="assets/slide-20.webp" alt="Slide 20" loading="lazy"><figcaption><span>Slide 20</span><span>20 / 20</span></figcaption></figure>
+    </section>
+  </main>
+
+  <footer>jocylin.pages.dev/buybtc</footer>
+</body>
+</html>
