@@ -1,0 +1,743 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>MintMCP 6-03-2026</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="375f0ada-243c-81b1-a471-f68a9654199b" class="page sans"><header><h1 class="page-title" dir="auto">MintMCP 6-03-2026</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><blockquote id="f7307593-0971-4e2e-aa80-156d88a7288c" class="">本简报基于 2026-06-03 与创始人兼 CEO Jiquan Ngiam 的通话（IOSG: Jocy、Yiping）整合公开资料而成。公司主体域名 <a href="http://d8e.ai">d8e.ai</a>，产品对外品牌 MintMCP。</blockquote></div><div style="display:contents" dir="auto"><h1 id="3efa2bb2-fb21-4f6e-9dfc-8b99b12dd8cb" class="">产品介绍</h1></div><div style="display:contents" dir="auto"><ul id="fa103e4d-a95e-4695-a0d1-2f073448b98e" class="bulleted-list"><li style="list-style-type:disc"><strong>定位</strong>：MintMCP 是面向企业的 AI 智能体治理与安全网关。当企业把 Claude Code、Cursor、Copilot、ChatGPT 等智能体铺向全员时，MintMCP 让 IT 安全与平台团队集中掌控&quot;哪个智能体能访问哪些数据、做了什么操作&quot;。创始人原话：模型智能已不是瓶颈，真正难且有黏性的是数据连接、鉴权与智能体记忆这一层。</li></ul></div><div style="display:contents" dir="auto"><ul id="9a5cd6e7-eb4e-4865-ac8b-ba954a6198f7" class="bulleted-list"><li style="list-style-type:disc"><strong>双栈产品</strong>：MCP Gateway 负责接入侧，托管 1 万以上 MCP 服务器，统一鉴权、凭证托管，按角色把工具分配给不同团队；Agent Monitor 负责运行时侧，实时追踪编码智能体的每一次工具调用、命令执行与文件读写，并按策略拦截高危操作。客户用 Claude + MintMCP 时，每一次工具调用都经过 MintMCP，黏性极强（也因此对可用性要求极高）。</li></ul></div><div style="display:contents" dir="auto"><ul id="2513286e-cb84-4c80-b488-96bbecaf98f8" class="bulleted-list"><li style="list-style-type:disc"><strong>核心差异：虚拟权限收敛（Virtual Bundle）</strong>：当员工用智能体时，智能体本应拥有比本人更小的权限。多数系统（RunLayer、Obot、Composio）难以做权限降级，MintMCP 把&quot;按角色精细收敛智能体权限&quot;做成开箱即用，这是其 RBAC 的关键卖点。</li></ul></div><div style="display:contents" dir="auto"><ul id="4aa19232-2fce-4fb2-804d-874b90db1f94" class="bulleted-list"><li style="list-style-type:disc"><strong>托管与自建 MCP + 智能体身份</strong>：通过前置部署的智能体（forward-deployed agents）替客户端到端搭建自定义 MCP（含 Docker、OAuth 全配好）；并提供 admin MCP，让 Claude 自己就能在平台上完成几乎全部配置。每个智能体获得持久、非人类的独立身份，操作可精确归因。</li></ul></div><div style="display:contents" dir="auto"><ul id="e7d83dea-aa7f-4397-a8a3-800f567e3319" class="bulleted-list"><li style="list-style-type:disc"><strong>典型落地（某金融客户）</strong>：把 Slack 接入 Claude 但禁止私有数据外泄、扫描并剔除信用卡等敏感信息（DLP）；对 Notion 做读/写分组权限；接入 Snowflake MCP 时由网关统一托管鉴权，而非把 API key/OAuth token 直接发给所有人。</li></ul></div><div style="display:contents" dir="auto"><ul id="06018d44-9d11-44ad-8baf-b0ab8c526498" class="bulleted-list"><li style="list-style-type:disc"><strong>安全合规</strong>：SOC 2 Type II、SSO/SAML/OAuth/MFA、完整审计日志、RBAC、PII 检测与密钥扫描；云托管与自部署双形态，团队全部在美国本土。</li></ul></div><div style="display:contents" dir="auto"><h1 id="44c956a7-f9ba-4d5c-bc0d-55fd4f4360d5" class="">GTM</h1></div><div style="display:contents" dir="auto"><ul id="4f13e9a2-8f6a-4301-8e4a-4d433e76d41b" class="bulleted-list"><li style="list-style-type:disc">自上而下卖给 IT 安全/合规团队，对应更大的预算与&quot;风险刚需&quot;采购理由，而非卖给末端开发者。叙事是&quot;EDR 之于员工电脑，正是 AI 智能体所需要的&quot;。</li></ul></div><div style="display:contents" dir="auto"><ul id="1420349b-db7e-4f09-9866-949613512d65" class="bulleted-list"><li style="list-style-type:disc">聚焦中型市场（员工数千人量级），同时开始签少量更大的企业合同；与之相对，RunLayer 主攻 Fortune 500、需前置部署工程师，打法更重。</li></ul></div><div style="display:contents" dir="auto"><ul id="cb65d98f-9377-4c7f-8b0d-1706f6ff80da" class="bulleted-list"><li style="list-style-type:disc">增长以 SEO/AEO 内容、开源、白皮书《Securing the Model Context Protocol》、参与云安全联盟 AARM 标准制定建立技术信誉。Cursor 官方安全合作伙伴身份主要带来品牌背书，几乎未直接转化客户。</li></ul></div><div style="display:contents" dir="auto"><ul id="7ae37255-e305-4fbc-9c94-7c8a98f075a9" class="bulleted-list"><li style="list-style-type:disc">多数客户是首次购买者（first-time buyers），因遇到 MCP 治理问题主动来找方案，而非从竞品迁移；少量从 Obot（开源、自部署、易崩）迁入。</li></ul></div><div style="display:contents" dir="auto"><h1 id="ecffaf77-2756-41db-89f4-0a55a2288085" class="">Traction</h1></div><div style="display:contents" dir="auto"><ul id="7ff3ba4f-04e8-4136-b5c7-0507e6e7134c" class="bulleted-list"><li style="list-style-type:disc"><strong>ARR 约 $1M</strong>：2026 年 2 月初开始卖，至今（6 月初）累计签约约 $1M 合同。</li></ul></div><div style="display:contents" dir="auto"><ul id="cf1b0853-5f7a-48fb-9b4a-2825a431d23b" class="bulleted-list"><li style="list-style-type:disc"><strong>客户数 25</strong>，平均客单价约 $45K-$50K/年；分布于美国、欧洲、澳大利亚、新西兰，亚太尚未铺开（日本被视为有潜力的下一步）。</li></ul></div><div style="display:contents" dir="auto"><ul id="3d11f600-9ff9-4375-8b96-f3df386fc6fa" class="bulleted-list"><li style="list-style-type:disc"><strong>标杆客户</strong>：Coursera（CTO 公开背书 Virtual MCP）、Cursor、Harvey AI（安全负责人公开类比 EDR）、Flux AI 等；客户含单位数的 VC/金融机构。</li></ul></div><div style="display:contents" dir="auto"><ul id="b2849f4b-d1fe-4e07-8ca7-3300e695da75" class="bulleted-list"><li style="list-style-type:disc"><strong>加密客户与 IOSG 关联</strong>：Alpaca Markets、Monad Foundation（IOSG 被投，且 Monad 把 MintMCP 引荐给 Dragonfly，Dragonfly 拟向其被投做推广）。金融与加密客户普遍对数据安全高度敏感，是其精准客群。</li></ul></div><div style="display:contents" dir="auto"><ul id="20ed0373-7120-47f8-b36d-d8b9c4cf559d" class="bulleted-list"><li style="list-style-type:disc">团队自身在平台上运行 29 个智能体作内部验证（dogfooding）。</li></ul></div><div style="display:contents" dir="auto"><h1 id="ed56d1b7-ff60-42b3-95c5-72c415ab71e9" class="">商业模式</h1></div><div style="display:contents" dir="auto"><ul id="1675bff5-102d-46c9-a529-47a60c909f8a" class="bulleted-list"><li style="list-style-type:disc"><strong>按席位（headcount）订阅</strong>：定价锚定企业员工数（最可预测的变量），分档报价（1-50 / 51-1000 / 1001-9999 / 10000+），毛利结构健康。创始人逻辑：成本可预测时客户无需做成本优化，故用人头定价换取确定性。</li></ul></div><div style="display:contents" dir="auto"><ul id="556a03a9-7083-4e0a-81b4-ebec6eeb08ff" class="bulleted-list"><li style="list-style-type:disc"><strong>不对额外部署的 MCP 收费</strong>：刻意把自定义 MCP 部署做成免费且难迁出，以此换取锁定（moat），鼓励客户接入越来越多 MCP。</li></ul></div><div style="display:contents" dir="auto"><ul id="1b05a4cc-2051-49c0-b356-d31a0487a028" class="bulleted-list"><li style="list-style-type:disc"><strong>扩张路径</strong>：短期靠客户人头增长；中长期靠&quot;智能体人头&quot;增长（每人管 3-4 个智能体）与用量计费；更远看可叠加模型路由、token 成本优化与可观测、MCP 迁移协助（如 HubSpot→Attio）等增值。</li></ul></div><div style="display:contents" dir="auto"><ul id="c9d4aadb-9edc-4bfc-8275-49fc774c3ec9" class="bulleted-list"><li style="list-style-type:disc">长期定价模型（席位 vs 智能体用量）仍在摸索，因为&quot;按智能体计费&quot;市场尚无共识。</li></ul></div><div style="display:contents" dir="auto"><h1 id="f1814952-8ae9-498f-80a6-00f1ac0f6734" class="">竞对分析</h1></div><div style="display:contents" dir="auto"><p id="3eea6867-3b3f-4ccc-8a52-b08f4e96aa88" class="">MintMCP 的 Edge 在于</p></div><div style="display:contents" dir="auto"><ul id="8760bf8d-6510-4f1f-b5dc-282b07500eda" class="bulleted-list"><li style="list-style-type:disc"><strong>治理 + 运行时安全双栈一体 + 虚拟权限收敛</strong>：既做接入鉴权，又做行为监控与策略拦截，并把&quot;智能体权限小于本人&quot;做成开箱即用，多数竞品缺一环。</li></ul></div><div style="display:contents" dir="auto"><ul id="7c6eb28a-e939-4dd8-9b78-80a0ca0f04ae" class="bulleted-list"><li style="list-style-type:disc"><strong>极快 time-to-value 与美国本土团队</strong>：部署简单、可靠；对照 Obot 开源自部署常崩、Composio 工程团队离岸印度且近期被公开攻破，MintMCP 在 IT 安全买家眼中更可信。</li></ul></div><div style="display:contents" dir="auto"><ul id="1eb0ec68-ee6d-4ffc-b5e3-1e2fcf56d1db" class="bulleted-list"><li style="list-style-type:disc"><strong>跨厂商中立性</strong>：买家要的是覆盖所有 AI 系统（Claude、Cursor、ChatGPT、开源模型）的统一治理，这正是 Cursor/Anthropic 等平台方不愿也不便自建的——从 Cursor 买的治理无法管 Claude，反之亦然。</li></ul></div><div style="display:contents" dir="auto"><p id="ce29d10e-e49f-46b7-bdf1-a12661f0179a" class="">竞对概览表：</p></div><div style="display:contents" dir="ltr"><table id="00cef0c0-12a2-458f-a982-42ca28b2bf79" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="8c19f455-ed64-4cf3-8dc9-aa53ac9dd0eb"><th id="?IJM" class="simple-table-header-color simple-table-header">Company</th><th id=";Fvu" class="simple-table-header-color simple-table-header">Raised</th><th id="UE:I" class="simple-table-header-color simple-table-header">Investors</th><th id="@Z{\" class="simple-table-header-color simple-table-header">Traction</th><th id="ynl=" class="simple-table-header-color simple-table-header">主要客户</th><th id="OevA" class="simple-table-header-color simple-table-header">区别</th><th id="yCiT" class="simple-table-header-color simple-table-header">团队规模</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="5688093f-5c9c-45c0-a7d3-0495c98ddda3"><td id="?IJM" class=""><a href="https://www.runlayer.com"><strong>Runlayer</strong></a></td><td id=";Fvu" class="">$11M 种子（2025-11）</td><td id="UE:I" class="">Khosla（Keith Rabois）、Felicis、MCP 共创者 David Soria Parra、Cursor 安全负责人 Travis McPeak</td><td id="@Z{\" class="">出隐身 4 个月签下 8 家独角兽，接入 18,000+ MCP</td><td id="ynl=" class="">2B：大型企业（Gusto、Opendoor、dbt Labs）</td><td id="OevA" class="">主攻 Fortune 500、可部署进客户 VPC，打法重、需前置部署工程师</td><td id="yCiT" class="">10-50</td></tr></div><div style="display:contents" dir="ltr"><tr id="89bda503-4da5-4af1-a6b6-f8ea27078591"><td id="?IJM" class=""><a href="https://obot.ai"><strong>Obot AI</strong></a></td><td id=";Fvu" class="">$35M 种子（2025-09）</td><td id="UE:I" class="">Mayfield、Nexus 联合领投</td><td id="@Z{\" class="">开源控制面，GitHub 关注度高</td><td id="ynl=" class="">2B：自部署 IT 团队</td><td id="OevA" class="">开源 MCP 网关 + Nanobot 框架；自部署、被反馈不稳定易崩</td><td id="yCiT" class="">10-50</td></tr></div><div style="display:contents" dir="ltr"><tr id="61d225cd-ab3c-421b-b7a6-1f0a9d65d17c"><td id="?IJM" class=""><a href="https://composio.dev"><strong>Composio</strong></a></td><td id=";Fvu" class="">$29M（$25M Series A，2025-07）</td><td id="UE:I" class="">Lightspeed 领投，SV Angel、Together Fund 等</td><td id="@Z{\" class="">10 万+ 开发者，200+ 公司，1000+ 集成</td><td id="ynl=" class="">2B：开发者与初创（Glean 及多家 YC 公司）</td><td id="OevA" class="">卖给末端开发者、定价约低 10 倍；偏集成而非治理，工程离岸、近期被公开攻破</td><td id="yCiT" class="">10-50</td></tr></div><div style="display:contents" dir="ltr"><tr id="07c8309a-c004-4090-8bd2-3be9c8d4d027"><td id="?IJM" class=""><a href="https://pomerium.com"><strong>Pomerium</strong></a></td><td id=";Fvu" class="">$13.75M Series A（2024-06）</td><td id="UE:I" class="">Benchmark 领投，Bain Capital、Haystack</td><td id="@Z{\" class="">10 亿+ Docker 拉取，日均数千用户</td><td id="ynl=" class="">2B：科技公司与 Fortune 2000（如 ExtraHop）</td><td id="OevA" class="">零信任身份感知代理老牌厂商切入 MCP，非 AI 原生、非 MCP 专精</td><td id="yCiT" class="">10-50</td></tr></div><div style="display:contents" dir="ltr"><tr id="d86dded2-d7f4-4c82-a2b1-4e7692ceadad"><td id="?IJM" class=""><a href="https://www.mintmcp.com"><strong>MintMCP</strong></a></td><td id=";Fvu" class="">募集中 $6M @ $40M post（已签 term sheet）</td><td id="UE:I" class="">单一领投占约 75%，另有大额新投资人跟投 + pro rata + 天使（前身 Lutra 由 Coatue、Karpathy、Jeff Dean 背书）</td><td id="@Z{\" class="">$1M ARR，25 客户，2026-02 起售</td><td id="ynl=" class="">2B：中型市场科技/金融/加密（Coursera、Harvey AI、Alpaca、Monad）</td><td id="OevA" class="">唯一治理+运行时双栈 + 虚拟权限收敛 + 免费 MCP 部署锁定</td><td id="yCiT" class="">6 人 + 29 智能体</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="8825d9cd-6f52-4c30-8fdc-ae98d9f893d7" class="">竞对优劣势对比表：</p></div><div style="display:contents" dir="ltr"><table id="272f0d6f-9018-4945-83c3-44dedc8d38c2" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="167ee03f-0225-47b0-b9cf-94c54fd0ab2c"><th id="urd]" class="simple-table-header-color simple-table-header">竞争对手</th><th id="GGOC" class="simple-table-header-color simple-table-header">相对 MintMCP 的弱点</th><th id="&gt;?[x" class="simple-table-header-color simple-table-header">相对 MintMCP 的优势</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="89133764-cb12-4352-a4fa-f8909694827d"><td id="urd]" class=""><a href="https://www.runlayer.com"><strong>Runlayer</strong></a></td><td id="GGOC" class="">主攻 Fortune 500、需前置部署工程师，部署重、time-to-value 慢，不服务中型市场</td><td id="&gt;?[x" class="">融资更多（$11M 种子），Khosla/Felicis 背书 + MCP 共创者站台，4 个月签 8 家独角兽，企业级品牌势能强</td></tr></div><div style="display:contents" dir="ltr"><tr id="47781802-9ea3-4fe4-bd2d-1ee40b3b7017"><td id="urd]" class=""><a href="https://obot.ai"><strong>Obot AI</strong></a></td><td id="GGOC" class="">开源自部署、被反馈不稳定易崩，治理/可靠性弱，已出现客户流向 MintMCP</td><td id="&gt;?[x" class="">融资量级最大（$35M 种子），Rancher/<a href="http://Cloud.com">Cloud.com</a> 连续创业团队，开源生态与 GitHub 影响力</td></tr></div><div style="display:contents" dir="ltr"><tr id="076eafb3-a44a-4d9f-9d2b-30c8adf53819"><td id="urd]" class=""><a href="https://composio.dev"><strong>Composio</strong></a></td><td id="GGOC" class="">面向末端开发者、缺企业级治理/运行时安全栈；工程离岸印度、近期被公开攻破，安全信任受损</td><td id="&gt;?[x" class="">1000+ 集成、10 万+ 开发者生态，定价约低 10 倍，预算敏感、不需治理的买家会选它</td></tr></div><div style="display:contents" dir="ltr"><tr id="d28dee7a-e536-4c88-9de2-1957533621ae"><td id="urd]" class=""><a href="https://pomerium.com"><strong>Pomerium</strong></a></td><td id="GGOC" class="">非 AI 原生、非 MCP 专精，缺 Virtual MCP 与智能体级归因，切入 AI 场景晚</td><td id="&gt;?[x" class="">零信任安全血统深厚，Benchmark 背书，Fortune 2000 客户与成熟分发</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="f6904015-b6fa-4282-93dc-525f43e6c3c9" class="">团队</h1></div><div style="display:contents" dir="auto"><ul id="ef74d3a5-9086-4da6-9a9d-33f345d67fa4" class="bulleted-list"><li style="list-style-type:disc">规模精简：6 名全职 + 29 个智能体，全部位于湾区 Palo Alto；脱胎于 Lutra AI，Andrew Ng 任顾问。</li></ul></div><div style="display:contents" dir="auto"><ul id="b4d9da9a-8b0f-4f70-8fb6-7ea0f4c18cdb" class="bulleted-list"><li style="list-style-type:disc">核心成员包含 Jiquan Ngiam（CEO，前 Coursera 创始团队、Google Brain 研究员 4 年、与 Waymo 合作发表多篇论文、Andrew Ng 斯坦福实验室，《Securing the Model Context Protocol》白皮书合著者）。</li></ul></div><div style="display:contents" dir="auto"><ul id="41116112-b82f-4fd3-a5f6-779d461b95b1" class="bulleted-list"><li style="list-style-type:disc">包含 Vijay Vasudevan（联合创始人，前 Google，TensorFlow 核心作者之一）。</li></ul></div><div style="display:contents" dir="auto"><ul id="21824c2a-5331-4ce7-acb7-0fcdf0567180" class="bulleted-list"><li style="list-style-type:disc">包含 Bozhi See（联合创始人，曾任职 Brilliant Home、Shopkick）。</li></ul></div><div style="display:contents" dir="auto"><h1 id="bcd75969-6693-47cf-b52d-44396cf95d4f" class="">融资情况</h1></div><div style="display:contents" dir="auto"><ul id="303b6866-a0db-47a2-ba69-3a9d6ccfa3fb" class="bulleted-list"><li style="list-style-type:disc"><strong>本轮</strong>：募集 $6M，投后估值 $40M，已签 term sheet，正与律师走最后法律文件、临近 close。</li></ul></div><div style="display:contents" dir="auto"><ul id="3a61e2a4-58dd-4372-982e-f63944c31fd4" class="bulleted-list"><li style="list-style-type:disc"><strong>结构</strong>：一家领投方吃下约 75%，另一家新投资人大额跟投，部分老股东行使 pro rata，并有一批天使进入。</li></ul></div><div style="display:contents" dir="auto"><ul id="8d21db0f-657a-47bd-b0be-b85fa2faa3d4" class="bulleted-list"><li style="list-style-type:disc"><strong>额度现状</strong>：轮次基本认满，目前仅剩万元级（10s of thousands）天使小票。Jocy 个人口头承诺 $10K-$20K 天使票；IOSG 机构层面追加 $0.5M-$1M 在本轮已无空间，仅能放在未来轮次。</li></ul></div><div style="display:contents" dir="auto"><ul id="5e7bcfb4-0840-48ab-a206-89ad5bf7f650" class="bulleted-list"><li style="list-style-type:disc">前身 Lutra AI 于 2023-12 完成 $3.8M 种子轮（Coatue 领投，天使含 Andrej Karpathy、Jeff Dean、Scott Belsky）。</li></ul></div><div style="display:contents" dir="auto"><ul id="6b8ee631-6c73-47fd-b0f9-49efe102d22c" class="bulleted-list"><li style="list-style-type:disc"><strong>IOSG 价值切入点</strong>：非资金，而是分发——APAC/跨境（尤其日本、加密与中心化交易所客群，单笔 100-200 席位为其合适合同量级）、被投公司导流、设计合作伙伴 + 联合内容/视频背书。可对标 Monad→Dragonfly 的引荐与推广模式。</li></ul></div><div style="display:contents" dir="auto"><h1 id="ae2457a3-dd39-4d9a-ab78-09d4630bb399" class="">我们的押注</h1></div><div style="display:contents" dir="auto"><p id="f669d898-b8c1-4f8b-987f-01fa70cfa49b" class=""><strong>1. 新基础设施层的范式机会：智能体治理正长成 Okta / CrowdStrike 级别的安全品类</strong> 每次企业 IT 范式迁移都会催生一个新控制层：SaaS 催生身份管理（Okta），端点泛滥催生 EDR（CrowdStrike），云原生催生云安全（Wiz）。企业把编码智能体铺向全员，等于在生产系统里放进一批以机器速度执行不可逆操作的新主体，对应控制层尚未成形。我们押注 MCP Gateway + Agent Monitor 这一层会成为必备品类，而 MintMCP 卡在最早的位置且已有 $1M ARR 验证需求真实存在。</p></div><div style="display:contents" dir="auto"><p id="ec5c2c0a-82fe-41dc-b34e-70293733b5bf" class=""><strong>2. MCP 已是事实标准，网关层是数据与智能体之间的必然中间件</strong> 创始人的第一性论证很有说服力：销售、市场等非技术员工不该直接握有 Salesforce/active campaign 的 API key，CLI 也不适合他们，业界坐下来设计的收敛点恰恰长成了 MCP。OpenAI、Google、Microsoft、Anthropic 均已支持，且 v1→v2 平滑跟进，短期看不到第二套标准（Google A2A 几乎无人采用）。只要相信&quot;智能体不能直连 API&quot;这一前提，网关层就是确定性需求，而 MintMCP 是其中产品成熟度与安全姿态领先的玩家。</p></div><div style="display:contents" dir="auto"><p id="488b1ebb-b15f-4012-95bb-602fb8fd8314" class=""><strong>3. 商业模式优势：人头定价的确定性 + 免费 MCP 部署的锁定飞轮</strong> 按席位计费让客户成本极可预测（对标 IAM 的 seat 定价），回避了 token 成本不可预测的痛点；同时刻意不对额外 MCP 部署收费，把自定义 MCP（含 Docker/OAuth）做成免费且难迁出。客户接入越多 MCP、跑越多工具调用，迁移成本越高、黏性越强，形成&quot;低摩擦接入→深度锁定→人头与智能体数自然扩张&quot;的飞轮。</p></div><div style="display:contents" dir="auto"><p id="71a3ed36-be87-42a8-9469-ff315aeb4926" class=""><strong>4. 跨厂商中立性是平台方吞不掉的结构性护城河</strong> 买家要的是覆盖 Claude、Cursor、ChatGPT、开源模型的统一治理；从 Cursor 买的治理管不了 Claude，反之亦然，因此平台方天然不会、也不便自建跨厂商治理，这正是 Cursor 选择与 MintMCP 合作而非自研的原因。叠加美国本土团队、SOC 2 与 DLP 等合规姿态，对照 Composio 离岸团队近期被公开攻破，MintMCP 在 IT 安全买家处的信任溢价是真实且可持续的。</p></div><div style="display:contents" dir="auto"><p id="70291659-7518-4752-9542-fc4d86523cd7" class=""><strong>5. 团队与杠杆效率：6 人 + 29 智能体跑出 $1M ARR</strong> 创始团队来自 Coursera、Google Brain、TensorFlow 核心，并参与制定 AARM 标准、合著 MCP 安全白皮书，在新品类里兼具技术深度与规则话语权。以 6 名全职 + 29 个自有智能体在四个月内做到 $1M ARR 与 25 客户，展示了极高的资本与人效杠杆，也印证其&quot;前置部署智能体替代人力交付&quot;的可复制性。</p></div><div style="display:contents" dir="auto"><h1 id="dcc23f19-0ea3-4fce-a8dc-51cd384680fe" class="">风险</h1></div><div style="display:contents" dir="auto"><ul id="729c67dc-072b-4fb8-b7d2-bf599bf5bb2d" class="bulleted-list"><li style="list-style-type:disc"><strong>本轮额度几乎认满，IOSG 难拿到有意义的机构敞口</strong>：领投已吃 75%，仅剩万元级天使小票，机构 $0.5-1M 在本轮无空间。缓解：以 Jocy 个人 $10-20K 天使票 + 设计合作伙伴/分发合作先建立关系，把机构票留待下一轮。</li></ul></div><div style="display:contents" dir="auto"><ul id="3763017d-b043-4596-a46b-8bdce86da137" class="bulleted-list"><li style="list-style-type:disc"><strong>早期且规模尚小</strong>：$1M ARR、25 客户、平均 $50K 客单价，2026-02 才起售，净留存、销售可复制性与大单转化均未经周期验证；估值 $40M post 对应约 40 倍 ARR，定价已包含较高预期。</li></ul></div><div style="display:contents" dir="auto"><ul id="d4064c72-bbf6-46f8-9d53-72a40d1c6f3d" class="bulleted-list"><li style="list-style-type:disc"><strong>上下夹击的中型市场定位</strong>：上有 RunLayer（$11M，Fortune 500、MCP 共创者背书）与 Obot（$35M，开源、资金最充裕）向下覆盖，下有 Composio（$29M，定价低 10 倍）向上渗透，MintMCP $6M 的弹药量最少，需靠&quot;运行时安全 + 虚拟权限收敛&quot;这条竞品最弱的差异化持续守住中段。</li></ul></div><div style="display:contents" dir="auto"><ul id="445ff00a-5543-4e9a-84e9-a9371c073e31" class="bulleted-list"><li style="list-style-type:disc"><strong>平台与协议演进风险</strong>：尽管创始人论证平台方不会自建跨厂商治理，但 Anthropic/云厂商若把基础治理能力下沉、或 MCP 规范大改，仍可能压缩网关层价值；且全员智能体的每次工具调用都过 MintMCP，对可用性（多个 9）要求极高，一旦宕机客户即停摆。</li></ul></div><div style="display:contents" dir="auto"><ul id="5ddb8055-ab48-4c1a-9fbd-ab8d74db115f" class="bulleted-list"><li style="list-style-type:disc"><strong>亚太与销售组织待建</strong>：客户集中在美欧澳新，亚太尚未铺开，IOSG 可补位但需时间；企业安全是长周期、强关系、过 CISO 的销售品类，6 人团队的规模化 GTM 能力尚未验证。</li></ul></div><div style="display:contents" dir="auto"><h1 id="183a3ba8-1d8f-49bb-b211-af5a3c4bb31f" class="">附录</h1></div><div style="display:contents" dir="auto"><ul id="7952bdce-597e-40c7-8ce4-c9c90f2950de" class="bulleted-list"><li style="list-style-type:disc">Otter 会议转录：与 Jiquan Ngiam 通话，2026-06-03，36 分钟（IOSG: Jocy、Yiping）— <a href="https://otter.ai/u/Ew8n2tzSLLYo8rCNTa8hoBLGKv0">https://otter.ai/u/Ew8n2tzSLLYo8rCNTa8hoBLGKv0</a></li></ul></div><div style="display:contents" dir="auto"><ul id="9f0a1291-3bd4-4a5c-84aa-1be8a4f958ab" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.mintmcp.com">MintMCP 官网与产品页</a>、<a href="https://www.businesswire.com/news/home/20260205079173/en/MintMCP-Launches-Enterprise-Governance-Platform-for-AI-Agents-and-MCP-Servers">发布新闻稿（Business Wire, 2026-02-05）</a></li></ul></div><div style="display:contents" dir="auto"><ul id="1d9f6510-40ac-43de-a4bb-58360024fcc4" class="bulleted-list"><li style="list-style-type:disc">竞对融资来源：<a href="https://techcrunch.com/2025/11/17/mcp-ai-agent-security-startup-runlayer-launches-with-8-unicorns-11m-from-khoslas-keith-rabois-and-felicis/">Runlayer $11M（TechCrunch, 2025-11）</a>、<a href="https://www.prnewswire.com/news-releases/obot-ai-secures-35m-seed-to-build-enterprise-mcp-gateway-302563687.html">Obot AI $35M（PRNewswire, 2025-09）</a>、<a href="https://www.prnewswire.com/news-releases/composio-raises-29m-to-solve-ais-learning-problem-building-skills-that-actually-improve-over-time-302510684.html">Composio $29M（PRNewswire, 2025-07）</a>、<a href="https://www.businesswire.com/news/home/20240620782474/en/">Pomerium $13.75M（Business Wire, 2024-06）</a></li></ul></div><div style="display:contents" dir="auto"><ul id="92b7f3d8-8fff-4f70-968c-c840702ed060" class="bulleted-list"><li style="list-style-type:disc"><a href="https://techcrunch.com/2023/12/07/google-coursera-lutra-ai-workflows/">Lutra AI $3.8M 种子轮（TechCrunch, 2023-12）</a></li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
