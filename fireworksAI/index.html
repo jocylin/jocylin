@@ -1,0 +1,743 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Fireworks AI — 项目介绍 6-3-2026</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="374f0ada-243c-818f-aef5-f0141cb4c568" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔥</span></div><h1 class="page-title" dir="auto">Fireworks AI — 项目介绍 6-3-2026</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><blockquote id="4a0b8cd0-8a8b-43c3-a1c0-3138815d7afb" class=""><strong>交易背景</strong></blockquote></div><div style="display:contents" dir="auto"><blockquote id="d3dccfa4-b696-4ef2-9dec-669e4ab2c9da" class="">IOSG 近期拿到了 Fireworks AI 本轮（Series D 性质）的投资额度。本轮由 <strong>Index Ventures 领投 @ $15B post money</strong>，NVIDIA 等战略方跟投。意向确认窗口在 <strong>6 月中旬之前</strong>，上 cap table 概率较高。</blockquote></div><div style="display:contents" dir="auto"><blockquote id="dd89b87e-712d-40e8-9e38-45ba050fad4c" class="">如您对该机会感兴趣，IOSG 可安排直接参与。参与结构与费率：管理费 + carry，或一次性 transaction fee（按 size 商定）——<strong>具体数字待定，以最终确认为准</strong>。</blockquote></div><div style="display:contents" dir="auto"><p id="8aa55830-725e-4e4b-ae19-df95814e3ed4" class="">Fireworks 是企业 AI 推理云的行业第一，团队来自 PyTorch，具有深厚的工程背景。AI 头部公司例如 Cursor、Genspark、Uber、DoorDash、Notion 都是 Fireworks 的客户。在推理性能、延迟、价格上 Fireworks 都具有明显优势，这极大提升了其 margin——尤其在 GPU 紧缺的当下，Fireworks 有能力 scale 得更快，用同样数量的 GPU 服务更多客户。过去一年里 Fireworks YoY 3x，达到 ~315M ARR，服务 10K+ 企业客户。</p></div><div style="display:contents" dir="auto"><p id="3527af41-023b-4c7f-b6cc-7c724e33e727" class="block-color-teal_background">适合人群：该机会适合希望增加 AI、GPU Compute、Inference Layer 与开源模型生态 Exposure 的投资人。Fireworks 是目前少数同时具备超高速增长、顶级系统工程能力与明确单位经济优势的 AI Infra 公司之一，定位上接近「AI 时代的推理层 AWS」。对于看好 Agent、Copilot、企业 AI 化与推理需求长期爆发的投资组合而言，Fireworks 提供了较强的结构性 Beta 与平台级成长空间。</p></div><div style="display:contents" dir="auto"><h1 id="177256e9-4d12-49c5-849d-0c4aa47ba0ea" class="">投资逻辑（核心看点）</h1></div><div style="display:contents" dir="auto"><p id="04725c2b-f034-4312-af63-11e7cd6f6cf3" class="">Fireworks 对标 AI 时代的 AWS，把复杂的 Infra 抽象化。根据 Openrouter 的数据，推理需求正在以约 4x 的速度持续增长；若该趋势延续，Fireworks 有望在三年内做到约 $10B 的 Revenue（作为参照，AWS 2026 的 ARR 大概是 $150B）。</p></div><div style="display:contents" dir="auto"><p id="23bf403b-097b-4c23-9d97-b6e4eb9ef034" class=""><strong>1. 推理是 AI 时代的「计算入口」，Fireworks 正占据 AI 应用层的核心流量节点</strong></p></div><div style="display:contents" dir="auto"><p id="ff45bd2b-3a78-4fbd-9994-adbbc528ac6a" class="">AI 正从「模型时代」进入「推理时代」。Agent、Coding Copilot、Search、Workflow Automation 等新应用形态正在持续推高推理需求，而行业同时面临 GPU 紧缺与推理成本高企的问题。对于 AI 应用而言，推理速度、稳定性与成本已经成为核心竞争力。</p></div><div style="display:contents" dir="auto"><p id="42e8ba5f-1339-49a4-ba2a-320d4b07fe9f" class="">Fireworks 在这一轮竞争中已经建立起明显领先的位置。其核心优势并不仅仅是「更快」，而是能够在同样 GPU 资源下输出更多 tokens/sec，从而同时提升客户体验与平台毛利。对于 Agent Apps 而言，这意味着：</p></div><div style="display:contents" dir="auto"><ul id="6b8a5fdf-69ef-47f4-bdec-5ce0024b4234" class="bulleted-list"><li style="list-style-type:disc">更低的 inference 成本</li></ul></div><div style="display:contents" dir="auto"><ul id="df8224af-adf8-45d9-8d47-2c1f6c8e5f20" class="bulleted-list"><li style="list-style-type:disc">更高的响应速度</li></ul></div><div style="display:contents" dir="auto"><ul id="39e553d5-1107-42e8-a209-0499b1cc2bf7" class="bulleted-list"><li style="list-style-type:disc">更强的并发能力</li></ul></div><div style="display:contents" dir="auto"><p id="5a62a0e1-88b1-4372-8ba2-6b9ab33fd920" class="">而对于 Fireworks 自身，则意味着在 GPU 稀缺周期中，可以用同样的 H200 服务更多客户，从而持续扩大收入规模与市场份额。</p></div><div style="display:contents" dir="auto"><p id="1d6328d2-6c63-4c96-a996-eb7a0bd7c1ed" class="">本质上，Fireworks 已经站在 AI 应用收入链路的「咽喉位置」。其 Token 使用量已接近 Gemini 级别，每多一个 Cursor、Perplexity、Notion AI 这样的爆款应用，都会持续转化为 Fireworks 的收入增长。</p></div><div style="display:contents" dir="auto"><p id="ac44ec82-0d67-4f24-8ecf-3f43743af0c5" class="">当市场普遍预期 inference market 在未来 5 年达到 $100B+ 规模时，Fireworks 是极少数同时具备以下能力的推理平台：</p></div><div style="display:contents" dir="auto"><ul id="e657ea30-95e3-4f17-ac5d-2eb02f0a376d" class="bulleted-list"><li style="list-style-type:disc">企业级客户能力</li></ul></div><div style="display:contents" dir="auto"><ul id="502d1210-edca-4f16-af24-0d52f33bc512" class="bulleted-list"><li style="list-style-type:disc">开发者生态渗透</li></ul></div><div style="display:contents" dir="auto"><ul id="6c1aee04-add7-46a0-a6ef-932add7691ea" class="bulleted-list"><li style="list-style-type:disc">顶级推理性能</li></ul></div><div style="display:contents" dir="auto"><ul id="ab5bed3f-6ad7-4e76-98a0-37f18afac7b7" class="bulleted-list"><li style="list-style-type:disc">硬件生态合作位置</li></ul></div><div style="display:contents" dir="auto"><p id="df8be8d2-a78f-4ef8-833b-6e2b6a6f8641" class=""><strong>2. 推理服务最终会持续集中，而 Fireworks 拥有最强的单位经济与毛利护城河</strong></p></div><div style="display:contents" dir="auto"><p id="e94bbb04-8e6b-4577-ac16-b8cef9302e5b" class="">从基础设施与 Fintech 领域的历史规律看，同质化基础服务最终都会走向集中。决定最终胜出的核心，并不只是增长速度，而是：</p></div><div style="display:contents" dir="auto"><ul id="edf73c8f-b284-44b9-9f85-d155f3feadac" class="bulleted-list"><li style="list-style-type:disc">更高的毛利结构</li></ul></div><div style="display:contents" dir="auto"><ul id="c50c3b1b-c865-47b7-b59b-82926b4f36d4" class="bulleted-list"><li style="list-style-type:disc">更强的价格战承受能力</li></ul></div><div style="display:contents" dir="auto"><ul id="abd12ac6-8ac0-41eb-a23c-32d871176420" class="bulleted-list"><li style="list-style-type:disc">更丰富的增值服务能力</li></ul></div><div style="display:contents" dir="auto"><ul id="a7b67d9b-8b9d-4806-9184-25b94f12a21f" class="bulleted-list"><li style="list-style-type:disc">对客户工作负载更深的理解</li></ul></div><div style="display:contents" dir="auto"><p id="15880a59-8757-47ad-a869-c1d9edd2e6bf" class="">Fireworks 在这些维度上都具备明显优势。其独有的推理优化能力，使其在价格略低于同行、性能明显领先的情况下，依然维持健康毛利。本质上，「同样 GPU 跑出更多 Tokens」直接等同于更强单位经济。当行业进入价格竞争阶段时，大量缺乏优化能力的平台会被持续压缩利润，而 Fireworks 反而可能成为少数仍能保持盈利能力的推理供应商。</p></div><div style="display:contents" dir="auto"><p id="7d23adf8-dd67-4d39-ac9e-7be1c7f1b204" class="">与此同时，Fireworks 并不只是单一推理 API 生意。它正在形成完整产品闭环：推理服务、模型微调、多 LoRA 服务、企业部署、模型管理。当推理价格战真正开始后，微调与企业级服务将成为 Fireworks 对现有客户的重要增值路径，从而进一步提升客单价与客户留存。</p></div><div style="display:contents" dir="auto"><p id="baa3ada2-99a8-4eb0-acf6-503458011c26" class="">Fireworks 的核心壁垒并不是销售网络，而是底层系统能力。PyTorch 创始团队带来的 CUDA、分布式系统、推理调度与 Kernel 优化能力，构成了极难复制的技术护城河。无论是 Together 的研究路线、Baseten 的企业平台路线，还是 Modal 的通用 Serverless 路线，都很难在未来 3-5 年内追平 Fireworks 在推理效率上的差距。FireAttention V4、推测解码、多 LoRA 服务等能力，是其系统工程优势的商业化体现。</p></div><div style="display:contents" dir="auto"><p id="60b81d65-32ff-4162-a1ce-389f23971809" class=""><strong>3. 开源模型走向主流，而 Fireworks 是最大的结构性受益者之一</strong></p></div><div style="display:contents" dir="auto"><p id="6addf26c-1885-4b52-bdc2-5ffef56a5df0" class="">过去 12 个月，开源模型生态发生了根本性变化。Llama、DeepSeek、Qwen、Kimi K2 等模型，已经在多个 Benchmark 与真实场景中，对 GPT 与 Claude 形成可竞争位置。</p></div><div style="display:contents" dir="auto"><p id="6080eb1d-98cf-4329-aa19-45142e2c5ade" class="">与此同时，越来越多企业开始意识到：不希望被单一闭源 API 锁定、希望掌握数据主权、希望降低模型成本、希望拥有更强可定制能力。这意味着 AI 行业正在从「单一闭源 API 调用」，逐渐转向多模型 + 开源 + 可定制化推理，而 Fireworks 恰好位于这一范式迁移的核心位置。</p></div><div style="display:contents" dir="auto"><p id="2711bc82-9718-47e2-96bf-73f856d93a00" class="">Fireworks 的「BYOW（Bring Your Own Weights）+ 多模型 + 微调闭环」，并不仅仅是开源模型的托管服务，而是在帮助企业重新掌握 AI 主权。它既能承接最前沿开源模型的推理需求，也能帮助企业搭建自己的模型基础设施层。从产业链角度看：开源模型越强 → 企业对闭源 API 越谨慎 → 模型生态越碎片 → Fireworks 的价值就越高。Microsoft Foundry 与 Fireworks 的合作说明：即便是最大的闭源云平台，也仍然需要将部分开源推理能力外包给 Fireworks。</p></div><div style="display:contents" dir="auto"><h1 id="1f3d278a-98f7-4501-901c-7f8e11f25f33" class="">产品介绍</h1></div><div style="display:contents" dir="auto"><ul id="a3ccfc59-4034-4d03-a607-547806745750" class="bulleted-list"><li style="list-style-type:disc"><strong>定位</strong>：Fireworks AI 是面向企业生产环境的 AI 推理云，核心理念是把&quot;训练好的开源模型变成企业生产级 AI 应用&quot;。把 Meta 内部花了 5 年才做成的工程，压缩到 5 周甚至 5 天</li></ul></div><div style="display:contents" dir="auto"><ul id="5c94ff19-c51c-463a-9700-57eb039c6a64" class="bulleted-list"><li style="list-style-type:disc"><strong>核心引擎 FireAttention + FireOptimizer</strong>：自研 CUDA 内核、模型分片、推测解码（speculative decoding）、语义缓存，号称比 vLLM 快 12x、比 GPT-4 标杆快 40x，单 GPU 可同时挂载上百个 LoRA adapter</li></ul></div><div style="display:contents" dir="auto"><ul id="137250a4-03bb-4785-8ec8-4ec0c2743d92" class="bulleted-list"><li style="list-style-type:disc"><strong>全栈推理 + 微调闭环</strong>：在同一平台支持模型选型、SFT/DPO/RFT 微调（含强化学习）、推理部署、模型评测（Eval Protocol），客户可以从&quot;试 model&quot;到&quot;生产部署&quot;端到端不出平台</li></ul></div><div style="display:contents" dir="auto"><ul id="fc9dba98-f146-4daf-88d2-65c734b0a4b5" class="bulleted-list"><li style="list-style-type:disc"><strong>Bring-Your-Own-Weights（BYOW）+ 多形态部署</strong>：serverless / on-demand / dedicated / enterprise（含 VPC 私有部署）；OpenAI 兼容 API，已通过 SOC2 / HIPAA / GDPR</li></ul></div><div style="display:contents" dir="auto"><ul id="59e4e23f-ee09-4eb4-890c-64e067f32615" class="bulleted-list"><li style="list-style-type:disc"><strong>对开发者</strong>：百行配置可以从 OpenAI API 一键切换到开源模型，省钱（号称单位成本最高 8x 降幅）、不被锁定；对企业：可以&quot;拥有自己的 AI&quot;，模型权重、数据、微调过程全部留在客户侧</li></ul></div><div style="display:contents" dir="auto"><h1 id="ff5043c2-a6f2-4807-887f-876c4ecaee07" class="">GTM</h1></div><div style="display:contents" dir="auto"><ul id="42564e3b-ccb1-4754-854c-4e5c91fa60b4" class="bulleted-list"><li style="list-style-type:disc"><strong>PLG + 开发者优先</strong>：从开源模型生态（Llama、DeepSeek、Kimi、Qwen 等）的 Day-0 launch partner 切入，吸引开发者自助接入，再向上扩展至企业合约</li></ul></div><div style="display:contents" dir="auto"><ul id="209e45a0-a4cf-44f8-b26d-a8969801fd2f" class="bulleted-list"><li style="list-style-type:disc"><strong>生态分发杠杆</strong>：2026 年 3 月宣布与 Microsoft Foundry / Azure 的多年战略合作（公开预览），把 Fireworks 嵌入到 Azure 企业销售通道；同期与 NVIDIA、AMD 在硬件层深度绑定</li></ul></div><div style="display:contents" dir="auto"><ul id="e823438e-5073-49a7-a0bb-46fa55bb91bb" class="bulleted-list"><li style="list-style-type:disc"><strong>Vertical Land-and-Expand</strong>：从单一推理 endpoint 切入后，通过 fine-tuning、Eval Protocol、RFT 等模块持续 upsell；Cursor、Notion、Shopify 等头部客户均从单点扩展到多场景</li></ul></div><div style="display:contents" dir="auto"><ul id="2b0fcced-e857-48af-984c-df1d8253c1d8" class="bulleted-list"><li style="list-style-type:disc"><strong>目标客户</strong>：AI Native 高增长应用（Cursor、Perplexity、Genspark、Retell AI）+ 传统大企业 AI 化（Samsung、Uber、DoorDash、Shopify、Notion、Upwork、GitLab、Sourcegraph、Quora）</li></ul></div><div style="display:contents" dir="auto"><h1 id="9a0ad6c5-cb0d-4529-aef0-cd3f280e4eca" class="">Traction</h1></div><div style="display:contents" dir="auto"><ul id="87a735c0-72be-4b84-8181-f94ccaf5085f" class="bulleted-list"><li style="list-style-type:disc"><strong>ARR</strong>：2025-05 $130M → 2025-07 $200M → 2025-10 $280M → 2026-02 $315M（+416% YoY，ChatForest 口径）</li></ul></div><div style="display:contents" dir="auto"><ul id="d20ff5b0-94fb-418b-8457-dfcb3d325784" class="bulleted-list"><li style="list-style-type:disc"><strong>Token 吞吐</strong>：日处理 <strong>10-13 万亿 tokens</strong>（与 Google Gemini 同量级），峰值 180K requests/sec，单模型可达 1,000+ tokens/sec</li></ul></div><div style="display:contents" dir="auto"><ul id="3678cf58-726c-46bb-bec5-5bca412000e5" class="bulleted-list"><li style="list-style-type:disc"><strong>客户数</strong>：10,000+ 企业客户（较 Series B 翻 10x），数十万开发者；2025 年内客户数从 ~1,000 跃升到 10,000+</li></ul></div><div style="display:contents" dir="auto"><ul id="ff013b02-fa9b-400c-a705-903fad41aec0" class="bulleted-list"><li style="list-style-type:disc"><strong>标杆客户战果</strong>：<div style="display:contents" dir="auto"><ul id="39237420-6ac7-4630-b2f0-33b47e12f4b7" class="bulleted-list"><li style="list-style-type:circle"><strong>Notion</strong>：fine-tuning 后将延迟从 2 秒压到 350ms（约 4x 降幅），支撑 1 亿+ 用户的&quot;vibe working&quot; agentic workflow</li></ul></div><div style="display:contents" dir="auto"><ul id="7990cd82-8c65-43f2-93b1-9cf98c1a8688" class="bulleted-list"><li style="list-style-type:circle"><strong>Cursor</strong>：Composer 2 与 Fast Apply / Copilot++ 跑在 Fireworks 上，量化模型质量损失极小，延迟改善 ~3x</li></ul></div><div style="display:contents" dir="auto"><ul id="12c7e2aa-480f-4d87-b2c3-b380c5ab7ca4" class="bulleted-list"><li style="list-style-type:circle"><strong>Upwork</strong>：Uma proposal 草拟功能延迟比 off-the-shelf 快 10x</li></ul></div><div style="display:contents" dir="auto"><ul id="89347071-1a0b-4c3b-9f4c-50d32549c5e8" class="bulleted-list"><li style="list-style-type:circle"><strong>Sourcegraph Cody</strong>：在 Fireworks 上做代码搜索与微调</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="21db7fa3-45a1-4a71-9fd9-4faac30c0a39" class="bulleted-list"><li style="list-style-type:disc"><strong>战略动作</strong>：2026-03 完成 Hathora 收购（覆盖 4 个云厂商、14 个 region 的实时编排层），实现全球低延迟部署</li></ul></div><div style="display:contents" dir="auto"><ul id="a34e3bf6-3b7a-49a2-b4bd-198bac340501" class="bulleted-list"><li style="list-style-type:disc"><strong>本轮情况</strong>：Index Ventures 领投 @ $15B post money，NVIDIA 等战略方跟投</li></ul></div><div style="display:contents" dir="auto"><h1 id="cddbaf64-2fce-4ef3-bce6-65026c96b2ba" class="">商业模式</h1></div><div style="display:contents" dir="auto"><ul id="cd62dcd5-c337-4e13-8be2-abd03818e4eb" class="bulleted-list"><li style="list-style-type:disc"><strong>核心收入：按 Token 计费的推理 API + Dedicated GPU 容量</strong>（serverless + reserved 双线）；与 Together 的差异在于，Fireworks 可以靠性能和数据主权进行溢价。同样的 GPU，Fireworks 可以给出更高的性能，所有模型权重和数据都留在客户手中。Together 更接近 GPU 出租和通用 API 低价跑量的模式。</li></ul></div><div style="display:contents" dir="auto"><ul id="5ea3a13b-5c0d-4341-a11f-271289b1e9dc" class="bulleted-list"><li style="list-style-type:disc"><strong>追加销售</strong>：微调服务（SFT/DPO/RFT）、Eval Protocol、Multi-LoRA、Compound AI / Function Calling、企业 VPC 部署</li></ul></div><div style="display:contents" dir="auto"><ul id="745e1b77-84c1-40c8-baa0-de83a3c1f413" class="bulleted-list"><li style="list-style-type:disc"><strong>毛利结构</strong>：Sacra 认为，Fireworks AI 的推理定价已高于 Together AI 接近 breakeven 的水平，说明 Fireworks 在 Token 单位经济上具备更强的 take rate。同等算力条件下，FireAttention 带来的吞吐与速度优势，也能够直接转化为更高毛利。</li></ul></div><div style="display:contents" dir="auto"><ul id="c55adb9c-0b03-4510-bfb8-9108afef6313" class="bulleted-list"><li style="list-style-type:disc"><strong>客户结构</strong>：偏 ICP 大客单价 + 长尾开发者订阅；141 名员工撑起 ~$300M+ ARR，人效极高（人均 ARR 接近 $2M）</li></ul></div><div style="display:contents" dir="auto"><h1 id="cafcd153-f662-4d3f-b9c1-19db26604c65" class="">竞对分析</h1></div><div style="display:contents" dir="auto"><p id="2c361451-89ec-490a-90f2-2fa35fd92592" class="">Fireworks 的优势在于：</p></div><div style="display:contents" dir="auto"><ul id="f3c9b9e0-bf31-4ea1-bfc8-8b37822430db" class="bulleted-list"><li style="list-style-type:disc"><strong>PyTorch 创始团队 + 内核级优化能力</strong>：CEO Lin Qiao 在 Meta 负责 PyTorch 达 7 年，团队也是 PyTorch 的核心维护者，能够从 CUDA 到分布式推理对整个技术栈进行深度改造；这是 <a href="http://Together.ai">Together.ai</a>（学术派系）、Baseten（应用层为主）、Modal（Serverless Infra 为主）很难复制的优势</li></ul></div><div style="display:contents" dir="auto"><ul id="39dc2583-345e-420b-96ac-aff139d607b0" class="bulleted-list"><li style="list-style-type:disc"><strong>同等算力的性能溢价 = 直接毛利</strong>：在 GPU 全行业紧缺、单卡价格高企的窗口期，FireAttention V4 / 推测解码 / 多 LoRA 服务让 Fireworks 在 H200/B200 上跑出更高吞吐，等价于&quot;每张卡多赚 30-50% 收入&quot;</li></ul></div><div style="display:contents" dir="auto"><ul id="4e3109c2-e546-415d-9a1e-16823b02a1e8" class="bulleted-list"><li style="list-style-type:disc"><strong>战略生态站位</strong>：唯一同时被 NVIDIA + AMD + Databricks + MongoDB + Microsoft Foundry 接纳的独立推理云；硬件与渠道两端拿满了重要合作</li></ul></div><div style="display:contents" dir="auto"><ul id="f173b366-ec7f-47ec-bf56-b1fe0aec7db3" class="bulleted-list"><li style="list-style-type:disc"><strong>YTD 4x 增长 + 10x 客户增长</strong>：在 $300M+ ARR 体量上还能 YTD 4x。随着 Inference 需求激增，未来业务还有更多增长潜力</li></ul></div><div style="display:contents" dir="ltr"><table id="03d43629-c483-40d3-80f3-ba68c8d7cc5d" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="624eb7a9-1ba6-407f-b64e-a64c6f3f46cd"><th id="JPVQ" class="simple-table-header-color simple-table-header">Company</th><th id="SUhV" class="simple-table-header-color simple-table-header">Raised</th><th id="_lEE" class="simple-table-header-color simple-table-header">Investors</th><th id="[fUR" class="simple-table-header-color simple-table-header">Brand Recognition</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2f01b09e-63d9-4578-bbd5-4d6c6962aadf"><td id="JPVQ" class=""><a href="https://fireworks.ai"><strong>Fireworks AI</strong></a></td><td id="SUhV" class="">$327M（本轮前）；本轮 $15B post money（Index Ventures 领投）</td><td id="_lEE" class="">Benchmark, Sequoia, Lightspeed, Index, Evantic, NVIDIA, AMD, Databricks, MongoDB</td><td id="[fUR" class="">推理性能领导者</td></tr></div><div style="display:contents" dir="ltr"><tr id="767ceb5a-d5ba-4909-ae41-18062d214fea"><td id="JPVQ" class=""><a href="https://together.ai"><strong>Together AI</strong></a></td><td id="SUhV" class="">~$534M；本轮 talks ~$1B at $7.5B pre / $8.5B post</td><td id="_lEE" class="">General Catalyst, Prosperity7, NVIDIA, Salesforce Ventures, Kleiner, Coatue, Lux</td><td id="[fUR" class="">开源模型云</td></tr></div><div style="display:contents" dir="ltr"><tr id="03d806d0-f8f3-4e16-ab31-b29e29b1cd24"><td id="JPVQ" class=""><a href="https://baseten.co"><strong>Baseten</strong></a></td><td id="SUhV" class="">$585M 累计；2026-01 Series E $300M @ $5B 估值</td><td id="_lEE" class="">IVP, CapitalG, NVIDIA, BOND, Altimeter, Battery, Greylock, Conviction</td><td id="[fUR" class="">企业级推理产品</td></tr></div><div style="display:contents" dir="ltr"><tr id="90312b27-9185-43f1-aaf5-51dbb3932310"><td id="JPVQ" class=""><a href="https://modal.com"><strong>Modal</strong></a></td><td id="SUhV" class="">$222M 累计；Series B $87M @ $1.1B（Sep 2025）；据传 $2.5B 新一轮 talks</td><td id="_lEE" class="">Lux Capital, Redpoint, General Catalyst（talks）</td><td id="[fUR" class="">开发者 Infra</td></tr></div><div style="display:contents" dir="ltr"><tr id="efc46dca-2b9b-4a89-8e80-b8c209f328a1"><td id="JPVQ" class=""><a href="https://aws.amazon.com/bedrock"><strong>Hyperscalers</strong></a></td><td id="SUhV" class="">n/a</td><td id="_lEE" class="">n/a</td><td id="[fUR" class=""></td></tr></div></tbody></table></div><div style="display:contents" dir="ltr"><table id="2ce3fd3b-74f2-47d8-a6cb-4f23437d457f" class="simple-table"><tbody><div style="display:contents" dir="ltr"><tr id="d44c0e6b-0636-4ab7-bd91-ccc408ef5675"><td id="dJxB" class="">竞争对手</td><td id="vCbv" class="">相对 Fireworks 的弱点</td><td id="Fny`" class="">相对 Fireworks 的优势</td></tr></div><div style="display:contents" dir="ltr"><tr id="6786b5ea-fda5-4aa5-8f39-bd23de6fee20"><td id="dJxB" class=""><a href="https://together.ai/"><strong>Together AI</strong></a></td><td id="vCbv" class="">推理定价接近 breakeven，毛利结构更脆弱；偏转售算力，Value Add 较少；学术派系工程深度待验证</td><td id="Fny`" class="">ARR 已破 $1B（约 3x Fireworks）；FlashAttention 作者 Tri Dao + Chris Ré / Percy Liang 学术品牌强；CodeSandbox + <a href="http://refuel.ai/"><a href="http://Refuel.ai">Refuel.ai</a></a> 收购拓宽产品线</td></tr></div><div style="display:contents" dir="ltr"><tr id="47997b25-9bfa-4d2c-aed4-d2f8ea5cfa2d"><td id="dJxB" class=""><a href="https://baseten.co/"><strong>Baseten</strong></a></td><td id="vCbv" class="">缺乏 PyTorch 创始团队级别的内核 IP；以应用层 Stack 为主，硬件、内核协同弱于 Fireworks</td><td id="Fny`" class="">12 个月内三轮融资，Enterprise Tooling 更好，Debugging、Observability 较强</td></tr></div><div style="display:contents" dir="ltr"><tr id="346ad520-38b5-479b-b50a-c2847e4c4558"><td id="dJxB" class=""><a href="https://modal.com/"><strong>Modal</strong></a></td><td id="vCbv" class="">ARR 只有 ~$50M，比 Fireworks 小 6-7x，大客户更少</td><td id="Fny`" class="">Sandboxes + Batch + Training + Notebooks 形成开发者全栈，更注重 Infra 管理</td></tr></div><div style="display:contents" dir="ltr"><tr id="19da3976-fd9e-41f4-8e50-2d0f06bc6144"><td id="dJxB" class="">Hyperscalers (AWS Bedrock / Azure / Vertex)</td><td id="vCbv" class="">闭源模型生态，迭代速度慢，不专注于性能；客户被锁定在单云 + 单模型供应商</td><td id="Fny`" class="">现成的企业销售渠道与采购预算；Microsoft Foundry 已选 Fireworks 作合作伙伴，部分缓解此项压力</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="eacd8652-f6d2-4eed-a794-1782c9e35be6" class="">从性能上看，Fireworks 可以在支持更大上下文的情况下，在价格、速度、延迟上均占有优势，回答生成时间大幅领先（约 3x），性能领先明显，甚至 Max 模式的性能比其他几家 High 模式都好。</p></div><div style="display:contents" dir="auto"><h3 id="bcd78221-da66-4b8c-9f63-a32c4479b971" class="">🔷 DeepSeek V4 Pro (Max) — Reasoning 模式（Intelligence Index: 52）</h3></div><div style="display:contents" dir="ltr"><table id="e9b9ce44-128b-49e5-a730-a07d2c83ff1e" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="89f5db17-24a9-4da7-a26e-916e6b5f223f"><th id="VsL`" class="simple-table-header-color simple-table-header">指标</th><th id="hEE^" class="simple-table-header-color simple-table-header">Fireworks</th><th id="DK\T" class="simple-table-header-color simple-table-header">Baseten</th><th id="saBF" class="simple-table-header-color simple-table-header"><a href="http://Together.ai">Together.ai</a></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="1842a717-6546-4a94-9a41-93252c0d202c"><td id="VsL`" class=""><strong>Context Length</strong></td><td id="hEE^" class="">1m</td><td id="DK\T" class="">—</td><td id="saBF" class="">512k</td></tr></div><div style="display:contents" dir="ltr"><tr id="86a5ebc9-8592-49e8-9a4b-b8d0ef0fe7bd"><td id="VsL`" class=""><strong>Intelligence Index</strong></td><td id="hEE^" class="">52</td><td id="DK\T" class="">—</td><td id="saBF" class="">52</td></tr></div><div style="display:contents" dir="ltr"><tr id="12d19566-0711-4112-af6f-c6f5ae8c1905"><td id="VsL`" class=""><strong>价格 Price</strong> (USD/1M Tokens)</td><td id="hEE^" class="">$2.17</td><td id="DK\T" class="">—</td><td id="saBF" class="">$2.68</td></tr></div><div style="display:contents" dir="ltr"><tr id="72da535a-fbc9-404c-a2b1-d93f1236f2d2"><td id="VsL`" class=""><strong>速度 Speed</strong> (Tokens/s)</td><td id="hEE^" class="">176</td><td id="DK\T" class="">—</td><td id="saBF" class="">52</td></tr></div><div style="display:contents" dir="ltr"><tr id="c7a6ac1c-5261-4ddf-9c50-541860527c15"><td id="VsL`" class=""><strong>延迟 Latency</strong> (First Chunk, s)</td><td id="hEE^" class="">1.09</td><td id="DK\T" class="">—</td><td id="saBF" class="">1.15</td></tr></div><div style="display:contents" dir="ltr"><tr id="5d925968-ab61-454e-99aa-a67dd796fe2e"><td id="VsL`" class=""><strong>Total Response</strong> (s)</td><td id="hEE^" class="">28.81</td><td id="DK\T" class="">—</td><td id="saBF" class="">94.19</td></tr></div><div style="display:contents" dir="ltr"><tr id="fef42c35-6702-44f4-9148-99a51cd7320a"><td id="VsL`" class=""><strong>Reasoning Response</strong> (s)</td><td id="hEE^" class="">24.88</td><td id="DK\T" class="">—</td><td id="saBF" class="">83.50</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="86352830-c1ae-4292-80b9-7ac8913dfb0b" class="">🔶 DeepSeek V4 Pro (High) — Reasoning 模式（Intelligence Index: 50）</h3></div><div style="display:contents" dir="ltr"><table id="e0297c0f-9f99-4910-9c39-80100b2df8b4" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="a8adb2c3-c967-46a4-a55f-0f8db4153b65"><th id="|YYu" class="simple-table-header-color simple-table-header">指标</th><th id="d=SK" class="simple-table-header-color simple-table-header">Fireworks</th><th id="yzQT" class="simple-table-header-color simple-table-header">Baseten</th><th id="aVgP" class="simple-table-header-color simple-table-header"><a href="http://Together.ai">Together.ai</a></th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="bba4d25c-1bf2-4b74-927e-827ed3538e1d"><td id="|YYu" class=""><strong>Context Length</strong></td><td id="d=SK" class="">1m</td><td id="yzQT" class="">131k</td><td id="aVgP" class="">512k</td></tr></div><div style="display:contents" dir="ltr"><tr id="7a0622b3-96bd-48bf-9dcf-4727655546b6"><td id="|YYu" class=""><strong>Intelligence Index</strong></td><td id="d=SK" class="">50</td><td id="yzQT" class="">50</td><td id="aVgP" class="">50</td></tr></div><div style="display:contents" dir="ltr"><tr id="596ca2e4-50f0-4d8a-9243-001676445642"><td id="|YYu" class=""><strong>价格 Price</strong> (USD/1M Tokens)</td><td id="d=SK" class="">$2.17</td><td id="yzQT" class="">$2.17</td><td id="aVgP" class="">$2.68</td></tr></div><div style="display:contents" dir="ltr"><tr id="23bdfb28-60c3-4172-bba8-11cea7093491"><td id="|YYu" class=""><strong>速度 Speed</strong> (Tokens/s)</td><td id="d=SK" class="">169</td><td id="yzQT" class="">61</td><td id="aVgP" class="">58</td></tr></div><div style="display:contents" dir="ltr"><tr id="236ce69d-a2dd-4d72-8335-fb0271e2c46e"><td id="|YYu" class=""><strong>延迟 Latency</strong> (First Chunk, s)</td><td id="d=SK" class="">1.24</td><td id="yzQT" class="">1.59</td><td id="aVgP" class="">1.38</td></tr></div><div style="display:contents" dir="ltr"><tr id="7f020ceb-0812-4d6a-83f7-5135d313d53f"><td id="|YYu" class=""><strong>Total Response</strong> (s)</td><td id="d=SK" class="">15.99</td><td id="yzQT" class="">42.59</td><td id="aVgP" class="">44.60</td></tr></div><div style="display:contents" dir="ltr"><tr id="6bda0749-aa84-4741-9a70-65ac04d7364b"><td id="|YYu" class=""><strong>Reasoning Response</strong> (s)</td><td id="d=SK" class="">11.79</td><td id="yzQT" class="">32.78</td><td id="aVgP" class="">34.55</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="df4fe3e7-b7cc-4958-ae37-35af1aa85d3d" class="">团队</h1></div><div style="display:contents" dir="auto"><ul id="ab482b3f-bac9-49a9-a575-236f18a5b93b" class="bulleted-list"><li style="list-style-type:disc"><strong>CEO Lin Qiao</strong>：复旦大学 计算机 BS/MS，UC Santa Barbara 计算机 PhD（分布式系统 / 数据库）；曾任 Meta 工程高级总监 7 年，主管 300+ 工程师，先后负责 Caffe2 与 PyTorch；将 PyTorch 推到全球最广泛使用的开源 ML 框架；早期 IBM 研究员、LinkedIn tech lead</li></ul></div><div style="display:contents" dir="auto"><ul id="92ffacbc-3010-4ddc-928e-cb51f1fac3bc" class="bulleted-list"><li style="list-style-type:disc"><strong>联创团队（基本都是 PyTorch / 大厂 infra 班底）</strong>：<div style="display:contents" dir="auto"><ul id="5766fccf-394f-4b93-837b-19ad3b0b2eb5" class="bulleted-list"><li style="list-style-type:circle"><strong>Benny Chen</strong>：前 Meta 广告基础设施 lead</li></ul></div><div style="display:contents" dir="auto"><ul id="7079ff53-0585-4cc4-88d5-4e9cb0f36d76" class="bulleted-list"><li style="list-style-type:circle"><strong>Chenyu Zhao</strong>：前 Google Vertex AI lead</li></ul></div><div style="display:contents" dir="auto"><ul id="6f7a68d1-683d-4c92-bb2b-3f10a60ef734" class="bulleted-list"><li style="list-style-type:circle"><strong>Dmytro Dzhulgakov</strong>：PyTorch 核心维护者</li></ul></div><div style="display:contents" dir="auto"><ul id="4e1ed290-5cc7-4d33-a1d3-0100169e1e6a" class="bulleted-list"><li style="list-style-type:circle"><strong>Dmytro Ivchenko、James Reed、Pawel Garbacki</strong>：PyTorch / Meta infra 工程师</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="f5c27aca-42f6-4f77-8ea8-358c6d3170fe" class="">融资情况</h1></div><div style="display:contents" dir="auto"><ul id="95990623-641b-4fac-96e2-6d4e82d965e7" class="bulleted-list"><li style="list-style-type:disc"><strong>历轮</strong>：<div style="display:contents" dir="auto"><ul id="4e4e051c-18f4-446b-b719-02414683a8b5" class="bulleted-list"><li style="list-style-type:circle">Pre-seed（2022）：Angel</li></ul></div><div style="display:contents" dir="auto"><ul id="004dd77b-b035-4ca4-abd0-3e24d8ff60f9" class="bulleted-list"><li style="list-style-type:circle">Series A（2024-03）：$25M，Benchmark 领投</li></ul></div><div style="display:contents" dir="auto"><ul id="41cff341-6461-404c-94e3-cd78ed182938" class="bulleted-list"><li style="list-style-type:circle">Series B（2024-07）：$52M，Sequoia 领投 @ $552M（NVIDIA / AMD / MongoDB / Databricks 战略跟投）</li></ul></div><div style="display:contents" dir="auto"><ul id="0e6b25be-1a08-4be8-a70b-99ed812528f3" class="bulleted-list"><li style="list-style-type:circle">Series C（2025-10）：$250M（$230M primary + $20M secondary）@ $4B，Lightspeed / Index / Evantic 共同领投</li></ul></div><div style="display:contents" dir="auto"><ul id="8a71e1fc-dc1a-490c-875a-33701497dcda" class="bulleted-list"><li style="list-style-type:circle">累计 $327M</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="e100a7ed-9079-41e6-b36b-750855296a2a" class="bulleted-list"><li style="list-style-type:disc"><strong>本轮（进行中，Series D 性质）</strong>：<div style="display:contents" dir="auto"><ul id="52bfe51f-9d4f-4c73-bc04-6e7a370863df" class="bulleted-list"><li style="list-style-type:circle"><strong>$15B post money</strong>，Index Ventures 领投。也收到了 DST，benchmark 的offer</li></ul></div><div style="display:contents" dir="auto"><ul id="be86d312-8d15-45ef-a707-1397194204a0" class="bulleted-list"><li style="list-style-type:circle">NVIDIA 等战略方跟投</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><h1 id="4fa85479-5760-4c2c-97a8-ee7247b5413d" class="">风险</h1></div><div style="display:contents" dir="auto"><ul id="5b071c91-56fe-44b8-9cfc-c08cf0aad2e8" class="bulleted-list"><li style="list-style-type:disc"><strong>估值跨越式跳跃</strong>：从 $4B（2025-10）到 $15B post（2026-05）仅 7 个月。缓解：Index Ventures 领投、NVIDIA 等战略方跟投已 anchor 本轮，且 ARR 仍在 3x 增长段</li></ul></div><div style="display:contents" dir="auto"><ul id="14f3a8d8-f00e-4474-8b60-33776cf71e38" class="bulleted-list"><li style="list-style-type:disc"><strong>Hyperscaler 反扑 + 闭源模型回流风险</strong>：若 GPT-5 / Claude 5 等闭源前沿模型再度拉开质量差距，企业可能回流闭源；AWS Bedrock / Azure AI Foundry / Google Vertex 也在加大推理优化投入。缓解：Microsoft Foundry 已选择与 Fireworks 合作而非自建，验证了即便最大的闭源云也需要开源推理外包</li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
