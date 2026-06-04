@@ -1,0 +1,758 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>澳门 200 亿政府引导基金 — IOSG 参与分析报告</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="374f0ada-243c-810a-a61d-d82b5906cb6b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🇲🇴</span></div><h1 class="page-title" dir="auto">澳门 200 亿政府引导基金 — IOSG 参与分析报告</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="e54f47bc-2d9f-4bbd-81e0-e6c2dc31c5d5" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="04fe2c95-5799-46ca-8e7d-7a6780783dcd" class="">TL;DR</h2></div><div style="display:contents" dir="auto"><p id="4fc3cc87-accd-4cf9-883b-5c0068efa183" class="">澳门特区政府于 2026 年 2 月 27 日正式宣布筹建 <strong>200 亿澳门元（≈25 亿美元）首支政府引导基金</strong>，采用 <strong>&quot;政府引导基金 — 母基金 — 子基金&quot;三层架构</strong>，力争 2026 年内完成基金设立。</p></div><div style="display:contents" dir="auto"><p id="7fe83e83-dab7-4535-9ecd-730ac804f991" class="">IOSG 的潜在参与点 <strong>不是被投项目</strong>，而是作为<strong>第三层的子基金 GP 或顾问角色</strong>。</p></div><div style="display:contents" dir="auto"><p id="9a0b8d63-424f-43d5-8fbc-435a9796808b" class="">核心结论：</p></div><div style="display:contents" dir="auto"><ul id="c1311675-e1c3-4beb-b5c5-37422ed209c3" class="bulleted-list"><li style="list-style-type:disc">目前阶段<strong>最直接的接入点不是政府，而是对应方向的母基金 GP</strong>（中金资本、深创投等候选）</li></ul></div><div style="display:contents" dir="auto"><ul id="1231ebba-6bdc-411d-b9d0-3ab3a0f4c209" class="bulleted-list"><li style="list-style-type:disc">现在还在政策宣告后、机构搭建前的<strong>窗口期</strong>，影响规则比按规则投标更有价值</li></ul></div><div style="display:contents" dir="auto"><ul id="32ddfbba-f9d9-4461-a28a-60d4a20fbf9b" class="bulleted-list"><li style="list-style-type:disc"><strong>轻模式（顾问/SMA）/ Co-GP/ 独立子基金 GP 都是值得考虑的模式</strong></li></ul></div><div style="display:contents" dir="auto"><hr id="cac11bb1-edb7-43b8-9c78-50beb09dc835"/></div><div style="display:contents" dir="auto"><h1 id="c20be248-413e-44f2-90ce-ff841be00e01" class="">第一部分：引导基金是什么 + 需要满足哪些条件</h1></div><div style="display:contents" dir="auto"><h2 id="0539f9d4-0f44-4184-b5a7-3d8e96fa039c" class="">1.1 基金基本面</h2></div><div style="display:contents" dir="ltr"><table id="dde97c64-dedd-495a-986a-db35264a3edc" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="e87f206e-9d9f-4fc4-ab0d-53966ced79ac"><th id="S;L\" class="simple-table-header-color simple-table-header">维度</th><th id="chiE" class="simple-table-header-color simple-table-header">内容</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="7913365b-555f-4db9-8b34-50df5393b386"><td id="S;L\" class=""><strong>正式名称</strong></td><td id="chiE" class="">澳门特别行政区政府引导基金</td></tr></div><div style="display:contents" dir="ltr"><tr id="53f30968-414f-4f84-b552-c0358dae9427"><td id="S;L\" class=""><strong>官宣时间</strong></td><td id="chiE" class="">2026 年 2 月 27 日（澳门科学馆新闻发布会）</td></tr></div><div style="display:contents" dir="ltr"><tr id="85a0a6ea-e72d-4b76-bbdd-0604cc6450e2"><td id="S;L\" class=""><strong>总规模</strong></td><td id="chiE" class="">200 亿澳门元（≈25 亿美元）</td></tr></div><div style="display:contents" dir="ltr"><tr id="e8bbee2f-eef3-412e-8bde-f45dba58fb83"><td id="S;L\" class=""><strong>政府出资</strong></td><td id="chiE" class="">110 亿 MOP（来自财政储备历年滚存收益）</td></tr></div><div style="display:contents" dir="ltr"><tr id="4d410a43-ea3c-46cd-9036-c3fa09930b02"><td id="S;L\" class=""><strong>首批社会资本</strong></td><td id="chiE" class="">90 亿 MOP（目标数字，仍在协商中）</td></tr></div><div style="display:contents" dir="ltr"><tr id="1cdc7e9c-49eb-4ebf-8c0b-b315f528edb9"><td id="S;L\" class=""><strong>设立时间表</strong></td><td id="chiE" class="">力争 <strong>2026 年内</strong>完成基金设立并启动基金经理遴选</td></tr></div><div style="display:contents" dir="ltr"><tr id="ee9c76ce-18ef-45a9-aa3f-6fdf0f537084"><td id="S;L\" class=""><strong>政策对标</strong></td><td id="chiE" class="">国家&quot;十五五&quot;规划、横琴粤澳深度合作区、大湾区</td></tr></div><div style="display:contents" dir="ltr"><tr id="b0faa8ab-c8c6-4e03-998f-202e0a486ce3"><td id="S;L\" class=""><strong>治理结构</strong></td><td id="chiE" class="">&quot;3+1&quot;治理：行政长官监督 + 管理实体营运 + 基金经理执行 + 基金指导委员会</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h2 id="44465ced-523e-408c-b467-313c35108797" class="">1.2 三层架构（关键）</h2></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="e8601919-36e1-46c9-91c8-163b9bf36861" class="code code-wrap"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">第一层：政府引导基金 200 亿
+         ├─ 政府资本 LP（110 亿）
+         ├─ 首批社会资本 LP（90 亿）
+         └─ 政府管理实体 GP
+              ↓ LP 出资
+第二层：母基金（多只，至少 2 只不同方向）
+         ├─ 引导基金 LP
+         ├─ 社会资本 LP
+         └─ 市场化遴选的母基金 GP
+              ↓ LP 出资
+第三层：子基金（多只）  ← IOSG 的可能位置
+         ├─ 母基金 LP
+         ├─ 社会资本 LP
+         └─ 市场化遴选的子基金 GP</code></pre></div><div style="display:contents" dir="auto"><h2 id="08addaf0-07de-498b-8d12-24b74c190445" class="">1.3 投资方向（与 IOSG 的交集分析）</h2></div><div style="display:contents" dir="auto"><p id="08b2829a-3a53-4cd7-9674-eff6a58e4d01" class="">官方明列的四大投资方向：</p></div><div style="display:contents" dir="ltr"><table id="9bfc4987-a68c-49ac-ac98-f622ce1a544d" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="389bb568-0f78-4659-8238-c9496963afaf"><th id="NZAE" class="simple-table-header-color simple-table-header">方向</th><th id="eq&gt;_" class="simple-table-header-color simple-table-header">细分领域</th><th id="~^eT" class="simple-table-header-color simple-table-header">与 IOSG 交集</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="6dd9b884-b7f3-4e76-b7d5-61ff24bc7fdf"><td id="NZAE" class="">生物医药</td><td id="eq&gt;_" class="">创新药、中医药、医疗器材、健康服务</td><td id="~^eT" class="">❌ 不沾</td></tr></div><div style="display:contents" dir="ltr"><tr id="eb52b843-2fc3-41bc-b153-0d743019a09c"><td id="NZAE" class=""><strong>数字科技</strong></td><td id="eq&gt;_" class=""><strong>AI+IP、智慧设施、营销及旅游</strong></td><td id="~^eT" class="">✅✅✅ 强</td></tr></div><div style="display:contents" dir="ltr"><tr id="e4a222f9-68d9-4a0f-9a37-a7f69788dcd9"><td id="NZAE" class=""><strong>集成电路</strong></td><td id="eq&gt;_" class=""><strong>IP、RISC-V、模拟芯片</strong></td><td id="~^eT" class="">✅✅ 中等（RISC-V 跟 zkVM、AI infra 有自然 narrative）</td></tr></div><div style="display:contents" dir="ltr"><tr id="73b0cadc-0afa-4f57-8837-b498489ee7a0"><td id="NZAE" class="">航天科技</td><td id="eq&gt;_" class="">卫星载荷、航天数据服务</td><td id="~^eT" class="">❌ 不沾</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="d8d54eaa-f586-4309-a4df-3146f3f4bfdf" class="">投资范围明确包括：</p></div><div style="display:contents" dir="auto"><ul id="4ef6d428-dd5d-4f6d-a360-957d0857f39e" class="bulleted-list"><li style="list-style-type:disc">新兴产业、产业升级、科技成果转化、初创科技企业</li></ul></div><div style="display:contents" dir="auto"><ul id="418321dd-b72f-4cac-b75f-d960060b075f" class="bulleted-list"><li style="list-style-type:disc">国家战略、科技创新、民生保障重点领域</li></ul></div><div style="display:contents" dir="auto"><ul id="a391c319-3229-4b7a-a4ed-a01f1a5da0d3" class="bulleted-list"><li style="list-style-type:disc">符合澳门&quot;一中心、一平台、一基地&quot;定位</li></ul></div><div style="display:contents" dir="auto"><ul id="c7e8a6c4-cc0d-43a9-ae5d-a37677c1e9f7" class="bulleted-list"><li style="list-style-type:disc"><strong>横琴粤澳深度合作区 + 大湾区联动项目</strong>（重点）</li></ul></div><div style="display:contents" dir="auto"><h2 id="81adab98-c7d4-4d87-9b3e-dd83ccf12e3d" class="">1.4 子基金 GP 资质要求</h2></div><div style="display:contents" dir="auto"><p id="2a5bc101-1924-43b6-abd1-d84c439eadb0" class="">根据官方材料明列的资质要求，IOSG 现状对照：</p></div><div style="display:contents" dir="ltr"><table id="64eafaeb-5a45-493a-bde9-2e209de42062" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="977edbac-e09e-4647-b965-269bea6d5c6b"><th id="cb_K" class="simple-table-header-color simple-table-header">资质要求</th><th id="ueoF" class="simple-table-header-color simple-table-header">IOSG 现状</th><th id="CAgY" class="simple-table-header-color simple-table-header">差距</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="ec44de30-ef49-4718-8bb0-32989a34c674"><td id="cb_K" class="">持有相關金融牌照</td><td id="ueoF" class="">无 AMCM 牌照、无 SFC 9 号牌</td><td id="CAgY" class="">⚠️ 需自申或借牌</td></tr></div><div style="display:contents" dir="ltr"><tr id="b8647d9b-2dd1-49dd-9257-90d6c86ea628"><td id="cb_K" class="">丰富的投资经验和成功案例</td><td id="ueoF" class="">172 portfolio、6 unicorns</td><td id="CAgY" class="">✅ 达标</td></tr></div><div style="display:contents" dir="ltr"><tr id="61d1b352-a2eb-4d30-8855-ccc0e59a6653"><td id="cb_K" class="">设立本地办事机构 + 运营团队</td><td id="ueoF" class="">澳门无办公室</td><td id="CAgY" class="">⚠️ 需落地 2–3 人</td></tr></div><div style="display:contents" dir="ltr"><tr id="6c106bac-a5df-4cdf-9c02-c1b0326247e2"><td id="cb_K" class="">推动澳门以外企业落户澳门/合作区</td><td id="ueoF" class="">多数 portfolio 注册在 BVI/Cayman</td><td id="CAgY" class="">⚠️ 需说服 portfolio 部分落地</td></tr></div><div style="display:contents" dir="ltr"><tr id="cdb7e9d8-36a1-48f2-ad3d-39db150a96a0"><td id="cb_K" class="">募资能力（投资者关系、潜在投资者数量和匹配度）</td><td id="ueoF" class="">现有 USD LP </td><td id="CAgY" class="">⚠️ 要找MOP/CNH LP </td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h2 id="441808bf-5ff4-402d-a6be-b57b5a1e6f4f" class="">1.5 投后绩效考核机制（非纯财务 LP）</h2></div><div style="display:contents" dir="auto"><p id="576e7c5d-fc7a-4239-9815-0c0e16431886" class="">这不是一支只看 IRR 的财务 LP。考核维度：</p></div><div style="display:contents" dir="auto"><ul id="9fa69196-51d1-4080-8275-fbbd62e51786" class="bulleted-list"><li style="list-style-type:disc"><strong>政策引导</strong>：社会资本参与程度、重点产业和地域的投资占比</li></ul></div><div style="display:contents" dir="auto"><ul id="97bb2e48-46c0-4f9b-82e6-9d930028dc8a" class="bulleted-list"><li style="list-style-type:disc"><strong>社会效益</strong>：优质企业落户澳门/合作区数量、新增专利和技术、对澳门居民就业的支持、增加税收</li></ul></div><div style="display:contents" dir="auto"><ul id="271b9bc4-8465-43d8-a9c3-77c3288178ce" class="bulleted-list"><li style="list-style-type:disc"><strong>财务效益</strong>：基本收益率、分配收益倍数</li></ul></div><div style="display:contents" dir="auto"><ul id="093e1388-b5df-4ebf-a644-156c890e4836" class="bulleted-list"><li style="list-style-type:disc"><strong>管理效率</strong>：资金使用效率、投放比率、投资合规性、制度建设</li></ul></div><div style="display:contents" dir="auto"><p id="548eff88-dba3-46ec-ae7e-2d8b14ffa528" class="block-color-orange_background"><strong>关键机制</strong>：管理费和业绩报酬将与基金的整体绩效评价结果挂钩 —— 不达标会被扣管理费/carry。</p></div><div style="display:contents" dir="auto"><h2 id="51d7b24a-8aae-4f33-8983-d2f251fc4896" class="">1.6 当前进度（2026 年 6 月，所有比例都未定）</h2></div><div style="display:contents" dir="ltr"><table id="2a8a5e6b-25a3-403f-934b-f7c852fc81aa" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="1867e38e-cad5-453e-9473-65806ff8a1f8"><th id="jUVw" class="simple-table-header-color simple-table-header">里程碑</th><th id="UC}J" class="simple-table-header-color simple-table-header">状态</th><th id="Z:~t" class="simple-table-header-color simple-table-header">预估时点</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="bf23f833-4b20-4f78-a367-a2c9c859b3ea"><td id="jUVw" class="">方案对外公布</td><td id="UC}J" class="">✅ 完成</td><td id="Z:~t" class="">2026/02/27</td></tr></div><div style="display:contents" dir="ltr"><tr id="0b4d6109-d573-4190-a2e7-f4756f9bccab"><td id="jUVw" class="">政府投资管理公司注册成立</td><td id="UC}J" class="">⏳ 未完成</td><td id="Z:~t" class="">预估 2026 Q2–Q3</td></tr></div><div style="display:contents" dir="ltr"><tr id="00446366-3c7e-4897-abe0-17756bfccbf7"><td id="jUVw" class="">引导基金行政法规出台</td><td id="UC}J" class="">⏳ 未完成</td><td id="Z:~t" class="">预估 2026 Q3–Q4（<strong>关键，出资比例届时写死</strong>）</td></tr></div><div style="display:contents" dir="ltr"><tr id="f1eedcf5-4ccd-44ea-b38f-33525f5203fa"><td id="jUVw" class="">首批社会资本 LP 确定</td><td id="UC}J" class="">⏳ 协商中</td><td id="Z:~t" class="">预估 2026 Q4 / 2027 Q1</td></tr></div><div style="display:contents" dir="ltr"><tr id="9148904b-b498-43f9-bad0-472afa48b9fe"><td id="jUVw" class="">基金正式设立</td><td id="UC}J" class="">⏳ 未完成</td><td id="Z:~t" class="">力争 2026 年内</td></tr></div><div style="display:contents" dir="ltr"><tr id="aede385f-b28a-4fad-a1a2-8e1acbb6b5f6"><td id="jUVw" class="">母基金 GP 遴选启动</td><td id="UC}J" class="">⏳ 未完成</td><td id="Z:~t" class="">预估 2027 Q1</td></tr></div><div style="display:contents" dir="ltr"><tr id="f8326445-311d-452d-a257-1c72d93eccce"><td id="jUVw" class="">子基金 GP 遴选启动</td><td id="UC}J" class="">⏳ 未完成</td><td id="Z:~t" class="">预估 2027 Q1–Q2</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="84beef0f-a4bf-4693-8f44-8efa1bcd8a0c" class=""><strong>当前所有出资比例（每层政府 vs 社会资本）都未定</strong>——官方明确表示&quot;目前尚无定论，将待后续成立的政府投资管理公司根据市场情况进一步制订&quot;。这意味着现在介入还能影响规则。</p></div><div style="display:contents" dir="auto"><h2 id="f65d7507-5346-4e6d-aa6b-ac113b8267cf" class="">1.7 已经在抢位的玩家（信号）</h2></div><div style="display:contents" dir="auto"><ul id="a66b25b9-605c-41ba-be32-793466ca75c6" class="bulleted-list"><li style="list-style-type:disc">⭐⭐⭐⭐⭐ <strong>中金资本（CICC Capital）</strong>：已经在公开喊话</li></ul></div><div style="display:contents" dir="auto"><ul id="593a87e2-a844-48a1-8d06-f9429ba388c0" class="bulleted-list"><li style="list-style-type:disc">⭐⭐⭐⭐ <strong>深创投、高瓴、红杉中国</strong>：被澳门日报评论文章直接点名为&quot;可考虑引入的机构&quot;</li></ul></div><div style="display:contents" dir="auto"><ul id="fd4c9f74-da76-41b2-9767-0045454dd3a0" class="bulleted-list"><li style="list-style-type:disc">⭐⭐⭐⭐ <strong>横琴金投 / 横琴产业基金管理公司</strong>：合作区本地玩家</li></ul></div><div style="display:contents" dir="auto"><ul id="68d347ce-d074-4902-adf9-8048c12bcf3e" class="bulleted-list"><li style="list-style-type:disc">⭐⭐⭐ <strong>中资银行系澳门子公司资管</strong>：工银澳门、中银澳门、建行澳门</li></ul></div><div style="display:contents" dir="auto"><ul id="3b28ce2d-ae9e-43bd-883d-94a6b91d84c7" class="bulleted-list"><li style="list-style-type:disc">⭐⭐⭐ <strong>澳门博彩业家办</strong>：金沙、银河、永利系（更可能作为社会资本 LP，而非自做 GP）</li></ul></div><div style="display:contents" dir="auto"><p id="164505e3-38ad-409e-b68c-b03307833396" class=""><strong>这些是母基金层级的竞争者</strong>。IOSG 尽量不与他们正面竞争母基金 GP 资格——IOSG 抢的是子基金那一层、且是他们都不懂的细分赛道（Web3 + AI infra + RISC-V）。</p></div><div style="display:contents" dir="auto"><hr id="b1101970-8d55-4aba-ac16-43fa749d172e"/></div><div style="display:contents" dir="auto"><h1 id="800e3dc6-282e-4850-8e88-ddf59dfd521f" class="">第二部分：IOSG 可选的参与方式 / 产品形态</h1></div><div style="display:contents" dir="auto"><p id="921195ca-4627-4d38-b628-26eaf1b34a6d" class="">下面列出 <strong>4 种 option</strong>。前 3 种（A/B/C）都在<strong>子基金层</strong>，按主动性 + 资源投入从轻到重排序，是 IOSG 主推的方向；Option D 在<strong>母基金层</strong>，是一个不同性质的选择，仅作备选。</p></div><div style="display:contents" dir="auto"><h2 id="b2d84bf0-0e14-44d8-abc3-7aadf446fddd" class="">Option A：<strong>纯顾问 / Sub-Advisor 模式</strong></h2></div><div style="display:contents" dir="auto"><p id="083ac028-888c-42db-a371-3f5dd4dc91ce" class=""><strong>结构</strong>：IOSG 不做独立基金主体，作为某只母基金或子基金的<strong>专业顾问 / sub-advisor</strong>，提供 Web3/AI/RISC-V 赛道的投资建议、deal sourcing 和投后管理服务。</p></div><div style="display:contents" dir="auto"><p id="1150eb93-cb4d-43cb-9f2f-589871356b4f" class=""><strong>关键数字</strong>：</p></div><div style="display:contents" dir="auto"><ul id="4c08227f-b84d-4b4d-9d62-bae471935784" class="bulleted-list"><li style="list-style-type:disc">没有自己的基金</li></ul></div><div style="display:contents" dir="auto"><ul id="55b0ce67-a5eb-45f6-abb1-d976b4c319d4" class="bulleted-list"><li style="list-style-type:disc">投顾服务费 + 项目分成（约 1% 顾问费 + 10% 项目 carry）</li></ul></div><div style="display:contents" dir="auto"><ul id="4282d5a8-811d-444d-be8e-bd43896242ce" class="bulleted-list"><li style="list-style-type:disc">不需要本地实体 / 牌照</li></ul></div><div style="display:contents" dir="auto"><ul id="3e8a0e5a-a09f-4e6b-9911-98237b2c2a65" class="bulleted-list"><li style="list-style-type:disc">实际管理资金规模：不限，但 IOSG 没有控制权</li></ul></div><div style="display:contents" dir="auto"><p id="e68718bf-3b91-4c0e-ae31-7a1670e2aea9" class=""><strong>和谁对接</strong>：母基金 GP（中金资本、深创投或横琴本地玩家），或直接对接子基金 GP 作为他们的赛道顾问</p></div><div style="display:contents" dir="auto"><hr id="ab0abceb-e4e8-4d7e-9e33-7276f6593219"/></div><div style="display:contents" dir="auto"><h2 id="4ef335e0-ab1d-46c1-916e-6043edef7475" class="">Option B：<strong>Co-GP 模式（与持牌本地伙伴合作）</strong></h2></div><div style="display:contents" dir="auto"><p id="5b0c9846-1cb9-4408-af56-fb27e9fd23b6" class=""><strong>结构</strong>：IOSG 与一家<strong>已持 AMCM 牌照的本地资管机构</strong>联合做子基金 GP。本地伙伴提供牌照 + 合规 + 政府关系，IOSG 提供赛道认知 + deal flow + portfolio 资源。Carry 和管理费按贡献分成（典型 50:50 或 60:40 偏 IOSG）。</p></div><div style="display:contents" dir="auto"><p id="f6fa888d-b9ee-4137-b04b-bb74d703b19e" class=""><strong>关键数字</strong>：</p></div><div style="display:contents" dir="auto"><ul id="85442ce4-3083-42c2-8a26-2a67379cc6a8" class="bulleted-list"><li style="list-style-type:disc">子基金规模建议：<strong>5–10 亿 MOP</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="8eedfca8-affc-4d1b-bf79-902d61019b64" class="bulleted-list"><li style="list-style-type:disc">母基金 LP 出资比例 （比例未定，这个比例是参考内地政府的引导基金一般规定写的）：预期 30–40%</li></ul></div><div style="display:contents" dir="auto"><ul id="fb4d0285-92d9-4572-a2f9-1d91bff144c4" class="bulleted-list"><li style="list-style-type:disc">IOSG（联合本地伙伴）需自筹社会资本：60–70%</li></ul></div><div style="display:contents" dir="auto"><ul id="f3f643e4-7e84-4888-a3e2-171d0923d127" class="bulleted-list"><li style="list-style-type:disc">牌照路径：<strong>借用本地伙伴的 AMCM 牌照</strong>（6–12 个月可启动）</li></ul></div><div style="display:contents" dir="auto"><p id="d4e9ade2-f377-4f95-ba4a-23d917c0cdf0" class=""><strong>和谁对接</strong>：</p></div><div style="display:contents" dir="auto"><ul id="6e0cc71f-9e85-4bd9-a944-e4622cddbc14" class="bulleted-list"><li style="list-style-type:disc">AMCM 持牌机构 list 里的中资银行系澳门资管（首选）</li></ul></div><div style="display:contents" dir="auto"><ul id="4024086e-b6d3-49bc-87ba-d6a6f4c89a15" class="bulleted-list"><li style="list-style-type:disc">本地家办 / 多家办（次选）</li></ul></div><div style="display:contents" dir="auto"><ul id="a0654756-1078-4088-a13b-1cb4f7c54c11" class="bulleted-list"><li style="list-style-type:disc">澳门科技大学 / 澳门大学产业基金（产学研背书）</li></ul></div><div style="display:contents" dir="auto"><hr id="4dbe6c47-3971-4d8e-a5c7-8c4a6b0a4643"/></div><div style="display:contents" dir="auto"><h2 id="8a6cb07f-c60a-4946-8ea4-f904084c85e3" class="">Option C：<strong>独立子基金 GP 模式</strong></h2></div><div style="display:contents" dir="auto"><p id="40470012-3ce9-4a0c-98df-d134919a0fe7" class=""><strong>结构</strong>：IOSG 自申 AMCM 牌照（或横琴简化通道），设澳门本地子公司，募集独立的 &quot;IOSG 大湾区科技子基金&quot;。完整的 GP 主体，IOSG 拿全部 carry 和管理费。可作为一次性项目，也可作为长期 RMB/MOP 产品线的起点。</p></div><div style="display:contents" dir="auto"><p id="9b5dc4b9-bae0-4775-be36-8cf4e0c84917" class=""><strong>关键数字</strong>：</p></div><div style="display:contents" dir="auto"><ul id="4be5684b-bfd8-4f25-853b-24444f8d58a8" class="bulleted-list"><li style="list-style-type:disc">子基金规模建议：<strong>2 亿 MOP</strong>（试水款）或 <strong>5–10 亿 MOP</strong>（标准款）</li></ul></div><div style="display:contents" dir="auto"><ul id="f0631135-8312-480d-8888-ef35b86ee392" class="bulleted-list"><li style="list-style-type:disc">母基金 LP 出资比例：争取 30–50%</li></ul></div><div style="display:contents" dir="auto"><ul id="ddff4899-9166-4e7e-a32f-16323c27ae7b" class="bulleted-list"><li style="list-style-type:disc">IOSG 需自筹社会资本：50–70%</li></ul></div><div style="display:contents" dir="auto"><ul id="929d3d1a-1543-4ea8-b8ac-6dcca1b54014" class="bulleted-list"><li style="list-style-type:disc">牌照路径：<strong>自申 AMCM 牌照</strong>（12–18 个月）或<strong>走横琴简化通道</strong>（深合区私募基金管理公司转申澳门牌照，6–12 个月）</li></ul></div><div style="display:contents" dir="auto"><ul id="bf182811-cac2-4da9-9642-e51648971fdb" class="bulleted-list"><li style="list-style-type:disc">本地团队：2–3 人 in 澳门 + 1–2 人 in 横琴</li></ul></div><div style="display:contents" dir="auto"><ul id="7b6f2c44-8698-46da-b3f9-8520ba085feb" class="bulleted-list"><li style="list-style-type:disc">主题包装：&quot;Web3 Infra × AI × 开源芯片 IP（RISC-V）× DePIN&quot;</li></ul></div><div style="display:contents" dir="auto"><ul id="94795f98-2c72-4669-8a26-71d54f88cc46" class="bulleted-list"><li style="list-style-type:disc">LP 来源：政府引导基金 anchor（30–50%）+ 澳门家办、横琴产业资本、大湾区上市公司战投部、中资保险（社会资本配套）</li></ul></div><div style="display:contents" dir="auto"><p id="d95b2fca-6caf-4d25-bedb-af03265fce7e" class=""><strong>两种走法（同一个 Option 内的选择）</strong>：</p></div><div style="display:contents" dir="auto"><ul id="6b3fc9f4-1961-4b8d-9d60-e8c24499c119" class="bulleted-list"><li style="list-style-type:disc"><strong>C-1 一次性子基金</strong>：先把第一支 2–10 亿 MOP 子基金跑通，验证商业模式和政府关系，跑完再决定是否继续</li></ul></div><div style="display:contents" dir="auto"><ul id="cb885f52-d598-4809-aa4f-8a1a88c381a2" class="bulleted-list"><li style="list-style-type:disc"><strong>C-2 战略级 RMB/MOP 产品线</strong>：把第一支子基金作为长期产品线的起点，承诺持续募集第二、三期，与现有 USD flagship 基金做 deal-level 联合投资协议——这个版本投入更大（澳门 + 横琴双 office、5–8 人本地团队、独立 IC、独立 LPA），但战略意义最大</li></ul></div><div style="display:contents" dir="auto"><p id="e41beb45-ee15-40c7-b673-fb4d39f4bbfa" class=""><strong>和谁对接</strong>：直接对接母基金 GP（中金资本、深创投是优先级最高的两家），同时跟政府筹建工作组（经济财政司司长办公室 + AMCM + 经科局 + 招商投资促进局）保持信息同步</p></div><div style="display:contents" dir="auto"><p id="77f2e30b-f199-4f98-bfc5-6e25bba09393" class=""><strong>和谁对接</strong>：直接对接母基金 GP（中金资本、深创投是优先级最高的两家），同时跟政府筹建工作组（经济财政司司长办公室 + AMCM + 经科局 + 招商投资促进局）保持信息同步</p></div><div style="display:contents" dir="auto"><hr id="aa23ca45-3a42-4194-924f-6ce16bf60735"/></div><div style="display:contents" dir="auto"><h2 id="a01bf769-939f-44f5-ba8a-aada7bd62997" class="">Option D：<strong>IOSG 直接做母基金 GP</strong></h2></div><div style="display:contents" dir="auto"><p id="ee2f97ef-8c23-4b0e-ae0b-715034a9066f" class=""><strong>结构</strong>：IOSG 跳过子基金那一层，<strong>直接竞争母基金 GP 的资格</strong>——也就是政府引导基金底下的某只母基金（数字科技/集成电路方向那只），由 IOSG 主导或联合主导。IOSG 不直接投项目，而是作为母基金 GP 把钱再配置给若干只子基金（可能含 IOSG 自己的 specialist 子基金 + 其他 GP 的子基金）。</p></div><div style="display:contents" dir="auto"><p id="9b18534d-e1be-4879-8216-418174c003d5" class=""><strong>关键数字</strong>：</p></div><div style="display:contents" dir="auto"><ul id="31b262cf-c971-43be-b699-b49e8489cca3" class="bulleted-list"><li style="list-style-type:disc">母基金规模：<strong>10–30 亿 MOP</strong>（≈1.2–3.7 亿 USD，比 Option C 大 2–3 倍）</li></ul></div><div style="display:contents" dir="auto"><ul id="b3922e61-0e62-48cc-8d47-3626eb1077ef" class="bulleted-list"><li style="list-style-type:disc">政府引导基金 LP 出资比例：预期 30–50%</li></ul></div><div style="display:contents" dir="auto"><ul id="8efa7faa-ac8c-4c26-8a0a-3353f87652dd" class="bulleted-list"><li style="list-style-type:disc">IOSG 需自筹社会资本：50–70%（绝对额比 Option C 大很多）</li></ul></div><div style="display:contents" dir="auto"><ul id="c9992dbd-8f5e-42e7-a351-a86c5fc6c155" class="bulleted-list"><li style="list-style-type:disc">商业模式：母基金 GP 的标准 carry 比直投基金薄（通常 0.5–1% 管理费 + 5–10% carry，因为收益主要来自下层子基金的 carry 再扒一层）</li></ul></div><div style="display:contents" dir="auto"><ul id="210b3e53-9800-42e0-9efe-5b80cfd1e23a" class="bulleted-list"><li style="list-style-type:disc">牌照要求：更严格——大多数政府引导基金的母基金 GP 要求<strong>头部金融机构资质 + 大规模 AUM track record + 多赛道配置能力</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="ab1c612d-92e8-4e2b-ba7a-2783ede9c32a" class="bulleted-list"><li style="list-style-type:disc">本地团队：要求显著高于子基金（10+ 人本地团队 + 完整中后台）</li></ul></div><div style="display:contents" dir="auto"><ul id="088a2ac0-bc8f-4a90-8b80-4674529d83d3" class="bulleted-list"><li style="list-style-type:disc">主要工作：选 GP + 资产配置 + LP 关系管理（<strong>不是 IOSG 现有的强项</strong>）</li></ul></div><div style="display:contents" dir="auto"><p id="295aba7e-e4f8-4938-9746-96c32d44d7c8" class=""><strong>核心障碍 — 为什么实际不太可行</strong>：</p></div><div style="display:contents" dir="auto"><ul id="b967273b-e3c6-4254-9ab1-7f27083dfe53" class="bulleted-list"><li style="list-style-type:disc"><strong>能力不匹配</strong>：IOSG 的强项是赛道认知 + deal sourcing（直投能力），不是 fund-of-funds 的 GP 选择和资产配置</li></ul></div><div style="display:contents" dir="auto"><ul id="2ce1fd5a-01cc-4318-94b4-940a2dd2a654" class="bulleted-list"><li style="list-style-type:disc"><strong>竞争对手太强</strong>：母基金 GP 这一层的竞争者是中金资本、深创投、高瓴、横琴金投——他们有 IOSG 缺的：大规模 AUM、国资背景、大湾区落地经验</li></ul></div><div style="display:contents" dir="auto"><ul id="3883dc15-5a84-4b1e-b473-c636a10f66cd" class="bulleted-list"><li style="list-style-type:disc"><strong>政策考核不利</strong>：政府考核母基金 GP 看的是&quot;整体大湾区产业落地 + 社会资本撬动 + 多赛道覆盖&quot;——这对单一赛道 specialist 的 IOSG 是反向选择</li></ul></div><div style="display:contents" dir="auto"><ul id="dc0e0989-83f3-4509-9858-1eed2aa5a5f2" class="bulleted-list"><li style="list-style-type:disc"><strong>经济账不划算</strong>：30 亿 MOP 母基金每年管理费收入约 1500–3000 万 MOP（≈200–400 万 USD），相比 10 倍工作量 ROI 远不如做子基金</li></ul></div><div style="display:contents" dir="auto"><p id="be26e5c7-2ef2-4024-8396-f7b90dfde602" class=""><strong>和谁对接</strong>：政府筹建工作组（高层）+ AMCM + 财政司 + 可能的联合主导方（如某家中资银行系澳门资管、某家大湾区国资）</p></div><div style="display:contents" dir="auto"><p id="8ec0264c-a3fa-471e-bd0b-12299ba22367" class=""><strong>适用情境</strong>：仅当出现极特殊机会窗口时考虑——例如政府主动邀请、有大湾区国资央企愿意做 co-GP 联合主导（IOSG 提供赛道认知，对方提供资金体量和政府关系）</p></div><div style="display:contents" dir="auto"><hr id="008a1f25-8e21-4e70-bcc0-6321089554ca"/></div><div style="display:contents" dir="auto"><h1 id="e67a41d4-651f-4032-9111-01d3b4e64910" class="">第三部分：每个 Option 的 Pros &amp; Cons</h1></div><div style="display:contents" dir="auto"><h2 id="5b9b3ea5-1993-4751-bb16-d17787b7d771" class="">Option A 对比表（纯顾问 / Sub-Advisor）</h2></div><div style="display:contents" dir="ltr"><table id="7d8213c4-053f-49a1-84b5-dc6df07774e6" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="173f25d8-907c-4ea5-b5fc-e45f90344704"><th id="g`hQ" class="simple-table-header-color simple-table-header">维度</th><th id="ops&gt;" class="simple-table-header-color simple-table-header">评价</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="d4c68445-4049-445e-bfa2-32b8c2d98c30"><td id="g`hQ" class="">✅ Pros</td><td id="ops&gt;" class="">资源投入极轻（不开新主体、不申牌照、不本地办公室）；快速进场（3–6 个月）；保留全部主基金精力</td></tr></div><div style="display:contents" dir="ltr"><tr id="292af8a9-806c-4bbc-b46c-0549c96109eb"><td id="g`hQ" class="">✅ Pros</td><td id="ops&gt;" class="">试水成本低，验证商业可行性 + 政府关系成本几乎为零</td></tr></div><div style="display:contents" dir="ltr"><tr id="0bb56942-5dac-44c4-9b36-4878eb5256bf"><td id="g`hQ" class="">✅ Pros</td><td id="ops&gt;" class="">可作为升级到 Option B/C/D 的跳板</td></tr></div><div style="display:contents" dir="ltr"><tr id="44d6fddc-bf6e-48a2-b83f-a48f85017c44"><td id="g`hQ" class="">❌ Cons</td><td id="ops&gt;" class="">商业条款最薄（无 2/20，只有顾问费 + 小比例分成）</td></tr></div><div style="display:contents" dir="ltr"><tr id="747a6d56-eb36-492d-b55a-9a365100cfa5"><td id="g`hQ" class="">❌ Cons</td><td id="ops&gt;" class="">没有品牌沉淀、没有独立基金 track record</td></tr></div><div style="display:contents" dir="ltr"><tr id="b1f3c52e-1062-403b-abba-871a957b2e40"><td id="g`hQ" class="">❌ Cons</td><td id="ops&gt;" class="">容易被母基金 GP 白嫖知识 + deal flow 后被替换</td></tr></div><div style="display:contents" dir="ltr"><tr id="1b515f41-a3e3-4eb5-9dcd-e0f4032b66a9"><td id="g`hQ" class="">❌ Cons</td><td id="ops&gt;" class="">不构成 LP signaling 价值</td></tr></div><div style="display:contents" dir="ltr"><tr id="5ffe2386-e415-4f7a-9d8a-3a981b40b0ea"><td id="g`hQ" class="">资源投入</td><td id="ops&gt;" class="">⭐ 极低</td></tr></div><div style="display:contents" dir="ltr"><tr id="f7a63c67-92e5-4edf-8144-496bae9f9dba"><td id="g`hQ" class="">时间</td><td id="ops&gt;" class="">🟢 3–6 个月可启动</td></tr></div><div style="display:contents" dir="ltr"><tr id="e28ebc33-354f-4d2f-9e42-3aec073f8514"><td id="g`hQ" class="">战略价值</td><td id="ops&gt;" class="">🟡 中低</td></tr></div><div style="display:contents" dir="ltr"><tr id="a3517cfc-87ae-4149-a021-f43541f275c2"><td id="g`hQ" class="">风险</td><td id="ops&gt;" class="">🟢 低</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h2 id="89e92b04-2cee-472e-9de8-115b407b1011" class="">Option B 对比表（Co-GP 模式）</h2></div><div style="display:contents" dir="ltr"><table id="bf722aea-c54e-4484-b2c4-056c6c426437" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="f1bbeb16-6530-4753-980d-3a5ecd047075"><th id="&gt;PgO" class="simple-table-header-color simple-table-header">维度</th><th id="\[bX" class="simple-table-header-color simple-table-header">评价</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="08a1020a-35b9-4b52-abbb-be516075d3e0"><td id="&gt;PgO" class="">✅ Pros</td><td id="\[bX" class="">借用本地伙伴的牌照和政府关系，IOSG 不用从零搭合规体系</td></tr></div><div style="display:contents" dir="ltr"><tr id="f873f2df-5a34-455f-b1c0-c3ec1fe7e9a1"><td id="&gt;PgO" class="">✅ Pros</td><td id="\[bX" class="">时间成本中等（6–12 个月可启动）</td></tr></div><div style="display:contents" dir="ltr"><tr id="a70b81eb-24b9-4570-9bd8-056fc184e4dc"><td id="&gt;PgO" class="">✅ Pros</td><td id="\[bX" class="">有独立基金主体，可作为 track record</td></tr></div><div style="display:contents" dir="ltr"><tr id="7951dce5-ea25-4c83-be07-49fbf72e930b"><td id="&gt;PgO" class="">✅ Pros</td><td id="\[bX" class="">本地伙伴可分担产业落地 KPI 的压力</td></tr></div><div style="display:contents" dir="ltr"><tr id="89aa7b7f-9505-4b5c-97a8-6db8f9ff2e0c"><td id="&gt;PgO" class="">❌ Cons</td><td id="\[bX" class="">需要让出一部分管理费 + carry 给本地伙伴（典型 40–50%）</td></tr></div><div style="display:contents" dir="ltr"><tr id="1d84d7fe-7cd2-4925-a23d-1ae804e4d1aa"><td id="&gt;PgO" class="">❌ Cons</td><td id="\[bX" class="">投资决策权可能被本地伙伴稀释（双 IC、双签字）</td></tr></div><div style="display:contents" dir="ltr"><tr id="4b5d71c3-7ea5-40c3-93d8-163782e38166"><td id="&gt;PgO" class="">❌ Cons</td><td id="\[bX" class="">选错合作伙伴风险大——本地伙伴如果项目质量低，会拖累 IOSG 品牌</td></tr></div><div style="display:contents" dir="ltr"><tr id="e3a2a092-912b-4f39-b0b9-d2773d0b960a"><td id="&gt;PgO" class="">❌ Cons</td><td id="\[bX" class="">现有 IOSG LP 难以直接进 MOP 基金（货币、合规、税务都不匹配）</td></tr></div><div style="display:contents" dir="ltr"><tr id="37ea396f-ea82-444b-bbad-df29e1103607"><td id="&gt;PgO" class="">资源投入</td><td id="\[bX" class="">⭐⭐⭐ 中</td></tr></div><div style="display:contents" dir="ltr"><tr id="b6bd67a4-84af-4534-b50c-e2b0b8d9ae5f"><td id="&gt;PgO" class="">时间</td><td id="\[bX" class="">🟡 6–12 个月可启动</td></tr></div><div style="display:contents" dir="ltr"><tr id="7f635e38-7098-4e63-9dfb-3c620960b994"><td id="&gt;PgO" class="">战略价值</td><td id="\[bX" class="">🟢 中高</td></tr></div><div style="display:contents" dir="ltr"><tr id="14558a17-0ad2-4553-b528-235c20f3ed1f"><td id="&gt;PgO" class="">风险</td><td id="\[bX" class="">🟡 中（看合作伙伴选择）</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h2 id="fe7d373d-adfa-4c45-aec6-c0ae1d0488da" class="">Option C 对比表（独立子基金 GP）</h2></div><div style="display:contents" dir="ltr"><table id="b9723352-0a82-4665-a3e7-6ee2b0fa6ba3" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="f0fb566b-65d3-4266-8478-12fcd4f9df75"><th id="?LI=" class="simple-table-header-color simple-table-header">维度</th><th id="OKzN" class="simple-table-header-color simple-table-header">评价</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="3b081531-9316-4798-bde7-ee8897956ccc"><td id="?LI=" class="">✅ Pros</td><td id="OKzN" class="">100% 控制权 + 全部管理费和 carry</td></tr></div><div style="display:contents" dir="ltr"><tr id="6702d4a5-54c9-48c5-8aad-f0d3702e3b43"><td id="?LI=" class="">✅ Pros</td><td id="OKzN" class="">完整独立基金 track record，对未来扩展极有价值</td></tr></div><div style="display:contents" dir="ltr"><tr id="874b2606-ffe6-4abb-9849-7d85f49b1183"><td id="?LI=" class="">✅ Pros</td><td id="OKzN" class="">自有 AMCM 牌照（或横琴牌照转入）= 长期合规资产</td></tr></div><div style="display:contents" dir="ltr"><tr id="acd661d5-c201-4b42-9f4c-a08716206a8d"><td id="?LI=" class="">✅ Pros</td><td id="OKzN" class="">LP signaling 强：政府引导基金 anchor + 独立 GP 主体</td></tr></div><div style="display:contents" dir="ltr"><tr id="7abc8a72-61e5-481f-9a9d-01a0a223311b"><td id="?LI=" class="">❌ Cons</td><td id="OKzN" class="">资源投入大（牌照申请 12–18 个月、本地团队、合规体系）</td></tr></div><div style="display:contents" dir="ltr"><tr id="2260489a-85c5-43cd-b1fb-308a6dc24f10"><td id="?LI=" class="">❌ Cons</td><td id="OKzN" class="">自募社会资本压力大（50–70% 配套，约 2.5–7 亿 MOP）</td></tr></div><div style="display:contents" dir="ltr"><tr id="4eacd5f9-dc53-4c9b-b5ac-7cfb33af5fb7"><td id="?LI=" class="">❌ Cons</td><td id="OKzN" class="">现有 USD LP 大多数无法直接投——需要重新搭 MOP/CNH LP 网络</td></tr></div><div style="display:contents" dir="ltr"><tr id="e37106d4-c3cf-4f88-9e51-bbbffda5ab25"><td id="?LI=" class="">❌ Cons</td><td id="OKzN" class="">时间窗口紧——如果 2026 Q4 法规出台时 IOSG 还没准备好，可能错过首批遴选</td></tr></div><div style="display:contents" dir="ltr"><tr id="618c1385-e124-4328-ab2e-ffea2086bff4"><td id="?LI=" class="">资源投入</td><td id="OKzN" class="">⭐⭐⭐⭐ 高</td></tr></div><div style="display:contents" dir="ltr"><tr id="e3585c0c-8009-4838-9221-cb8a5d1fec4d"><td id="?LI=" class="">时间</td><td id="OKzN" class="">🟠 12–18 个月可启动</td></tr></div><div style="display:contents" dir="ltr"><tr id="aae9ab56-4bec-4bc2-8771-c1bff7f54790"><td id="?LI=" class="">战略价值</td><td id="OKzN" class="">🟢🟢 高</td></tr></div><div style="display:contents" dir="ltr"><tr id="6f7c6ea9-4ef5-4e67-af07-1bcbabb0c468"><td id="?LI=" class="">风险</td><td id="OKzN" class="">🟠 中高</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h2 id="19ea14e8-2d97-4bf3-bca1-d125cdb648dd" class="">Option D 对比表（IOSG 做母基金 GP）</h2></div><div style="display:contents" dir="ltr"><table id="9539a3ac-eef9-4acf-9fc9-0646b80cb6be" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="aca7df8c-3546-4775-b9be-792bc10e69f8"><th id="jiW?" class="simple-table-header-color simple-table-header">维度</th><th id="aSME" class="simple-table-header-color simple-table-header">评价</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="9bd76a8c-5410-4855-8660-c6a52c66f67f"><td id="jiW?" class="">✅ Pros</td><td id="aSME" class="">管理资金规模最大（10–30 亿 MOP），战略品牌价值高</td></tr></div><div style="display:contents" dir="ltr"><tr id="ac5a4537-b612-4d11-ab95-d388be910fae"><td id="jiW?" class="">✅ Pros</td><td id="aSME" class="">LP signaling 极强：能从政府那层拿钱的 GP 在中文 LP 市场是稀缺标签</td></tr></div><div style="display:contents" dir="ltr"><tr id="e86b8ddf-0980-4963-821c-c3315233c8d6"><td id="jiW?" class="">✅ Pros</td><td id="aSME" class="">拥有 GP-of-GP 视角，对整个大湾区 web3/AI/RISC-V 生态形成俯瞰式抓手</td></tr></div><div style="display:contents" dir="ltr"><tr id="5e4f3150-959f-4bb1-8ea0-a30d1f349c41"><td id="jiW?" class="">❌ Cons</td><td id="aSME" class=""><strong>能力错配</strong>：母基金核心工作是选 GP + 资产配置 + LP 关系管理，IOSG 的强项（赛道认知 + 直投）几乎用不上</td></tr></div><div style="display:contents" dir="ltr"><tr id="0d5a6c04-32dc-4184-b064-1d51977f4799"><td id="jiW?" class="">❌ Cons</td><td id="aSME" class=""><strong>竞争对手太强</strong>：中金资本、深创投、高瓴、横琴金投——IOSG 在 AUM、国资背景、大湾区落地经验三个维度都不占优</td></tr></div><div style="display:contents" dir="ltr"><tr id="cea93be9-671f-4d23-bac1-513a228affe2"><td id="jiW?" class="">❌ Cons</td><td id="aSME" class=""><strong>政府考核反向选择</strong>：母基金 KPI 看多赛道覆盖 + 大规模产业落地，单一赛道 specialist 是劣势不是优势</td></tr></div><div style="display:contents" dir="ltr"><tr id="252b6717-6b6a-4560-b854-851ea7a6b4eb"><td id="jiW?" class="">❌ Cons</td><td id="aSME" class=""><strong>经济账不划算</strong>：母基金 carry/管理费薄（0.5–1% + 5–10%），相比工作量 ROI 远低于子基金</td></tr></div><div style="display:contents" dir="ltr"><tr id="ce9f7c30-ca4f-414b-8c77-2f5604865802"><td id="jiW?" class="">❌ Cons</td><td id="aSME" class="">本地团队要求显著高于子基金（10+ 人 + 完整中后台）</td></tr></div><div style="display:contents" dir="ltr"><tr id="f13b9301-b887-40a2-9c62-2d9bc8d23387"><td id="jiW?" class="">❌ Cons</td><td id="aSME" class="">拿到资格的概率极低（IOSG 估算 &lt;15%）</td></tr></div><div style="display:contents" dir="ltr"><tr id="f40a0875-6585-4c2b-a903-39dc7b7f2217"><td id="jiW?" class="">资源投入</td><td id="aSME" class="">⭐⭐⭐⭐⭐ 极高</td></tr></div><div style="display:contents" dir="ltr"><tr id="15862716-91de-4b83-ab64-b8b459c24623"><td id="jiW?" class="">时间</td><td id="aSME" class="">🔴 18–24 个月可完整跑通</td></tr></div><div style="display:contents" dir="ltr"><tr id="dc0a599a-69ca-418a-a7a7-a5017a2358a5"><td id="jiW?" class="">战略价值</td><td id="aSME" class="">🟡 中（看似大但 ROI 低）</td></tr></div><div style="display:contents" dir="ltr"><tr id="b57c8526-004d-4523-af08-9fa8c5592f68"><td id="jiW?" class="">拿到概率</td><td id="aSME" class="">🔴 极低</td></tr></div><div style="display:contents" dir="ltr"><tr id="79f5b003-7a7d-47ee-b652-7f2faa34eb80"><td id="jiW?" class="">风险</td><td id="aSME" class="">🔴 高</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="46e3b0ac-e03b-4e5b-bde7-87d6c1b73a77" class=""><strong>结论</strong>：<strong>不推荐主动追求</strong>。仅在出现极特殊机会窗口时考虑（政府主动邀请、有大湾区国资央企愿意做 co-GP 联合主导）。</p></div><div style="display:contents" dir="auto"><h2 id="34321ee9-b79a-4bfe-a123-4a9b20f6766a" class="">综合推荐</h2></div><div style="display:contents" dir="auto"><p id="59f2793b-1d54-4004-92ae-2f19fb524ab9" class=""><strong>Two-step 推荐路径</strong>：</p></div><div style="display:contents" dir="auto"><ol type="1" id="6923e2a2-bffd-4d26-826f-a0ff64368eb3" class="numbered-list" start="1"><li><strong>先以 Option A 入场</strong>：成本极低、可逆，3–6 个月内验证商业可行性、政府关系强度、母基金 GP 兴趣度</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="cdf18214-2e44-4709-8c06-5d5e66c93ee0" class="numbered-list" start="2"><li><strong>基于 A 的反馈，决定下一步</strong>：<div style="display:contents" dir="auto"><ul id="d92b5cb0-8e12-46c8-b4eb-dd4d4921e28c" class="bulleted-list"><li style="list-style-type:disc">反馈正面 + 资源到位 → <strong>升级到 Option C</strong>（一次性 C-1 或战略级 C-2）</li></ul></div><div style="display:contents" dir="auto"><ul id="9403f7c1-a8dd-445e-88b7-530d6e334495" class="bulleted-list"><li style="list-style-type:disc">反馈中性 → <strong>停留在 Option A 或微升到 Option B</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="8e2dae81-8c20-4d36-9b1d-66830a51671d" class="bulleted-list"><li style="list-style-type:disc">反馈负面 → 撤出，几乎无沉没成本</li></ul></div></li></ol></div><div style="display:contents" dir="auto"><p id="d7fbc55f-edad-4476-a552-1a8cf24f196b" class=""><strong>Option D 的位置</strong>：作为&quot;如果政府主动找上门 / 有央企愿意联合主导&quot;的备选 path，不作为主动追求的目标。</p></div><div style="display:contents" dir="auto"><p id="9f595ed4-169e-4613-8f04-16725e55329f" class=""><strong>不推荐路径</strong>：</p></div><div style="display:contents" dir="auto"><ul id="93f8bb17-eb2d-42e2-8631-779656ce03e9" class="bulleted-list"><li style="list-style-type:disc"><strong>直接主动追求 Option D</strong>：能力不匹配、概率太低、ROI 不划算</li></ul></div><div style="display:contents" dir="auto"><ul id="12137e93-14f1-491c-b1a7-d161617a3167" class="bulleted-list"><li style="list-style-type:disc"><strong>跳过 Option A 直接到 Option C</strong>：失去试水机会，遇到不可预见问题时调整空间小</li></ul></div><div style="display:contents" dir="auto"><hr id="706de3c5-d63d-4200-a2a2-7cdae254818e"/></div><div style="display:contents" dir="auto"><h1 id="5c740fe5-3978-4a8d-93a0-b1bc91a07b24" class="">第四部分：执行路径（公司层面）</h1></div><div style="display:contents" dir="auto"><h2 id="7cabbad4-67ab-4544-8ee4-679e3fd8853e" class="">阶段 1：侦察与建立存在感（现在 — 2026 Q3，约 3 个月）</h2></div><div style="display:contents" dir="auto"><p id="5066fc6c-c20a-4890-8624-1b6ca90290f3" class="">阶段 1 的所有动作都围绕两个核心目的展开。</p></div><div style="display:contents" dir="auto"><h3 id="3d4a5d39-34f9-4535-ab4d-55e90378ada3" class="">核心目的 1：让澳门政府决策圈知道 IOSG 是谁、能提供什么</h3></div><div style="display:contents" dir="auto"><p id="8665ea58-6c53-4998-9284-cc23c402ad12" class="">解决的问题：现在澳门政府决策圈对 IOSG 完全陆生，等法规出台后再出现 = 没有任何位置。需要在 2026 Q3–Q4 法规定稿前，让决策圈记住 IOSG = &quot;Web3 + AI infra + RISC-V 赛道的 specialist&quot;。</p></div><div style="display:contents" dir="auto"><h4 id="5c06590d-31cf-42a3-80ff-1df8179e9702" class="">动作 1.1：通过学术机构做&quot;软性引荐人&quot;进入政府视野</h4></div><div style="display:contents" dir="auto"><p id="ce8aa72f-cda1-4bde-b77c-3569ab18ad27" class=""><strong>a) 做什么</strong></p></div><div style="display:contents" dir="auto"><p id="db4bee52-a3e7-476a-89bc-c6adcd810f9a" class="">以&quot;产业资本与学术研究机构探讨 web3/AI/开源芯片产业转化合作&quot;为名义，同时接触 3–5 家澳门学术机构。重点不是真的要做产学研合作，是让学术机构成为 IOSG 接触政府的&quot;软性引荐人&quot;——冷启动接触政府会被定位为&quot;又一家要钱的 GP&quot;，但从学术机构手里转介进去会被定位为&quot;带着产业资源的合作伙伴&quot;。</p></div><div style="display:contents" dir="auto"><p id="33ddf0e4-fb76-4758-8aa0-8ec288bd67a0" class=""><strong>b) 找哪些机构</strong></p></div><div style="display:contents" dir="auto"><p id="7bf36697-b6f9-4dbd-8791-e1261b7f73d8" class=""><em>优先级 1（三家同时接触，以应不同机构反应速度不一）：</em></p></div><div style="display:contents" dir="auto"><ul id="d87cdfa4-c2fc-4675-b40e-af672085bd9a" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门大学 · 智慧城市物联网国家重点实验室</strong>。主任是澳大校长宋永华本人（澳门学术圈话语权最高者），副主任马少丹是主要对接人。研究方向含智能传感、城市大数据、智慧能源——是 DePIN 赛道的传统行业版本，narrative 最好接</li></ul></div><div style="display:contents" dir="auto"><ul id="5b44e7eb-f31c-4724-8247-10345e226724" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门大学 · 模拟与混合信号集成电路国家重点实验室 · AMSV-IG 工业盟友计划</strong>。这家已有标准化的产业对接通道 AMSV-IG，IOSG 可直接申请加入工业盟友，比走一般合作路径快很多。创始人马许愿（Rui Martins）是 IEEE Fellow、澳门微电子奥基业人。对应 RISC-V/zkVM/开源芯片 IP narrative</li></ul></div><div style="display:contents" dir="auto"><ul id="f3c78c9b-1c03-48ff-9e6a-1edae4e3c257" class="bulleted-list"><li style="list-style-type:disc"><strong>珠海澳大科技研究院（ZUMRI）</strong>。澳大在横琴的官方科技转化主体，已设 8 个研发中心（含智慧城市研发中心、微电子研发中心），与合作区 10+ 企业有联合研发关系。院长陈臻。&quot;澳门研发 + 横琴转化&quot;是政府引导基金明文要求的产业落地模式，ZUMRI 是现成 plug-in 点</li></ul></div><div style="display:contents" dir="auto"><p id="b4bee293-e4e4-4be8-b2c7-5a65b9bf8ee9" class=""><em>优先级 2（优先级 1 冷场时启动）：</em></p></div><div style="display:contents" dir="auto"><ul id="3d7185d6-83ec-464b-b404-d8ef6d268abb" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门大学 · 计算机与信息科学系</strong>。与广东省智能科学与技术研究院有联合培养项目，做 AI、类脑计算。IOSG 主推 AI agent 赛道时的学术口</li></ul></div><div style="display:contents" dir="auto"><ul id="0774f16c-9636-40cb-9e06-518eda8de7dd" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门城市大学 · 数据科学学院</strong>。是澳门唯一明确把<strong>区块链</strong>列为研究方向的学院，同时是横琴博士后科研工作站伙伴基地。作为&quot;遇到对区块链最不陆生的学术机构&quot;的备选</li></ul></div><div style="display:contents" dir="auto"><p id="0efc7f76-c069-48f8-a098-0f52453333c5" class=""><em>优先级 3（最后备选）：</em></p></div><div style="display:contents" dir="auto"><ul id="4131c990-e155-48ab-8ee2-7098c921f9f5" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门科技大学 · 计算机科学与工程学院</strong>：CS 学科世界 101–125 区间，跟政府关系也很紧</li></ul></div><div style="display:contents" dir="auto"><ul id="335e3adf-0935-4e79-969d-7f09df55e7eb" class="bulleted-list"><li style="list-style-type:disc"><strong>珠海澳科大科技研究院</strong>：澳科在横琴的对应机构，比 ZUMRI 晚</li></ul></div><div style="display:contents" dir="auto"><p id="ac4779eb-d194-43d3-927a-bbf0b2247246" class=""><strong>c) 最终好处与目的</strong></p></div><div style="display:contents" dir="auto"><ul id="afdac63b-e7b6-4df5-9dd6-1af098d2c4dc" class="bulleted-list"><li style="list-style-type:disc">学术机构主动把 IOSG 介绍给政府对接的产业部门（比 IOSG 冷启动 reach 转化率高 5–10 倍）</li></ul></div><div style="display:contents" dir="auto"><ul id="ee905265-87d1-4c02-90d9-dd53decee497" class="bulleted-list"><li style="list-style-type:disc">收到的信号是 &quot;IOSG 是带着产业资源进来的合作伙伴&quot; 而不是 &quot;又一家 GP&quot;</li></ul></div><div style="display:contents" dir="auto"><ul id="c844a60d-c6b3-4107-bad6-1c25fe491411" class="bulleted-list"><li style="list-style-type:disc">同时获得产学研背书，为后续子基金申报加分</li></ul></div><div style="display:contents" dir="auto"><ul id="eb3d1199-6859-4975-a1b0-5a04c7e07860" class="bulleted-list"><li style="list-style-type:disc">ZUMRI 这条线额外解决了 IOSG 未来在横琴落地的现成通道</li></ul></div><div style="display:contents" dir="auto"><h4 id="b45b1bf4-4ba0-4935-a044-94c0d10d63b9" class="">动作 1.2：走访所有相关政府机构</h4></div><div style="display:contents" dir="auto"><p id="f64be639-443a-43c6-b50b-65140f09b989" class=""><strong>a) 做什么</strong></p></div><div style="display:contents" dir="auto"><p id="4e7471b7-558c-41e5-a12e-ea1af23a6615" class="">在学术机构引荐或现有 IOSG 人脉铺垫之后，安排 1–2 次澳门 + 横琴走访，逐个拜会下面所有相关机构。</p></div><div style="display:contents" dir="auto"><p id="5b8e980e-7243-490c-a287-6f78df6e6804" class=""><strong>b) 找哪些机构</strong></p></div><div style="display:contents" dir="auto"><p id="b31552bf-641d-41dd-8cd0-806b4d8335b8" class=""><em>优先级 1 — 澳门政府筹建工作组四成员（现阶段唯一决策圈）：</em></p></div><div style="display:contents" dir="auto"><ul id="050e1745-5537-4470-9b3a-2ed224fbcab1" class="bulleted-list"><li style="list-style-type:disc"><strong>经济财政司司长办公室</strong> — 工作组牵头方。司长戴建业、顾问谭致宁（公开发言人）</li></ul></div><div style="display:contents" dir="auto"><ul id="3df40321-664b-4c7f-93a9-1c084334ea09" class="bulleted-list"><li style="list-style-type:disc"><strong>AMCM 澳门金融管理局</strong> — 牌照监管、未来托管行遴选主体</li></ul></div><div style="display:contents" dir="auto"><ul id="d78628b9-f9bd-4b8d-9eb0-d3b54eef3017" class="bulleted-list"><li style="list-style-type:disc"><strong>经济及科技发展局（DSEDT）</strong> — 产业政策 + 初创企业认定</li></ul></div><div style="display:contents" dir="auto"><ul id="5f87d4fb-0cac-4a05-863d-38dfea775df0" class="bulleted-list"><li style="list-style-type:disc"><strong>招商投资促进局（IPIM）</strong> — 产业落地 KPI 主管</li></ul></div><div style="display:contents" dir="auto"><p id="7d9b234f-83e3-4215-9a3d-fa9f20239c66" class=""><em>优先级 2 — 澳门相关政策 / 科创机构：</em></p></div><div style="display:contents" dir="auto"><ul id="622fce17-7f9b-48a2-b2fe-42b2a4746c85" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门科学技术发展基金（FDCT）</strong> — 澳门四大国家重点实验室资金主管方，是学术机构 + 技术转化项目的资金入口</li></ul></div><div style="display:contents" dir="auto"><ul id="c9c32ab8-51f7-45bd-be2c-5192b5b4d798" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门创新科技中心</strong> — 中小创创育成主体，与未来 IOSG 子基金的 deal sourcing 相关</li></ul></div><div style="display:contents" dir="auto"><ul id="6f1d1b61-2c0e-4a1d-ae32-11dc6e19349a" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门贸易投资促进局驻北京/香港/上海联络处</strong> — 如需在内地 / 香港接触，可走这些联络处作为中转</li></ul></div><div style="display:contents" dir="auto"><p id="cd1d57bb-2791-4e54-b7cf-6c35cfd5b497" class=""><em>优先级 3 — 横琴及珠海侧（不在澳门工作组里，但是子基金重要落地区）：</em></p></div><div style="display:contents" dir="auto"><ul id="e34fd728-ace8-4fe9-92a0-052fb8a65ce5" class="bulleted-list"><li style="list-style-type:disc"><strong>横琴粤澳深度合作区执委会</strong> — 合作区最高决策机构</li></ul></div><div style="display:contents" dir="auto"><ul id="1b11111e-8631-4244-b637-1db661772a56" class="bulleted-list"><li style="list-style-type:disc"><strong>横琴金融发展局</strong> — 负责与 AMCM 共同定义的&quot;深合区私募基金管理公司赴澳门简化申牌通道&quot;的推荐方</li></ul></div><div style="display:contents" dir="auto"><ul id="f9be0f90-80df-43e7-8710-3446ddab34bc" class="bulleted-list"><li style="list-style-type:disc"><strong>横琴粤澳深合区经济发展局</strong> — 产业落地政策与招商</li></ul></div><div style="display:contents" dir="auto"><ul id="4995362e-60c7-47ac-8b9c-96e344121b7b" class="bulleted-list"><li style="list-style-type:disc"><strong>珠海市金融局 / 金融工作委员会</strong> — 珠海代管横琴，是资金跨境、QFLP/QDLP 哨位的上一级主管</li></ul></div><div style="display:contents" dir="auto"><p id="f019371f-b8ac-4218-b919-46df31c83280" class=""><strong>c) 最终好处与目的</strong></p></div><div style="display:contents" dir="auto"><ul id="80359021-4633-4341-9ab9-646b03f0f5ea" class="bulleted-list"><li style="list-style-type:disc">让法规定稿人在设计&quot;子基金类别&quot;时会考虑加一个 Web3/AI specialist 的槽位——不去推，默认资质要求会是&quot;AMCM 牌照 + 5 年 PE + 中资背景&quot;，这套要求会自动排除 IOSG</li></ul></div><div style="display:contents" dir="auto"><ul id="227190d3-23c1-4e7a-b159-2d64b2cfcf70" class="bulleted-list"><li style="list-style-type:disc">收集决策圈的真实信号：到底会不会留 specialist 槽位，是阶段 2 IC 决策的最重要输入</li></ul></div><div style="display:contents" dir="auto"><ul id="f3b04ad6-47e1-4c49-818c-df327084ce37" class="bulleted-list"><li style="list-style-type:disc">在官方记忆中建立 IOSG 品牌认知</li></ul></div><div style="display:contents" dir="auto"><ul id="8409fe59-920d-4d08-9722-29bb34a55653" class="bulleted-list"><li style="list-style-type:disc">同时打通横琴谈判通道，为后续 Option C 的横琴简化牌照通道鬄路</li></ul></div><div style="display:contents" dir="auto"><h4 id="f7d7d491-d3d5-4432-b390-c36e6a9bc161" class="">动作 1.3：起草 &quot;IOSG 大湾区 Web3 + AI Infra 子基金&quot; thesis 白皮书</h4></div><div style="display:contents" dir="auto"><p id="46a224bb-2921-44d9-ac1f-f984dbb628e7" class=""><strong>a) 做什么</strong></p></div><div style="display:contents" dir="auto"><p id="d2b5565e-20a3-4c33-973f-87a26f96bc74" class="">在 IOSG 内部起草 thesis 白皮书：赛道定义、市场机会、IOSG 差异化、拟投范围、产业落地承诺。不需要马上对外，但所有外部接触都需要这份文档作为&quot;名片&quot;。</p></div><div style="display:contents" dir="auto"><p id="303421d0-6bd1-4839-a2ef-6606adeb39f9" class=""><strong>b) 找哪些机构</strong></p></div><div style="display:contents" dir="auto"><p id="9fb0f62c-1a5a-485c-b3c8-1ebe32e0e947" class="">内部动作，不需要外部机构。</p></div><div style="display:contents" dir="auto"><p id="588436d6-bd0a-49c6-8ad4-28727e745791" class=""><strong>c) 最终好处与目的</strong></p></div><div style="display:contents" dir="auto"><ul id="0365801d-25e0-4d73-97cc-85448294d113" class="bulleted-list"><li style="list-style-type:disc">所有外部接触（学术机构、政府、母基金 GP、本地伙伴）都能拿同一份文档讲同一个故事，避免现场即兴拼凑口径不一</li></ul></div><div style="display:contents" dir="auto"><ul id="9f22548b-7e71-4fa5-b831-d591dde20706" class="bulleted-list"><li style="list-style-type:disc">逼出内部 IC 共识：到底什么是 IOSG 的差异化、portfolio 里哪些能承诺落地澳琴</li></ul></div><div style="display:contents" dir="auto"><ul id="cecfb590-2f6a-48e6-b6ad-0069e2d1f301" class="bulleted-list"><li style="list-style-type:disc">作为阶段 2 IC 决策的输入材料</li></ul></div><div style="display:contents" dir="auto"><h3 id="d66c2609-b430-4b5f-8622-910dcc9cc5da" class="">核心目的 2：在正式遴选启动前锁定关键合作伙伴</h3></div><div style="display:contents" dir="auto"><p id="fe6d15d5-ab71-4300-905f-7398114d63af" class="">解决的问题：等母基金 GP 遴选 / 子基金 GP 遴选启动后再找伙伴就已经晚了——那时候伙伴都被别人锁定了。需要在 Q3 前同时跳 3 条线锁定备选伙伴，使阶段 2 IC 决策时有真实选择而不是猜测。</p></div><div style="display:contents" dir="auto"><h4 id="b5cf4fdb-1501-4f60-a4dd-45ace5bba150" class="">动作 2.1：同时接触能接触到的所有母基金 GP 候选（不押单家）</h4></div><div style="display:contents" dir="auto"><p id="ff816d48-2eb0-49f8-b0cd-091ac255c88f" class=""><strong>a) 做什么</strong></p></div><div style="display:contents" dir="auto"><p id="4064e29c-d0e7-4c61-ba1f-03d5e704201b" class="">同时与母基金 GP 候选保持轻接触（初期 30 分钟会面 + 交换 thesis），不押任何一家。在子基金 GP 这一层，同时跟多家母基金 GP 保持接触是行业惯例，不会得罪人。</p></div><div style="display:contents" dir="auto"><p id="5ffc2b20-74b6-478a-98a3-7b42322c3e61" class=""><strong>b) 找哪些机构（更多参考1.7）</strong></p></div><div style="display:contents" dir="auto"><ul id="7d6bff22-0911-43cf-808a-76df0e694c25" class="bulleted-list"><li style="list-style-type:disc"><strong>中金资本（CICC Capital） · 香港/深圳办公室</strong> — 最高优先级。唯一在公开媒体明确站队的候选（董总许中超发言），拿到资格概率最高</li></ul></div><div style="display:contents" dir="auto"><ul id="dd98935c-1323-41f1-aed4-c6c59d22ad93" class="bulleted-list"><li style="list-style-type:disc"><strong>深创投 · 大湾区办公室</strong> — 被澳门日报评论文章点名、硬科技背景最强、对 Web3 几乎零认知（IOSG 差异化最大）</li></ul></div><div style="display:contents" dir="auto"><ul id="39e99417-5d24-4377-a617-0afcc6ea3467" class="bulleted-list"><li style="list-style-type:disc"><strong>横琴本地玩家（横琴金投 / 横琴产业基金管理公司）</strong> — 合作区本地玩家，地缘最匹配，作为 backup</li></ul></div><div style="display:contents" dir="auto"><p id="ccb944fc-93da-479b-b4fc-d8ee94369230" class=""><strong>c) 最终好处与目的</strong></p></div><div style="display:contents" dir="auto"><ul id="7f2713b0-7e62-4493-b78e-df5c3de5da23" class="bulleted-list"><li style="list-style-type:disc">避免押错单家的风险——任何一家最后没拿到资格，前期所有接触努力不会归零</li></ul></div><div style="display:contents" dir="auto"><ul id="28e2bb53-3850-47fa-ac01-f1e189ee49cf" class="bulleted-list"><li style="list-style-type:disc">使 IOSG 提前被列入多家母基金 GP 的&quot;可能子基金伙伴列表&quot;，一旦母基金 GP 遴选结果出来 IOSG 能马上对接</li></ul></div><div style="display:contents" dir="auto"><ul id="92579f9a-a658-4021-bbff-6a5be08d972a" class="bulleted-list"><li style="list-style-type:disc">收集不同 GP 对 IOSG 赛道 thesis 的反馈，作为 thesis 迭代输入</li></ul></div><div style="display:contents" dir="auto"><h4 id="bf2990d1-b53e-4510-a26e-304c6358e478" class="">动作 2.2：筛选所有可能的持牌本地伙伴候选（为 Option B 做准备）</h4></div><div style="display:contents" dir="auto"><p id="217a5f3f-1f4a-4db0-be52-6ce72049b543" class=""><strong>a) 做什么</strong></p></div><div style="display:contents" dir="auto"><p id="4d9413a7-766e-470a-9359-a276dd6db69d" class="">从澳门持牌机构中筛选 8–12 家候选，逐个轻接触，最终锁定 2–3 家有 co-GP 意愿的。准备初步 co-GP 商业条款 draft（管理费分成、carry 分成、IC 席位、投资范围）。</p></div><div style="display:contents" dir="auto"><p id="1037196c-ecc6-4c8a-8908-fcbe4c788c78" class=""><strong>b) 找哪些机构</strong></p></div><div style="display:contents" dir="auto"><p id="1f733c6a-dc39-44e6-9a85-624508ef72cb" class=""><em>优先级 1 — 澳门本地中资银行系（一定要参与这次引导基金、但缺赛道认知，IOSG 议价基础最大）：</em></p></div><div style="display:contents" dir="auto"><ul id="011532fe-ae0d-4da7-9c8f-b724392535e5" class="bulleted-list"><li style="list-style-type:disc"><strong>中国银行澳门分行 + 中国银行（澳门）股份有限公司体系</strong> — 发钞行、澳门最大商业银行，双牌照运营</li></ul></div><div style="display:contents" dir="auto"><ul id="4ad1ed48-5979-468e-91b2-041c49609098" class="bulleted-list"><li style="list-style-type:disc"><strong>中国工商银行澳门分行（工银澳门，前身诚兴银行）</strong> — 澳门第三大银行背景</li></ul></div><div style="display:contents" dir="auto"><ul id="4e9c62b3-b5da-4f9b-b45c-60b4a0031f19" class="bulleted-list"><li style="list-style-type:disc"><strong>建设银行（亚洲） · 建行澳门业务</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="838de8ab-c903-4873-8b1e-1b482df9faa6" class="bulleted-list"><li style="list-style-type:disc"><strong>交通银行澳门分行</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="3bb4d460-afba-449d-936f-3084f0961168" class="bulleted-list"><li style="list-style-type:disc"><strong>中国农业银行澳门分行</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="60ab0173-cc0e-43e7-8e3a-d6257501db10" class="bulleted-list"><li style="list-style-type:disc"><strong>招商永隆银行（原永亨银行，2017 年被招商银行收购）</strong> — 招商集团在澳门的银行主体、产金联动最强</li></ul></div><div style="display:contents" dir="auto"><p id="ee5e62b9-802b-457d-812c-ee2c6104fe8c" class=""><em>优先级 2 — 澳门本地注册银行（本地资本背景、决策灵活）：</em></p></div><div style="display:contents" dir="auto"><ul id="e627a10a-6d55-4ac2-b385-e74fcea5485c" class="bulleted-list"><li style="list-style-type:disc"><strong>大丰银行</strong> — 澳门首家本地资本注册银行（1942 年创立、何贤家族背景），后被广发银行收购</li></ul></div><div style="display:contents" dir="auto"><ul id="9a952743-8eaa-451e-94b0-f8429153441b" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门国际银行</strong> — 厦门国际银行全资附属，中国首个被收购的外资银行，本地 18 家分支</li></ul></div><div style="display:contents" dir="auto"><ul id="4414a9bc-8c42-4cb6-b14b-e4cdbbcc9ab9" class="bulleted-list"><li style="list-style-type:disc"><strong>立桥银行（Well Link Bank）</strong> — 近年上升最快的本地银行，“中资背景 + 本地牌照”中间状态</li></ul></div><div style="display:contents" dir="auto"><ul id="2c2e58b8-36bf-4fb0-8ffc-d05c7e243f9b" class="bulleted-list"><li style="list-style-type:disc"><strong>平安银行（原资本交易银行）</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="394d82e0-1ff8-4b2b-906c-701bb3b7eaf1" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门莱点银行（原渣打澳门分行资产）</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="417aad51-fd6d-4137-8841-fe2387c4fd8e" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门商业银行</strong></li></ul></div><div style="display:contents" dir="auto"><p id="242d8ca4-8d4f-4761-b945-f68044f67ca9" class=""><em>优先级 3 — 澳门其他重要持牌机构：</em></p></div><div style="display:contents" dir="auto"><ul id="be6b0574-b3ec-483b-ae53-4e4844cbf26d" class="bulleted-list"><li style="list-style-type:disc"><strong>大西洋银行（BNU）</strong> — 另一家发钞行，葡系背景、遆葡聖成推广区鋪狠，可能在湾区反向 narrative 上有独特位置</li></ul></div><div style="display:contents" dir="auto"><ul id="6fc96e90-d9b0-4c47-8b3d-180b3e4c3275" class="bulleted-list"><li style="list-style-type:disc"><strong>汇业银行（Banco Delta Asia）</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="2e2addd5-fda2-48b5-9550-263a7e4a6c6d" class="bulleted-list"><li style="list-style-type:disc"><strong>湴业银行</strong> — 本地老牌号</li></ul></div><div style="display:contents" dir="auto"><ul id="76b46013-9a5f-451a-820e-578ce9cf88d1" class="bulleted-list"><li style="list-style-type:disc"><strong>蜚蚁银行（蚂蚁集团控股）</strong> — 蚂蚁集团在澳门的金融牌主体，技术背景与 IOSG 变革型最接近</li></ul></div><div style="display:contents" dir="auto"><ul id="857b698e-4149-4a1b-884c-ae551e8c682a" class="bulleted-list"><li style="list-style-type:disc"><strong>广发银行澳门分行</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="c5222194-8c52-479e-b205-76cb92319be3" class="bulleted-list"><li style="list-style-type:disc"><strong>华侨永亨银行澳门分行</strong></li></ul></div><div style="display:contents" dir="auto"><p id="3dddb050-8fd5-43a7-9242-cfeca9b146e8" class=""><em>优先级 4 — 澳门专业资管 / 托管机构：</em></p></div><div style="display:contents" dir="auto"><ul id="5131d894-bb0d-4918-b894-51b10aaeed3c" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门金融会（Macao Association of Banks）</strong> — 行业协会，可一次接触所有成员机构</li></ul></div><div style="display:contents" dir="auto"><ul id="4757db23-bae9-4ee3-b1c5-0bb83021e9ba" class="bulleted-list"><li style="list-style-type:disc"><strong>已完成 AMCM 私募基金托管资质足象的银行</strong> — 待后续公开 list，是未来引导基金的必选托管行伙伴</li></ul></div><div style="display:contents" dir="auto"><p id="61915b95-333a-42fc-bbca-fe745a4afaeb" class=""><em>优先级 5 — 横琴走简化申牌通道的伙伴候选：</em></p></div><div style="display:contents" dir="auto"><ul id="05b27cb6-cf87-4d40-a144-c33de17117ab" class="bulleted-list"><li style="list-style-type:disc"><strong>上述以横琴金投资本为首的横琴私募基金管理公司 list 里符合资质的（33 家 QFLP、2 家 QDLP、4 家区内澳资 QFLP）</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="172e3ce3-cb8f-434c-a8cb-828ea7934c1d" class="bulleted-list"><li style="list-style-type:disc"><strong>广东大湾区科技创新创业投资基金管理公司</strong></li></ul></div><div style="display:contents" dir="auto"><p id="00310d6d-02d5-43f9-af04-6358883f3182" class=""><strong>c) 最终好处与目的</strong></p></div><div style="display:contents" dir="auto"><ul id="c3113f81-959d-478b-8d89-e74da10e029d" class="bulleted-list"><li style="list-style-type:disc">让 Option B 从&quot;纸面选项&quot;变成&quot;真实可选项&quot;——仅当有 1–2 家有明确合作意愿时 Option B 才成立</li></ul></div><div style="display:contents" dir="auto"><ul id="44571f69-75be-4969-83ff-ef92096e06d2" class="bulleted-list"><li style="list-style-type:disc">即使最终选择 Option C，这些伙伴也可能作为过渡期 sub-advisor 或后续社会资本 LP</li></ul></div><div style="display:contents" dir="auto"><ul id="8a094acc-857e-475c-b3dc-a4bf5ae83313" class="bulleted-list"><li style="list-style-type:disc">摄资本地资管机构在澳门金融圈的网络资源，为后续募社会资本 LP 鬄路</li></ul></div><div style="display:contents" dir="auto"><ul id="992e5b3d-9052-4ee6-805c-4b406897f294" class="bulleted-list"><li style="list-style-type:disc">额外收获：中资银行系都是未来引导基金的潜在托管行，提前接触 = 提前拿到内部消息源</li></ul></div><div style="display:contents" dir="auto"><h4 id="a9832062-e0d8-4595-abde-653e2fa4a736" class="">动作 2.3：现有 IOSG LP 及所有潜在社会资本 LP 做 MOP 出资能力 sounding</h4></div><div style="display:contents" dir="auto"><p id="9b2e8d69-e7dc-4cd6-bf8a-af951a90efd4" class=""><strong>a) 做什么</strong></p></div><div style="display:contents" dir="auto"><p id="5ad43dbf-948d-4b87-84ed-e0f1276607c4" class="">Capital Formation 分三批动作：（1）从 IOSG 现有 LP 里筛选出有 RMB / CNH / 港币配置能力的 LP；（2）补充澳门本地社会资本池；（3）补充大湾区产业资本。每个候选发非正式 sounding email 探口风。</p></div><div style="display:contents" dir="auto"><p id="899a0a9e-2e5a-4177-9ae0-f3a2ec9deb3c" class=""><strong>b) 找哪些机构</strong></p></div><div style="display:contents" dir="auto"><p id="fbd4505a-91d8-42ce-9d97-087eb257b509" class=""><em>批次 1 — IOSG 现有 LP 中能跳 RMB/MOP 产品的（需内部识别）：</em></p></div><div style="display:contents" dir="auto"><ul id="4e6f9736-827a-4dfd-97c5-d877c0a31bfe" class="bulleted-list"><li style="list-style-type:disc">IOSG 现有 LP 里的中资保险 / 信托 / 资管背景 LP</li></ul></div><div style="display:contents" dir="auto"><ul id="e9589317-0b97-4924-97bd-15fe1d337e9d" class="bulleted-list"><li style="list-style-type:disc">IOSG 现有 LP 里的大湾区 、香港、新加坡背景多家办</li></ul></div><div style="display:contents" dir="auto"><ul id="0a5ab318-5cb6-4b16-b7ef-c084acebc487" class="bulleted-list"><li style="list-style-type:disc">IOSG 现有 LP 里的香港 / 新加坡上市公司战投部门</li></ul></div><div style="display:contents" dir="auto"><p id="e806a9b1-f534-46be-8218-c1571cbcc0f5" class=""><em>批次 2 — 澳门本地资本池（澳门本地最大社会资本源）：</em></p></div><div style="display:contents" dir="auto"><p id="3a4e76c6-249b-4d29-bdb6-59aed16c4fbd" class="">博彩集团系家办 / 投资部门（正在主动托多元化配置）：</p></div><div style="display:contents" dir="auto"><ul id="0d05989a-2193-4f2b-a525-2ef9d5bbdd5f" class="bulleted-list"><li style="list-style-type:disc"><strong>金沙中国（Sands China）· 金沙集团亚洲投资</strong> — 金沙在澳门最大，公开有多元化需求</li></ul></div><div style="display:contents" dir="auto"><ul id="02c458a0-7474-43c5-8b33-fd56c6cb358b" class="bulleted-list"><li style="list-style-type:disc"><strong>银河娱乐集团（Galaxy Entertainment）· Galaxy Innovation Hub</strong> — 集团创新 arm，已探索 web3 / fintech</li></ul></div><div style="display:contents" dir="auto"><ul id="2f7fbf07-eff8-4773-aa3a-002a5aca9a21" class="bulleted-list"><li style="list-style-type:disc"><strong>永利源拍（Wynn Macau）体系</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="0547ce14-6852-4dd1-ad28-dac28157c889" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门博彩控股（SJM）· 何鋭宗 / 何超琼家族办</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="c2b4ba82-6f19-4851-826d-f4d930723164" class="bulleted-list"><li style="list-style-type:disc"><strong>美高梅（MGM China）· 陈明都家族办</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="55f76d64-1634-4b24-8b78-dd00cecea645" class="bulleted-list"><li style="list-style-type:disc"><strong>新澳博彩（Melco Resorts）· 何猛亚家族办</strong></li></ul></div><div style="display:contents" dir="auto"><p id="d7b19190-3c20-47ee-816c-4b259745f39f" class="">澳门本地企家家族：</p></div><div style="display:contents" dir="auto"><ul id="6d5203d2-b729-405a-86dc-59ecedd51373" class="bulleted-list"><li style="list-style-type:disc"><strong>中农联（本地中资财团）</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="d2a51622-d502-486e-82ef-5f8fb54113a1" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门商业创业商业会哥市商人公会体系</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="53ee98c1-ff9a-42dd-bfd2-b14cc85f8bd5" class="bulleted-list"><li style="list-style-type:disc"><strong>澳门中华总商会 / 澳门金融学会</strong></li></ul></div><div style="display:contents" dir="auto"><p id="4cec9c46-e60e-47af-9e2a-ea61efb21a1e" class=""><em>批次 3 — 大湾区产业资本与央企业务体（有澳琴战略需求的）：</em></p></div><div style="display:contents" dir="auto"><ul id="80883428-a894-49c2-b70d-59372250ff83" class="bulleted-list"><li style="list-style-type:disc"><strong>华润集团 · 华润创新投资 / 华润集团产业金融</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="2f5c99d2-0295-4389-90a2-a3ddb79db113" class="bulleted-list"><li style="list-style-type:disc"><strong>招商局集团 · 招商资本</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="dea4a42d-66c3-45c9-92b7-f2a475166b02" class="bulleted-list"><li style="list-style-type:disc"><strong>中信集团 · 中信资本</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="f43e5672-cb0e-4a3d-9fa0-e7a519dec63e" class="bulleted-list"><li style="list-style-type:disc"><strong>华侨城集团 · 华侨城创新投资</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="ea209989-7593-4ec4-8fbd-b0606d7ffc1e" class="bulleted-list"><li style="list-style-type:disc"><strong>腔腔航空 / 湾区航空 / 湾区股份 / 珠海湾区股份</strong>以及所在本干业务后面的产金部门</li></ul></div><div style="display:contents" dir="auto"><ul id="7e6ace5f-22ef-4316-a5d5-8765ac01b2d0" class="bulleted-list"><li style="list-style-type:disc"><strong>深圳、珠海、佛山、中山本土上市公司中有明确“澳琴落地”需求的战投部</strong> — 需要逐个看年报、企年报 / 托本地 BD 丰抱</li></ul></div><div style="display:contents" dir="auto"><p id="127ad60d-4366-485b-9f67-501b0e996dd6" class=""><em>批次 4 — 港 / 内地保险 、信托、社保场景 LP：</em></p></div><div style="display:contents" dir="auto"><ul id="ec27e444-d097-4e06-a4fb-2f2199c725fc" class="bulleted-list"><li style="list-style-type:disc"><strong>中国人寿 / 太平人寿 / 人寿资产 / 新华保险 / 平安集团 / 中央区域发展 / 货币司友好质量的香港子公司</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="ecf2a0a5-93ee-44b1-832c-cacad200ea90" class="bulleted-list"><li style="list-style-type:disc"><strong>香港 / 新加坡 / 中东主权中能够干预 MOP / CNH 产品的部分</strong> — 少数，作为 stretch goal</li></ul></div><div style="display:contents" dir="auto"><p id="39529b28-ea58-4d8e-b9e1-ac6dd908cd2f" class=""><strong>c) 最终好处与目的</strong></p></div><div style="display:contents" dir="auto"><ul id="b86898f5-24b0-4a9d-9ebd-cd48a5e7dcb0" class="bulleted-list"><li style="list-style-type:disc">3 个月内拿到 5+ 个明确口头 LOI = 绿灯，说明社会资本配套可行——这是 Option B/C 能不能走的硬条件</li></ul></div><div style="display:contents" dir="auto"><ul id="fc56c65d-cd62-44f5-8d8b-f49d2885abc8" class="bulleted-list"><li style="list-style-type:disc">3 个月内零反馈 = 红灯，说明 IOSG 现有 LP 网络不支持 MOP 产品，只能走 Option A 或重新建 LP 网络</li></ul></div><div style="display:contents" dir="auto"><ul id="be7f2b36-ac93-42a0-a9ec-39db464ae905" class="bulleted-list"><li style="list-style-type:disc">提前捡出真正愿意跳进来的 LP 名单，为阶段 3 节约 2–3 个月募资时间</li></ul></div><div style="display:contents" dir="auto"><ul id="532a0caa-8057-4f98-b7f2-e55bb3dc3fd3" class="bulleted-list"><li style="list-style-type:disc">额外收获：博彩业家办同时是澳门最强的本地 BD 资源，接触他们不仅为募资服务，也为未来产业落地服务</li></ul></div><div style="display:contents" dir="auto"><h3 id="2752893f-755d-4e79-a2d2-49bea01ea5ff" class="">阶段 1 产出物</h3></div><div style="display:contents" dir="auto"><ul id="9b8746ca-2ddd-4209-9143-09ec5045b2a8" class="bulleted-list"><li style="list-style-type:disc">一份<strong>内部澳门 + 横琴走访报告</strong>（含学术机构反馈 + 政府筹建工作组股咨反馈）</li></ul></div><div style="display:contents" dir="auto"><ul id="cf9b6b38-d5fd-432a-b1a2-8c4080d75c46" class="bulleted-list"><li style="list-style-type:disc">一份<strong>子基金 thesis 白皮书</strong>（v1）</li></ul></div><div style="display:contents" dir="auto"><ul id="85785a3b-4dee-4c67-891e-6b052a9e0246" class="bulleted-list"><li style="list-style-type:disc">一份<strong>母基金 GP / 本地伙伴 / 学术机构 / LP sounding 接触状态 tracker</strong></li></ul></div><div style="display:contents" dir="auto"><h2 id="efe1db49-3670-4889-bea9-fc3451c8701b" class="">阶段 2：IC 决策与产品形态选定（2026 Q3 末）</h2></div><div style="display:contents" dir="auto"><p id="4074b658-dd66-42a9-9fad-5dc6ac358471" class=""><strong>目标</strong>：基于阶段 1 反馈，在 IC 层面做出明确决策：</p></div><div style="display:contents" dir="auto"><ol type="1" id="04643d27-d2c4-434d-938d-06089f7d4b1e" class="numbered-list" start="1"><li>走不走？</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="61b2a98b-36b6-4e27-902e-6a53284cd213" class="numbered-list" start="2"><li>走的话用哪个 Option（A / B / C / D）？</li></ol></div><div style="display:contents" dir="auto"><p id="15320d7a-09c4-42ef-93a0-db9291dfb224" class=""><strong>决策依据点</strong>：</p></div><div style="display:contents" dir="auto"><ul id="203c09a7-5432-4f79-bb71-d6bb667e6199" class="bulleted-list"><li style="list-style-type:disc">政府方有没有透露明确的&quot;specialist 子基金&quot;槽位？</li></ul></div><div style="display:contents" dir="auto"><ul id="311e15cc-54f5-4ba5-b6ef-88431da220e3" class="bulleted-list"><li style="list-style-type:disc">至少 1 家持牌本地伙伴有 co-GP 意愿？</li></ul></div><div style="display:contents" dir="auto"><ul id="a423b25f-c114-4a4a-82a1-17aca141cc46" class="bulleted-list"><li style="list-style-type:disc">至少 1 家母基金 GP（中金资本 / 深创投）愿意把 IOSG 作为细分赛道 specialist？</li></ul></div><div style="display:contents" dir="auto"><ul id="fc821653-67e1-42b2-aad7-84b6e66ce40d" class="bulleted-list"><li style="list-style-type:disc">IOSG 现有 LP 是否愿意配合做 MOP 基金的社会资本部分？</li></ul></div><div style="display:contents" dir="auto"><ul id="10d891cd-037f-4a73-b731-913644323ae3" class="bulleted-list"><li style="list-style-type:disc">行政法规出台时间表是否仍然在 Q3–Q4 内（决定窗口期紧迫程度）？</li></ul></div><div style="display:contents" dir="auto"><p id="c27b73a6-a3ff-47e2-8e00-851b311544ed" class=""><strong>产出物</strong>：</p></div><div style="display:contents" dir="auto"><ul id="20c613e3-4ebc-4dad-af65-0fb3c006a945" class="bulleted-list"><li style="list-style-type:disc">一份 IC 决策备忘录</li></ul></div><div style="display:contents" dir="auto"><ul id="546d2bf6-8bbf-4edc-9f99-c81a8888e00d" class="bulleted-list"><li style="list-style-type:disc">选定的 Option 对应的执行 spec</li></ul></div><div style="display:contents" dir="auto"><h2 id="cc326f8f-ccc1-488c-9404-bc4924848cb6" class="">阶段 3：根据所选 Option 推进（2026 Q4 — 2027 Q2）</h2></div><div style="display:contents" dir="auto"><p id="42215811-138e-4fb0-99ab-5b2af1523a7e" class=""><strong>如果是 Option A（顾问模式）</strong>：</p></div><div style="display:contents" dir="auto"><ul id="0a1f8525-7bd3-4798-a073-fb5a442521de" class="bulleted-list"><li style="list-style-type:disc">与对接母基金 GP 签 advisory MOU</li></ul></div><div style="display:contents" dir="auto"><ul id="a433e6e7-bc7b-4642-9984-3f2f3fbef252" class="bulleted-list"><li style="list-style-type:disc">启动联合 deal sourcing 和投后服务</li></ul></div><div style="display:contents" dir="auto"><ul id="3cc098aa-c646-4d2a-98e8-24ddf5cdb4cf" class="bulleted-list"><li style="list-style-type:disc">6–9 个月后基于实际产出评估升级</li></ul></div><div style="display:contents" dir="auto"><p id="0a13869c-00dc-4f5a-9500-fb0a69dcd07f" class=""><strong>如果是 Option B（Co-GP 模式）</strong>：</p></div><div style="display:contents" dir="auto"><ul id="40425935-1d94-43ce-aae2-e3766599ec4d" class="bulleted-list"><li style="list-style-type:disc">与本地伙伴签 co-GP 协议（包括管理费/carry 分配、IC 席位、投资范围）</li></ul></div><div style="display:contents" dir="auto"><ul id="3bbc6b39-3d49-431c-a046-7c37d734ed59" class="bulleted-list"><li style="list-style-type:disc">启动子基金 LPA 起草</li></ul></div><div style="display:contents" dir="auto"><ul id="346715f7-bd5f-4ecc-80ff-a8714719863f" class="bulleted-list"><li style="list-style-type:disc">与母基金 GP 谈 anchor LP commitment</li></ul></div><div style="display:contents" dir="auto"><ul id="df58280a-6e9f-4770-9aaf-d1c4300117bc" class="bulleted-list"><li style="list-style-type:disc">启动澳门本地办公室筹建</li></ul></div><div style="display:contents" dir="auto"><ul id="7d20d8b8-bfe1-4ff6-bd54-6173ac4df801" class="bulleted-list"><li style="list-style-type:disc">并行募集社会资本 LP（60–70% 配套部分）</li></ul></div><div style="display:contents" dir="auto"><p id="c6d7d24c-44fc-4f57-9ddb-d0ef25ac1ab3" class=""><strong>如果是 Option C（独立子基金 GP）</strong>：</p></div><div style="display:contents" dir="auto"><ul id="53fc20d1-41b9-4b60-be83-6d8f986077d4" class="bulleted-list"><li style="list-style-type:disc">启动 AMCM 牌照申请（或横琴简化通道）</li></ul></div><div style="display:contents" dir="auto"><ul id="68cd314d-2138-46fe-8fb4-0a27e0d78e6a" class="bulleted-list"><li style="list-style-type:disc">注册澳门本地子公司 + 招本地团队 2–3 人</li></ul></div><div style="display:contents" dir="auto"><ul id="0055cac7-685b-4b6c-aaa2-e7bd75f6d1a7" class="bulleted-list"><li style="list-style-type:disc">启动独立子基金 LPA 起草</li></ul></div><div style="display:contents" dir="auto"><ul id="3e1402bc-54a0-4341-9033-3bd6926e3470" class="bulleted-list"><li style="list-style-type:disc">与母基金 GP 谈 anchor commitment</li></ul></div><div style="display:contents" dir="auto"><ul id="0f1e7b4a-b15b-4c42-9306-fa1c789319a3" class="bulleted-list"><li style="list-style-type:disc">并行募集社会资本 LP（50–70% 配套）</li></ul></div><div style="display:contents" dir="auto"><ul id="e7c104e0-0b5a-4deb-bf62-2ef750618437" class="bulleted-list"><li style="list-style-type:disc">与现有 IOSG portfolio 沟通&quot;自愿落地澳琴&quot;承诺</li></ul></div><div style="display:contents" dir="auto"><p id="99140bed-77a0-4d14-9c08-00be6605c41c" class=""><strong>如果是 Option D（IOSG 做母基金 GP）— 仅在出现机会窗口时启动</strong>：</p></div><div style="display:contents" dir="auto"><ul id="2bcac2b9-70ef-43cd-9d31-b74dd8bebf60" class="bulleted-list"><li style="list-style-type:disc">锁定 1–2 家大湾区国资央企作为联合主导方（不可独立做，IOSG 单独资质不够）</li></ul></div><div style="display:contents" dir="auto"><ul id="3d7f17f2-fca4-4ebb-8710-f2f462578140" class="bulleted-list"><li style="list-style-type:disc">自申或借用头部金融牌照</li></ul></div><div style="display:contents" dir="auto"><ul id="f1d57022-fd5f-49d8-93b1-3c5ef14c09cd" class="bulleted-list"><li style="list-style-type:disc">搭建 10+ 人本地中后台团队（基金管理、GP 选择、资产配置、合规、reporting）</li></ul></div><div style="display:contents" dir="auto"><ul id="61ede107-ca5e-4a06-8434-d41cee76d25e" class="bulleted-list"><li style="list-style-type:disc">设计母基金资产配置策略 + 子基金 GP 遴选标准</li></ul></div><div style="display:contents" dir="auto"><ul id="56ef6e02-1fa0-4db1-8ffc-c1499989e673" class="bulleted-list"><li style="list-style-type:disc">与政府高层直接对接（不止筹建工作组，需要触及司长、行政长官办公室层级）</li></ul></div><div style="display:contents" dir="auto"><h2 id="d460f52f-31f0-4bf4-83d4-9d1617a3686b" class="">阶段 4：正式遴选与基金运作（2027 Q1 之后）</h2></div><div style="display:contents" dir="auto"><ul id="93588f28-74b2-463a-911a-a1dcf0e9efd8" class="bulleted-list"><li style="list-style-type:disc">跟踪行政法规出台 + 政府投资管理公司班子组建</li></ul></div><div style="display:contents" dir="auto"><ul id="b9e5900a-d731-40e6-8f01-5611a3e63859" class="bulleted-list"><li style="list-style-type:disc">跟踪母基金 GP 遴选结果</li></ul></div><div style="display:contents" dir="auto"><ul id="4d898b12-61a3-4a86-8dd8-78945d1ee258" class="bulleted-list"><li style="list-style-type:disc">如所选 Option 是 B/C/D，正式投标子基金 GP 资格</li></ul></div><div style="display:contents" dir="auto"><ul id="daa57e9f-4cb7-44f6-9c5e-05b487f6e420" class="bulleted-list"><li style="list-style-type:disc">完成 LP 募集、首关、首笔投资</li></ul></div><div style="display:contents" dir="auto"><p id="374f0ada-243c-808f-b066-d8730199ac16" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
