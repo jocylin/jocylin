@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontier Tower — 深度尽调与投委会讨论包 | IOSG Ventures</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2230; --ink:#e6edf3; --muted:#9aa7b4;
+    --line:#2a313c; --accent:#5b8cff; --accent2:#7c5cff;
+    --green:#2ea043; --green-bg:#0f2417; --amber:#d29922; --amber-bg:#241c08; --red:#f85149; --red-bg:#2a1113;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* 顶部 */
+  .hero{background:linear-gradient(135deg,#11151f 0%,#1a1430 60%,#0d1117 100%);
+    border-bottom:1px solid var(--line);padding:56px 24px 40px}
+  .hero-inner{max-width:var(--maxw);margin:0 auto}
+  .eyebrow{letter-spacing:.18em;font-size:12px;color:var(--accent2);font-weight:700}
+  .hero h1{font-size:42px;line-height:1.15;margin:10px 0 6px;font-weight:800;letter-spacing:-.01em}
+  .hero .sub{color:var(--muted);font-size:17px;max-width:760px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;
+    padding:6px 14px;font-size:13px;color:var(--muted)}
+  .chip b{color:var(--ink);font-weight:600}
+  .verdict{margin-top:24px;display:inline-flex;align-items:center;gap:12px;
+    background:var(--red-bg);border:1px solid #5b2326;border-radius:14px;padding:14px 20px}
+  .verdict .dot{width:12px;height:12px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red)}
+  .verdict b{font-size:18px}
+  .verdict span{color:var(--muted);font-size:14px}
+
+  /* 布局 */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(13,17,23,.85);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 24px}
+  .toc-inner{max-width:var(--maxw);margin:0 auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+  .toc-inner::-webkit-scrollbar{display:none}
+  .toc a{white-space:nowrap;font-size:13px;color:var(--muted);padding:6px 12px;border-radius:8px}
+  .toc a:hover{background:var(--panel);color:var(--ink);text-decoration:none}
+
+  section{padding:40px 0;border-bottom:1px solid var(--line)}
+  .sec-num{color:var(--accent2);font-weight:800;font-size:14px;letter-spacing:.1em}
+  h2{font-size:27px;margin:6px 0 18px;font-weight:800;letter-spacing:-.01em}
+  h3{font-size:18px;margin:26px 0 10px;color:var(--ink);font-weight:700}
+  p{margin:12px 0}
+  .lead{font-size:17px;color:#cdd7e1}
+  .muted{color:var(--muted)}
+
+  /* 卡片 */
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:1fr 1fr}
+  @media(max-width:760px){.g2{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .card.good{border-left:3px solid var(--green)}
+  .card.warn{border-left:3px solid var(--amber)}
+  .card.bad{border-left:3px solid var(--red)}
+  .card.accent{border-left:3px solid var(--accent)}
+  .card h4{margin:0 0 6px;font-size:16px}
+  .card p{margin:6px 0;font-size:14.5px;color:#cdd7e1}
+
+  /* 徽章 */
+  .badge{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:6px;
+    letter-spacing:.03em;vertical-align:middle;white-space:nowrap}
+  .b-green{background:var(--green-bg);color:#52d97a;border:1px solid #1c4427}
+  .b-amber{background:var(--amber-bg);color:#e3b341;border:1px solid #5c4708}
+  .b-red{background:var(--red-bg);color:#ff7b72;border:1px solid #5b2326}
+
+  /* 表格 */
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel2);color:var(--muted);font-weight:600;font-size:12.5px;letter-spacing:.04em}
+  tr:last-child td{border-bottom:none}
+  td b{color:#fff}
+  .src{color:var(--muted);font-size:12.5px}
+
+  /* 问答 */
+  .qa{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+  .qa .q{font-weight:700;color:#fff;margin:0 0 8px;font-size:15.5px}
+  .qa .zh{color:#cdd7e1;font-size:14.5px;margin:4px 0}
+  .ptag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:5px;margin-right:8px}
+  .p1{background:var(--red-bg);color:#ff7b72} .p2{background:var(--amber-bg);color:#e3b341} .p3{background:#0f2417;color:#52d97a}
+
+  ul.clean{margin:10px 0;padding-left:20px}
+  ul.clean li{margin:7px 0;color:#cdd7e1;font-size:14.5px}
+  .ts{color:var(--accent);font-style:normal;font-weight:600;font-size:12px}
+
+  .rec-box{background:linear-gradient(135deg,#1a1020,#161b22);border:1px solid #5b2326;border-radius:16px;padding:24px}
+  .rec-box .big{font-size:21px;font-weight:800;color:#ff9d96;margin:0 0 6px}
+
+  /* 原始备忘录 */
+  #memo{background:linear-gradient(180deg,#0f131b,#0d1117)}
+  .memo-note{background:var(--panel2);border:1px dashed #3a424f;border-radius:10px;
+    padding:11px 16px;color:var(--muted);font-size:13px;margin:0 0 20px}
+  .memo-note b{color:#cdd7e1}
+  .layer{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:12px 0}
+  .layer .tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.04em;
+    padding:2px 9px;border-radius:6px;background:#13233b;color:#7fb0ff;margin-bottom:8px}
+  .layer .tag.live{background:#0f2417;color:#52d97a}
+  .layer .tag.test{background:var(--amber-bg);color:#e3b341}
+  .layer .tag.pre{background:var(--red-bg);color:#ff7b72}
+  .memo h3{color:#fff;border-left:3px solid var(--accent2);padding-left:10px}
+
+  footer{padding:32px 24px 60px;color:var(--muted);font-size:12.5px}
+  footer .wrap{max-width:var(--maxw)}
+  .disclaim{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-top:14px}
+  @media print{nav.toc{display:none}.hero{background:#fff}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">IOSG Ventures · 投资委员会 · 机密</div>
+    <h1>Frontier Tower</h1>
+    <p class="sub">旧金山实体"前沿科技"楼宇 + 创始人 residency（驻留计划）+ 加密超级应用（FrontierOS / FND）三层结构。深度尽调与投委会讨论包——含四路独立交叉验证与创始人当面对话提炼。</p>
+    <div class="meta-row">
+      <span class="chip"><b>轮次</b> 种子前 SAFE + 代币权证</span>
+      <span class="chip"><b>本轮</b> 募 500 万美元 @ 5000 万估值上限</span>
+      <span class="chip"><b>上轮（2024）</b> 约 150 万 @ 2000 万投后</span>
+      <span class="chip"><b>项目负责人</b> Jeff</span>
+      <span class="chip"><b>项目来源</b> Jocy / Niklas 推荐</span>
+      <span class="chip"><b>整理</b> Jocy</span>
+      <span class="chip"><b>日期</b> 2026-06-05</span>
+    </div>
+    <div class="verdict">
+      <span class="dot"></span>
+      <div><b>建议：财务角度 Pass（不投）@ 5000 万估值</b><br>
+      <span>仅在锁定书面香港 franchise / 同比例跟投权 + 数据室核实 + 代币法律意见时，转为 ≤25 万美元小额战略票。倾向 Pass。</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#summary">摘要</a>
+    <a href="#memo">原始备忘录</a>
+    <a href="#verify">真实 vs 愿景</a>
+    <a href="#team">团队风险</a>
+    <a href="#valuation">估值</a>
+    <a href="#transcript">创始人对话</a>
+    <a href="#q-jeff">给 Jeff 的问题</a>
+    <a href="#q-founder">尽调问题</a>
+    <a href="#discuss">投委会讨论</a>
+    <a href="#rec">投资建议</a>
+    <a href="#sources">来源</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section id="summary">
+  <div class="sec-num">0 / 摘要</div>
+  <h2>一句话结论</h2>
+  <p class="lead">这是一个<b>真实存在、有真实社群飞轮</b>的旧金山实体楼宇生意，由一个<b>真能买楼、真会运营</b>的创始人主理；但它被包装成"网络国家 + 加密超级应用 + 创始人驻留股权引擎"的三层风险投资标的，而这三层目前要么规模极小（toy scale）、要么尚未上线、要么是空中楼阁。</p>
+  <div class="grid g2">
+    <div class="card bad">
+      <h4>本轮买到的是最薄的一层</h4>
+      <p>运营公司（OpCo）仅拿约 10% 毛收入；真正的钱（房产增值）归地产公司（PropCo）和创始人，不归 OpCo 股东。没有楼宇代币化的跟随权（tag-along），就等于买了个空壳。</p>
+    </div>
+    <div class="card bad">
+      <h4>回报全押在 5-7 年的经济特区豪赌</h4>
+      <p>创始人亲口说房产 5 倍回报"没意思"，真正的赌注是成为"对一切消费收税的城市 CEO"，博百倍千倍——一个他自己都承认"很遥远"的彩票。</p>
+    </div>
+    <div class="card warn">
+      <h4>估值贵了 5-10 倍</h4>
+      <p>5000 万估值对一个约 10% 毛收入的联合办公运营公司 = 约 100 倍公司收入；是楼本身 18 个月前买价 1100 万美元的约 4.5 倍；2000 万→5000 万、1-2 年涨 2.5 倍而无实质去风险。</p>
+    </div>
+    <div class="card bad">
+      <h4>团队第三次撞同一面墙</h4>
+      <p>Brickblock 已死、Flowcarbon 退还约 7000 万美元、DSTOQ 已死——全是真实资产代币化撞上监管/分销墙。加密那一层坐在两位"募了钱、撞墙"的创始人之上。</p>
+    </div>
+  </div>
+</section>
+
+<section id="memo">
+  <div class="sec-num">0.5 / 原始备忘录</div>
+  <h2>Jeff — Pipeline: Frontier Tower（备忘录原文）</h2>
+  <div class="memo-note"><b>说明：</b>以下为 Jeff 的 Pipeline 备忘录忠实收录（略作排版精简，未改动事实陈述）。它是本报告的<b>输入</b>；后续章节为 IOSG 对其的独立核实与批判。原始页：<a href="https://www.notion.so/iosgvc/Pipeline-Frontier-Tower-375f0ada243c809f8caccc80189499d7">Notion · Pipeline: Frontier Tower</a></div>
+
+  <h3>项目要素</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>项目</th><th>详情</th></tr>
+    <tr><td>项目负责人</td><td>Jeff</td></tr>
+    <tr><td>官网</td><td>berlinhouse.com · superheroresidency.com</td></tr>
+    <tr><td>路演材料</td><td>docsend.com/view/3wibx3a67g4zz7rd</td></tr>
+    <tr><td>项目来源</td><td>Jocy；Niklas（Nicholas）推荐；创始人在香港见的团队</td></tr>
+    <tr><td>投资条款</td><td>募集 <b>500 万美元</b> 种子前 SAFE，<b>5000 万估值上限</b>，外加代币权证。上轮约 150 万 @ 2000 万投后（2024）</td></tr>
+    <tr><td>后续步骤</td><td>初步感受（vibe check）→ 索取数据室（财务模型、股权结构表、SAFE 草案、代币分配）</td></tr>
+  </table></div>
+
+  <h3>产品 — 三层结构</h3>
+  <div class="layer">
+    <span class="tag live">第一层 — 实体网络 · 已上线</span>
+    <p>两栋旧金山楼，共 142,000 平方英尺：① <b>Frontier Tower @ 995 Market St</b>（16 层，约 90,500 平方英尺，主题楼层：AI / 长寿 / 生物科技 / 加密 / 机器人）；② <b>Superhero Hotel @ 825 Sutter St</b>（110 间房，创始人驻留，共居 + 健身房 + 餐厅 + 联合办公，会员"citizens"月付约 190 美元）。第三栋"谈判中"。</p>
+  </div>
+  <div class="layer">
+    <span class="tag test">第二层 — 创始人驻留 / 风险工作室 · 早期测试</span>
+    <p>Frontier 赞助早期创始人约 1-3 万美元/人（食宿，定性为成本而非投资）换 0.2-1% 股权。首批 6 家：一家有生物科技背景的付约 1 万美元换约 0.2%；另一家（后进 YC）给约 1%。每个驻留计划是独立实体，Frontier 持约 60%，驻留计划负责人持 40% 并使用 Frontier 品牌。</p>
+  </div>
+  <div class="layer">
+    <span class="tag pre">第三层 — FrontierOS · 未上线</span>
+    <p>加密超级应用：双币钱包（<b>FND</b>，一个外部可兑换、号称"符合 GENIUS 法案"的稳定币 + 内部闭环 FND）、二维码支付（微信式）、小程序商店、订阅管理、AI 助理（订房 + 就近匹配成员）。FND 已发行，应用未上线，<b>当前使用量约为零</b>。会费拟以 FND 支付。</p>
+  </div>
+  <p class="muted">核心逻辑把三层串起来：<i>实体存在驱动应用安装（"进楼必须装应用"）→ 应用捕获成员消费（"生活份额 / lifeshare"）→ 跨城扩张积累与政府谈判经济特区（SEZ）的筹码。</i></p>
+
+  <h3>市场 — 三个市场</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>市场</th><th>是什么</th><th>对标</th><th>Frontier 的位置</th></tr>
+    <tr><td>网络国家 / 特许城市</td><td>主权或半主权、自有规则的区域</td><td>Próspera（洪都拉斯经济特区）；Network School（Balaji，森林城市）；Praxis（约 5 亿美元，无实体）</td><td>有愿景，尚无司法管辖权</td></tr>
+    <tr><td>会员制实体社群</td><td>策展型联合办公 + 共居 + 活动</td><td>Soho House（运营 40 年，年收入 10 亿美元以上）；WeWork（已崩）；Edge Esmeralda（Vitalik 背书的快闪村）</td><td>运营中，靠加密原生 + 创始人对齐差异化</td></tr>
+    <tr><td>加密超级应用 / 真实资产通道</td><td>稳定币 + 小程序 + 链上身份</td><td>微信（非加密基准）；加密钱包/支付</td><td>未上线。"线下驱动采用"是赌注</td></tr>
+  </table></div>
+
+  <h3>竞争</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>玩家</th><th>重叠层</th><th>对 Frontier 的优势</th><th>Frontier 的反制</th></tr>
+    <tr><td>Próspera</td><td>经济特区 / 管辖权</td><td>洪都拉斯认可的实际主权区</td><td>先有社群/密度；管辖权后补</td></tr>
+    <tr><td>Network School（Balaji）</td><td>网络社会品牌</td><td>Balaji 个人品牌 + 理念旗帜</td><td>更大实体足迹、多垂类</td></tr>
+    <tr><td>Soho House</td><td>会员地产运营</td><td>40 年运营经验、全球足迹</td><td>加密原生、面向创始人、股权模式</td></tr>
+    <tr><td>Edge Esmeralda</td><td>快闪前沿社群</td><td>Vitalik 背书、已验证形态</td><td>永久空间 vs 游牧</td></tr>
+    <tr><td>Praxis</td><td>特许城市融资</td><td>约 5 亿美元募资</td><td>今天就有真楼和真收入</td></tr>
+  </table></div>
+  <p class="muted">竞争核心问题：Frontier 是一个执行更好的加密味联合办公 + 地产，还是一个真正全新的网络社会？当前证据指向前者，后者作为期权式上行空间。</p>
+
+  <h3>牵引力（2026 年 3 月季度）</h3>
+  <ul class="clean">
+    <li>共 <b>770</b> 名会员，环比 +25%，约 90% 为全价 citizens</li>
+    <li><b>20.4 万</b>受邀来宾（环比 +40%）；<b>7.2 万</b>到场（+36%）；活动免费，作获客漏斗</li>
+    <li><b>84</b> 家 VC 到场（环比 +31%）；约 16-18 名 citizens 住在 Superhero（声称约 80 容量）；每月 100+ 场活动</li>
+    <li><b>月度经常性收入 42 万美元</b>（3 月），12 个月从约零起步；3 月含"营销推广"（首次付费营销，称此前为有机增长）</li>
+    <li>收入构成：约 35-40% citizen 会员 / 约 30% 办公室租赁（2-3 层）/ 约 5% 活动 / 余下来自第二栋楼；CVS 地租 + 企业赞助<b>未计入</b>这 42 万</li>
+    <li>驻留计划：6 家签约，1 家进 YC，平均入场估值约 200-300 万美元，称路演日后路径达 1500-2000 万</li>
+    <li>外部验证：买楼 / 主题楼层 / 活动经旧金山媒体证实；8 层办公改住宅许可已申请</li>
+  </ul>
+
+  <h3>商业模式</h3>
+  <p>本轮募资的 <b>运营公司（OpCo）只捕获很薄的一层</b>。独立的 <b>地产公司（PropCo）</b>持有地产，募了约 2700 万美元买楼、覆盖约 100% 楼宇运营成本（楼层负责人、楼栋负责人、安保、招租）。OpCo 不付固定租金，两实体分毛收入：<b>OpCo 约 10%、PropCo 拿其余</b>。OpCo 只承担技术/知识产权 + 营销。</p>
+  <p>两实体同一批创始人，10/90 是内部设定、非市场定价、随时可重切——需对照实际合同。地产增值归创始人/PropCo，不归 OpCo 股权（除非楼后续代币化且股东获跟随权/同比例权）。楼以每平方英尺 122 美元买入，对比 2016 年估值 6200 万美元（约每平方英尺 685 美元），创始人称潜在 5 倍，增值归 PropCo。创始人在考虑做地产基金，未定。</p>
+  <p><b>现有收入线：</b>citizen 会员（约 190 美元/月）· 办公室租赁 · 活动场地 · 酒店/驻留房费 · CVS 租金及直接办公收入（在 PropCo 层）。<br>
+  <b>规划收入线：</b>驻留股权（目标 3%，现 0.2-1%）· FrontierOS 收益与抽成（FND 存款约 4%、生态内服务约 20%）· 加盟费 · 经济特区经济（运营者对区内全部消费抽成，愿景）。</p>
+  <p class="muted">战略转向：旧金山自营加倍投入，其他城市仅做加盟——此前伦敦校区尝试失败、"耗尽精力"。</p>
+
+  <h3>团队</h3>
+  <ul class="clean">
+    <li><b>Jakob Drzazga — CEO。</b> 联合创办 Brickblock（2016），2019 年 3 月代币化约 200 万欧元 Wiesbaden 房产（称欧盟首例）；2019 年末获德国 BaFin 证券信息表批准；Brickblock 融资 635 万美元（Finch Capital），现已<b>清盘（deadpooled）</b>。创办 ScalingFunds（2019），客户 Peakside 上线欧洲首支代币化地产基金（2 亿欧元目标）。INATBA 房地产工作组联席主席。</li>
+    <li><b>Christian Nagel — COO。</b> 7000 万美元以上地产组合；运营过 Polkadot/Stellar/ICP 背书的风险工作室。</li>
+    <li><b>Christian Peters（"CHP"）— CTO。</b> 自 2021 年 11 月任 Flowcarbon CTO；Flowcarbon 2022 年融 7000 万美元（a16z crypto 领投 3200 万股权 + 3800 万出售 GNT 代币），此后沉寂。曾联合创办 DSTOQ（代币化股票，2021），已不运营。</li>
+  </ul>
+  <p class="muted">备忘录自评：Brickblock（已清盘）与 Flowcarbon（a16z 背书、2022 年后沉寂）都是"代币化真实资产"玩法，募了机构钱后停滞。问题是每位创始人具体学到了什么、Frontier 今天哪个架构决策因那些教训而存在。</p>
+
+  <h3>融资</h3>
+  <ul class="clean">
+    <li><b>上轮（2024）：</b>约 150 万美元 @ 2000 万投后，单笔封顶 40 万美元以分散股权结构。具名天使：Vitalik Buterin、Balaji Srinivasan、Davide Crapis（以太坊基金会 AI 负责人）、Niklas（本轮再投约 100 万）。社群参与者：Tomasz Stanczak（Nethermind）、Emmett Shear（Twitch）、Marian Goodell（Burning Man CEO）、Peter Diamandis、Illia Polosukhin、Protocol Labs、Entrepreneurs First、YZi Labs、Lantern Capital。</li>
+    <li><b>本轮：</b>目标 500 万美元，种子前 SAFE，5000 万估值上限，外加代币权证。</li>
+    <li><b>用途：</b>招人扩张；桥接到接近 a16z / Peter Thiel 级领投的大轮。</li>
+  </ul>
+
+  <h3>核心逻辑（备忘录自身判断）</h3>
+  <p>一张运营公司支票买的是一个联合办公 + 共居生意 10% 的收入分成，单凭它无法回报一支基金。经济特区是 Jakob 自己 5-7 年的豪赌；FrontierOS 尚未出产品。所以承销落到<b>驻留计划</b>上——唯一今天能承销其经济的一层。赌注是驻留计划能否从 6 家扩成真正的股权积累引擎，借助旧金山独有的前沿科技创始人密度。</p>
+  <p><b>上行空间：</b>驻留计划是运营公司股权复利最干净的路径（每个百分点远比 YC 便宜，约 33 万 vs 约 180 万美元）；飞轮同时喂养驻留计划和应用；与 IOSG 的以太坊/真实资产/DAO/网络国家定位战略契合，可换香港加盟 + 社群锚点角色；地产以 1100 万美元 / 90,500 平方英尺不对称入场是安全边际（归地产公司）；创始人-市场契合真实（Jakob 做过欧盟地产代币化与 BaFin 首批证券信息表，且把一栋困境旧金山楼盘活、无政治反弹、拉来 84 家 VC + 7.2 万人到场）。</p>
+  <p><b>风险：</b>驻留计划真实但规模极小且被稀释（看穿后 = 运营公司持股 × 60% × 不到 1%）；两个最大引擎尚未产生收入（FrontierOS 未出产品、经济特区靠非正式接触，Próspera 用了 8 年以上才运营）；运营公司仅拿约 10% 毛收入、真钱在地产公司（本轮买不到）；反复失败模式（Brickblock + Flowcarbon）；代币/法律地位未决（FND 既称法币可兑换又称"符合 GENIUS 法案"，托管/储备/证券定性全开放——正是当年沉没 Brickblock 的边界）；退出非常规且长周期（政府经济特区收购"10-100 亿美元/城"、Network School 合作、或"城市建造者"IPO，均非近期流动性事件）。</p>
+  <p><b>建议（备忘录）：</b>有条件。若投，此阶段理由是网络国家 / 真实资产的战略卡位，非财务回报。建议结构：小额（25-50 万美元）SAFE + 代币权证，明确跨运营公司股权 / FrontierOS 代币 / 亚洲地产公司的同比例跟投权，并谈定亚洲（香港）加盟 / 社群锚点角色。</p>
+  <p class="muted">备忘录列的承诺前尽调问题：① 实体图 + SAFE 买什么（含地产公司增值索取权、代币化跟随权）；② 标准化月度收入（剔 3 月营销/CVS，按业务线 + 运营/地产公司拆分）；③ 驻留计划经济（已签股权、60/40 条款、6 家→有意义组合的路径、3% 是否签过）；④ 代币权证条款（用途、给股东 %、TGE 时间、发行实体、亚洲基金同比例权）；⑤ Brickblock/Flowcarbon 复盘（直接问 Jakob 和 CHP）；⑥ 香港/亚洲加盟角色（能否换领投/共同领投锁定）。</p>
+</section>
+
+<section id="verify">
+  <div class="sec-num">1 / 交叉验证</div>
+  <h2>真实 vs 愿景：边界比备忘录更刺眼</h2>
+  <p>实体楼宇全真，但这一轮赖以定价的几乎所有东西，要么未经证实，要么被项目自己的公开信息<b>直接证伪</b>。</p>
+
+  <h3>✅ 已验证为真（实体层）</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>项</th><th>验证</th><th>来源</th></tr>
+    <tr><td>995 Market St，16 层 90,500 平方英尺，主题楼层</td><td>历史 David Hewes Building（1908），前 Burning Man 总部 / WeWork</td><td class="src">SFist；SF Examiner；SF Standard</td></tr>
+    <tr><td><b>1100 万美元买入（每平方英尺 122 美元）</b> vs 2016 估值 6200 万</td><td>由 Deep Ink Ventures（Jakob）买入；前业主违约 4500 万 CMBS 贷款、LNR 拍卖 656 万后约 1100 万售出（确属困境资产约 85-90% 折价）</td><td class="src">The Real Deal；SFist；Traded.co</td></tr>
+    <tr><td>8 层办公改住宅许可</td><td>已申请，8 个整层共居单元</td><td class="src">SF YIMBY</td></tr>
+    <tr><td>Superhero Hotel 825 Sutter 约 110 间房</td><td>已验证（190 美元/月是会员价，非酒店价——备忘录有混淆）</td><td class="src">superherohotel.com；SF Examiner</td></tr>
+    <tr><td>活跃活动飞轮</td><td>Luma 日历、ETHSF、Viva Frontier Tower 真实存在</td><td class="src">luma.com/frontiertower</td></tr>
+  </table></div>
+
+  <h3>⚠️ 未经证实（本轮定价核心数字，公开零佐证）</h3>
+  <div class="grid g2">
+    <div class="card warn"><h4>42 万月收入 / 770 会员 / 7.2 万到场 / 84 家 VC <span class="badge b-amber">未核实</span></h4><p>公开口径只有"300+（年中）→450+（10 月）→官网 700+"。轨迹合理，但估值核心精确数字无外部佐证。</p></div>
+    <div class="card warn"><h4>地产公司 2700 万募资 + 90/10 分成 <span class="badge b-amber">未核实</span></h4><p>公开无记录。1100 万买楼属实，融资结构不属实。</p></div>
+    <div class="card warn"><h4>驻留计划：6 家、1 进 YC、0.2-1% 股权 <span class="badge b-amber">未核实</span></h4><p>公开无任何痕迹（仅见楼内相关初创，未坐实股权交易）。</p></div>
+    <div class="card warn"><h4>明星天使 <span class="badge b-amber">未核实</span></h4><p>Vitalik / Balaji / Diamandis / Goodell 公开仅可证实为<b>演讲嘉宾/访客</b>，非真正出资人；其余无痕迹。借光环（halo-borrowing）风险。</p></div>
+  </div>
+
+  <h3>❌ 被项目自己的公开信息直接证伪（加密层）</h3>
+  <div class="grid g2">
+    <div class="card bad"><h4>FND 代币 / FrontierOS 超级应用 <span class="badge b-red">证伪</span></h4><p>公开 + 链上零痕迹。"FND"代码已被多个无关代币占用。</p></div>
+    <div class="card bad"><h4>会费"用 FND 付" <span class="badge b-red">矛盾</span></h4><p>官网会员条款显示会费<b>仅法币（信用卡）</b>支付，无代币/钱包支付。会员页只提"用钱包验证代币持有"= 至多代币门控 NFT，绝非双币超级应用。</p></div>
+    <div class="card bad"><h4>"符合 GENIUS 法案的稳定币" <span class="badge b-red">营销话术</span></h4><p>GENIUS 法案（2025 年 7 月签署）要求持牌发行方，细则到 2027 年左右才全面生效；种子前运营公司不可能自行合规发行。</p></div>
+    <div class="card bad"><h4>闭环"迪士尼币"式 FND <span class="badge b-red">监管雷</span></h4><p>预付代币触发货币传输/证券定性风险——正是当年压垮 Brickblock 的同一道监管墙。</p></div>
+  </div>
+  <p class="src">来源：frontiertower.io/terms 与 /membership · Congress.gov S.1582 · OCC Bulletin 2026-3 · Paul Hastings GENIUS 追踪 · Blockscout FND 链上查询（均 2026-06-05）</p>
+</section>
+
+<section id="team">
+  <div class="sec-num">2 / 团队</div>
+  <h2>连续创业 = 连续在同一面墙撞死</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>创始人</th><th>履历核实</th><th>真实结局</th></tr>
+    <tr>
+      <td><b>Jakob Drzazga</b><br>CEO</td>
+      <td><span class="badge b-green">已核实</span> Brickblock（2016）首笔欧盟房产代币化（Wiesbaden 200 万欧元，2019/3）、BaFin 证券信息表批准（2019/10）、Finch Capital 635 万美元</td>
+      <td><b>Brickblock 已清盘</b>；ScalingFunds 2023/5 卖给 <b>Integer Wealth Global</b>（一个不知名小实体，<b>不是</b> Regus/IWG！别误读为名企并购），无披露价。消费级代币化愿景失败，只剩基金管理 SaaS 贱卖</td>
+    </tr>
+    <tr>
+      <td><b>Christian Peters</b><br>"CHP" · CTO</td>
+      <td><span class="badge b-green">已核实</span> Flowcarbon CTO；7000 万美元（a16z 3200 万 + GNT 卖 3800 万）</td>
+      <td><b>比"沉寂"更糟</b>：GNT <b>从未上线</b>，2024/9 Flowcarbon <b>退还约 7000 万美元</b>给投资人（要求签保密 + 弃诉），与 Adam Neumann 绑定、被当高调失败案。另 DSTOQ 已死。<b>两个死掉的代币化项目</b></td>
+    </tr>
+    <tr>
+      <td><b>Christian Nagel</b><br>COO</td>
+      <td><span class="badge b-amber">未核实</span> 7000 万美元地产组合 / Polkadot·Stellar·ICP 风险工作室</td>
+      <td><b>全部无法证实</b>。⚠️ 勿与 Earlybird VC 的 Christian Nagel 混淆（不同人）。本人公开履历几乎为零——尽调必须索要实证</td>
+    </tr>
+  </table></div>
+  <div class="card accent" style="margin-top:8px">
+    <h4>判断</h4>
+    <p>这确是<b>连续真实资产代币化创业者</b>，反复失败模式是<b>分销/监管墙，不是技术</b>——而一个"实体社群 + 加密应用"会再次撞上同一面墙。"吸取教训的运营者"论点很弱。Jakob 在"运营一栋楼"上最具创始人-市场契合度；加密/真实资产那一层则坐在两位"募了钱、撞墙、清算/退款"的创始人之上。</p>
+  </div>
+  <p class="src">来源：PRNewswire · S&amp;P Global（BaFin 证券信息表）· CoinDesk 2024-09-12（Flowcarbon 7000 万退款）· PitchBook/Crunchbase（ScalingFunds→IWG）· Earlybird（Nagel 区分）（均 2026-06-05）</p>
+</section>
+
+<section id="valuation">
+  <div class="sec-num">3 / 估值</div>
+  <h2>按本来面目算 — <span style="color:var(--red)">偏贵</span></h2>
+  <ul class="clean">
+    <li>5000 万估值 / 运营公司仅拿约 10% 毛收入 ≈ 运营公司自身收入约 50 万美元 → <b>约 100 倍公司收入</b>；即便按全口径约 500 万毛算也是 <b>约 10 倍收入</b>。</li>
+    <li>联合办公龙头 <b>IWG/Regus 仅约 2.5 倍 EV/收入、约 17 倍 EV/EBITDA</b>；物业管理约 0.5-0.9 倍收入。5000 万估值比品类龙头贵 <b>4-20 倍</b>。</li>
+    <li>5000 万 = <b>楼本身买价 1100 万美元的约 4.5 倍</b>（18 个月前买的）。</li>
+    <li><b>2000 万→5000 万 = 1-2 年涨 2.5 倍</b>，加密应用没发、护城河没实质去风险 = 纯倍数扩张。</li>
+  </ul>
+
+  <h3>网络国家对标（撑期权叙事的对标本身也很弱）</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>对标</th><th>实情</th></tr>
+    <tr><td>Próspera</td><td>约 1.5 亿美元，但<b>正在 ICSID 起诉洪都拉斯索赔 107-264 亿美元</b>——这是该退出路径的失败模式，不是成功模式</td></tr>
+    <tr><td>Praxis</td><td>"5.25 亿"实为 <b>GEM 条件性、与代币上市挂钩的额度贷款 + 2500 万</b>，非募到的股权，且<b>没建成任何城市</b></td></tr>
+    <tr><td>Network School（Balaji）</td><td>自筹，租用森林城市鬼城园区</td></tr>
+    <tr><td>Edge Esmeralda</td><td>靠门票现金流为正，无机构融资</td></tr>
+    <tr><td>Soho House</td><td>2025/8 以 27 亿美元私有化，2024 财年<b>净亏 9170 万美元</b>（40 年会员制标杆尚且如此）</td></tr>
+    <tr><td>WeWork</td><td>470 亿美元 → 破产 → 约 7.5 亿（资产重的"伪科技"前车之鉴）</td></tr>
+  </table></div>
+  <div class="card bad">
+    <h4>退出路径：近乎零先例</h4>
+    <p>10-100 亿美元经济特区政府收购 / 城市建造者 IPO——Próspera 是在<b>告政府</b>不是被收购；唯一真正的城市 IPO（Emaar EC）20 年毁损资本。长周期、依赖主权配合、不可控。</p>
+  </div>
+  <p class="src">来源：multiples.vc（IWG）· The Real Deal（1100 万）· The Block / chaincatcher（Praxis 5.25 亿实为贷款）· Wikipedia/Wolters Kluwer（Próspera ICSID）· Fortune（Soho House 27 亿）· CNBC（WeWork）（均 2026-06-05）</p>
+</section>
+
+<section id="transcript">
+  <div class="sec-num">4 / 创始人对话提炼</div>
+  <h2>投资者访谈印证 — 多为 Jakob 亲口</h2>
+  <p class="muted">来源：59 分 44 秒当面对话（Jakob × Jocy × Lawrence，香港）。以下标时间戳，引用为译文，<b>强化而非缓解</b>核心担忧。</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>发现</th><th>原话译文（时间戳）</th><th>影响</th></tr>
+    <tr><td><b>A1 伦敦校区"失败"被亲口证实</b></td><td>"我们想在伦敦启动一个项目，但没成……20 万平方英尺，太耗精力了" <span class="ts">00:49-50</span></td><td>公开网站仍把伦敦当扩张项目宣传，创始人私下说<b>已失败</b>。营销不诚实或沟通不一致。<b>P1 必问</b></td></tr>
+    <tr><td><b>A2 房产"没意思"，赌注是经济特区豪赌</b></td><td>"房地产……5 倍，这没意思。我们要的是百倍千倍……你基本上就是这座城市的 CEO……对一切消费抽税" <span class="ts">00:10/00:26</span></td><td><b>坐实反方论点 #1</b>：回报全押 5-7 年经济特区彩票</td></tr>
+    <tr><td><b>A3 经济特区谈判极其非正式</b></td><td>"在深圳谈过几个人……阿根廷……通过一些不具名渠道搞定美国那边……特朗普说的 10 个自由城市" <span class="ts">00:28-29</span></td><td>无任何谅解备忘录/书面，纯早期试探</td></tr>
+    <tr><td><b>A4 FND 现实 vs 宣讲缺口</b></td><td>"FND……已经发了……但应用还没上线，所以没人用" <span class="ts">00:30</span></td><td>代币声称已发，应用没上、零用、官网仍只收法币</td></tr>
+    <tr><td><b>A5 Niklas = 推荐人 + 100 万投资人</b></td><td>"Niklas 已经推荐了……他投了 100 万……他之前都没看过银行流水" <span class="ts">00:02/00:55</span></td><td><b>独立性</b>：项目来源同时是投资人且未看流水即承诺。IOSG 须独立判断</td></tr>
+    <tr><td><b>A6 抢投 / 不投拉倒式节奏</b></td><td>"只是一个 SAFE 轮……你要么进要么出……你能多快答复我？" <span class="ts">00:55</span></td><td>施压节奏，别被时间压力跳过数据室</td></tr>
+    <tr><td><b>A7 估值口径跳动</b></td><td>先说"1500 万估值"再说"5000 万估值"；称上轮 2000 万已"很有竞争力" <span class="ts">00:42-44</span></td><td>500 万 @ 5000 万（2.5 倍）确认；中途"1500 万"疑口误</td></tr>
+    <tr><td><b>A8 自认"在优化曝光，不是赚钱"</b></td><td>"我们现在是在优化曝光而不是赚钱……上周楼里约 2000 人，只有约 200-300 是真会员" <span class="ts">00:16/00:33</span></td><td>留存/付费转化未验证</td></tr>
+    <tr><td><b>A9 市场规模纯外推</b></td><td>2031：900 万 citizens × 3 万美元 × 70% "生活份额" ≈ 2200 亿美元 <span class="ts">00:20-24</span></td><td>不可证伪的叙事</td></tr>
+    <tr><td><b>A10 驻留计划 + 60% 持股</b></td><td>"6 家公司……一家进了 YC……驻留计划我们只持约 60%" <span class="ts">00:35-38</span></td><td>规模极小 + 稀释：看穿 = 运营公司 × 60% × 不到 1%</td></tr>
+    <tr><td><b>A11 香港只能做加盟</b></td><td>"聚焦旧金山……旧金山以外的运营只走加盟……我们给你打法手册，帮你做市场" <span class="ts">00:24/00:50</span></td><td><b>直接削弱 IOSG 唯一的战略理由</b>：香港锚点 = 品牌加盟，核心股权上行有限</td></tr>
+  </table></div>
+  <div class="card accent">
+    <h4>净判断</h4>
+    <p>Jakob 是个<b>真能买楼、能拉来人流、口才极好的网络国家信徒</b>——实体社群和分销是真的；但他自己把这笔讲成"赌成为收税的城市 CEO"，而支撑它的加密/经济特区那一层是空中楼阁 + 5-7 年彩票 + 两次撞过的监管墙。<b>这是一张昂贵的叙事彩票，不是一笔能回报 IOSG 的风险投资。</b></p>
+  </div>
+</section>
+
+<section id="q-jeff">
+  <div class="sec-num">5 / 投委会问题</div>
+  <h2>给项目负责人（Jeff）的问题</h2>
+  <div class="qa"><p class="q">Q1. 这一轮到底买到什么？</p><p class="zh">运营公司只拿约 10% 毛收入，房产增值全归地产公司/创始人。没有代币化跟随权的话，我们是不是只买了最薄的一层？</p></div>
+  <div class="qa"><p class="q">Q2. 42 万月收入经得起核实吗？</p><p class="zh">770 会员、42 万月收入、2700 万地产公司，公开零佐证。拿到 Stripe/银行流水、股权结构表、两个实体运营协议前，我们能定价吗？</p></div>
+  <div class="qa"><p class="q">Q3. 加密叙事是真的吗？</p><p class="zh">官网会费只收法币，FND 代币链上查无，超级应用没发。我们是在为一个还不存在的超级应用付溢价吗？</p></div>
+  <div class="qa"><p class="q">Q4. 两次撞墙，第三次为什么不一样？</p><p class="zh">Brickblock 死了、Flowcarbon 退还 7000 万——都是真实资产代币化撞监管/分销墙。这次结构上有什么不同？</p></div>
+  <div class="qa"><p class="q">Q5. 5000 万怎么接得动？</p><p class="zh">楼 18 个月前 1100 万买的，运营公司按联合办公算贵 5-10 倍。我们按联合办公还是按代币期权定价？若是后者，凭什么相信代币？</p></div>
+  <div class="qa"><p class="q">Q6. 明星天使是真投资人吗？</p><p class="zh">Vitalik/Balaji/Diamandis 公开只查到是演讲嘉宾/访客，不是出资人。能给签字股权结构表 / 打款记录吗？</p></div>
+  <div class="qa"><p class="q">Q7. 我们真能拿到亚洲/香港加盟锚点吗？</p><p class="zh">唯一投资理由是战略卡位。他明确旧金山以外只做加盟——那香港锚点对我们是品牌加盟，还是核心股权/代币的实质同比例权？拿不到这笔就没意义。</p></div>
+</section>
+
+<section id="q-founder">
+  <div class="sec-num">6 / 尽调问题</div>
+  <h2>给创始人（Jakob 与团队）的问题</h2>
+  <h3><span class="ptag p1">P1</span>必问 — 针对风险点 / 未验证项</h3>
+  <ul class="clean">
+    <li><b>实体图 + SAFE 归属</b>：哪个法律实体发 SAFE？对地产公司增值有何索取权？楼代币化时股东有无跟随权/同比例权？（全案命门）</li>
+    <li><b>标准化月度收入</b>：剔除 3 月营销推广、剔除 CVS，按业务线拆分，标明运营公司 vs 地产公司。要 Stripe/银行流水。</li>
+    <li><b>地产/运营公司 90/10</b>：给实际合同。同一批创始人内部定的分成能否随时重切？怎么保护运营公司股东？</li>
+    <li><b>伦敦失败</b>：具体原因（监管？资金？团队？）——和 Brickblock/Flowcarbon 是不是同一面墙？为何官网仍在推广？</li>
+    <li><b>Brickblock / Flowcarbon 复盘</b>：直接问 Jakob 和 CHP——每次撞的是什么墙？Frontier 今天哪个架构决策因那个教训而存在？</li>
+    <li><b>Christian Nagel 实证</b> + <b>天使核实</b>：签字股权结构表 + 打款确认（尤其 Vitalik/Balaji/Niklas 的 100 万）。</li>
+    <li><b>FND</b>：合约地址、链、储备证明；"会费用 FND 付"为何官网仍只收法币？时间表？</li>
+  </ul>
+  <h3><span class="ptag p2">P2</span>重要 — 商业模式 / 竞争</h3>
+  <ul class="clean">
+    <li><b>驻留计划经济</b>：已签股权明细、60/40 实体条款、从 6 家到"有意义组合"的路径、3% 目标是否签过哪怕一单？</li>
+    <li><b>代币权证条款</b>：发行实体（务必是我们投的股权结构表实体，非离岸基金会）、给股东的 %、TGE 时间、与团队同等锁仓、法律定性意见。</li>
+    <li><b>加盟单元经济</b>：费率、区域独家、IOSG 作为香港锚点能锁定什么书面权利？</li>
+  </ul>
+  <h3><span class="ptag p3">P3</span>加分项</h3>
+  <ul class="clean">
+    <li>经济特区：深圳/阿根廷/美国接触是口头还是有谅解备忘录？时间表与概率自评。</li>
+    <li>2000 万→5000 万、2.5 倍的依据（除了"数字在往上走"）？</li>
+    <li>退出：除代币 TGE 外，SAFE 持有人 5-7 年内有何现实流动性事件？</li>
+  </ul>
+</section>
+
+<section id="discuss">
+  <div class="sec-num">7 / 内部讨论</div>
+  <h2>投委会讨论要点</h2>
+  <div class="grid g2">
+    <div class="card"><h4>1. 把"买什么"讲诚实</h4><p>不是网络国家/超级应用风投，是<b>一栋旧金山楼的联合办公运营公司（拿 10%）+ 一张代币/经济特区彩票</b>。Jeff 自己备忘录里负责人的直白判断已点破。</p></div>
+    <div class="card"><h4>2. 财务回报案不成立</h4><p>看穿到任一初创 = 运营公司 × 60% × 不到 1%，规模极小。房产增值不归我们。<b>不能按风投回报投。</b></p></div>
+    <div class="card"><h4>3. 唯一理由是战略卡位</h4><p>以太坊/真实资产/网络国家叙事 + 亚洲/香港加盟锚点（联动 Animoca/HashKey/OKX/Mirana）。<b>没有书面锚点角色，这笔不做。</b></p></div>
+    <div class="card"><h4>4. 团队是双刃</h4><p>Jakob 真能买楼、拉来 84 家 VC、7.2 万人到场；但加密/真实资产那一层坐在两次失败之上，CHP 的 Flowcarbon 是"退款 + 保密协议"级声誉雷。</p></div>
+    <div class="card"><h4>5. 估值必须重谈</h4><p>5000 万按本来面目贵 5-10 倍。要么压估值，要么用结构（强跟随权 + 代币权证绑真实发行实体 + 清算优先）把薄层补厚。</p></div>
+    <div class="card"><h4>6. 监管雷</h4><p>FND 闭环代币 + "GENIUS 合规"话术 = 重演 Brickblock 证券墙。投前要法律定性意见，否则承接监管负债。</p></div>
+    <div class="card"><h4>7. 数据纪律</h4><p>月收入/地产公司/驻留/伦敦全是创始人单方陈述或被证伪。后续步骤已是"初步感受 + 数据室"——验证前不给条款。</p></div>
+    <div class="card"><h4>8. 项目来源利益</h4><p>Jocy 自荐 + Niklas 推荐，而 Niklas 也是本轮投资人且未看流水即承诺 100 万——独立判断，勿被推荐人的抢投情绪带动。</p></div>
+  </div>
+</section>
+
+<section id="rec">
+  <div class="sec-num">8 / 投资建议</div>
+  <h2>投资建议</h2>
+  <div class="rec-box">
+    <p class="big">财务角度 Pass（不投）@ 5000 万估值</p>
+    <p>访谈<b>强化而非缓解</b>了核心担忧：创始人亲口确认回报全押 5-7 年经济特区豪赌、房产增值归地产公司/创始人、FND 仍未出产品、伦敦私下已失败而公开仍在推、旧金山外只做加盟（削弱我们唯一的战略理由）。</p>
+    <p style="margin-top:14px"><b>仅在以下同时成立时转小额战略票（≤25 万美元，纯期权）：</b></p>
+    <ul class="clean">
+      <li>① <b>书面</b>锁定香港加盟 + 核心股权/代币的同比例跟投权（不只是品牌加盟）；</li>
+      <li>② 数据室证实 42 万月收入（Stripe/银行）、实体图、2700 万地产公司、伦敦真实状态；</li>
+      <li>③ 代币权证绑真实发行实体 + 法律定性意见。</li>
+    </ul>
+    <p class="muted" style="margin-top:8px">规模依据：IOSG 框架下团队有运营经验但前两次代币化均停滞/退款，按"经验存在但未验证成功"处理，封顶 ≤25 万美元，定性为战略卡位非财务回报。<b>倾向 Pass。</b></p>
+  </div>
+
+  <h3>反方论点（必写）</h3>
+  <div class="tbl-wrap"><table>
+    <tr><th>#</th><th>反方论点</th></tr>
+    <tr><td>1</td><td><b>运营公司是最薄的一层</b>——10% 毛收入，房产增值归创始人/地产公司，无跟随权则买空壳</td></tr>
+    <tr><td>2</td><td><b>加密叙事是空中楼阁 + 监管负债</b>——FND 链上查无、官网只收法币、"GENIUS 合规"不成立，正是压垮 Brickblock 的同一道墙</td></tr>
+    <tr><td>3</td><td><b>团队第三次撞墙风险</b>——Brickblock 死、Flowcarbon 退 7000 万、DSTOQ 死，分销/监管墙反复</td></tr>
+    <tr><td>4</td><td><b>估值贵 5-10 倍</b>，1-2 年涨 2.5 倍无实质去风险；撑估值的网络国家对标（Praxis/Próspera）本身虚或在打官司</td></tr>
+    <tr><td>5</td><td><b>明星天使是借光环</b>——公开只证实为嘉宾/访客非投资人</td></tr>
+    <tr><td>6</td><td><b>退出长且不可控</b>——经济特区收购/城市 IPO 近零先例，5-7 年豪赌</td></tr>
+  </table></div>
+</section>
+
+<section id="sources">
+  <div class="sec-num">9 / 来源</div>
+  <h2>数据来源汇总</h2>
+  <p class="src">均 2026-06-05 访问。四路独立交叉验证 + 创始人当面对话。</p>
+  <ul class="clean">
+    <li><b>实体/楼宇</b>：The Real Deal · SFist · SF Examiner · SF Standard · SF YIMBY · Traded.co · superherohotel.com · luma.com/frontiertower · frontiertower.io/terms 与 /membership</li>
+    <li><b>团队</b>：PRNewswire（Wiesbaden）· Newswire/S&amp;P Global（BaFin 证券信息表）· Tracxn/Crunchbase/PitchBook（Brickblock·ScalingFunds→Integer Wealth Global）· CoinDesk 2024-09-12（Flowcarbon 7000 万退款）· BusinessWire（Flowcarbon 7000 万）· CB Insights（DSTOQ）· Earlybird/NFX（Nagel 区分）</li>
+    <li><b>估值/对标</b>：multiples.vc（IWG）· The Block/chaincatcher（Praxis）· Wikipedia/Wolters Kluwer（Próspera ICSID）· longevity.technology（Próspera/Coinbase）· balajis.com（Network School）· edgeesmeralda.com · Fortune/Hollywood Reporter（Soho House 27 亿）· CNBC/TechCrunch（WeWork）· agbi.com（Emaar EC）</li>
+    <li><b>代币/监管</b>：Congress.gov S.1582 · OCC Bulletin 2026-3 · Paul Hastings GENIUS 追踪 · Blockscout（FND 链上查询）· CoinGecko（FRNT 无关）· icodrops/IQ.wiki（Brickblock）</li>
+    <li><b>一手</b>：Frontier Tower 投资者访谈转录（59 分 44 秒，Jakob × Jocy × Lawrence）· Jeff Pipeline 备忘录（Notion）</li>
+  </ul>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>IOSG Ventures — 投资委员会工作文件。</b>本页为内部尽调与讨论用途，含未经独立核实的创始人主张（已标注"未核实"）。所有数字以数据室一手材料为准。</p>
+    <div class="disclaim">
+      <b>硬规则合规自检：</b>所有数字标注来源与日期 ✓ · 关键判断 ≥2 来源交叉验证 ✓ · 估值附对标分析 ✓ · 反方论点已写 ✓ · 代币权证/解锁结构已查（FND 链上查无、要法律定性意见）✓
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
