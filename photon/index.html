@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photon AI · IOSG Research Brief</title>
+  <meta name="description" content="Photon AI investment research brief by IOSG Ventures." />
+  <style>
+    :root {
+      --bg: #f5f6f3;
+      --ink: #181b1f;
+      --muted: #60666f;
+      --line: #d8dcd4;
+      --panel: #ffffff;
+      --soft: #ebece7;
+      --dark: #11151a;
+      --blue: #2d6cdf;
+      --cyan: #13a8a8;
+      --green: #22875e;
+      --amber: #b46a08;
+      --red: #b43a35;
+      --radius: 8px;
+      --shadow: 0 18px 50px rgba(17, 21, 26, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(245, 246, 243, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar .wrap {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      font-weight: 720;
+    }
+    .mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #1d2228;
+      background: var(--dark);
+      color: #fff;
+      font-size: 13px;
+      border-radius: 7px;
+      flex: 0 0 auto;
+    }
+    nav {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a:hover { color: var(--ink); }
+
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: grid;
+      align-items: center;
+      padding: 54px 0 42px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.85fr);
+      gap: 42px;
+      align-items: center;
+    }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 880px;
+      font-size: clamp(44px, 6vw, 84px);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      margin: 22px 0 0;
+      max-width: 720px;
+      color: #3f464e;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.45;
+      font-weight: 540;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.72);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: #343a42;
+      font-size: 13px;
+      font-weight: 650;
+    }
+    .hero-art {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid #cfd5ce;
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-art img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      object-position: top center;
+      filter: saturate(0.95) contrast(1.02);
+      display: block;
+    }
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 48%, rgba(17,21,26,0.68) 100%);
+      pointer-events: none;
+    }
+    .hero-note {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      color: #fff;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .hero-note strong { display: block; font-size: 15px; }
+
+    section { padding: 76px 0; border-bottom: 1px solid var(--line); }
+    .section-head {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 36px;
+      align-items: start;
+      margin-bottom: 30px;
+    }
+    .kicker {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+    .lead {
+      margin: 14px 0 0;
+      color: #464d55;
+      font-size: 18px;
+      line-height: 1.62;
+      max-width: 860px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      min-height: 132px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .metric strong {
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .thesis {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      min-height: 240px;
+    }
+    .thesis b {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .thesis p {
+      margin: 0;
+      color: #4f5660;
+      line-height: 1.62;
+    }
+    .thesis .num {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 7px;
+      background: var(--soft);
+      color: var(--blue);
+      font-weight: 820;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .panel-pad { padding: 24px; }
+    .panel h3 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    .panel p, .panel li {
+      color: #4c535c;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    .panel ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+    .screen {
+      width: 100%;
+      display: block;
+      border-top: 1px solid var(--line);
+    }
+
+    .architecture {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 26px;
+    }
+    .layer {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 22px;
+    }
+    .layer small {
+      color: var(--muted);
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .layer h3 { margin: 12px 0 10px; font-size: 25px; }
+    .layer p { margin: 0; color: #4f5660; line-height: 1.62; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 840px;
+    }
+    th, td {
+      padding: 16px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    th {
+      background: #eef0eb;
+      color: #343a42;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    tr:last-child td { border-bottom: 0; }
+    td strong { white-space: nowrap; }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .risk {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      min-height: 210px;
+    }
+    .risk .level {
+      display: inline-flex;
+      align-items: center;
+      height: 26px;
+      padding: 0 9px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 780;
+    }
+    .high { background: var(--red); }
+    .medhigh { background: var(--amber); }
+    .medium { background: #6b7280; }
+    .risk b { display: block; margin-bottom: 10px; }
+    .risk p { margin: 0; color: #4f5660; line-height: 1.52; font-size: 14px; }
+
+    .recommendation {
+      background: var(--dark);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 22px;
+    }
+    .rec-item span {
+      display: block;
+      color: #aeb6c2;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      font-weight: 760;
+    }
+    .rec-item strong { font-size: 24px; line-height: 1.12; display: block; }
+    .rec-item p { color: #d9dee6; line-height: 1.5; margin: 10px 0 0; }
+
+    .questions {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      counter-reset: q;
+    }
+    .question {
+      counter-increment: q;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      min-height: 190px;
+      color: #444b54;
+      line-height: 1.55;
+      font-size: 15px;
+    }
+    .question::before {
+      content: counter(q);
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      margin-bottom: 14px;
+      border-radius: 7px;
+      background: var(--soft);
+      color: var(--blue);
+      font-weight: 820;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .week {
+      border-left: 3px solid var(--blue);
+      background: #fff;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 18px;
+      min-height: 190px;
+    }
+    .week b { display: block; margin-bottom: 10px; }
+    .week p { margin: 0; color: #4f5660; line-height: 1.55; font-size: 14px; }
+
+    .footer {
+      background: #11151a;
+      color: #d6dbe2;
+      padding: 32px 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .footer strong { color: #fff; }
+
+    @media (max-width: 1020px) {
+      .hero-grid, .section-head, .split, .architecture { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: repeat(3, 1fr); }
+      .thesis-grid { grid-template-columns: 1fr; }
+      .risk-grid, .questions, .timeline { grid-template-columns: repeat(2, 1fr); }
+      .recommendation { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-art, .hero-art img { min-height: 420px; }
+    }
+
+    @media (max-width: 660px) {
+      .wrap { width: min(100% - 26px, 1180px); }
+      .topbar .wrap { height: auto; min-height: 58px; padding: 10px 0; align-items: flex-start; flex-direction: column; }
+      nav { width: 100%; gap: 14px; padding-bottom: 2px; }
+      .hero { padding: 34px 0 30px; }
+      h1 { font-size: 44px; }
+      section { padding: 52px 0; }
+      .metrics, .risk-grid, .questions, .timeline { grid-template-columns: 1fr; }
+      .metric { min-height: 110px; }
+      .hero-art, .hero-art img { min-height: 360px; }
+      .hero-note { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Photon AI brief home">
+        <span class="mark">IOSG</span>
+        <span>Photon AI Research Brief</span>
+      </a>
+      <nav aria-label="Page navigation">
+        <a href="#summary">Summary</a>
+        <a href="#product">Product</a>
+        <a href="#traction">Traction</a>
+        <a href="#competition">Competition</a>
+        <a href="#risks">Risks</a>
+        <a href="#next">Next Steps</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">IOSG Ventures · Research Brief · 19 May 2026</div>
+          <h1>Photon AI</h1>
+          <p class="subtitle">The human-level interaction layer for AI agents: one SDK for deploying agents into iMessage, WhatsApp, Telegram, Slack and other messaging surfaces.</p>
+          <div class="meta-row">
+            <span class="pill">AI Infrastructure</span>
+            <span class="pill">Agent Tooling</span>
+            <span class="pill">CPaaS</span>
+            <span class="pill">Post-Seed</span>
+            <span class="pill">Mountain View, CA</span>
+          </div>
+        </div>
+        <figure class="hero-art" aria-label="Original Photon AI brief cover">
+          <img src="assets/cover.png" alt="Photon AI report cover" />
+          <figcaption class="hero-note">
+            <span><strong>Recommendation</strong> Discuss / Selective Invest</span>
+            <span><strong>Suggested Sizing</strong> $500K-$1M</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="summary">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Executive Summary</div>
+          <div>
+            <h2>Agent 时代的稀缺资源不是模型智能，而是分发入口。</h2>
+            <p class="lead">Photon 押注 AI Agent 的下一代入口会发生在用户已经高频打开的 messaging apps 中。它把渠道层 Spectrum 与声明式 Photon SDK 垂直整合，给 builder 提供“一次写、处处跑”的端到端体验。核心判断：赛道极热，但 Apple / Meta 平台风险被市场低估。</p>
+          </div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><span>Open Source Stars</span><strong>2,600+</strong></div>
+          <div class="metric"><span>Active Developers</span><strong>1,000+</strong></div>
+          <div class="metric"><span>Weekly Inbound</span><strong>50+</strong></div>
+          <div class="metric"><span>Contracts / LOIs</span><strong>3 + 9</strong></div>
+          <div class="metric"><span>Flagship Customer</span><strong>Ditto</strong></div>
+          <div class="metric"><span>Team Size</span><strong>10</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="product">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Company & Product</div>
+          <div>
+            <h2>让 AI Agent 像通讯录里的朋友一样出现。</h2>
+            <p class="lead">Photon 不是模型公司，而是 agent interaction infrastructure。开发者不需要让用户下载新 App，而是把 agent 直接部署进 iMessage、WhatsApp、Telegram、Slack 等主流消息平台。</p>
+          </div>
+        </div>
+        <div class="architecture">
+          <div class="layer">
+            <small>Intelligence Layer</small>
+            <h3>Photon SDK</h3>
+            <p>声明式、状态驱动的 Agent 框架。开发者描述 agent 是什么，框架处理 multipart messaging、cross-agent memory、proactive messaging 与“何时停止说话”等交互原语。对标 React / SwiftUI。</p>
+          </div>
+          <div class="layer">
+            <small>Channel Layer</small>
+            <h3>Spectrum</h3>
+            <p>跨 10+ 消息与社交平台的统一接口，目标是让 agent logic 一次编写、多平台分发。E2E latency 宣称低于 1 秒，对标 Twilio + Sendbird hybrid。</p>
+          </div>
+        </div>
+        <div class="split" style="margin-top:26px">
+          <div class="panel">
+            <div class="panel-pad">
+              <h3>Model-Agnostic by Design</h3>
+              <p>Photon SDK 不绑定特定 LLM。开发者可接入 Claude、GPT、Gemini、DeepSeek 等模型。护城河不在模型智能，而在通道接入工程深度与开发者体验。</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-pad">
+              <h3>Team Signal</h3>
+              <p>Ryan Zhu 拥有 AdventureX 社群资产与 builder 运营经验；Daniel Tian 具备 Wharton M&T、Z-Fellow 与技术商业复合背景。团队强调 AI-native engineering velocity。</p>
+            </div>
+          </div>
+        </div>
+        <div class="panel" style="margin-top:26px">
+          <div class="panel-pad">
+            <h3>Original Brief Snapshot</h3>
+            <p>产品页原始信息保留为视觉参考，网页正文已按 investment memo 逻辑重新整理。</p>
+          </div>
+          <img class="screen" src="assets/product.png" alt="Photon AI product architecture page from the original brief" />
+        </div>
+      </div>
+    </section>
+
+    <section id="market">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Market Opportunity</div>
+          <div>
+            <h2>Messaging 是 Agent 的超级入口。</h2>
+            <p class="lead">a16z “dynamic agent layer” thesis 与 Photon 定位同频。若 agent 替代 10-15% consumer-facing app 交互，2030 agent-driven messaging 市场可达 $5-8B。</p>
+          </div>
+        </div>
+        <div class="thesis-grid">
+          <div class="thesis"><div class="num">1</div><b>Why Now</b><p>GPT-4 级别模型后，LLM 已达到在 messaging 中自然交互的临界点，consumer-facing AI agent 在 2025-2026 批量涌现。</p></div>
+          <div class="thesis"><div class="num">2</div><b>Distribution Shift</b><p>开发者厌倦“做 App 再求下载”的低留存模式。用户不会下载 App 见 agent，但每天会打开 iMessage / WhatsApp 上百次。</p></div>
+          <div class="thesis"><div class="num">3</div><b>Scarcity Premium</b><p>Apple 与 Meta 收紧 official API，推高逆向工程能力的稀缺溢价，也同步放大平台封禁与合规风险。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="traction">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Traction</div>
+          <div>
+            <h2>开源心智已经建立，商业化还需验证。</h2>
+            <p class="lead">Photon 当前最强信号来自开源 flywheel 与 Ditto 案例：GitHub 上唯一开源 iMessage Agent SDK，累计约 2,600+ stars，1,000+ 实际开发者，50+ weekly inbound。</p>
+          </div>
+        </div>
+        <div class="split">
+          <div class="panel">
+            <div class="panel-pad">
+              <h3>Open Source Flywheel</h3>
+              <ul>
+                <li><strong>imessage-kit:</strong> 1,306 stars / 124 forks，首个开源 iMessage Agent SDK。</li>
+                <li><strong>advanced-imessage-kit:</strong> 覆盖 gRPC v2、threaded reply、tapback、edit / unsend、polls。</li>
+                <li><strong>qclaw-wechat-client:</strong> 799 stars，WeChat 接入资产被 deck 低估。</li>
+                <li><strong>LLM search:</strong> iMessage 自动化场景下内容曝光 100K+。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-pad">
+              <h3>Flagship Customer: Ditto</h3>
+              <p>Ditto 是基于 iMessage 的大学生约会撮合 Agent，覆盖 UC Berkeley、UCSD、USC、UCLA、UC Davis，完全跑在 Spectrum 之上。</p>
+              <ul>
+                <li>42,000+ 注册用户</li>
+                <li>140K+ active users</li>
+                <li>4M+ messages processed</li>
+                <li>Peak XV 领投 $9.2M seed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="competition">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Competitive Landscape</div>
+          <div>
+            <h2>Photon 的差异化在“渠道 + 框架”的垂直整合。</h2>
+            <p class="lead">Linq 商业领先明显，但主要做渠道层；Sendblue 偏 iMessage CRM API；Sendbird 是成熟 in-app chat API。Photon 的赌注是 SDK 层与开源生态心智会成为 builder 偏好的入口。</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Company</th><th>Raised</th><th>Traction</th><th>Positioning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Photon</strong></td><td>MiraclePlus 2025F</td><td>2,600+ stars; 1,000+ devs; 50+ weekly inbound; Ditto case</td><td>唯一开源 iMessage SDK + 声明式 Agent 框架双层架构</td></tr>
+              <tr><td><strong>Linq</strong></td><td>$20M Series A</td><td>100+ customers; 30M+ messages/month; 132% QoQ growth</td><td>纯渠道层，iMessage + SMS + RCS + Voice，闭源，商业领先</td></tr>
+              <tr><td><strong>Sendblue</strong></td><td>$500K YC S23</td><td>35K+ installs; customers generated $2.1B+ revenue</td><td>iMessage CRM API，销售优先，SOC2 / HIPAA</td></tr>
+              <tr><td><strong>Sendbird</strong></td><td>$221M+</td><td>150M+ users; Reddit, Hinge, Paytm</td><td>In-app chat & video API，不进入原生 iMessage / WhatsApp</td></tr>
+              <tr><td><strong>Vercel Chat SDK</strong></td><td>N/A</td><td>Open beta</td><td>偏 enterprise Slack / Teams 工作场景，不含 iMessage</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel" style="margin-top:26px">
+          <div class="panel-pad">
+            <h3>Competitive Landscape Snapshot</h3>
+            <p>竞品对比的原始 PDF 页面作为 appendix-style visual，便于 LP 快速核对口径。</p>
+          </div>
+          <img class="screen" src="assets/competition.png" alt="Photon AI competitive landscape page from the original brief" />
+        </div>
+      </div>
+    </section>
+
+    <section id="thesis">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Investment Thesis</div>
+          <div>
+            <h2>这是 AI 时代的 Twilio 机会，但不是低风险机会。</h2>
+          </div>
+        </div>
+        <div class="thesis-grid">
+          <div class="thesis"><div class="num">1</div><b>Agent Interface Shift</b><p>Agent 不应困在 dashboard、独立 App 或 Discord bot。主流入口应迁移到用户每天打开的 messaging layer。</p></div>
+          <div class="thesis"><div class="num">2</div><b>Vertical Integration</b><p>“写一次、发到 iMessage”优于拼接 Sendblue + LangChain + 自建 infra。渠道与框架耦合后，体验难被切片复制。</p></div>
+          <div class="thesis"><div class="num">3</div><b>Open Source CAC</b><p>开源到付费漏斗已被 PostHog、Vercel、Supabase 验证。Photon 已获得 iMessage Agent 搜索心智。</p></div>
+          <div class="thesis"><div class="num">4</div><b>Protocol Depth</b><p>从 AppleScript 升级到自研 gRPC v2 server，解锁 threaded reply、tapback、edit / unsend 等一等公民功能。</p></div>
+          <div class="thesis"><div class="num">5</div><b>Founder-Led Community</b><p>Ryan 的 AdventureX 与 Daniel 的 Wharton M&T 组合，具备 dev-tool 公司早期 founder-led community 的估值溢价潜力。</p></div>
+          <div class="thesis"><div class="num">6</div><b>IOSG Strategic Edge</b><p>WeChat 扩展、crypto agent payment、Asia AI builder ecosystem 是湾区 VC 难提供的差异化价值。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="risks">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Anti-Thesis</div>
+          <div>
+            <h2>最大风险不是产品，而是平台。</h2>
+            <p class="lead">Beeper Mini 的前车之鉴与 Meta WhatsApp chatbot ban 说明：平台方有强动机压制非官方 agent distribution layer。Photon 必须证明它和 Beeper / 通用 chatbot 的风险边界不同。</p>
+          </div>
+        </div>
+        <div class="risk-grid">
+          <div class="risk"><span class="level high">High</span><b>Apple Platform Risk</b><p>Beeper Mini 被 Apple 快速封禁。Photon 是 B2B 商业操作，Apple 执行动机可能更强。</p></div>
+          <div class="risk"><span class="level high">High</span><b>WhatsApp Policy Risk</b><p>Meta 已禁止通用型 AI chatbot 运行在 WhatsApp Business API，削弱多渠道防御故事。</p></div>
+          <div class="risk"><span class="level medhigh">Med-High</span><b>Linq Commercial Lead</b><p>Linq 已有 100+ 客户与 30M+ messages/month，Photon 需要证明 SDK 层能驱动迁移。</p></div>
+          <div class="risk"><span class="level medium">Medium</span><b>Operational Depth</b><p>团队年轻，企业级 infra、合规、平台关系管理与 senior GTM 需要补强。</p></div>
+          <div class="risk"><span class="level medium">Medium</span><b>Revenue Inconsistency</b><p>LinkedIn $36M annual revenue 与 $100K pipeline 不一致，真实 MRR / ARR 必须澄清。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="iosg-angle">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">IOSG Strategic Angle</div>
+          <div>
+            <h2>IOSG 进 cap table 的理由必须不是钱。</h2>
+            <p class="lead">自然 lead investor 是 a16z / Spark / General Catalyst。IOSG 的进入理由应绑定湾区 VC 给不了的价值：WeChat、中国 / 亚洲 GTM、crypto payment rail 与 Asia builder ecosystem。</p>
+          </div>
+        </div>
+        <div class="split">
+          <div class="panel">
+            <div class="panel-pad">
+              <h3>Recommended Role</h3>
+              <p><strong>Strategic Co-investor: $500K-$1M</strong></p>
+              <p>与湾区 lead investor 共存，用 Asia angle 与 crypto agent payment 集成换取差异化位置。若 co-lead，则需要 Term Sheet 阶段绑定 WeChat KPI、Asia partnership 条款与 board observer。</p>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-pad">
+              <h3>Three Strategic Hooks</h3>
+              <ul>
+                <li>WeChat SDK 第二增长曲线与 Tencent ecosystem introductions。</li>
+                <li>Photon SDK + crypto payment rail，探索 agent 自动结算 default standard。</li>
+                <li>Photon House Residency 的 Asia branch sponsor，提前接触下一代 builder。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="next">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Recommendation</div>
+          <div>
+            <h2>Discuss / Selective Invest.</h2>
+            <p class="lead">在 5 个 Must-Ask 问题得到满意回答后，建议投资。合理本轮估值锚点 $15M-$30M post；若 >$50M post，建议 pass 或等下一轮。</p>
+          </div>
+        </div>
+        <div class="recommendation">
+          <div class="rec-item"><span>Decision</span><strong>DISCUSS / SELECTIVE INVEST</strong><p>赛道强、timing 强、开源心智强；平台风险必须进入 valuation discount。</p></div>
+          <div class="rec-item"><span>Sizing</span><strong>$500K-$1M</strong><p>按 IOSG framework 介于 Seed A 上限与 Seed B 下限之间。</p></div>
+          <div class="rec-item"><span>Pass Triggers</span><strong>Apple risk unresolved; revenue unclear; >$50M post</strong><p>三者任一触发都应谨慎推进。</p></div>
+        </div>
+
+        <div style="height:34px"></div>
+        <div class="section-head" style="margin-bottom:20px">
+          <div class="kicker">Must-Ask Questions</div>
+          <div><h2>IC 前必须问清楚的 5 个问题。</h2></div>
+        </div>
+        <div class="questions">
+          <div class="question">你们和 Beeper Mini 在协议层、商业模式、Apple 关系上的具体差异是什么？为什么 Apple 不会用同样手段封你们？</div>
+          <div class="question">Linq 已签下 100+ 客户，给我一个客户从 Linq 切换到 Photon 的真实案例。</div>
+          <div class="question">Meta WhatsApp chatbot ban 已生效，你们 WhatsApp 集成现状如何？哪些客户在合规边界内？</div>
+          <div class="question">真实 MRR、付费客户数、最大客户营收占比是多少？LinkedIn $36M 数据如何调和？</div>
+          <div class="question">Ditto 是付费客户、equity-for-services 还是 strategic partnership？Apple 若封禁 Ditto，应急方案是什么？</div>
+        </div>
+
+        <div style="height:34px"></div>
+        <div class="timeline">
+          <div class="week"><b>Week 1</b><p>第一次 meeting，带 5 个 Must-Ask 问题与 IOSG WeChat angle。</p></div>
+          <div class="week"><b>Week 1-2</b><p>技术 DD：实际跑通 imessage-kit + Spectrum，验证 latency <1s claim。</p></div>
+          <div class="week"><b>Week 2-3</b><p>财务对标、团队背调、客户访谈，重点验证 Linq / Sendblue 替代意愿。</p></div>
+          <div class="week"><b>Week 3-4</b><p>找 1-2 个 IOSG portfolio 试用 Photon SDK，形成预付客户合同与 IC 决策。</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>Confidential.</strong> Prepared by IOSG Ventures. This page is based on public sources and company-provided materials as of 19 May 2026. Certain figures, including revenue, customer count and valuation, require founder confirmation. This document does not constitute an offer to sell or a solicitation of an offer to buy securities.
+    </div>
+  </footer>
+</body>
+</html>
