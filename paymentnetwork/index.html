@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asia Payment Network — Founding Partner Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16202e;
+    --ink-soft:#37475c;
+    --paper:#f3efe6;
+    --paper-deep:#e9e3d5;
+    
+    --brass:#a17c3c;
+    --line:#cfc7b4;
+    --white:#fbfaf6;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+  .serif{font-family:'Fraunces',Georgia,serif}
+
+  /* top bar */
+  .topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .brandmark{display:flex;align-items:center;gap:12px}
+  .brandmark .dot{width:9px;height:9px;background:var(--brass);border-radius:50%}
+  .brandmark span{font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:.01em}
+  .langtoggle{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .langtoggle:hover{color:var(--ink);border-color:var(--brass)}
+
+  /* hero */
+  .hero{padding:96px 0 72px;position:relative;overflow:hidden}
+  .hero .eyebrow{color:var(--brass)}
+  .hero h1{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(38px,6.5vw,76px);line-height:1.02;letter-spacing:-.015em;
+    margin:26px 0 0;max-width:16ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--ink-soft)}
+  .hero .lede{font-size:clamp(18px,2.2vw,22px);color:var(--ink-soft);max-width:54ch;margin-top:30px;line-height:1.55}
+  .hero .meta{margin-top:44px;display:flex;gap:38px;flex-wrap:wrap;align-items:baseline}
+  .hero .meta div .mono{color:var(--ink-soft);display:block;margin-bottom:6px}
+  .hero .meta div strong{font-family:'Fraunces',serif;font-weight:500;font-size:19px}
+  .rule-h{height:1px;background:var(--line);border:0;margin:0}
+
+  /* generic section */
+  section{padding:76px 0}
+  .sec-head{display:flex;gap:18px;align-items:baseline;margin-bottom:40px}
+  .sec-head .num{font-family:'IBM Plex Mono',monospace;color:var(--brass);font-size:13px;padding-top:6px}
+  .sec-head h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.01em;line-height:1.1}
+  .sec-head p{color:var(--ink-soft);max-width:50ch;margin-top:10px}
+
+  /* why now — three forces */
+  .forces{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  .force{padding:34px 26px 34px 0;border-bottom:1px solid var(--line)}
+  .force:not(:last-child){border-right:1px solid var(--line);padding-right:30px}
+  .force .k{font-family:'Fraunces',serif;font-size:15px;color:var(--brass);font-weight:600;margin-bottom:14px}
+  .force h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;line-height:1.25;margin-bottom:12px;letter-spacing:-.01em}
+  .force p{font-size:15px;color:var(--ink-soft);line-height:1.6}
+
+  /* the gap callout */
+  .gap{background:var(--ink);color:var(--white);padding:64px 0;margin:0}
+  .gap .wrap{max-width:860px}
+  .gap .mono{color:var(--brass)}
+  .gap p{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,3vw,32px);line-height:1.4;margin-top:22px;letter-spacing:-.01em}
+  .gap p em{font-style:italic;color:#d8cda8}
+
+  /* four functions */
+  .funcs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+  .func{background:var(--paper);padding:38px 34px}
+  .func .fn{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;color:var(--brass);text-transform:uppercase}
+  .func h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin:16px 0 12px;letter-spacing:-.01em}
+  .func p{font-size:15.5px;color:var(--ink-soft);line-height:1.62}
+
+  /* principles list */
+  .principles{border-top:1px solid var(--line)}
+  .principle{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
+  .principle .pn{font-family:'IBM Plex Mono',monospace;color:var(--brass);font-size:14px;padding-top:5px}
+  .principle h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-.01em;margin-bottom:8px}
+  .principle p{color:var(--ink-soft);font-size:15.5px;max-width:62ch}
+
+  /* who founder partners */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:54px}
+  .twocol h3{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:16px}
+  .checklist{list-style:none}
+  .checklist li{padding:13px 0 13px 28px;border-bottom:1px solid var(--line);position:relative;font-size:15.5px;color:var(--ink-soft)}
+  .checklist li:before{content:"";position:absolute;left:0;top:20px;width:9px;height:9px;border:1.5px solid var(--brass);border-radius:1px}
+  .checklist li strong{color:var(--ink);font-weight:600}
+
+  /* organizer note */
+  .organizer{background:var(--paper-deep);border:1px solid var(--line);padding:40px 38px;border-radius:2px}
+  .organizer .mono{color:var(--brass);display:block;margin-bottom:14px}
+  .organizer p{font-size:16px;color:var(--ink-soft);max-width:64ch}
+  .organizer p+p{margin-top:14px}
+  .organizer strong{color:var(--ink)}
+
+  /* cta */
+  .cta{padding:88px 0}
+  .cta-card{background:var(--ink);color:var(--white);padding:60px 52px;border-radius:3px}
+  .cta-card h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,4vw,44px);letter-spacing:-.015em;line-height:1.08;max-width:18ch}
+  .cta-card p{color:#c8bfa8;margin-top:20px;max-width:52ch;font-size:17px}
+  .cta-row{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .btn{
+    display:inline-block;background:var(--brass);color:#1a1208;text-decoration:none;
+    font-weight:600;font-size:15px;padding:15px 30px;border-radius:2px;letter-spacing:.01em;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{background:#b58e44;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
+  .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:var(--brass)}
+ .cta-note{color:#9a917b;font-size:13px}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:40px 0 60px}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  footer .mono{color:var(--ink-soft)}
+  footer p{font-size:13px;color:var(--ink-soft);max-width:60ch;line-height:1.6;margin-top:14px}
+  .disclaimer{font-size:12px;color:#9a917b;line-height:1.6;max-width:70ch;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+
+  @media(max-width:860px){
+    .forces{grid-template-columns:1fr}
+    .force:not(:last-child){border-right:0;padding-right:0}
+    .funcs{grid-template-columns:1fr}
+    .twocol{grid-template-columns:1fr;gap:36px}
+    .principle{grid-template-columns:44px 1fr}
+    .cta-card{padding:42px 28px}
+    section{padding:56px 0}
+  }
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandmark"><span class="dot"></span><span>Asia Payment Network</span></div>
+    <a class="langtoggle mono" href="./index-zh.html">中文</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="mono eyebrow">Founding Partner Invitation · Hong Kong · 2026</div>
+    <h1 class="serif">A neutral payment alliance, built by its <em>members</em>.</h1>
+    <p class="lede">Asia Payment Network is an admission-controlled alliance of licensed and crypto-native payment companies, organized in Hong Kong. We invite a small group of founding partners to shape its governance, its standards, and its economics from day one.</p>
+    <div class="meta">
+      <div><span class="mono">Convened by</span><strong>IOSG Ventures</strong></div>
+      <div><span class="mono">Founding cohort</span><strong>6–10 anchor members</strong></div>
+      <div><span class="mono">Base</span><strong>Hong Kong</strong></div>
+    </div>
+  </div>
+</header>
+<hr class="rule-h">
+
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">01</div>
+      <div>
+        <h2 class="serif">Why now</h2>
+        <p>Three independent shifts have opened a window that did not exist eighteen months ago.</p>
+      </div>
+    </div>
+    <div class="forces">
+      <div class="force reveal">
+        <div class="k">Regulation</div>
+        <h3 class="serif">A live regulatory perimeter</h3>
+        <p>Hong Kong's Stablecoins Ordinance took effect in August 2025, and the LEAP framework now covers stablecoins, virtual-asset dealing, and tokenized real-world assets end to end. With only a handful of licenses expected initially, coordination — not scale alone — is what gets companies to the front of the queue.</p>
+      </div>
+      <div class="force reveal">
+        <div class="k">Market</div>
+        <h3 class="serif">A deal-flow peak</h3>
+        <p>Crypto-payment companies are raising and exiting at record valuations across card issuing, cross-border PSP, and tokenization rails. The category has momentum, capital, and live revenue — but no shared, neutral home in Asia.</p>
+      </div>
+      <div class="force reveal">
+        <div class="k">Structure</div>
+        <h3 class="serif">An organizer vacuum</h3>
+        <p>The most credible neutral conveners of cross-border settlement have stepped back, leaving the multilateral middle empty. The opening is for a privately organized, compliance-first commercial rail — not another single-bloc platform.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gap">
+  <div class="wrap reveal">
+    <div class="mono">The opening</div>
+    <p class="serif">Today, not one of these companies sits inside a multilateral, neutral, Asia-organized alliance. <em>That is the space this network is built to occupy.</em></p>
+  </div>
+</div>
+
+<section id="functions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">02</div>
+      <div>
+        <h2 class="serif">What the network does</h2>
+        <p>Four functions, each designed to be useful to members from the first quarter — not a conference, and not a standards body without a rail.</p>
+      </div>
+    </div>
+    <div class="funcs">
+      <div class="func reveal">
+        <div class="fn">Function 01</div>
+        <h3 class="serif">Convene</h3>
+        <p>A closed-door working group of founding members meeting quarterly, plus an annual Hong Kong summit. A room where the people building Asia's payment rails actually set the agenda together.</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Function 02</div>
+        <h3 class="serif">Interconnect</h3>
+        <p>Members integrate with one another — card issuing meeting cross-border channels, tokenized assets settling over stablecoin rails, compliance tooling shared across PSPs. The network is the matchmaker.</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Function 03</div>
+        <h3 class="serif">Represent</h3>
+        <p>A single, collective voice in dialogue with Hong Kong regulators and policy bodies. Engaging on framework and use-case clarity is far cheaper and more credible as a group than company by company.</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Function 04</div>
+        <h3 class="serif">Research</h3>
+        <p>A quarterly Asia payment research report and a maintained member directory — shared market intelligence that raises the standing of every participant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="principles" style="background:var(--paper-deep)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">03</div>
+      <div>
+        <h2 class="serif">Design principles</h2>
+        <p>How the alliance is structured to stay neutral and worth belonging to. These are the founding design commitments — refined together with the founding cohort, not fixed terms.</p>
+      </div>
+    </div>
+    <div class="principles">
+      <div class="principle reveal">
+        <div class="pn">P1</div>
+        <div>
+          <h3 class="serif">Contribution-linked economics</h3>
+          <p>The alliance is designed so that economic value generated at the shared settlement layer is allocated by contribution to the network, rather than captured solely by an issuer. The intent is structural alignment among members; specific mechanics are developed with the founding cohort.</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="pn">P2</div>
+        <div>
+          <h3 class="serif">Non-discriminatory pricing</h3>
+          <p>Members are treated on equal pricing terms regardless of size, following the cooperative model used by established clearing utilities. No member buys advantage simply by being large.</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="pn">P3</div>
+        <div>
+          <h3 class="serif">Jurisdiction-neutral governance</h3>
+          <p>The board is designed so that no single jurisdiction can dominate. Neutrality is the asset; the alliance is deliberately not built as any one bloc's instrument.</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="pn">P4</div>
+        <div>
+          <h3 class="serif">Compliance-first, chain-agnostic</h3>
+          <p>A Western-compliance posture and admission control are built in from the start, and the network is not tied to any single chain or issuer. Real assets and real rails, not a logo collection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founders">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">04</div>
+      <div>
+        <h2 class="serif">What founding partners get — and give</h2>
+      </div>
+    </div>
+    <div class="twocol">
+      <div class="reveal">
+        <h3 class="serif">As a founding partner, you</h3>
+        <ul class="checklist">
+          <li>Help <strong>write the governance</strong> — board structure, admission rules, and economic design are set with the founding cohort, not handed down.</li>
+          <li>Sit at the <strong>quarterly working group</strong> and shape the annual summit agenda.</li>
+          <li>Gain <strong>cross-member integration</strong> — warm introductions and technical interconnection with other anchors.</li>
+          <li>Join the <strong>collective regulatory dialogue</strong> in Hong Kong as part of a recognized group.</li>
+          <li>Receive <strong>founding recognition</strong> in the network's research and public identity.</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <h3 class="serif">In return, we ask partners to</h3>
+        <ul class="checklist">
+          <li>Commit a <strong>named senior representative</strong> to the working group.</li>
+          <li>Engage in good faith on <strong>interconnection</strong> with other members where it makes commercial sense.</li>
+          <li>Uphold the alliance's <strong>compliance and admission standards</strong>.</li>
+          <li>Help <strong>refine the founding charter</strong> during the first two quarters.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="organizer" style="padding-top:0">
+  <div class="wrap">
+    <div class="organizer reveal">
+      <span class="mono">On the organizer</span>
+      <p>Asia Payment Network is convened by <strong>IOSG Ventures</strong>, an investment firm active in digital-asset and payment infrastructure since 2017.</p>
+      <p>IOSG's role is deliberately bounded: <strong>to organize, to research, and to invest in the equity of key companies</strong>. The alliance is member-shaped, and IOSG holds no license and operates no payment business of its own. The aim is a network that outlasts and outgrows any single organizer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="join" style="padding-top:24px">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <h2 class="serif">The founding cohort is small by design.</h2>
+      <p>We're holding the first cohort to six to ten anchor members so governance stays workable and every founding voice carries weight. If your company builds payment, settlement, or tokenization rails in or into Asia, we'd like to talk.</p>
+      <div class="cta-row">
+        <a class="btn" href="mailto:hello@example.com?subject=Asia%20Payment%20Network%20—%20Founding%20Partner%20Interest">Request a conversation</a>
+        <a class="btn btn-ghost" href="mailto:hello@example.com?subject=Asia%20Payment%20Network%20—%20Briefing%20Request">Ask for the briefing</a>
+        <span class="cta-note">Replace with your contact before sending.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brandmark"><span class="dot"></span><span>Asia Payment Network</span></div>
+      <p>An admission-controlled payment alliance organized in Hong Kong. Convened by IOSG Ventures.</p>
+    </div>
+    <div style="max-width:50%">
+      <div class="disclaimer">
+        This page is an invitation to explore founding partnership and is provided for information only. It is not an offer of securities, a solicitation of investment, a promise of financial return, or financial, legal, or regulatory advice. The alliance's design principles are commitments of intent, developed together with founding members, and are not final terms. Any reference to economic allocation describes a structural design objective, not a guaranteed return. Participation is subject to the alliance's admission process and applicable law.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
