@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asia Payment Network — 创始合作伙伴邀请</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16202e;--ink-soft:#37475c;--paper:#f3efe6;--paper-deep:#e9e3d5;
+    --brass:#a17c3c;--line:#cfc7b4;--white:#fbfaf6;--maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);
+    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;
+    font-size:16.5px;line-height:1.8;-webkit-font-smoothing:antialiased;}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+  .serif{font-family:'Fraunces','Noto Serif SC',serif}
+
+  .topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .brandmark{display:flex;align-items:center;gap:12px}
+  .brandmark .dot{width:9px;height:9px;background:var(--brass);border-radius:50%}
+  .brandmark span{font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:.01em}
+  .langtoggle{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .langtoggle:hover{color:var(--ink);border-color:var(--brass)}
+
+  .hero{padding:96px 0 72px}
+  .hero .eyebrow{color:var(--brass)}
+  .hero h1{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;
+    font-size:clamp(34px,5.8vw,64px);line-height:1.18;letter-spacing:0;margin:26px 0 0;max-width:20ch;}
+  .hero h1 em{font-style:normal;color:var(--ink-soft)}
+  .hero .lede{font-size:clamp(17px,2vw,20px);color:var(--ink-soft);max-width:46ch;margin-top:30px;line-height:1.85}
+  .hero .meta{margin-top:44px;display:flex;gap:38px;flex-wrap:wrap;align-items:baseline}
+  .hero .meta div .mono{color:var(--ink-soft);display:block;margin-bottom:6px}
+  .hero .meta div strong{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:18px}
+  .rule-h{height:1px;background:var(--line);border:0;margin:0}
+
+  section{padding:76px 0}
+  .sec-head{display:flex;gap:18px;align-items:baseline;margin-bottom:40px}
+  .sec-head .num{font-family:'IBM Plex Mono',monospace;color:var(--brass);font-size:13px;padding-top:8px}
+  .sec-head h2{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:clamp(24px,3.2vw,34px);line-height:1.3}
+  .sec-head p{color:var(--ink-soft);max-width:44ch;margin-top:10px}
+
+  .forces{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  .force{padding:34px 26px 34px 0;border-bottom:1px solid var(--line)}
+  .force:not(:last-child){border-right:1px solid var(--line);padding-right:30px}
+  .force .k{font-family:'Fraunces','Noto Serif SC',serif;font-size:15px;color:var(--brass);font-weight:600;margin-bottom:14px}
+  .force h3{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:20px;line-height:1.45;margin-bottom:12px}
+  .force p{font-size:14.5px;color:var(--ink-soft);line-height:1.85}
+
+  .gap{background:var(--ink);color:var(--white);padding:64px 0}
+  .gap .wrap{max-width:800px}
+  .gap .mono{color:var(--brass)}
+  .gap p{font-family:'Fraunces','Noto Serif SC',serif;font-weight:400;font-size:clamp(20px,2.8vw,29px);line-height:1.6;margin-top:22px}
+  .gap p em{font-style:normal;color:#d8cda8}
+
+  .funcs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+  .func{background:var(--paper);padding:38px 34px}
+  .func .fn{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--brass);text-transform:uppercase}
+  .func h3{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:23px;margin:16px 0 12px}
+  .func p{font-size:15px;color:var(--ink-soft);line-height:1.85}
+
+  .principles{border-top:1px solid var(--line)}
+  .principle{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
+  .principle .pn{font-family:'IBM Plex Mono',monospace;color:var(--brass);font-size:14px;padding-top:7px}
+  .principle h3{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:20px;margin-bottom:8px}
+  .principle p{color:var(--ink-soft);font-size:15px;max-width:56ch}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:54px}
+  .twocol h3{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:20px;margin-bottom:16px}
+  .checklist{list-style:none}
+  .checklist li{padding:14px 0 14px 28px;border-bottom:1px solid var(--line);position:relative;font-size:15px;color:var(--ink-soft);line-height:1.75}
+  .checklist li:before{content:"";position:absolute;left:0;top:21px;width:9px;height:9px;border:1.5px solid var(--brass);border-radius:1px}
+  .checklist li strong{color:var(--ink);font-weight:600}
+
+  .organizer{background:var(--paper-deep);border:1px solid var(--line);padding:40px 38px;border-radius:2px}
+  .organizer .mono{color:var(--brass);display:block;margin-bottom:14px}
+  .organizer p{font-size:15.5px;color:var(--ink-soft);max-width:58ch;line-height:1.85}
+  .organizer p+p{margin-top:14px}
+  .organizer strong{color:var(--ink)}
+
+  .cta{padding:88px 0}
+  .cta-card{background:var(--ink);color:var(--white);padding:60px 52px;border-radius:3px}
+  .cta-card h2{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:clamp(26px,3.6vw,40px);line-height:1.3;max-width:22ch}
+  .cta-card p{color:#c8bfa8;margin-top:20px;max-width:46ch;font-size:16px;line-height:1.85}
+  .cta-row{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-block;background:var(--brass);color:#1a1208;text-decoration:none;font-weight:600;font-size:15px;padding:15px 30px;border-radius:2px;transition:transform .15s ease, background .15s ease;}
+  .btn:hover{background:#b58e44;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
+  .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:var(--brass)}
+  .cta-note{color:#9a917b;font-size:13px}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 60px}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  footer p{font-size:13px;color:var(--ink-soft);max-width:48ch;line-height:1.8;margin-top:14px}
+  .disclaimer{font-size:12px;color:#9a917b;line-height:1.85;max-width:62ch;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+
+  @media(max-width:860px){
+    .forces{grid-template-columns:1fr}
+    .force:not(:last-child){border-right:0;padding-right:0}
+    .funcs{grid-template-columns:1fr}
+    .twocol{grid-template-columns:1fr;gap:36px}
+    .principle{grid-template-columns:44px 1fr}
+    .cta-card{padding:42px 28px}
+    section{padding:56px 0}
+  }
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandmark"><span class="dot"></span><span>Asia Payment Network</span></div>
+    <a class="langtoggle mono" href="./index-en.html">EN</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="mono eyebrow">创始合作伙伴邀请 · 香港 · 2026</div>
+    <h1 class="serif">一个由<em>成员</em>共同搭建的中立支付联盟</h1>
+    <p class="lede">Asia Payment Network 是一个在香港发起、准入制的支付联盟，成员为持牌与 crypto-native 的支付公司。我们邀请一小批创始合作伙伴，从第一天起共同塑造它的治理、标准与经济结构。</p>
+    <div class="meta">
+      <div><span class="mono">发起方</span><strong>IOSG Ventures</strong></div>
+      <div><span class="mono">创始成员</span><strong>6–10 家 anchor</strong></div>
+      <div><span class="mono">基地</span><strong>香港</strong></div>
+    </div>
+  </div>
+</header>
+<hr class="rule-h">
+
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">01</div>
+      <div>
+        <h2 class="serif">为什么是现在</h2>
+        <p>三股相互独立的变化，打开了一个 18 个月前还不存在的窗口。</p>
+      </div>
+    </div>
+    <div class="forces">
+      <div class="force reveal">
+        <div class="k">监管</div>
+        <h3 class="serif">一个已经生效的监管闭环</h3>
+        <p>香港稳定币条例已于 2025 年 8 月生效，LEAP 框架现已端到端覆盖稳定币、虚拟资产交易与代币化 RWA。初期预计只发放数张牌照——能走到队伍前列的，靠的是协调能力，而不只是规模。</p>
+      </div>
+      <div class="force reveal">
+        <div class="k">市场</div>
+        <h3 class="serif">一个交易高峰</h3>
+        <p>加密支付公司在发卡、跨境 PSP、代币化通道等方向以创纪录的估值融资与退出。这个赛道有势能、有资本、有真实收入——但在亚洲还没有一个共享的、中立的归属地。</p>
+      </div>
+      <div class="force reveal">
+        <div class="k">结构</div>
+        <h3 class="serif">一个组织者真空</h3>
+        <p>跨境结算领域最有公信力的中立组织者已经退场，多边的中间地带空了出来。机会属于一个私营组织、合规优先的商业通道——而不是又一个单一阵营的平台。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gap">
+  <div class="wrap reveal">
+    <div class="mono">机会所在</div>
+    <p class="serif">今天，这些公司里没有一家身处一个多边的、中立的、由亚洲组织的联盟之中。<em>这正是这个 network 要去占据的位置。</em></p>
+  </div>
+</div>
+
+<section id="functions">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">02</div>
+      <div>
+        <h2 class="serif">这个 network 做什么</h2>
+        <p>四项功能，每一项都让成员从第一个季度起就能用上——它不是一场会议，也不是一个没有通道的标准机构。</p>
+      </div>
+    </div>
+    <div class="funcs">
+      <div class="func reveal">
+        <div class="fn">Function 01</div>
+        <h3 class="serif">组织</h3>
+        <p>由创始成员组成、每季度召开的闭门 working group，外加一年一度的香港峰会。一个真正让搭建亚洲支付通道的人共同制定议程的房间。</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Function 02</div>
+        <h3 class="serif">互联</h3>
+        <p>成员之间互相打通——发卡对接跨境通道，代币化资产经由稳定币通道结算，合规工具在 PSP 之间共享。Network 充当撮合方。</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Function 03</div>
+        <h3 class="serif">代表</h3>
+        <p>在与香港监管机构和政策部门的对话中，提供一个统一的集体声音。就框架与用例清晰度进行沟通，作为一个群体，远比一家家单打独斗更便宜、也更可信。</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Function 04</div>
+        <h3 class="serif">研究</h3>
+        <p>一份季度亚洲支付研究报告，以及一份持续维护的成员名录——共享的市场情报，抬高每一位参与者的站位。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="principles" style="background:var(--paper-deep)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">03</div>
+      <div>
+        <h2 class="serif">设计原则</h2>
+        <p>联盟如何在结构上保持中立、并值得加入。以下是创始阶段的设计承诺——与创始成员共同打磨，而非既定条款。</p>
+      </div>
+    </div>
+    <div class="principles">
+      <div class="principle reveal">
+        <div class="pn">P1</div>
+        <div>
+          <h3 class="serif">与贡献挂钩的经济结构</h3>
+          <p>联盟的设计目标是：在共享结算层产生的经济价值，按对 network 的贡献进行分配，而不是被单一发行方独占。其意图是成员之间的结构性利益对齐；具体机制与创始成员共同制定。</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="pn">P2</div>
+        <div>
+          <h3 class="serif">非歧视性定价</h3>
+          <p>成员在定价上一视同仁，不论规模大小，沿用成熟清算机构的合作社模型。没有成员能仅凭体量大就买到优势。</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="pn">P3</div>
+        <div>
+          <h3 class="serif">辖区中立的治理</h3>
+          <p>董事会的设计确保没有任何单一辖区能够主导。中立性本身就是资产；联盟刻意不被搭建成任何一方阵营的工具。</p>
+        </div>
+      </div>
+      <div class="principle reveal">
+        <div class="pn">P4</div>
+        <div>
+          <h3 class="serif">合规优先、chain-agnostic</h3>
+          <p>从一开始就内置合规姿态与准入控制，且不绑定任何单一公链或发行方。真实的资产与真实的通道，而不是一堆 logo 的集合。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founders">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">04</div>
+      <div>
+        <h2 class="serif">创始合作伙伴得到什么、付出什么</h2>
+      </div>
+    </div>
+    <div class="twocol">
+      <div class="reveal">
+        <h3 class="serif">作为创始合作伙伴，你将</h3>
+        <ul class="checklist">
+          <li>参与<strong>书写治理规则</strong>——董事会结构、准入规则与经济设计由创始成员共同确定，而非自上而下下发。</li>
+          <li>坐在<strong>季度 working group</strong> 中，并参与塑造年度峰会议程。</li>
+          <li>获得<strong>成员间互联</strong>——与其他 anchor 的暖性引荐与技术对接。</li>
+          <li>作为一个被认可的群体的一员，加入<strong>香港的集体监管对话</strong>。</li>
+          <li>在 network 的研究与对外形象中获得<strong>创始成员身份的认可</strong>。</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <h3 class="serif">作为回报，我们希望伙伴</h3>
+        <ul class="checklist">
+          <li>指派一位<strong>具名的资深代表</strong>进入 working group。</li>
+          <li>在有商业意义之处，就<strong>互联</strong>与其他成员真诚合作。</li>
+          <li>遵守联盟的<strong>合规与准入标准</strong>。</li>
+          <li>在头两个季度协助<strong>打磨创始章程</strong>。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="organizer" style="padding-top:0">
+  <div class="wrap">
+    <div class="organizer reveal">
+      <span class="mono">关于发起方</span>
+      <p>Asia Payment Network 由 <strong>IOSG Ventures</strong> 发起。IOSG 是一家自 2017 年起活跃于数字资产与支付基础设施领域的投资机构。</p>
+      <p>IOSG 的角色被刻意限定：<strong>组织、研究，以及投资关键公司的股权</strong>。联盟由成员塑造，IOSG 自身不持牌、也不经营任何支付业务。目标是让这个 network 的生命力超越、并成长得超过任何单一组织者。</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="join" style="padding-top:24px">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <h2 class="serif">创始成员的规模，是刻意做小的。</h2>
+      <p>我们把第一批成员控制在 6 到 10 家 anchor，以保证治理可运作、每一个创始声音都有分量。如果你的公司在亚洲、或面向亚洲搭建支付、结算或代币化通道，我们想和你聊聊。</p>
+      <div class="cta-row">
+        <a class="btn" href="mailto:hello@example.com?subject=Asia%20Payment%20Network%20—%20创始合作伙伴意向">预约一次对话</a>
+        <a class="btn btn-ghost" href="mailto:hello@example.com?subject=Asia%20Payment%20Network%20—%20索取简报">索取联盟简报</a>
+        <span class="cta-note">发送前请替换为你的联系方式。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brandmark"><span class="dot"></span><span>Asia Payment Network</span></div>
+      <p>一个在香港发起、准入制的支付联盟。由 IOSG Ventures 发起。</p>
+    </div>
+    <div style="max-width:50%">
+      <div class="disclaimer">
+        本页面为探讨创始合作伙伴关系的邀请，仅供参考。它不构成证券要约、投资招揽、收益承诺，也不构成财务、法律或监管意见。联盟的设计原则为意向性承诺，与创始成员共同制定，并非最终条款。任何关于经济分配的表述，描述的是结构性的设计目标，而非有保证的回报。参与须遵循联盟的准入流程及适用法律。
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
