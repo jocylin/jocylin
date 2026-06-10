@@ -1,0 +1,744 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AI Scout Incentive Program — 奖励结构更新方案</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="37af0ada-243c-818b-b8ec-ff7a0a55a24d" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🤖</span></div><h1 class="page-title" dir="auto">AI Scout Incentive Program — 奖励结构更新方案</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="6dd34692-15d9-4cf9-adab-ab1122001e10" class=""><strong>起草日期：</strong> 2026年6月9日</p></div><div style="display:contents" dir="auto"><p id="446fdba1-b445-48fb-b4a5-b15cf4db56e6" class=""><strong>状态：</strong> 🟡 待决策</p></div><div style="display:contents" dir="auto"><p id="80abc5ed-47be-42e4-b1a4-bf0b65cd08e1" class=""><strong>背景：</strong> 本文档针对 IOSG Global Scouts 项目在 AI 赛道的专项优化，提出现金奖励的两个替代方案及一项新增的 Venture Partner 升级机制，供 决策参考。Carry 结构保持不变。</p></div><div style="display:contents" dir="auto"><hr id="690c4163-e308-4837-9dbb-db74c921de64"/></div><div style="display:contents" dir="auto"><h2 id="ef86011f-c14f-4798-b454-b17cc36325a5" class="">一、背景：原有奖励结构回顾</h2></div><div style="display:contents" dir="auto"><h3 id="bd846039-7eb5-4d8e-8a28-1b08be3f1504" class="">现金奖励（原方案）</h3></div><div style="display:contents" dir="auto"><p id="14f8c033-d2a7-430f-84f9-955026840146" class="">原方案现金奖励分级如下，单笔 deal 上限 $20,000，年度现金池上限 $100k：</p></div><div style="display:contents" dir="ltr"><table id="38327e8e-c3a7-45cd-a883-d7a5ab77b47f" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="651c6e61-7a2d-4c69-a588-3ec69bd8bfca"><th id="Qx:E" class="simple-table-header-color simple-table-header">IOSG 投资金额</th><th id="`fmU" class="simple-table-header-color simple-table-header">奖励计算</th><th id="]wx}" class="simple-table-header-color simple-table-header">Referrer 奖励</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="c9029b46-6136-492a-b99d-a42f9d36bbd5"><td id="Qx:E" class="">$500,000</td><td id="`fmU" class="">最低保底</td><td id="]wx}" class=""><strong>$5,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="fad88fb6-9ee8-46e0-bd2b-c2ec2eeeeb52"><td id="Qx:E" class="">$1,000,000</td><td id="`fmU" class="">$5,000 + 0.8% × $500k</td><td id="]wx}" class=""><strong>$9,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="2bd21304-3613-4632-9703-9f7ba40cf181"><td id="Qx:E" class="">$1,500,000</td><td id="`fmU" class="">$5,000 + 0.8% × $500k + 0.6% × $500k</td><td id="]wx}" class=""><strong>$12,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="90c60774-7953-49b6-9557-c3539fd0e10f"><td id="Qx:E" class="">$2,000,000</td><td id="`fmU" class="">$5,000 + 0.8% × $500k + 0.6% × $1M</td><td id="]wx}" class=""><strong>$15,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="dc5167e2-cd9c-4e06-a8dd-8b9ce5121030"><td id="Qx:E" class="">$2,500,000</td><td id="`fmU" class="">上述 + 0.5% × $500k</td><td id="]wx}" class=""><strong>$17,500</strong></td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="856cf635-a021-40fb-9f32-f8a876d6a69d" class=""><strong>分级规则：</strong></p></div><div style="display:contents" dir="auto"><ul id="f8111a92-c3da-4e3b-b3af-d339cae013dc" class="bulleted-list"><li style="list-style-type:disc">前 $500k：保底 $5,000</li></ul></div><div style="display:contents" dir="auto"><ul id="a8694322-bfbe-4040-a346-361261ea1a93" class="bulleted-list"><li style="list-style-type:disc">$500k–$1M 超额部分：0.8%</li></ul></div><div style="display:contents" dir="auto"><ul id="adb8ebc6-7552-4061-932e-ccd8322ebf5c" class="bulleted-list"><li style="list-style-type:disc">$1M–$2M 超额部分：0.6%</li></ul></div><div style="display:contents" dir="auto"><ul id="72794445-da47-4a4f-85ac-f2fe262109e4" class="bulleted-list"><li style="list-style-type:disc">$2M 以上超额部分：0.5%</li></ul></div><div style="display:contents" dir="auto"><ul id="443288f9-0e4f-40be-b7d0-4b2f1f32b1b3" class="bulleted-list"><li style="list-style-type:disc"><strong>单笔上限：$20,000</strong></li></ul></div><div style="display:contents" dir="auto"><blockquote id="fa02dbeb-e60f-45e1-9ad0-a39b537a065f" class="">以平均单笔投资 $750k 估算，平均每笔现金奖励约 $7,000，$100k 年度预算可支持约 <strong>14 位 active scouts</strong>。</blockquote></div><div style="display:contents" dir="auto"><hr id="8c592b7a-4985-4e80-881b-84bebfa0e641"/></div><div style="display:contents" dir="auto"><h3 id="55024e3a-725a-46c6-b55f-f911a2245347" class="">Carry 奖励（原方案，保持不变）</h3></div><div style="display:contents" dir="auto"><p id="7a353f5a-d19d-44b8-989b-7acbae112f4c" class="">Carry 在基金及项目<strong>完全退出后</strong>支付，公式如下：</p></div><div style="display:contents" dir="auto"><blockquote id="b9b534ed-38ed-4c93-851e-2a1a81c82721" class=""><strong>Carry Fee = 投资金额 × 20% × 2% × 项目回报率（MOIC）</strong></blockquote></div><div style="display:contents" dir="auto"><blockquote id="1be9fee9-703e-4afb-8005-dbd6af6fc4a5" class="">上限为基金整体回报率（MOIC），以最终清算时审计值为准</blockquote></div><div style="display:contents" dir="auto"><p id="74ac8aca-d40e-42c4-a53f-364bfa6fc00f" class=""><strong>定义：</strong></p></div><div style="display:contents" dir="auto"><ul id="d49accb7-84e9-467a-8554-0a2e0fc09e72" class="bulleted-list"><li style="list-style-type:disc"><strong>项目回报率（Project Return）</strong>：拟以 MOIC（投资倍数）计算，即退出总价值 ÷ 投资成本。token 项目以退出时 30 日 TWAP 均价计价</li></ul></div><div style="display:contents" dir="auto"><ul id="d413a66d-2acd-4fab-bb8f-fb98286a2b81" class="bulleted-list"><li style="list-style-type:disc"><strong>基金整体回报率（Fund&#x27;s General Return Rate）</strong>：基金最终清算时的整体 MOIC，作为单项目 carry 计算的上限</li></ul></div><div style="display:contents" dir="auto"><ul id="af22a0a6-91a0-422b-b37d-a898b597c12f" class="bulleted-list"><li style="list-style-type:disc"><strong>完全退出</strong>：IOSG 对该项目的全部持仓（股权或 token）清仓完毕</li></ul></div><div style="display:contents" dir="auto"><p id="942ef43c-55c0-4206-9e83-e47aab6fcedb" class=""><strong>具体数字示例（均以投资金额 $500k、基金整体回报率 3x 为基准）：</strong></p></div><div style="display:contents" dir="ltr"><table id="b4e1ec42-95dc-4f11-848a-8e657565ccc9" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="c2f060e1-736d-4c85-9f8c-0d9dee06e01a"><th id="XvYS" class="simple-table-header-color simple-table-header">情景</th><th id="x:&gt;k" class="simple-table-header-color simple-table-header">项目 MOIC</th><th id="@\H;" class="simple-table-header-color simple-table-header">实际用倍数</th><th id="sD@C" class="simple-table-header-color simple-table-header">Carry Fee 计算</th><th id="ikm]" class="simple-table-header-color simple-table-header">Scout Carry</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="8d4eb121-1fd7-4c16-915a-a038c1617f46"><td id="XvYS" class="">全部亏损</td><td id="x:&gt;k" class="">0x</td><td id="@\H;" class="">0（亏损归零）</td><td id="sD@C" class="">$500k × 20% × 2% × 0</td><td id="ikm]" class=""><strong>$0</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="2c55fa29-410b-47a1-9d8d-77898adc3cd9"><td id="XvYS" class="">亏损一半</td><td id="x:&gt;k" class="">0.5x</td><td id="@\H;" class="">0（&lt; 1x 不计 carry）</td><td id="sD@C" class="">$500k × 20% × 2% × 0</td><td id="ikm]" class=""><strong>$0</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="5ae33b4d-4081-4b14-8a2b-1f9144620d13"><td id="XvYS" class="">保本</td><td id="x:&gt;k" class="">1x</td><td id="@\H;" class="">1x</td><td id="sD@C" class="">$500k × 20% × 2% × 1</td><td id="ikm]" class=""><strong>$2,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="3fa682ca-e974-4cff-85b6-e8ed58216d5d"><td id="XvYS" class="">2 倍回报</td><td id="x:&gt;k" class="">2x</td><td id="@\H;" class="">2x</td><td id="sD@C" class="">$500k × 20% × 2% × 2</td><td id="ikm]" class=""><strong>$4,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="d41af531-3f27-4580-b48a-52351f16dc65"><td id="XvYS" class="">3 倍回报</td><td id="x:&gt;k" class="">3x</td><td id="@\H;" class="">3x（= 基金上限，恰好触顶）</td><td id="sD@C" class="">$500k × 20% × 2% × 3</td><td id="ikm]" class=""><strong>$6,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="7c7dbfdd-9a09-41e9-9f25-223617c0065e"><td id="XvYS" class="">5 倍回报</td><td id="x:&gt;k" class="">5x</td><td id="@\H;" class=""><strong>3x</strong>（触发基金上限）</td><td id="sD@C" class="">$500k × 20% × 2% × 3</td><td id="ikm]" class=""><strong>$6,000</strong>（同上封顶）</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><blockquote id="c1d512d3-634e-4d94-af99-d2eb8f7720d1" class="">💡 <strong>说明</strong>：项目回报率低于 1x（含亏损）时 carry 计为 0，不存在负数；项目回报率超过基金整体 MOIC 时，以基金 MOIC 封顶，防止单笔 carry 超出基金整体回报比例。以上示例基金整体回报率假设为 3x，实际以最终清算审计值为准。</blockquote></div><div style="display:contents" dir="auto"><p id="10cb71e8-8e4c-414e-a4fc-bf11fa0a6fe5" class="">Carry 结构在所有更新方案中<strong>保持不变</strong>，不作调整。</p></div><div style="display:contents" dir="auto"><hr id="6eb82556-b4b8-4b32-b538-922a5b81e5e1"/></div><div style="display:contents" dir="auto"><h2 id="3f49bf43-2422-4ec9-aeef-4676800683a4" class="">二、更新方案——现金奖励</h2></div><div style="display:contents" dir="auto"><blockquote id="b07e2913-c960-4597-bcad-5d0fd2dbd734" class=""><strong>核心目标：</strong> 在 $100k 年度现金预算内，将可支持的 AI Scout 数量从 ~14 人扩大至 ~28–33 人，覆盖更广的 AI 生态网络。</blockquote></div><div style="display:contents" dir="auto"><h3 id="9694bad5-ad76-4c6f-8f00-d79f8239990e" class="">方案一：现金比例整体减半</h3></div><div style="display:contents" dir="auto"><p id="c9b7d271-8270-4824-a812-700c81439176" class=""><strong>逻辑：</strong> 直接将所有档位现金奖励减半，分级结构和计算方式不变，执行成本最低。保留“大单奖励更高”的相对激励结构，配合 Venture Partner 升级机制形成长期吹拉力。</p></div><div style="display:contents" dir="auto"><p id="c154a3b1-de95-4a7d-b4c5-af828939214c" class=""><strong>奖励计算规则：</strong></p></div><div style="display:contents" dir="auto"><ul id="f373e01a-d4cb-4bcd-aad7-f0923233ca66" class="bulleted-list"><li style="list-style-type:disc">前 $500k：保底 <strong>$2,500</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="bc2ba5da-bfe2-4c88-9661-985cea953028" class="bulleted-list"><li style="list-style-type:disc">$500k–$1M 超额部分：<strong>0.4%</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="6352fd71-4722-469c-bf4c-54767da7b047" class="bulleted-list"><li style="list-style-type:disc">$1M–$2M 超额部分：<strong>0.3%</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="133780e8-4ee3-45a0-a309-8bea6f69741f" class="bulleted-list"><li style="list-style-type:disc">$2M 以上超额部分：<strong>0.25%</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="c09d1bac-6291-422f-85d2-44158ff75fe1" class="bulleted-list"><li style="list-style-type:disc"><strong>单笔上限：$10,000</strong></li></ul></div><div style="display:contents" dir="ltr"><table id="c9540e7a-69cb-4a6b-9ba3-36a358fe967c" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="309e15b2-e650-47ef-8bdd-e0d00fc77070"><th id="C?_f" class="simple-table-header-color simple-table-header">IOSG 投资金额</th><th id="WC&lt;^" class="simple-table-header-color simple-table-header">奖励计算</th><th id="EPHS" class="simple-table-header-color simple-table-header">原奖励</th><th id="cxpu" class="simple-table-header-color simple-table-header">新奖励</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="baa23b5a-dae7-414c-a55f-623255d535c5"><td id="C?_f" class="">$500,000</td><td id="WC&lt;^" class="">保底</td><td id="EPHS" class="">$5,000</td><td id="cxpu" class=""><strong>$2,500</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="2b21e72d-30e6-46a1-8048-bcd3a9d65986"><td id="C?_f" class="">$750,000</td><td id="WC&lt;^" class="">$2,500 + 0.4% × $250k</td><td id="EPHS" class="">$7,000</td><td id="cxpu" class=""><strong>$3,500</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="781f7572-2284-4279-b33f-c60442434458"><td id="C?_f" class="">$1,000,000</td><td id="WC&lt;^" class="">$2,500 + 0.4% × $500k</td><td id="EPHS" class="">$9,000</td><td id="cxpu" class=""><strong>$4,500</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="6260fda5-145f-4a87-a8fa-b73acb4464be"><td id="C?_f" class="">$1,500,000</td><td id="WC&lt;^" class="">$2,500 + 0.4% × $500k + 0.3% × $500k</td><td id="EPHS" class="">$12,000</td><td id="cxpu" class=""><strong>$6,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="a1ed0839-ebb6-4028-b64e-115b7b5e73bd"><td id="C?_f" class="">$2,000,000</td><td id="WC&lt;^" class="">$2,500 + 0.4% × $500k + 0.3% × $1M</td><td id="EPHS" class="">$15,000</td><td id="cxpu" class=""><strong>$7,500</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="f7050c22-2f79-4691-abd9-86a0f6a1891f"><td id="C?_f" class="">$2,500,000+</td><td id="WC&lt;^" class="">上述 + 0.25% × $500k</td><td id="EPHS" class="">$17,500</td><td id="cxpu" class=""><strong>$9,750</strong>（上限 $10,000）</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="6f7b5bcd-a973-4f68-97ef-ca1591712364" class=""><strong>预算测算（假设平均单笔 $750k）：</strong></p></div><div style="display:contents" dir="auto"><ul id="3af90754-8493-4569-bf1c-539f6d97f404" class="bulleted-list"><li style="list-style-type:disc">平均奖励：<strong>$3,500</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="d50e742f-d194-4bf0-9a37-7b72412afe7d" class="bulleted-list"><li style="list-style-type:disc">$100k 预算可支持 scout 数：<strong>约 28 人</strong>（原方案 2 倍）</li></ul></div><div style="display:contents" dir="auto"><p id="0716e63c-6476-4dfb-bf89-de9e67881975" class="">✅ <strong>优点：</strong></p></div><div style="display:contents" dir="auto"><ul id="4acc6854-73c2-481f-ba12-3b2c5ae9ac30" class="bulleted-list"><li style="list-style-type:disc">规则简单透明， Scout 收到 offer 后一眼看懂，沟通成本最低</li></ul></div><div style="display:contents" dir="auto"><ul id="6c4d7cfc-2341-4f46-81a5-96371c202fa5" class="bulleted-list"><li style="list-style-type:disc">分级结构保留，大单（$1.5M+）仍封顶 $6,000–$10,000，对有能力导入大项目的顶级 Scout 仍有吸引力</li></ul></div><div style="display:contents" dir="auto"><ul id="84c3b428-a316-490d-9fce-6e6eac9838d5" class="bulleted-list"><li style="list-style-type:disc">投资金额越大奖励越高的逐级逻辑不变，逐级公平感强</li></ul></div><div style="display:contents" dir="auto"><ul id="7c0e21a6-1c01-4dc8-99e7-2254a51ea628" class="bulleted-list"><li style="list-style-type:disc">Carry 全额保留，长期退出后潜在回报可超过现金</li></ul></div><div style="display:contents" dir="auto"><p id="8f912168-f867-41b3-b0e3-2242be954be3" class="">⚠️ <strong>风险：</strong></p></div><div style="display:contents" dir="auto"><ul id="96418ef1-fd91-4cbf-9fe3-58b07c724db1" class="bulleted-list"><li style="list-style-type:disc">早期现金统一减半，对仅看重现金的新 Scout 吸引力明显下降，需配合 Venture Partner 机制补偿躺期激励</li></ul></div><div style="display:contents" dir="auto"><ul id="aeb2a462-dd82-4118-8eb4-cb9be6d6acbd" class="bulleted-list"><li style="list-style-type:disc">卖点较单一，对不确定未来能否到达 VP 门槛的新 Scout，早期动力不如方案二强</li></ul></div><div style="display:contents" dir="auto"><hr id="834fb2c2-971d-46e8-a1e3-204addfc008f"/></div><div style="display:contents" dir="auto"><h3 id="9c9afd17-ea66-4d94-888f-3e465a9ffa04" class="">方案二：低基础 + 里程碑 Bonus 制</h3></div><div style="display:contents" dir="auto"><p id="4c3b80e9-9e7c-4fba-9c7f-68a3643f8a74" class=""><strong>逻辑：</strong> 降低单笔基础奖励，引入季度/年度里程碑 bonus 层，激励 Scout 持续活跃而非一次性介绍。让早期 Scout 每单即可感知额外回报，无需等到 VP 门槛才有非现金激励。</p></div><div style="display:contents" dir="auto"><p id="3807a295-d7e7-4e67-9c70-ca6d57c944fc" class=""><strong>基础奖励计算规则：</strong></p></div><div style="display:contents" dir="auto"><ul id="0b5a4d56-c53c-4a77-b40c-1845b99da107" class="bulleted-list"><li style="list-style-type:disc">前 $500k：保底 <strong>$2,000</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="b96990f2-9476-4fee-8ee3-cb61289aaaba" class="bulleted-list"><li style="list-style-type:disc">$500k–$1M 超额部分：<strong>0.32%</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="693de09f-ae4a-4924-a0bc-82dcf65ef9e3" class="bulleted-list"><li style="list-style-type:disc">$1M–$2M 超额部分：<strong>0.24%</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="641064bf-3a42-4335-aec8-3ff8211307b9" class="bulleted-list"><li style="list-style-type:disc">$2M 以上超额部分：<strong>0.2%</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="47c7d0e1-0c51-4db6-bdce-0f82faec13e2" class="bulleted-list"><li style="list-style-type:disc"><strong>单笔基础奖励上限：$8,000</strong></li></ul></div><div style="display:contents" dir="ltr"><table id="001f7978-e78a-471c-b2cb-b21338bc4557" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="0a92c40d-e939-4623-a05e-23e0ecfdd223"><th id="Fxm=" class="simple-table-header-color simple-table-header">IOSG 投资金额</th><th id="kJH&lt;" class="simple-table-header-color simple-table-header" style="width:281px">奖励计算</th><th id="Opa?" class="simple-table-header-color simple-table-header">基础奖励</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="d0b0538c-cf6b-407e-ab98-fbc2fea55a4b"><td id="Fxm=" class="">$500,000</td><td id="kJH&lt;" class="" style="width:281px">保底</td><td id="Opa?" class=""><strong>$2,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="5aff6370-f445-4021-8392-28adc637dced"><td id="Fxm=" class="">$750,000</td><td id="kJH&lt;" class="" style="width:281px">$2,000 + 0.32% × $250k</td><td id="Opa?" class=""><strong>$2,800</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="eda1aab2-fbb5-402d-8300-c29bbd13904f"><td id="Fxm=" class="">$1,000,000</td><td id="kJH&lt;" class="" style="width:281px">$2,000 + 0.32% × $500k</td><td id="Opa?" class=""><strong>$3,600</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="66e8b2fa-8b55-451a-b97e-65bd69f22e65"><td id="Fxm=" class="">$1,500,000</td><td id="kJH&lt;" class="" style="width:281px">$2,000 + 0.32% × $500k + 0.24% × $500k</td><td id="Opa?" class=""><strong>$4,800</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="4b1eef9c-bd58-41ed-9167-74b17564dc27"><td id="Fxm=" class="">$2,000,000</td><td id="kJH&lt;" class="" style="width:281px">$2,000 + 0.32% × $500k + 0.24% × $1M</td><td id="Opa?" class=""><strong>$6,000</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="5cb659e2-8d1a-421a-9d50-a1f2cfd1419a"><td id="Fxm=" class="">$2,500,000+</td><td id="kJH&lt;" class="" style="width:281px">上述 + 0.2% × $500k</td><td id="Opa?" class=""><strong>$7,000</strong>（上限 $8,000）</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="6ae51953-3fe5-4475-8b9d-45f137d34067" class=""><strong>里程碑 Bonus（叠加发放）：</strong></p></div><div style="display:contents" dir="ltr"><table id="b324872b-540c-4333-b0b0-c206d0bdb21f" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="6176080f-7e47-4731-b4ec-7307a2d23d65"><th id="C?uK" class="simple-table-header-color simple-table-header">里程碑</th><th id="^j[;" class="simple-table-header-color simple-table-header">奖励</th><th id="?Vib" class="simple-table-header-color simple-table-header">说明</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="2dde8ec4-5652-48dd-9967-de3a2cd81808"><td id="C?uK" class="">单季度首个成功推荐</td><td id="^j[;" class="">+$500</td><td id="?Vib" class="">每季度可触发一次</td></tr></div><div style="display:contents" dir="ltr"><tr id="57f19d57-3a17-484c-acd5-ac85f2e41b10"><td id="C?uK" class="">单季度推荐 2 个成功 deal</td><td id="^j[;" class="">再 +$1,000</td><td id="?Vib" class="">叠加上首单奖励</td></tr></div><div style="display:contents" dir="ltr"><tr id="6059cecd-da91-48d1-af47-f54fb26a0447"><td id="C?uK" class="">年度累计推荐 3+ deal</td><td id="^j[;" class="">+$2,000</td><td id="?Vib" class="">年终一次性发放</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="634471ce-c272-41c7-8ad0-9cd5d6f89055" class=""><strong>预算测算：</strong></p></div><div style="display:contents" dir="auto"><ul id="622880cc-39e8-4160-a002-7193e08ee76d" class="bulleted-list"><li style="list-style-type:disc">基础奖励年度池：~$85k（预留 ~$15k 里程碑 bonus 池）</li></ul></div><div style="display:contents" dir="auto"><ul id="ebb3bb91-d678-4fb9-862a-424f514b9e41" class="bulleted-list"><li style="list-style-type:disc">平均单笔基础奖励（$750k 单）：<strong>~$2,800</strong>；加上季度 bonus 约 <strong>~$3,300</strong></li></ul></div><div style="display:contents" dir="auto"><ul id="aaa0db5a-7403-442f-aa4f-2ab8e48782b1" class="bulleted-list"><li style="list-style-type:disc">可支持 scout 数：<strong>约 30–33 人</strong></li></ul></div><div style="display:contents" dir="auto"><p id="74acd508-bb99-4863-8046-218869edbe05" class="">✅ <strong>优点：</strong></p></div><div style="display:contents" dir="auto"><ul id="5c29f105-9a8e-4a45-b267-5989424a6629" class="bulleted-list"><li style="list-style-type:disc"><strong>早期动力最强</strong>：新 Scout 第一单即有 $2,800 + $500 当季 bonus</li></ul></div><div style="display:contents" dir="auto"><ul id="a9bb21ce-16c4-4cb9-917e-0c7a60794a52" class="bulleted-list"><li style="list-style-type:disc"><strong>留存率高</strong>：里程碑设计驱动 Scout 持续产出，年度 3+ deal 的 Scout 可另获 $2,000 年终 bonus，有效防止一次性介绍后流失</li></ul></div><div style="display:contents" dir="auto"><ul id="a6392997-2a65-4e57-97c9-069331f77d7e" class="bulleted-list"><li style="list-style-type:disc"><strong>预算可预测</strong>：$15k bonus 池单独划拨，财务管控清晰</li></ul></div><div style="display:contents" dir="auto"><ul id="b7686d46-2d14-4322-8051-cf7cc5f7b7fe" class="bulleted-list"><li style="list-style-type:disc">Carry 全额保留，长期回报潜力不受影响</li></ul></div><div style="display:contents" dir="auto"><p id="4d8b608d-0f43-45ae-a033-c54bcc7cd71d" class="">⚠️ <strong>风险：</strong></p></div><div style="display:contents" dir="auto"><ul id="134c00da-57ac-486b-aac0-4b01fd6c4904" class="bulleted-list"><li style="list-style-type:disc"><strong>执行复杂度较高</strong>：需设计明确的季度/年度 tracking 机制，确保 bonus 可稽可查，运营负担高于方案一</li></ul></div><div style="display:contents" dir="auto"><ul id="6c134c1d-b182-41cd-a1fd-54dedd8a2183" class="bulleted-list"><li style="list-style-type:disc">基础奖励比方案一更低，对能引入大单（$1.5M+）的顶级 Scout 吸引力相对弱，需仰赖 bonus 和 carry 补偿</li></ul></div><div style="display:contents" dir="auto"><hr id="c966ea48-86fd-4949-b7eb-74fd6405aa37"/></div><div style="display:contents" dir="auto"><h2 id="efa94647-2c3e-4043-869a-cfb44ee45f54" class="">三、新增机制：Venture Partner 升级通道（适用于全部方案）</h2></div><div style="display:contents" dir="auto"><blockquote id="548467a8-8daf-492a-add9-6d5be69701f4" class="">这是一项<strong>全新增加</strong>的激励机制，不替代任何现有条款，在方案一和方案二中均适用。</blockquote></div><div style="display:contents" dir="auto"><h3 id="9eb405ca-ca7d-4ef1-aee7-923a03715074" class="">升级门槛</h3></div><div style="display:contents" dir="auto"><p id="267c26c0-1295-4e9c-87bb-519f1aadaf06" class=""><strong>成功推荐并完成投资 ≥ 5 个 AI 项目</strong> → 可以申请升级为 <strong>IOSG Venture Partner</strong></p></div><div style="display:contents" dir="auto"><h3 id="bffde71d-4ee1-4962-a491-818ce506544b" class="">Venture Partner 权益</h3></div><div style="display:contents" dir="ltr"><table id="1ec5b63c-d163-49c4-ab29-c5034e00dbf0" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="7b8485b2-32b6-496d-8579-360d49a3a6ab"><th id="iPvM" class="simple-table-header-color simple-table-header">权益类别</th><th id="BGde" class="simple-table-header-color simple-table-header" style="width:486px">具体内容</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="3590b748-c264-4720-98d8-0f950ebd8f1e"><td id="iPvM" class="">🤝 网络资源</td><td id="BGde" class="" style="width:486px">IOSG portfolio network 全面共享（人才、客户、融资对接）</td></tr></div><div style="display:contents" dir="ltr"><tr id="f68bf297-2179-4733-a9ae-410ec8cda4e4"><td id="iPvM" class="">💼 投资机会</td><td id="BGde" class="" style="width:486px">IOSG 未投项目的 co-invest 优先知情权<mark class="highlight-yellow_background">【待确定】</mark></td></tr></div><div style="display:contents" dir="ltr"><tr id="e21b1ab1-db07-4350-8978-e1464dec1e55"><td id="iPvM" class="">🎤 活动参与</td><td id="BGde" class="" style="width:486px">参与 IOSG AI 专项闭门会议及线下 event</td></tr></div><div style="display:contents" dir="ltr"><tr id="07e6c4fa-062a-420f-85d9-7ba59e800783"><td id="iPvM" class="">📛 署名背书</td><td id="BGde" class="" style="width:486px">IOSG 官网及名片 Venture Partner 署名<mark class="highlight-yellow_background">【待确定】</mark></td></tr></div><div style="display:contents" dir="ltr"><tr id="d958d1b8-5b12-4741-bc45-3c7449c8d218"><td id="iPvM" class="">📊 信息特权</td><td id="BGde" class="" style="width:486px">内部 AI 研究报告（非公开版）<mark class="highlight-yellow_background">【待确定】</mark></td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="d09d5c36-8d5e-478a-bab0-c45fbe1011be" class="">财务影响测算</h3></div><div style="display:contents" dir="auto"><p id="6807b852-6e65-4709-9e9b-f924eff8a7b8" class="">以方案一为例，一位 Scout 完成 5 单（均值 $750k/单）的总现金消耗：</p></div><div style="display:contents" dir="auto"><blockquote id="436d2d36-c108-49be-9427-3c07a391c870" class="">5 × $3,500 = <strong>$17,500</strong>（占年度预算 17.5%）</blockquote></div><div style="display:contents" dir="auto"><p id="4ab80b32-7ba5-455b-8ebf-b60a688301fb" class="">Venture Partner 身份权益的边际成本极低（信息共享 + 活动席位），但对 AI 生态内有影响力的人（研究员、builder、前 founder）的感知价值远高于对应现金，是高效的非现金激励工具。</p></div><div style="display:contents" dir="auto"><hr id="2e4bff73-562a-4f7a-b5e8-426ebea399c3"/></div><div style="display:contents" dir="auto"><h2 id="21bf295c-4cf3-4a2c-99d6-514dd835f8c6" class="">四、方案对比总览</h2></div><div style="display:contents" dir="ltr"><table id="e7b914c4-b62f-4507-a4e5-88aaaf4a013c" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="529114a5-b208-43a9-b262-379df57d84fe"><th id="@vil" class="simple-table-header-color simple-table-header">维度</th><th id="Kwba" class="simple-table-header-color simple-table-header">原方案</th><th id="epfq" class="simple-table-header-color simple-table-header">方案一</th><th id="ZYph" class="simple-table-header-color simple-table-header">方案二</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="ceb35d04-8b75-478c-9ddd-cfaee6960cd9"><td id="@vil" class=""><strong>年均可支持 Scouts</strong></td><td id="Kwba" class="">~14 人</td><td id="epfq" class=""><strong>~28 人</strong></td><td id="ZYph" class=""><strong>~28–33 人</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="db3ce658-f8ac-48d2-9ba2-f365776c1529"><td id="@vil" class=""><strong>平均单笔现金奖励</strong></td><td id="Kwba" class="">$7,000</td><td id="epfq" class="">$3,500</td><td id="ZYph" class="">$3,000</td></tr></div><div style="display:contents" dir="ltr"><tr id="72eb675e-7450-4926-b8cb-2c16053403d3"><td id="@vil" class=""><strong>Carry 结构</strong></td><td id="Kwba" class="">不变</td><td id="epfq" class="">不变</td><td id="ZYph" class="">不变</td></tr></div><div style="display:contents" dir="ltr"><tr id="9e136f8c-7df8-4502-8c61-5fe164ca622c"><td id="@vil" class=""><strong>激励重点</strong></td><td id="Kwba" class="">单次高奖励</td><td id="epfq" class="">大单激励 + 身份晋升</td><td id="ZYph" class="">持续活跃 + 里程碑</td></tr></div><div style="display:contents" dir="ltr"><tr id="3321db9d-db70-40f7-b3e4-065f37ce7fab"><td id="@vil" class=""><strong>执行复杂度</strong></td><td id="Kwba" class="">低</td><td id="epfq" class=""><strong>低</strong></td><td id="ZYph" class="">中</td></tr></div><div style="display:contents" dir="ltr"><tr id="b1a2f5d7-1ab3-486d-a8d1-8992a5d07cab"><td id="@vil" class=""><strong>早期 Scout 留存</strong></td><td id="Kwba" class="">—</td><td id="epfq" class="">中（需熬到 VP）</td><td id="ZYph" class=""><strong>强（每单有 bonus）</strong></td></tr></div><div style="display:contents" dir="ltr"><tr id="b0431723-2a84-489c-bb4d-5f70fb6ace00"><td id="@vil" class=""><strong>Venture Partner 机制</strong></td><td id="Kwba" class="">无</td><td id="epfq" class="">✅ 5 单晋升</td><td id="ZYph" class="">✅ 5 单晋升</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><hr id="6883c593-8375-4271-9b8a-c4a01f56354d"/></div><div style="display:contents" dir="auto"><h2 id="85f72f79-ea1a-4c8f-8b25-49042a8aead1" class="">五、决策建议</h2></div><div style="display:contents" dir="auto"><p id="66e54b95-ae47-4003-b048-fd030786877e" class="">VP 升级通道在两个方案中均包含，因此 VP 身份不是区分方案一和方案二的关键变量，两个方案的本质差异在于：<strong>现金奖励的结构是否内置持续产出激励</strong>。</p></div><div style="display:contents" dir="auto"><p id="c1e0364e-08f0-406d-bbeb-56a853a730e6" class=""><strong>选方案一的核心理由：</strong></p></div><div style="display:contents" dir="auto"><p id="21003aaa-0b51-4b65-b701-291fd562fd25" class="">目标 Scout 画像是 <strong>AI 生态内已有影响力的顶级节点人物</strong>（知名研究员、前 founder、头部 angel）。方案一规则极简，一张表说清楚，对接沟通成本最低，符合这类人对时间效率的要求。他们能引入的项目质量高、单笔金额大，现金减半对其决策影响有限，VP 门槛对他们而言更是锦上添花而非动力来源。</p></div><div style="display:contents" dir="auto"><p id="ad0f77fb-9aab-4145-95b8-a6aab44a3bb9" class=""><strong>选方案二的核心理由：</strong></p></div><div style="display:contents" dir="auto"><p id="beafef2a-0e51-4559-ba28-c990d80f2649" class="">目标 Scout 画像是 <strong>活跃在 AI 生态中但尚未建立顶级品牌的 builder、研究员、生态连接者</strong>。这类人更在意每一笔介绍的即时现金回报，也更需要持续激励来维持活跃度。里程碑 bonus 让他们每单成功后就有叠加收益，不必等到第 5 单才感知到差异化回报，留存率和活跃度更有保证。VP 对他们同样有吸引力，但不足以在早期单独支撑动力。</p></div><div style="display:contents" dir="auto"><p id="551f2c41-4d13-4dfa-92e3-2ad6034ca065" class=""><strong>关键判断：</strong> 如果 IOSG 在 AI 赛道的 scout 网络目标是<strong>质量优先</strong>（少而精、引入高价值 deal），选<strong>方案一</strong>；如果目标是<strong>覆盖优先</strong>（广撒网、提高 deal flow 密度），选<strong>方案二</strong>。两者不互斥，也可分阶段实施：先以方案一锁定顶级节点，再以方案二扩展中腰部网络。</p></div><div style="display:contents" dir="auto"><hr id="401e1c71-b960-4aa3-ae8e-4bc03bf3ae42"/></div><div style="display:contents" dir="auto"><p id="105d6b68-ecfe-45d5-8140-e61916fbe42c" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
