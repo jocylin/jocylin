@@ -1,0 +1,1072 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Morphic — LP Investment Brief</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style>
+<style id="morphic-investment-brief-design">
+:root {
+  --bg: #f7f8f4;
+  --paper: #fffdf7;
+  --ink: #181a17;
+  --muted: #63675f;
+  --line: rgba(24, 26, 23, 0.12);
+  --line-strong: rgba(24, 26, 23, 0.22);
+  --green: #315f4f;
+  --green-2: #dfeee6;
+  --gold: #a56b22;
+  --gold-2: #f4e4c7;
+  --red: #9b3f35;
+  --red-2: #f1dbd5;
+  --blue: #345f7d;
+  --blue-2: #dceaf2;
+}
+html { scroll-behavior: smooth; }
+html, body { margin: 0; padding: 0; }
+body {
+  max-width: none !important;
+  margin: 0 !important;
+  color: var(--ink) !important;
+  background:
+    linear-gradient(90deg, rgba(49,95,79,.08) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(rgba(49,95,79,.06) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--bg) !important;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Segoe UI", sans-serif !important;
+  line-height: 1.65 !important;
+  white-space: normal !important;
+}
+.page {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 0 auto;
+  padding: 0 0 72px;
+}
+header {
+  position: relative;
+  min-height: 74vh;
+  display: grid;
+  align-content: end;
+  padding: 96px 0 48px;
+  border-bottom: 1px solid var(--line-strong);
+}
+header:before {
+  content: "LP Investment Brief";
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 22px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--green);
+  background: rgba(255,253,247,.72);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.page-header-icon { font-size: 48px !important; margin: 0 0 12px !important; }
+.page-title {
+  max-width: 980px;
+  margin: 0 !important;
+  font-size: clamp(42px, 7vw, 88px) !important;
+  line-height: .95 !important;
+  letter-spacing: 0 !important;
+  font-weight: 850 !important;
+  color: var(--ink);
+}
+.page-title:after {
+  content: "Founder-reported traction. First financing round. Agentic enterprise workspace.";
+  display: block;
+  max-width: 760px;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.35;
+  font-weight: 500;
+}
+.page-body {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+.brief-nav {
+  position: sticky;
+  top: 18px;
+  grid-column: 1;
+  margin-top: 40px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255,253,247,.86);
+  backdrop-filter: blur(12px);
+}
+.brief-nav-title {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.brief-nav a {
+  display: block;
+  padding: 9px 0;
+  color: var(--ink);
+  text-decoration: none;
+  border-top: 1px solid rgba(24,26,23,.08);
+  font-size: 14px;
+  line-height: 1.3;
+}
+.brief-nav a:hover { color: var(--green); }
+.page-body > div:not(.brief-nav) { grid-column: 2; min-width: 0; }
+.page-body > div:nth-of-type(1),
+.page-body > div:nth-of-type(2),
+.page-body > div:nth-of-type(3),
+.page-body > div:nth-of-type(4) {
+  grid-column: 2;
+}
+.page-body blockquote {
+  margin: 0 0 16px !important;
+  padding: 20px 22px !important;
+  border: 1px solid var(--line) !important;
+  border-left: 5px solid var(--green) !important;
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 12px 35px rgba(24,26,23,.05);
+  color: #242721;
+}
+.page-body > div:nth-of-type(1) blockquote,
+.page-body > div:nth-of-type(2) blockquote,
+.page-body > div:nth-of-type(3) blockquote,
+.page-body > div:nth-of-type(5) blockquote {
+  font-size: 16px;
+}
+h1 {
+  margin: 58px 0 18px !important;
+  padding-top: 18px;
+  border-top: 1px solid var(--line-strong);
+  font-size: clamp(28px, 3.2vw, 42px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+  font-weight: 830 !important;
+}
+h2 { font-size: 26px !important; letter-spacing: 0 !important; }
+h3 { font-size: 20px !important; letter-spacing: 0 !important; }
+p, li, td, th, blockquote { font-size: 16px; }
+ul, ol { padding-left: 0 !important; margin: 0 0 14px !important; }
+li {
+  list-style: none !important;
+  margin: 0 0 10px !important;
+  padding: 15px 18px 15px 44px !important;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255,253,247,.72);
+  position: relative;
+}
+li:before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 24px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+}
+ol li:before {
+  content: counter(list-item);
+  top: 15px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+}
+strong { font-weight: 780; color: #10120f; }
+a { color: var(--green) !important; text-decoration-thickness: 1px !important; text-underline-offset: 3px; }
+.metrics-grid {
+  grid-column: 2 !important;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 34px 0 14px;
+}
+.metric-card {
+  min-height: 130px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 12px 35px rgba(24,26,23,.05);
+}
+.metric-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.metric-value {
+  margin-top: 14px;
+  color: var(--green);
+  font-size: clamp(25px, 3vw, 38px);
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+.metric-note {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.callout-strip {
+  grid-column: 2 !important;
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 14px;
+  margin: 0 0 28px;
+}
+.callout-strip > div {
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--green-2);
+}
+.callout-strip > div:nth-child(2) { background: var(--gold-2); }
+.callout-strip b { display: block; margin-bottom: 8px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.callout-strip span { display: block; font-size: 18px; line-height: 1.4; font-weight: 720; }
+table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  margin: 18px 0 26px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 8px;
+  background: var(--paper);
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+thead, tbody, tr { width: 100%; }
+th, td {
+  min-width: 150px !important;
+  padding: 13px 14px !important;
+  vertical-align: top;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(24,26,23,.09) !important;
+  border-right: 1px solid rgba(24,26,23,.07) !important;
+  white-space: normal !important;
+}
+th {
+  background: #eef2e8 !important;
+  color: var(--muted) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+td { color: #252821; }
+mark { padding: 2px 5px; border-radius: 4px; }
+.risk-section li { border-color: rgba(155,63,53,.22); background: var(--red-2); }
+.risk-section li:before { background: var(--red); }
+.bet-section li { border-color: rgba(49,95,79,.22); background: var(--green-2); }
+hr { margin: 44px 0 !important; border-bottom-color: var(--line-strong) !important; }
+@media (max-width: 900px) {
+  .page { width: min(100% - 28px, 720px); }
+  header { min-height: 58vh; padding-top: 56px; }
+  .page-body { display: block; }
+  .brief-nav { position: relative; top: 0; margin: 24px 0; }
+  .metrics-grid, .callout-strip { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .metrics-grid, .callout-strip { grid-template-columns: 1fr; }
+  li { padding-left: 38px !important; }
+  .page-title { font-size: 42px !important; }
+}
+</style></head><body><article id="37bf0ada-243c-8169-932c-dbd7886a298d" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🧬</span></div><h1 class="page-title" dir="auto">Morphic — LP Investment Brief (6-10-2026)</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><blockquote id="7a1b2707-07a4-4db6-92b4-2bd4a84e5404" class=""><strong>本件为 LP / 联合投资人向资料。所有 traction / 融资 / 客户数据均为创始人 2026-06-10 通话中自报（per founder），未经独立审计验证。实体：Morphic（</strong><strong><a href="http://morphic.io">morphic.io</a></strong><strong>，美国新设主体）。</strong></blockquote></div><div style="display:contents" dir="auto"><blockquote id="2c51020b-5e7f-491d-8cce-b4a3ed36a73d" class=""><strong>交易背景</strong>：Morphic 是创始人 Joshua Sum（Josh S）于 2026 年在美国新注册的公司，与其早期 OnePiece Labs 加速器项目 &quot;Socrates&quot;（agent swarm 基础设施）为<strong>不同法实体</strong>——旧主体将做 mutual cancellation 关闭，以保持股权干净。本轮为 Morphic 的<strong>首轮融资</strong>。截至 2026-06-10：已 committed 约 <strong>$225K</strong>；所有 SAFE 统一以 <strong>$35M post-money cap</strong> 签署。融资结构两种路径（由 lead 决定）：(1) 先募 <strong>$2M pre-seed</strong>，约 3 个月后再开 seed；(2) 若有强势硛谷 lead 愿意吃下整轮，则一次性完成一个更大 round，随后 6–8 个月不再融资、专注 GTM。估值交由 lead / 市场定价。本 deal 由 Yiping 引荐（Yiping 与创始人已相识）。创始人 2026-06-10 在 Singapore（停留至周五上午，参加 Super AI 大会）。</blockquote></div><div style="display:contents" dir="auto"><blockquote id="5da76cdf-5915-42f5-9ee4-57f1e097e2a5" class=""><strong>推荐</strong>：推荐希望增加 <strong>AI 应用层 / agentic 企业软件</strong> exposure 的投资人。Morphic 并不是又一个 AI CRM，而是在做&quot;AI 时代的 company brain / 自适应 agentic workspace&quot;——把 task 管理、wiki、CRM、data tables 与跨四者的 agent 统一在一个平台，主张&quot;在我们成功的世界里没人再需要单独的 CRM&quot;。相比 Day AI / Attio 这类单点 AI CRM，Morphic 同时具备统一数据底座、temporal context graph（非简单 RAG，号称 90% 长会话检索准确率，per founder）、BYO-agent 多人多智能体协作，长期估值锰点更接近 Notion / 企业 OS 而非单一 CRM。</blockquote></div><div style="display:contents" dir="auto"><blockquote id="2b9c04f5-a781-4b97-9eb1-a370bbf3b8a7" class=""></blockquote></div><div style="display:contents" dir="auto"><blockquote id="0eb32d09-7472-4871-8339-46b742d4acc7" class=""><strong>Upside 视角</strong>：公司成立 2 个月、开售 1 个月即做到约 <strong>$100K ARR / 30 客户</strong>（per founder），并已搭好分发飞轮（创始人运营 SF 头部 AI 大会 + Plaud / GMI Cloud 等渠道分成）。当前 $35M post 的入场价位，对一个已有真实付费、且具备 token 批发折扣（15–25% margin，per founder）与数据销售双重经济模式的极早期项目，若 12 个月内兼现其 $10M ARR 目标并以 AI 企业软件倍数定价，存在显著 upside；下行风险在于单一创始人、2 个月历史、指标均为创始人自报且未经审计（见风险）。</blockquote></div><div style="display:contents" dir="auto"><h1 id="996949be-fd4e-400c-b92c-f23254dd8bbe" class="">产品介绍</h1></div><div style="display:contents" dir="auto"><ul id="140731c9-d8f2-4ce2-be36-459bf8ac2e5b" class="bulleted-list"><li style="list-style-type:disc"><strong>定位</strong>：自适应、自装配的 <strong>agentic workspace</strong>——让任何人（不只是开发者）能构建自己的&quot;company brain&quot;。对标用 Notion / Airtable + n8n / Zapier 拼接出企业大脑的痛点，用单一平台统一控制。</li></ul></div><div style="display:contents" dir="auto"><ul id="840a08ef-ec84-40ae-9be1-986b2f1adced" class="bulleted-list"><li style="list-style-type:disc"><strong>四大原生原语（primitives）</strong>：task 管理、wiki / 文档、CRM、data tables（自定义对象 + 字段）——这些是用户拥有的数据底座；上层的智能层决定何时插入记录、解析、调用工具。“我们不是 CRM，但能在 5–10 分钟内为你搭出一个 CRM。”</li></ul></div><div style="display:contents" dir="auto"><ul id="0bd1a5da-4fd1-4ea3-bd5e-3c4ea44e5425" class="bulleted-list"><li style="list-style-type:disc"><strong>BYO-agent + 多人多智能体协作</strong>：平台内一键部署 OpenClaw / Hermes 等外部 agent，让人与不同 agent 在同一 multiplayer 环境协作；模型不可知（任意 LLM）。区别于 Cowork / Codex 这类只包装 workflow 的产品：Morphic 更深——同时存储数据、做组织与 context ingestion。</li></ul></div><div style="display:contents" dir="auto"><ul id="2987ddb5-9de4-4499-b456-9991ce4466b9" class="bulleted-list"><li style="list-style-type:disc"><strong>技术护城（per founder）</strong>：以 <strong>temporal context graph</strong>（随使用动态调整节点 / 边、跟踪状态随时间变化）取代简单 RAG；self-improving harness（compacting window / 长短期记忆 / system prompt 自调）；以任务完成信号做类 gradient-descent 的检索优化。号称长会话检索准确率达 90%。</li></ul></div><div style="display:contents" dir="auto"><ul id="58212e52-6f7e-4476-af7f-5b8dfdeea0e1" class="bulleted-list"><li style="list-style-type:disc">客群：以 B2B 为主，亦可 prosumer（类 Notion 双面）。</li></ul></div><div style="display:contents" dir="auto"><h1 id="5868441e-1ad6-4503-83cd-c149a2a9dda6" class="">创始人沟通纪要（2026-06-10 · Joshua Sum × Jocy）</h1></div><div style="display:contents" dir="auto"><ul id="a72c5392-f2a6-47ab-a380-d2da6e1402a1" class="bulleted-list"><li style="list-style-type:disc">来源：<a href="https://otter.ai/u/_cUaxCsQUVgSbCLkUYYPog7Y5As">Otter 转录</a>（参与人：Joshua Sum、Jocy）。</li></ul></div><div style="display:contents" dir="auto"><ul id="85de9a8d-115b-49f1-a6e3-c750c367e889" class="bulleted-list"><li style="list-style-type:disc"><strong>pivot 由来</strong>：旧产品（agentic workflow / agent swarm）是很薄的编排层，企业倾向自建、不愿外包，难卖；教训是“不能卖薄的东西，要做深”，于是转向数据存储 + harness。旧产品遗留约 <strong>11,000 Twitter 粉丝</strong>，是下次 launch 的分发资产。</li></ul></div><div style="display:contents" dir="auto"><ul id="b2aaa525-6f1b-4db9-9956-c2c2a0cdc123" class="bulleted-list"><li style="list-style-type:disc"><strong>标杆客户案例</strong>：一家 PE group（旗下 4 条业务线：餐厅运营 / 餐厅 Wi-Fi 服务 / 订位 app / 奢侈管家），原用 Zoho + HubSpot + Attio + Notion + Obsidian 等 ~50 个工具；Morphic 接入后节省约 <strong>50% 软件成本</strong>，AI 使用人数从 2 人提升到全部 11 人（仅管理层）。</li></ul></div><div style="display:contents" dir="auto"><ul id="245f18d5-ebbd-45ab-9fc5-7933f5bcc074" class="bulleted-list"><li style="list-style-type:disc"><strong>渠道 / 合作</strong>：与 <strong>Plaud</strong>（物理录音设备，据称去年 $300M 收入）、<strong>GMI Cloud</strong> 等 4–5 家做集成 + 双向收入分成；创始人运营 SF 头部 AI startup 大会，便于直接谈头部合作。</li></ul></div><div style="display:contents" dir="auto"><ul id="6bf95dbc-453b-49fb-be5f-4fe35e200377" class="bulleted-list"><li style="list-style-type:disc"><strong>LP 引荐</strong>：Jocy 拟将项目介绍给 IOSG 一位新加坡 LP（做 early-stage + 一个 AI Enterprise 项目）；创始人愿意在新加坡 / Super AI 大会面谈。创始人表示最需要投资人加值的是：① 客户引荐 ② 招聘；加密生态也是可售客群（首个做的是 Telegram 迁移）。</li></ul></div><div style="display:contents" dir="auto"><h1 id="530c1f64-3967-4e0b-b06c-9d31e33d6350" class="">GTM</h1></div><div style="display:contents" dir="auto"><ul id="d613363b-b606-48dd-8c6b-c350bb551eb0" class="bulleted-list"><li style="list-style-type:disc"><strong>阶段一：“去响”（go loud）</strong> — 1–2 天内 saturate Twitter / LinkedIn / Instagram / TikTok，据称首日每渠道 3–4M views；已锁定四渠道分发伙伴（这也是本轮融资用途之一）。</li></ul></div><div style="display:contents" dir="auto"><ul id="d8d335c3-e54e-4104-b3b1-b6c7ffc6e5a3" class="bulleted-list"><li style="list-style-type:disc"><strong>阶段二：伙伴放大</strong> — AI 大会 + Plaud / GMI Cloud / Klaviyo / Circleback 等品牌联动推广，借品牌信任背书。</li></ul></div><div style="display:contents" dir="auto"><ul id="0e709cf1-231a-4a94-aa45-f66baacc6a26" class="bulleted-list"><li style="list-style-type:disc"><strong>阶段三：代理式 pod</strong> — 3 人小队（forward-deployed engineer + solutions engineer + SDR）像 consulting 一样把产品植入传统企业；随后把模板外包给各地 AI implementation 公司，20% 收入分成，让别人替他们卖。</li></ul></div><div style="display:contents" dir="auto"><ul id="ffad94a6-bb96-494d-8050-c4292880a358" class="bulleted-list"><li style="list-style-type:disc"><strong>“出 SF”策略</strong>：有意在 SF 之外卖——blue ocean、竞争低，传统企业（中西部汽车制造等）有钱、抗周期。</li></ul></div><div style="display:contents" dir="auto"><ul id="000c2add-d40b-4257-9fef-1f6b27e25805" class="bulleted-list"><li style="list-style-type:disc"><strong>首批 ICP</strong>：AI Series A startups → 电商 + lead-gen / marketing 代理→ 供应链 / 制造（数据最值钱）。</li></ul></div><div style="display:contents" dir="auto"><h1 id="56311bcd-52c1-4b97-b997-54a950cc8a1c" class="">Traction（均 per founder，2026-06-10）</h1></div><div style="display:contents" dir="auto"><ul id="07d8831d-bc6b-48ef-bc67-1997c0cd2dbb" class="bulleted-list"><li style="list-style-type:disc">公司成立 <strong>2 个月</strong>，开售 <strong>1 个月</strong>。</li></ul></div><div style="display:contents" dir="auto"><ul id="acb2febb-708b-454a-bc40-6a67810b9b2b" class="bulleted-list"><li style="list-style-type:disc"><strong>~$100K ARR</strong>，来自 <strong>30 客户</strong>（以 crypto / Series A startup 为主）。</li></ul></div><div style="display:contents" dir="auto"><ul id="7a71bdca-6417-43c4-ac59-498e75ecfb38" class="bulleted-list"><li style="list-style-type:disc">多家企业客户处于 pilot，即将付费。</li></ul></div><div style="display:contents" dir="auto"><ul id="255ed065-ead5-427b-a85e-7b40b4b5aa2e" class="bulleted-list"><li style="list-style-type:disc">旧产品遗留 ~11,000 Twitter 粉丝（分发资产）。</li></ul></div><div style="display:contents" dir="auto"><h1 id="7ed61324-728d-4f90-ab2e-dc402b8f7bc2" class="">商业模式</h1></div><div style="display:contents" dir="auto"><ul id="8a5605fd-c60f-408a-96cf-22519769adfe" class="bulleted-list"><li style="list-style-type:disc"><strong>使用量定价 + token 差价</strong>：获 15–25% 批发 token 折扣（per founder），按市场价向客户计费，赚中间 margin；必要时可压价打击新进者。</li></ul></div><div style="display:contents" dir="auto"><ul id="1f5b0b19-aad8-4d44-acdc-b99dcbaec35f" class="bulleted-list"><li style="list-style-type:disc"><strong>数据销售（第二收入曲线）</strong>：采集各行业“tribal knowledge” / agent-human 轨迹，卖给 labs 做 RL / post-training；计划将 <strong>90% 数据销售收入返还给用户</strong>以提高迁移成本（per founder，构想阶段）。首笔数据销售目标今年内。</li></ul></div><div style="display:contents" dir="auto"><ul id="4909bd44-e541-4fbc-824c-0a89dc8afea5" class="bulleted-list"><li style="list-style-type:disc">单位经济 未独立验证。</li></ul></div><div style="display:contents" dir="auto"><h1 id="c0bf4846-70f2-4d80-a60e-caca8f30ffdf" class="">竞对分析</h1></div><div style="display:contents" dir="auto"><p id="e8148352-06b5-49ba-a601-911c594ef04b" class="">Morphic 的定位是“吞掉 CRM 的 agentic workspace”，同时跨足三个赛道：AI-native CRM、agentic workspace / company brain（Notion AI、Airtable、Cowork、Codex）、BYO-agent 桌面（OpenClaw / Hermes）。下表为最贴近的已融资对标（资金量级远超 Morphic，用于参照）。</p></div><div style="display:contents" dir="ltr"><table id="674dbb2e-6b9d-4dcd-8465-93657c0bf11d" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="adb58639-d4c9-483f-8fcf-d0bc66993788"><th id="s{zx" class="simple-table-header-color simple-table-header">Company</th><th id="uKQ~" class="simple-table-header-color simple-table-header">Raised</th><th id="i;ef" class="simple-table-header-color simple-table-header">Investors</th><th id="w}qR" class="simple-table-header-color simple-table-header">Traction</th><th id="NXKE" class="simple-table-header-color simple-table-header">区别</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="450d0e3e-236e-4787-a034-c95bcc53849e"><td id="s{zx" class=""><a href="https://morphic.io">Morphic</a></td><td id="uKQ~" class="">首轮进行中（~$225K committed，$35M post cap）</td><td id="i;ef" class="">天使含 Super AI / 大会联创（per founder）</td><td id="w}qR" class="">~$100K ARR / 30 客户（1 个月）</td><td id="NXKE" class="">agentic workspace：task+wiki+CRM+data tables+BYO-agent，temporal context graph</td></tr></div><div style="display:contents" dir="ltr"><tr id="9a5eb228-6e04-4691-bf29-5be6632b7422"><td id="s{zx" class=""><a href="https://day.ai">Day AI</a></td><td id="uKQ~" class="">$24M</td><td id="i;ef" class="">Sequoia（两轮领投）、Greenoaks</td><td id="w}qR" class="">~120 客户，2026-02 GA</td><td id="NXKE" class="">单点 AI CRM，自动从邮件/会议生成 record</td></tr></div><div style="display:contents" dir="ltr"><tr id="94d888b6-030e-4627-a91a-cf5068478353"><td id="s{zx" class=""><a href="https://attio.com">Attio</a></td><td id="uKQ~" class="">$116M</td><td id="i;ef" class="">GV（领投 Series B）、Balderton</td><td id="w}qR" class="">80,000+ startups</td><td id="NXKE" class="">object-model CRM，AI 叠加</td></tr></div><div style="display:contents" dir="ltr"><tr id="c5266597-549b-43d8-889d-470b40995526"><td id="s{zx" class=""><a href="https://rox.com">Rox</a></td><td id="uKQ~" class="">$50M+（估值 ~$1.2B）</td><td id="i;ef" class="">General Catalyst、Sequoia</td><td id="w}qR" class="">~$8M ARR</td><td id="NXKE" class="">在现有 CRM 上跑 agent swarm</td></tr></div><div style="display:contents" dir="ltr"><tr id="a54d724c-b04c-4975-a858-995018665398"><td id="s{zx" class=""><a href="https://octolane.com">Octolane</a></td><td id="uKQ~" class="">$2.6M seed</td><td id="i;ef" class="">GC Apex、Basis Set、Pioneer</td><td id="w}qR" class="">1,000+ 接入，5,000 waitlist</td><td id="NXKE" class="">YC，self-driving CRM（同阶段最接近）</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><p id="e3e0cc8e-37d5-4a3b-93d1-b3a4b001859d" class="">其他：Notion / Airtable（workspace 在位者，正向 AI 演进）、Reevo（$80M，整合 GTM stack）、Clay（GTM 数据基础设施）、Monaco / Clarify。</p></div><div style="display:contents" dir="auto"><p id="7a9e979c-52d4-4bea-8280-4f4586fd6f0d" class="">Morphic 的差异点（per founder）：</p></div><div style="display:contents" dir="ltr"><table id="4046458d-f7f4-46aa-82a4-bd5aa85c24e6" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="431b214c-5e18-46de-8172-d7afbfde6065"><th id="bCE=" class="simple-table-header-color simple-table-header">竞对</th><th id="dzx=" class="simple-table-header-color simple-table-header">相对 Morphic 的弱点</th><th id="CURg" class="simple-table-header-color simple-table-header">相对 Morphic 的优势</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="35019f16-7d2e-465b-9176-66067c62a5ac"><td id="bCE=" class=""><a href="https://day.ai">Day AI</a> / <a href="https://attio.com">Attio</a></td><td id="dzx=" class="">只是 CRM；不存 task/wiki/data tables、不做 BYO-agent 多智能体环境</td><td id="CURg" class="">资金与客户规模碾压，已 GA、品牌与发行渠道成熟</td></tr></div><div style="display:contents" dir="ltr"><tr id="6252bb35-0b27-4848-8272-c03938622d16"><td id="bCE=" class="">Cowork / Codex</td><td id="dzx=" class="">只包装 workflow、不存数据底座与 context graph</td><td id="CURg" class="">依托大厂模型生态与品牌</td></tr></div><div style="display:contents" dir="ltr"><tr id="c02e7d9b-f623-41f1-83b5-8ba61298ac80"><td id="bCE=" class="">OpenClaw / Hermes 桌面</td><td id="dzx=" class="">绑定自家 agent；Morphic 可一键部署它们、互补而非直接竞争</td><td id="CURg" class="">已有独立社区与心智</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h1 id="8adfd466-a081-46a9-bfb5-107435de4dd9" class="">团队</h1></div><div style="display:contents" dir="auto"><ul id="7b21aec9-dffe-436b-87b4-60f1b2235ead" class="bulleted-list"><li style="list-style-type:disc"><strong>单一创始人 Joshua Sum</strong>（quant 背景：交易衡生品 / 数据存储建模；兼顾 sales / product / engineering）。履历：某电商初期 #2 ops hire，助公司一年从 $12M 做到 $100M；Treehouse（新加坡 DeFi 分析→资产管理）首员工；创办 College DAO（全球最大高校区块链社区，120 所大学）；某公司首员工 / CPO；现运营 SF 头部 AI startup 大会。</li></ul></div><div style="display:contents" dir="auto"><ul id="a129ef11-9d59-417e-b23a-0253ddd32ba9" class="bulleted-list"><li style="list-style-type:disc"><strong>5 名工程师</strong>（用收入雇佣，3–6 年经验）：其中一人曾 solo 做过 agentic CRM，一人是 3x founding engineer（多家 YC 公司），多位 hackathon 常胜军；工程团队部分 forward-deployed、产品工程在印度。</li></ul></div><div style="display:contents" dir="auto"><ul id="44ad4736-e00f-415b-aaf8-8a464ec70e54" class="bulleted-list"><li style="list-style-type:disc"><strong>接下来两个关键 hire</strong>：SF 的 GTM 负责人 + GTM engineer。</li></ul></div><div style="display:contents" dir="auto"><ul id="0882c824-f84c-4d7b-a444-f8c6d018879c" class="bulleted-list"><li style="list-style-type:disc"><strong>潜在联创</strong>：正在接触一位（曾把一家公司做到 $40M 收入、technical+sales），未敲定。</li></ul></div><div style="display:contents" dir="auto"><h1 id="d326837d-74f0-4e86-9463-cd4df25d7d8e" class="">融资情况</h1></div><div style="display:contents" dir="auto"><ul id="7ae4b8db-954b-4942-9a30-2a0653038747" class="bulleted-list"><li style="list-style-type:disc"><strong>首轮</strong>（作为 Morphic）：~$225K committed；SAFE @ <strong>$35M post cap</strong>。</li></ul></div><div style="display:contents" dir="auto"><ul id="0f2f737f-899b-4b46-8bc0-e3f803d371e5" class="bulleted-list"><li style="list-style-type:disc">两种路径：$2M pre-seed → 3 个月后 seed；或强势 lead 一次性吃下更大轮。估值由 lead / 市场定。</li></ul></div><div style="display:contents" dir="auto"><ul id="8824c4e5-6271-401f-84f1-7a27daf59351" class="bulleted-list"><li style="list-style-type:disc">旧 OnePiece Labs 为<strong>旧主体</strong>投资，与 Morphic 无股权关系；创始人成军后可能再接触 OnePiece 等。</li></ul></div><div style="display:contents" dir="auto"><ul id="44145b2f-e343-48e9-8eac-2a3893874162" class="bulleted-list"><li style="list-style-type:disc">里程碑（per founder）：今年公开 launch + 冲 <strong>$10M ARR</strong>（竭尽渠道合作）；今年内完成首笔数据销售。</li></ul></div><div style="display:contents" dir="auto"><h1 id="73d4daf5-4e16-4241-b0a1-4c87ce9385e6" class="">我们的押注</h1></div><div style="display:contents" dir="auto"><ol type="1" id="616799e4-997d-4604-bfcc-66e60a9d82e3" class="numbered-list" start="1"><li><strong>赛道升维：从单点 AI CRM 到“company brain”企业 OS</strong> — a16z（2026-05）提出 CRM 正被上层“智能层”架空，switching cost 迁向 workflow / context。Morphic 一开始就做统一 workspace + temporal context graph，押注“智能层 + 数据底座”一体，估值锰点朝企业 OS 而非单一 CRM。</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="c742d740-5378-4bdd-9aab-4115d2eac43d" class="numbered-list" start="2"><li><strong>双经济护城：data moat + token margin</strong> — 以 temporal context graph（难迁移）+ tribal knowledge 个性化为数据/切换护城；以 token 批发折扣 + 数据销售 + 90% 收入返还构造用户锁定与成本优势。若飞轮转起，后发者难追（均 per founder，待验证）。</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="c578047b-ff9a-4aa7-92a5-d546ab26c50e" class="numbered-list" start="3"><li><strong>分发是真正的创始人套利</strong> — 创始人运营 SF 头部 AI 大会 + 多家品牌渠道分成，是同阶段对手没有的冷启动氠气优势；1 个月 $100K ARR 是该氠气的初步验证。</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="1caa57f2-289a-4993-9fa7-4bdde505fa19" class="numbered-list" start="4"><li><strong>极早期 + 加密可扩展面</strong> — $35M post 入场远低于头部对手；项目有 crypto-native 起源（Telegram 迁移 / 加密客群），是 IOSG 可加值且 LP 可取得差异化 exposure 的点。</li></ol></div><div style="display:contents" dir="auto"><h1 id="3512c0c9-927c-4182-8238-5eee220a7e54" class="">风险</h1></div><div style="display:contents" dir="auto"><ul id="473834ea-c4f9-4fb7-bf9b-2b0b7d2e7040" class="bulleted-list"><li style="list-style-type:disc"><strong>单一创始人 + 公司仅 2 个月</strong>：无联创（仅在洽谈），执行风险集中于一人；公司历史极短，无法用时间验证留存与 Scale。</li></ul></div><div style="display:contents" dir="auto"><ul id="e7987cca-00a4-4197-91e6-ccbe9c5e9712" class="bulleted-list"><li style="list-style-type:disc"><strong>所有指标为创始人自报、未审计</strong>：$100K ARR、30 客户、90% 检索准确率、token margin、Plaud $300M 等均需尽调验证；建议 LP 要求看 client logo / 合同 / 后台数据。</li></ul></div><div style="display:contents" dir="auto"><ul id="5903462c-14ec-4348-8f2a-26336d29d029" class="bulleted-list"><li style="list-style-type:disc"><strong>赛道拥挤、对手资金碾压</strong>：Day AI、Attio、Rox、Reevo 资本与分发占优；同时 Notion / Airtable 等 workspace 在位者正装 AI。Morphic 需证明“更宽平台”不会变成“样样都做、样样不深”。</li></ul></div><div style="display:contents" dir="auto"><ul id="3ed6f683-de14-4e20-81a7-30f80f65451c" class="bulleted-list"><li style="list-style-type:disc"><strong>战线过宽 / 执行难度</strong>：同时做 workspace + CRM + agent + GTM 代理 pod + 数据销售，对 6 人团队是极高执行要求；GTM“去响”依赖一次性流量爆发，可持续性存疑。</li></ul></div><div style="display:contents" dir="auto"><ul id="313bb978-61df-4bd7-b3d5-4339f0e603ed" class="bulleted-list"><li style="list-style-type:disc"><strong>主体切换</strong>：旧 Socrates 主体尚需 mutual cancellation；LP 应确认 IP / 用户 / 品牌已干净转入 Morphic 新主体。</li></ul></div><div style="display:contents" dir="auto"><h1 id="a2d2863b-862e-417b-85b6-9d3280d58b9a" class="">附录 · Sources</h1></div><div style="display:contents" dir="auto"><ul id="589dd846-4708-4f59-a5e1-e80aa3dc52dc" class="bulleted-list"><li style="list-style-type:disc">创始人通话：<a href="https://otter.ai/u/_cUaxCsQUVgSbCLkUYYPog7Y5As">Otter 转录（2026-06-10，Joshua Sum × Jocy）</a></li></ul></div><div style="display:contents" dir="auto"><ul id="1d0553a6-b24f-4437-a2ea-2e20fa20be23" class="bulleted-list"><li style="list-style-type:disc">官网：<a href="http://morphic.io">morphic.io</a>（© 2026 Socrates Labs, Inc.）、<a href="http://socrateslabs.io">socrateslabs.io</a>（旧 &quot;The Agentic CRM&quot;）</li></ul></div><div style="display:contents" dir="auto"><ul id="36ea7ac6-2426-46d4-9ae0-153c59ba86f0" class="bulleted-list"><li style="list-style-type:disc">赛道：a16z《From &quot;System of Record&quot; to &quot;System of Intelligence&quot;》（2026-05）；Day AI / Attio / Rox / Reevo / Octolane 公开融资报道</li></ul></div><div style="display:contents" dir="auto"><ul id="dd65ab3b-3dbe-41be-b969-cca87fd4c341" class="bulleted-list"><li style="list-style-type:disc"><strong>数据性质提醒</strong>：除竞对融资为公开信息外，Morphic 所有 traction / 融资 / 客户 / 技术指标均为<strong>创始人 2026-06-10 自报</strong>，未经独立验证。</li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+<script id="morphic-investment-brief-enhance">
+(function () {
+  const body = document.querySelector('.page-body');
+  if (!body) return;
+
+  const headings = [...body.querySelectorAll('h1')];
+  headings.forEach((h, i) => {
+    if (!h.id) h.id = 'section-' + (i + 1);
+  });
+
+  const nav = document.createElement('nav');
+  nav.className = 'brief-nav';
+  nav.innerHTML = '<div class="brief-nav-title">Memo Sections</div>' + headings.map(h => {
+    return '<a href="#' + h.id + '">' + h.textContent.trim() + '</a>';
+  }).join('');
+  body.prepend(nav);
+
+  const metrics = document.createElement('section');
+  metrics.className = 'metrics-grid';
+  metrics.innerHTML = [
+    ['ARR', '~$100K', '30 customers, 1 month selling'],
+    ['Round', '$35M post', '~$225K committed SAFE'],
+    ['Company Age', '2 months', 'Founder-reported data'],
+    ['Target', '$10M ARR', '2026 ambition, unverified']
+  ].map(([label, value, note]) => '<div class="metric-card"><div class="metric-label">' + label + '</div><div class="metric-value">' + value + '</div><div class="metric-note">' + note + '</div></div>').join('');
+
+  const strip = document.createElement('section');
+  strip.className = 'callout-strip';
+  strip.innerHTML = '<div><b>Investment Frame</b><span>Agentic workspace / company brain, not another point CRM.</span></div><div><b>Key Diligence</b><span>Validate ARR, customer logos, SAFE terms, IP transfer, retention.</span></div>';
+
+  const firstContent = nav.nextElementSibling;
+  body.insertBefore(metrics, firstContent);
+  body.insertBefore(strip, firstContent);
+
+  headings.forEach(h => {
+    const text = h.textContent.trim();
+    let node = h.parentElement;
+    const sectionClass = text.includes('风险') ? 'risk-section' : text.includes('我们的押注') ? 'bet-section' : '';
+    if (!sectionClass) return;
+    while (node && node.nextElementSibling) {
+      node = node.nextElementSibling;
+      if (node.querySelector && node.querySelector('h1')) break;
+      node.classList.add(sectionClass);
+    }
+  });
+})();
+</script></body></html>
