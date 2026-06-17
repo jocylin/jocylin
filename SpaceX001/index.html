@@ -1,709 +1,182 @@
 <!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SpaceX001 | 太空产业的成本坍缩与平台化</title>
-  <meta name="description" content="基于 SpaceX 前制造高管访谈整理的投资人长页：还原 SpaceX 发展路径、产业链结构、AI 太空融合与投资框架。" />
-  <meta property="og:title" content="SpaceX001 | 太空产业的成本坍缩与平台化" />
-  <meta property="og:description" content="给投资人看的 SpaceX 与商业航天产业链还原。" />
-  <meta property="og:image" content="https://www.spacex.com/assets/images/share.jpg" />
-  <style>
-    :root {
-      --bg: #07090d;
-      --panel: #10151d;
-      --panel-2: #151d27;
-      --ink: #f6f7f3;
-      --muted: #aab4c3;
-      --line: rgba(255,255,255,.13);
-      --blue: #77b7ff;
-      --green: #91dfaa;
-      --amber: #f1c56f;
-      --red: #ff8f7e;
-      --silver: #d8e0ea;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      line-height: 1.6;
-      letter-spacing: 0;
-    }
-    a { color: inherit; text-decoration: none; }
-    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-    .section { padding: 86px 0; border-top: 1px solid var(--line); }
-    .section.tight { padding: 56px 0; }
-    .kicker {
-      color: var(--amber);
-      font-size: 12px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-weight: 800;
-    }
-    h1, h2, h3, p { margin: 0; }
-    h1 {
-      max-width: 980px;
-      font-size: clamp(42px, 6vw, 86px);
-      line-height: .98;
-      letter-spacing: 0;
-      font-weight: 860;
-    }
-    h2 {
-      margin-top: 12px;
-      max-width: 880px;
-      font-size: clamp(30px, 4vw, 58px);
-      line-height: 1.02;
-      font-weight: 820;
-      letter-spacing: 0;
-    }
-    h3 {
-      font-size: 21px;
-      line-height: 1.2;
-      font-weight: 780;
-      letter-spacing: 0;
-    }
-    .lead {
-      max-width: 780px;
-      margin-top: 22px;
-      color: var(--silver);
-      font-size: clamp(17px, 2vw, 22px);
-      line-height: 1.55;
-    }
-    .muted { color: var(--muted); }
-    .nav {
-      position: fixed;
-      z-index: 30;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(7,9,13,.72);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner {
-      height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .brand { font-weight: 850; font-size: 14px; white-space: nowrap; }
-    .links { display: flex; gap: 18px; align-items: center; color: var(--muted); font-size: 13px; }
-    .links a:hover { color: var(--ink); }
-
-    .hero {
-      position: relative;
-      min-height: 96vh;
-      display: grid;
-      align-items: end;
-      padding: 110px 0 64px;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(7,9,13,.18), #07090d 92%),
-        linear-gradient(90deg, rgba(7,9,13,.94), rgba(7,9,13,.58) 45%, rgba(7,9,13,.2)),
-        url("https://www.spacex.com/assets/images/share.jpg") center / cover no-repeat;
-    }
-    .hero:after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(180deg, #000, transparent 78%);
-      pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 2; }
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 26px;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 7px 11px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color: var(--silver);
-      font-size: 13px;
-      font-weight: 650;
-    }
-    .hero-bottom {
-      margin-top: 56px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-    .metric {
-      background: rgba(7,9,13,.72);
-      padding: 22px;
-      min-height: 128px;
-    }
-    .metric strong { display: block; font-size: 32px; line-height: 1; }
-    .metric span { display: block; margin-top: 10px; color: var(--muted); font-size: 13px; }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 44px;
-      align-items: start;
-    }
-    .thesis {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 34px;
-    }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 24px;
-    }
-    .card p, .dense p { margin-top: 12px; color: var(--muted); font-size: 15px; }
-    .tag {
-      display: inline-block;
-      margin-bottom: 16px;
-      color: var(--bg);
-      background: var(--amber);
-      padding: 4px 8px;
-      font-size: 12px;
-      font-weight: 850;
-    }
-    .tag.blue { background: var(--blue); }
-    .tag.green { background: var(--green); }
-    .tag.red { background: var(--red); }
-
-    .timeline {
-      margin-top: 40px;
-      display: grid;
-      gap: 14px;
-    }
-    .event {
-      display: grid;
-      grid-template-columns: 126px 1fr;
-      gap: 22px;
-      padding: 22px 0;
-      border-top: 1px solid var(--line);
-    }
-    .year { color: var(--amber); font-size: 28px; font-weight: 850; line-height: 1; }
-    .event p { color: var(--muted); margin-top: 8px; }
-
-    .map {
-      margin-top: 36px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .layer {
-      min-height: 360px;
-      background: linear-gradient(180deg, var(--panel), rgba(16,21,29,.72));
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    .layer:before {
-      content: "";
-      position: absolute;
-      left: 24px;
-      right: 24px;
-      top: 72px;
-      height: 1px;
-      background: var(--line);
-    }
-    .layer ul { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 13px; }
-    .layer li {
-      color: var(--silver);
-      border-left: 3px solid var(--blue);
-      padding-left: 12px;
-      font-size: 15px;
-    }
-    .layer:nth-child(2) li { border-color: var(--green); }
-    .layer:nth-child(3) li { border-color: var(--amber); }
-
-    .visual-band {
-      background:
-        radial-gradient(circle at 20% 0%, rgba(119,183,255,.16), transparent 34%),
-        radial-gradient(circle at 80% 10%, rgba(241,197,111,.12), transparent 36%),
-        #0b0f15;
-    }
-    .orbit {
-      margin-top: 36px;
-      min-height: 460px;
-      position: relative;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background: linear-gradient(180deg, #06080c, #101621);
-    }
-    .earth {
-      position: absolute;
-      left: 50%;
-      bottom: -240px;
-      width: 760px;
-      height: 760px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 50% 35%, rgba(255,255,255,.42), transparent 6%),
-        radial-gradient(circle at 38% 42%, rgba(87,162,255,.55), transparent 18%),
-        radial-gradient(circle at 62% 38%, rgba(97,205,142,.38), transparent 16%),
-        radial-gradient(circle at 50% 50%, #172b44, #07121e 66%);
-      box-shadow: 0 0 120px rgba(92,154,255,.36);
-    }
-    .ring {
-      position: absolute;
-      left: 50%;
-      bottom: -126px;
-      width: 980px;
-      height: 500px;
-      transform: translateX(-50%);
-      border: 1px solid rgba(145,223,170,.46);
-      border-radius: 50%;
-    }
-    .sat {
-      position: absolute;
-      width: 86px;
-      height: 30px;
-      border: 1px solid rgba(255,255,255,.42);
-      background: rgba(255,255,255,.12);
-      transform: rotate(-12deg);
-    }
-    .sat:before, .sat:after {
-      content: "";
-      position: absolute;
-      top: 9px;
-      width: 34px;
-      height: 12px;
-      background: rgba(119,183,255,.7);
-    }
-    .sat:before { left: -40px; }
-    .sat:after { right: -40px; }
-    .sat.a { left: 18%; top: 24%; }
-    .sat.b { right: 17%; top: 18%; transform: rotate(18deg); }
-    .sat.c { left: 51%; top: 9%; transform: rotate(3deg); }
-    .orbit-note {
-      position: absolute;
-      left: 28px;
-      top: 28px;
-      max-width: 360px;
-      padding: 20px;
-      background: rgba(7,9,13,.76);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-    }
-    .orbit-note p { margin-top: 8px; color: var(--muted); font-size: 14px; }
-
-    .view-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 34px;
-    }
-    .view {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 26px;
-    }
-    .view p { color: var(--muted); margin-top: 12px; }
-    .quote {
-      margin-top: 34px;
-      padding: 34px;
-      border-left: 5px solid var(--amber);
-      background: #0c1118;
-      font-size: clamp(20px, 3vw, 34px);
-      line-height: 1.28;
-      font-weight: 760;
-    }
-    .process {
-      margin-top: 38px;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-    }
-    .step { background: var(--panel); padding: 22px; min-height: 210px; }
-    .step b { color: var(--amber); font-size: 24px; }
-    .step p { color: var(--muted); margin-top: 12px; font-size: 14px; }
-
-    .table {
-      margin-top: 34px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .row {
-      display: grid;
-      grid-template-columns: 1.1fr 1.4fr 1.4fr;
-      border-top: 1px solid var(--line);
-    }
-    .row:first-child { border-top: 0; background: rgba(255,255,255,.06); font-weight: 800; color: var(--ink); }
-    .row div { padding: 17px; color: var(--muted); font-size: 14px; }
-    .row:first-child div { color: var(--ink); }
-
-    .source-list { margin-top: 28px; display: grid; gap: 12px; }
-    .source-list a {
-      display: block;
-      padding: 14px 16px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.03);
-      overflow-wrap: anywhere;
-    }
-    .source-list a:hover { color: var(--ink); border-color: rgba(255,255,255,.28); }
-    .footer {
-      padding: 38px 0 54px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      font-size: 13px;
-    }
-
-    @media (max-width: 900px) {
-      .links { display: none; }
-      .hero { min-height: auto; padding-top: 116px; }
-      .hero-bottom, .thesis, .map, .view-grid, .process, .split { grid-template-columns: 1fr; }
-      .event { grid-template-columns: 1fr; gap: 10px; }
-      .row { grid-template-columns: 1fr; }
-      .row div { border-top: 1px solid var(--line); }
-      .row div:first-child { border-top: 0; }
-      .orbit { min-height: 520px; }
-      .earth { width: 580px; height: 580px; bottom: -180px; }
-      .ring { width: 720px; height: 370px; bottom: -84px; }
-      .sat.a { left: 16%; top: 36%; }
-      .sat.b { right: 18%; top: 35%; }
-      .sat.c { left: 52%; top: 20%; }
-      .section { padding: 66px 0; }
-    }
-    @media (max-width: 560px) {
-      .wrap { width: min(var(--max), calc(100% - 40px)); }
-      h1 { font-size: 40px; line-height: 1.04; }
-      .lead { font-size: 17px; }
-      .hero-meta { gap: 10px; }
-      .chip { max-width: 100%; }
-    }
-  </style>
-</head>
-<body>
-  <nav class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#top">SpaceX001</a>
-      <div class="links">
-        <a href="#thesis">Thesis</a>
-        <a href="#history">过程</a>
-        <a href="#chain">产业链</a>
-        <a href="#ai">AI x Space</a>
-        <a href="#invest">投资框架</a>
-      </div>
-    </div>
-  </nav>
-
-  <header id="top" class="hero">
-    <div class="wrap hero-content">
-      <div class="kicker">Investor Briefing / Commercial Space / 2026</div>
-      <h1>SpaceX 不是火箭公司，而是太空产业的操作系统。</h1>
-      <p class="lead">这份长页基于 SpaceX 前火箭首席制造工程师洪立德访谈整理，目标是给投资人还原三件事：SpaceX 如何通过成本坍缩改写航天经济学，产业链如何围绕它重组，以及 AI 与太空基础设施的远期组合权利。</p>
-      <div class="hero-meta">
-        <span class="chip">事实 / 判断 / 推演分层</span>
-        <span class="chip">Gamma-style 长页</span>
-        <span class="chip">产业链地图</span>
-        <span class="chip">投资人视角</span>
-      </div>
-      <div class="hero-bottom">
-        <div class="metric"><strong>200x</strong><span>访谈口径：入轨成本从每公斤 1-2 万美元，远期目标降至 100 美元以下</span></div>
-        <div class="metric"><strong>2015</strong><span>Falcon 9 首次轨道级回收成功，商业航天进入可复用时代</span></div>
-        <div class="metric"><strong>3 层</strong><span>上游运力 / 中游轨道资产运营 / 下游应用与数据服务</span></div>
-        <div class="metric"><strong>2030</strong><span>NASA 计划从 ISS 过渡到商业化低轨空间站服务</span></div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section id="thesis" class="section">
-      <div class="wrap">
-        <div class="kicker">Core Thesis</div>
-        <h2>投资主线不是“火箭更先进”，而是运输成本坍缩后，太空第一次变成可定价市场。</h2>
-        <p class="lead">传统航天是项目制、政府制、成本加成制。SpaceX 的关键突破是把“发射”从一次性工程变成高频、可复用、可规模化的物流系统。只有当物流成本下降两个数量级，星链、低轨制造、商业空间站、月球/火星基础设施和太空算力才有经济意义。</p>
-        <div class="thesis">
-          <article class="card">
-            <span class="tag">01 / 成本</span>
-            <h3>航天产业的第一性指标是 $/kg。</h3>
-            <p>可复用 Falcon 9 把行业从“贵、慢、低频”推向“更便宜、更高频、更可预测”。Starship 的意义不只是更大火箭，而是试图把轨道运输进一步商品化。</p>
-          </article>
-          <article class="card">
-            <span class="tag blue">02 / 平台</span>
-            <h3>Starlink 是 SpaceX 从运力商变平台商的拐点。</h3>
-            <p>如果 Falcon 是铁路，Starlink 就是第一条跑出现金流的货运/通信业务。它证明 SpaceX 可以不只卖发射服务，还能拥有轨道资产与终端客户。</p>
-          </article>
-          <article class="card">
-            <span class="tag green">03 / 生态</span>
-            <h3>SpaceX Mafia 会把硬科技 Know-how 外溢。</h3>
-            <p>真正值得投的不一定只在 SpaceX 股权本身，还在前 SpaceX/特斯拉工程师创业出来的制造、能源、推进、空间站、材料和实体 AI 公司。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="history" class="section visual-band">
-      <div class="wrap">
-        <div class="kicker">Company Arc</div>
-        <h2>SpaceX 的经历过程：每一代产品都不是终点，而是下一代基础设施的融资与学习工具。</h2>
-        <div class="timeline">
-          <div class="event">
-            <div class="year">2002</div>
-            <div><h3>创立：目标不是造火箭，而是让人类成为多星球物种。</h3><p>这解释了为什么 SpaceX 不把短期商业最大化作为唯一目标。火箭只是到达目的的手段，公司的真实产品是“进入太空的能力”。</p></div>
-          </div>
-          <div class="event">
-            <div class="year">2008</div>
-            <div><h3>Falcon 1 第四次发射成功后迅速退役。</h3><p>若 SpaceX 是普通火箭公司，Falcon 1 成功后应继续卖小火箭服务。但它载荷太小，无法服务火星目标，因此只完成了 0 到 1 的技术验证。</p></div>
-          </div>
-          <div class="event">
-            <div class="year">2010-12</div>
-            <div><h3>Falcon 9 与 Dragon 把 NASA 订单变成公司现金流基础。</h3><p>Falcon 9 载荷约为 Falcon 1 的数量级升级；Dragon 负责国际空间站货运“最后一公里”。NASA 商业合同让 SpaceX 从技术冒险进入可持续商业循环。</p></div>
-          </div>
-          <div class="event">
-            <div class="year">2015</div>
-            <div><h3>轨道级回收成功，行业范式改变。</h3><p>2015 年 12 月 21 日的回收是访谈中的核心节点：航天从“发一次扔一次”走向“像飞机一样复用”的第一步。真正的难点随后才开始：把回收变成稳定量产。</p></div>
-          </div>
-          <div class="event">
-            <div class="year">2015-16</div>
-            <div><h3>连续失败暴露量产阶段的系统风险。</h3><p>访谈里最重要的反直觉点：最危险时刻不是早期 Falcon 1，而是 Falcon 9 已经被行业认为领先后连续失败。领先系统的失败更难诊断，因为没有可抄答案。</p></div>
-          </div>
-          <div class="event">
-            <div class="year">2019+</div>
-            <div><h3>Starlink 把发射能力转化为自有应用层。</h3><p>星链不是“一个卫星项目”，而是 SpaceX 自己给火星任务找现金牛的第一性解法：低轨通信既消耗自家运力，又形成全球客户网络。</p></div>
-          </div>
-          <div class="event">
-            <div class="year">2022+</div>
-            <div><h3>第三阶段：从单一公司能力，扩展为太空产业生态。</h3><p>访谈把 SpaceX 分为 0-1、1-1000、开发整个太空产业三阶段。此后重点从“能不能发”转向“太空里能跑出什么应用”。</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="split">
-          <div>
-            <div class="kicker">Operating System</div>
-            <h2>马斯克管理的本质：用极端目标迫使团队重写约束。</h2>
-            <p class="lead">这套文化非常残酷，但它适配的是“行业几十年没有真正降本”的场景。SpaceX 不奖励 20% 改进，因为 20% 改进无法打开太空经济；它追求的是 order-of-magnitude change。</p>
-          </div>
-          <div class="dense">
-            <article class="card">
-              <h3>可乐罐 vs 火箭高压桶</h3>
-              <p>团队把高压桶成本降 90% 后，马斯克没有表扬，而是问是否看过可乐罐生产。这个类比不严谨但有效：它逼团队从“航天产品当然贵”转向“耐压产品能不能工业化”。</p>
-            </article>
-            <article class="card" style="margin-top:14px">
-              <h3>Mini Cooper 团队的意义</h3>
-              <p>Falcon 9 早期每次发射都迭代，没有两支火箭完全一样。Mini Cooper 的高 SKU 量产经验比传统航天经验更匹配这种“高变化、高可靠、高频率”的制造系统。</p>
-            </article>
-          </div>
-        </div>
-        <div class="quote">“火箭不是目的。火箭是打开太空经济的运输层。”</div>
-      </div>
-    </section>
-
-    <section id="chain" class="section">
-      <div class="wrap">
-        <div class="kicker">Value Chain</div>
-        <h2>商业航天产业链：SpaceX 控制运输层，并沿着应用层向上吃。</h2>
-        <p class="lead">从投资角度看，太空产业不是一个行业，而是一组依赖低成本入轨的垂直市场。当前最清晰的商业化路径是通信，下一批可能来自空间站服务、微重力制造、遥感数据、在轨维修、能源与计算。</p>
-        <div class="map">
-          <div class="layer">
-            <span class="tag blue">上游 / Access</span>
-            <h3>发射、飞船、卫星、空间站硬件</h3>
-            <ul>
-              <li>火箭与发动机：Falcon / Starship / Raptor</li>
-              <li>飞船与载人/货运系统：Dragon / Starship HLS</li>
-              <li>卫星平台、姿控、推进、电源、热控</li>
-              <li>商业空间站结构、生命保障、舱段制造</li>
-            </ul>
-          </div>
-          <div class="layer">
-            <span class="tag green">中游 / Orbit Ops</span>
-            <h3>轨道资产运营与数据回传</h3>
-            <ul>
-              <li>星座部署、轨道管理、避碰与太空交通</li>
-              <li>地面站、激光链路、频谱与网络调度</li>
-              <li>在轨维护、补给、组装与寿命延长</li>
-              <li>NASA 商业低轨服务采购</li>
-            </ul>
-          </div>
-          <div class="layer">
-            <span class="tag">下游 / Applications</span>
-            <h3>应用、数据、制造与算力</h3>
-            <ul>
-              <li>Starlink 宽带、直连手机、企业/海事/航空网络</li>
-              <li>遥感、国防、气象、金融低延迟传输</li>
-              <li>微重力材料、药物、晶圆、光纤与生物制造</li>
-              <li>远期：太空太阳能、太空数据中心、月球经济</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section visual-band">
-      <div class="wrap">
-        <div class="kicker">Platform Visualization</div>
-        <h2>为什么 Starlink 是第一个杀手级应用：它把“低成本发射”直接转化为全球网络。</h2>
-        <div class="orbit" aria-label="LEO constellation visual">
-          <div class="orbit-note">
-            <h3>LEO 平台化逻辑</h3>
-            <p>低轨不是一个地点，而是一层新基础设施：运输层越便宜，越多资产被放上去；资产越多，越需要运营、数据、能源和维护服务。</p>
-          </div>
-          <div class="sat a"></div>
-          <div class="sat b"></div>
-          <div class="sat c"></div>
-          <div class="ring"></div>
-          <div class="earth"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="ai" class="section">
-      <div class="wrap">
-        <div class="kicker">AI x Space</div>
-        <h2>太空数据中心是最激进的推演，但不是纯科幻：它针对的是地面 AI 基建的两个硬约束。</h2>
-        <p class="lead">访谈里的 xAI / 太空数据中心叙事应被视为投资推演，而非确定事实。它的底层逻辑成立与否，取决于太空能源、散热、维修、发射频率、通信延迟与单位算力成本能否打过地面数据中心。</p>
-        <div class="view-grid">
-          <article class="view">
-            <span class="tag red">地面瓶颈</span>
-            <h3>电力、审批、土地、并网速度</h3>
-            <p>美国数据中心建设面临电力供给、并网排队、社区审批、冷却与土地限制。AI capex 越大，这些瓶颈越像真实的物理约束，而不是单纯融资问题。</p>
-          </article>
-          <article class="view">
-            <span class="tag blue">太空优势</span>
-            <h3>太阳能、轨道位置、全球覆盖</h3>
-            <p>太空有更稳定的太阳能输入，部署位置不受地方审批制约。若发射成本足够低、在轨组装足够成熟，轨道算力会成为远期基础设施选项。</p>
-          </article>
-          <article class="view">
-            <span class="tag green">AI 帮航天</span>
-            <h3>仿真、材料、设计搜索、自动运维</h3>
-            <p>更现实的短期方向是 AI 反过来帮助航天：缩短仿真与测试周期，提高材料发现效率，降低任务规划和在轨运营复杂度。</p>
-          </article>
-          <article class="view">
-            <span class="tag">航天帮 AI</span>
-            <h3>能源套利与新算力位置</h3>
-            <p>长期方向是航天为 AI 提供新的能源和部署空间。它不会取代地面数据中心，但可能成为极端规模 AI 的边际扩容路径。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="invest" class="section">
-      <div class="wrap">
-        <div class="kicker">Investor Framework</div>
-        <h2>投资人应该怎么拆 SpaceX 与太空产业：不要只盯 IPO，要盯平台外溢。</h2>
-        <div class="process">
-          <div class="step"><b>1</b><h3>运输层</h3><p>谁能降低 $/kg，谁掌握太空经济的入口税。SpaceX 当前领先，Starship 是继续扩大领先的关键变量。</p></div>
-          <div class="step"><b>2</b><h3>现金流层</h3><p>Starlink 证明 SpaceX 不只是发射商。关注用户增长、ARPU、企业/航空/海事/军方客户和直连手机。</p></div>
-          <div class="step"><b>3</b><h3>资产运营层</h3><p>卫星星座越大，越需要轨道交通管理、在轨维护、频谱/链路调度、地面站和安全服务。</p></div>
-          <div class="step"><b>4</b><h3>应用层</h3><p>微重力制造、商业空间站、遥感/国防、低延迟通信、太空能源和数据中心是不同风险曲线的 call options。</p></div>
-          <div class="step"><b>5</b><h3>人才层</h3><p>前 SpaceX/特斯拉员工是核心 alpha 来源。重点看是否真正经历过高可靠硬件量产，而不是只带着品牌光环。</p></div>
-        </div>
-
-        <div class="table">
-          <div class="row"><div>投资方向</div><div>为什么值得看</div><div>关键验证指标</div></div>
-          <div class="row"><div>SpaceX 生态配套</div><div>跟随 SpaceX 发射节奏，复用其轨道与供应链红利。</div><div>是否拿到真实 SpaceX/NASA/国防订单；是否依赖单一客户。</div></div>
-          <div class="row"><div>开放链基础设施</div><div>服务全行业，避免被 SpaceX 垂直整合挤压。</div><div>客户多样性、任务关键性、单位经济模型。</div></div>
-          <div class="row"><div>商业空间站与微重力制造</div><div>NASA 从“地主”转向“房东/采购方”，给商业低轨服务打开窗口。</div><div>在轨演示、有效载荷客户、回收与质量一致性。</div></div>
-          <div class="row"><div>AI + 航天工具链</div><div>最先落地的可能是仿真、设计、运维，而不是直接把 GPU 丢上天。</div><div>能否降低测试次数、缩短设计周期、改善可靠性。</div></div>
-          <div class="row"><div>太空数据中心</div><div>远期巨大，但工程复杂度极高，是高 convexity 方向。</div><div>发射成本、散热、维修、通信延迟、能源闭环、总拥有成本。</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="kicker">Debate Points</div>
-        <h2>需要尽可能细讨论的观点：哪些成立，哪些要谨慎。</h2>
-        <div class="view-grid">
-          <article class="view">
-            <h3>观点一：SpaceX 是现代东印度公司。</h3>
-            <p>这个比喻有启发性：它不是单一产品公司，而是进入新大陆的运输、贸易、基础设施与治理入口。但也要警惕类比过度。太空经济需要监管、国际协调和安全治理，不能只按殖民扩张逻辑理解。</p>
-          </article>
-          <article class="view">
-            <h3>观点二：太空产业相当于 1995 年互联网。</h3>
-            <p>相似处在于基础设施先行、应用未完全出现、资本认知刚开始转向。不同处在于太空的物理约束更硬，监管更重，失败成本更高，周期比软件互联网更长。</p>
-          </article>
-          <article class="view">
-            <h3>观点三：只要 Starship 成本打下来，应用会自然爆发。</h3>
-            <p>方向对，但不自动。低成本运输只是必要条件，不是充分条件。每个应用还要分别解决需求、回收、保险、监管、终端销售和维护网络。</p>
-          </article>
-          <article class="view">
-            <h3>观点四：SpaceX 竞争对手是自己。</h3>
-            <p>短期基本成立，因为它在发射频率、复用经验和垂直整合上领先。但中长期不能低估中国航天、国家安全预算、蓝色起源、Rocket Lab、AST/Viasat 等在不同细分市场的反击。</p>
-          </article>
-          <article class="view">
-            <h3>观点五：传统航天专家不是最优人才。</h3>
-            <p>在重写范式时成立。SpaceX 需要的是能把汽车、食品、消费电子的量产经验迁移到火箭制造的人。但在载人安全、可靠性认证、轨道治理等环节，传统经验仍然不可替代。</p>
-          </article>
-          <article class="view">
-            <h3>观点六：xAI / SpaceX / Tesla 最终可能合流。</h3>
-            <p>这是访谈嘉宾的推测。逻辑上，这些公司分别对应能源/实体 AI/通用 AI/脑机/地下工程/太空运输，确实能被“多星球文明”叙事串起来。但资本结构、监管和治理冲突会非常复杂。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section tight">
-      <div class="wrap">
-        <div class="kicker">Risk Register</div>
-        <h2>风险清单：越宏大的叙事，越要用硬指标拆穿。</h2>
-        <div class="table">
-          <div class="row"><div>风险</div><div>为什么重要</div><div>观察信号</div></div>
-          <div class="row"><div>Starship 节奏</div><div>若完全复用和高频发射迟迟不稳，远期应用的经济账会延后。</div><div>测试频率、回收稳定性、FAA/环境审批、单次发射成本。</div></div>
-          <div class="row"><div>Starlink 单位经济</div><div>星链是现金流核心，终端补贴、容量、竞争和监管会影响估值锚。</div><div>用户数、ARPU、churn、企业客户占比、DTC 进展。</div></div>
-          <div class="row"><div>资本市场过热</div><div>“太空 ChatGPT moment”容易带来叙事溢价，二级估值可能先于基本面。</div><div>IPO 后估值倍数、同业融资质量、收入确认质量。</div></div>
-          <div class="row"><div>地缘与军民两用</div><div>太空资产天然军民两用，出口管制、频谱、轨道资源和战争风险都会放大。</div><div>FCC/FAA/DoD/NASA 合同，国际频谱争议，反卫星风险。</div></div>
-          <div class="row"><div>太空垃圾</div><div>低轨拥挤会影响保险、监管和星座扩张，是整个行业的公共约束。</div><div>避碰事件、碎片治理规则、主动清理技术成熟度。</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="kicker">Bottom Line</div>
-        <h2>一句话结论：SpaceX 的核心价值在于把太空从“国家工程”降维成“商业基础设施”。</h2>
-        <p class="lead">如果 Starship 继续推进，SpaceX 的长期上限不是火箭制造利润，而是低轨通信、空间站服务、在轨物流、太空制造、能源与 AI 算力这些新市场的入口权。投资上最该看的不是单点新闻，而是成本曲线、发射频率、Starlink 现金流和 SpaceX Mafia 的外溢创业网络。</p>
-      </div>
-    </section>
-
-    <section class="section tight">
-      <div class="wrap">
-        <div class="kicker">Sources & Notes</div>
-        <h2>资料口径</h2>
-        <p class="lead">本页主体来自用户提供的访谈逐字稿与智能总结。页面中的外部事实用于校验产业背景；访谈中的 IPO、xAI 整合、太空数据中心等内容按“嘉宾判断/投资推演”处理。</p>
-        <div class="source-list">
-          <a href="https://d.biji.com/GK7PxRjazr4vQhBf" target="_blank" rel="noreferrer">访谈来源：口述 SpaceX 开发史 / 洪立德访谈</a>
-          <a href="https://www.spacex.com/vehicles/falcon-9/" target="_blank" rel="noreferrer">SpaceX Falcon 9 官方页面：运载能力与复用叙事</a>
-          <a href="https://www.starlink.com/progress" target="_blank" rel="noreferrer">Starlink Progress：星链网络与服务进展</a>
-          <a href="https://www.nasa.gov/humans-in-space/commercial-space/commercial-space-stations/" target="_blank" rel="noreferrer">NASA Commercial Space Stations：ISS 向商业低轨空间站过渡</a>
-          <a href="https://www.reutersconnect.com/item/spacex-leads-the-largest-ipo-in-history-after-raising-75-billion/dGFnOnJldXRlcnMuY29tLDIwMjY6bmV3c21sX09XTFRBQzJWUVRWS1lLWFczR0pXQUVITUpUOExCQ0w" target="_blank" rel="noreferrer">Reuters Connect / LANA：SpaceX IPO 公开报道素材页，注意其声明称 Reuters 未核验该合作方材料</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap">SpaceX001 · Generated for investor discussion · HKT 2026-06-17</div>
-  </footer>
-</body>
-</html>
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SpaceX001 | 30+ Page Investor Deck</title><meta name="description" content="SpaceX 投资人长页：基于访谈全文、公开数据与真实照片，拆解 SpaceX 发展史、产业链、AI x Space 与投资框架。"/>
+<meta property="og:title" content="SpaceX001 | SpaceX 与太空产业链投资人长页"/><meta property="og:description" content="30+ page Gamma-style web deck for investors."/><meta property="og:image" content="https://jocylin.pages.dev/SpaceX001/assets/starship_ignition.jpg"/>
+<style>
+:root{--bg:#05070a;--ink:#f4f1e8;--muted:#a9b1bd;--line:rgba(255,255,255,.13);--panel:#10151c;--panel2:#151c25;--gold:#e8b968;--blue:#75bfff;--green:#89d49b;--red:#ff8b78;--max:1240px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55;letter-spacing:0}a{color:inherit}.progress{position:fixed;left:0;top:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--blue),var(--green));z-index:20;width:0}.side{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:10;display:grid;gap:5px;max-height:82vh;overflow:auto;padding:8px;background:rgba(5,7,10,.45);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:8px}.side a{width:32px;height:24px;display:grid;place-items:center;text-decoration:none;color:var(--muted);font-size:11px;border-radius:5px}.side a:hover{background:rgba(255,255,255,.08);color:var(--ink)}.hero{min-height:92vh;display:grid;align-items:end;padding:64px 0 58px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,7,10,.92),rgba(5,7,10,.46),rgba(5,7,10,.82)),url('assets/starship_ignition.jpg') center/cover no-repeat;filter:saturate(.95)}.hero:after{content:"";position:absolute;inset:auto 0 0;height:35%;background:linear-gradient(0deg,var(--bg),transparent)}.wrap{width:min(var(--max),calc(100% - 44px));margin:0 auto;position:relative;z-index:1}.hero h1{font-size:clamp(44px,7vw,104px);line-height:.95;margin:16px 0 22px;max-width:1080px;font-weight:880}.kicker,.eyebrow{color:var(--gold);font-size:12px;font-weight:850;letter-spacing:.11em;text-transform:uppercase}.hero p{max-width:850px;color:#d9dee5;font-size:clamp(18px,2vw,25px);margin:0}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px;max-width:1060px}.metric{border:1px solid var(--line);background:rgba(11,16,22,.72);backdrop-filter:blur(10px);border-radius:8px;padding:16px}.metric b{display:block;font-size:clamp(24px,3.2vw,40px);line-height:1;color:var(--ink)}.metric span{display:block;color:var(--muted);font-size:13px;margin-top:8px}.chapterbar{position:sticky;top:0;z-index:8;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(5,7,10,.88);backdrop-filter:blur(14px)}.chapterbar .wrap{display:flex;gap:14px;align-items:center;overflow:auto;padding:12px 0}.chapterbar a{text-decoration:none;white-space:nowrap;color:var(--muted);font-size:13px}.chapterbar a:hover{color:var(--ink)}.slide{min-height:760px;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);gap:34px;align-items:center;width:min(var(--max),calc(100% - 44px));margin:0 auto;padding:72px 0}.slide .copy{min-width:0}.slide h2{font-size:clamp(31px,4.1vw,62px);line-height:1.02;margin:12px 0 20px;font-weight:850;max-width:880px}.lead{font-size:clamp(18px,2vw,25px);color:#dfe5eb;max-width:850px}.bullets{margin:24px 0 0;padding:0;display:grid;gap:11px;list-style:none}.bullets li{position:relative;padding-left:22px;color:#c7d0dc;font-size:16px}.bullets li:before{content:"";position:absolute;left:0;top:.68em;width:8px;height:8px;background:var(--gold);border-radius:50%}.point-grid{display:grid;gap:14px}.point-grid article{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:8px;padding:18px}.point-grid b{display:block;color:var(--gold);font-size:13px;letter-spacing:.05em;margin-bottom:8px}.point-grid p{margin:0;color:#d5dce4;font-size:15.5px}.source{margin-top:18px;color:var(--muted);font-size:13px}.slide figure{margin:0;position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--line);min-height:520px;background:#111}.slide img{width:100%;height:100%;min-height:520px;object-fit:cover;display:block;filter:saturate(.98) contrast(1.03)}.slide figcaption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.52);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);color:#d7dee8;border-radius:6px;padding:7px 10px;font-size:12px}.facts{border-top:1px solid var(--line);padding:76px 0;background:#080b10}.facts h2{font-size:clamp(30px,4vw,56px);margin:0 0 22px}.source-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0;margin:20px 0 0;list-style:none}.source-list li{border:1px solid var(--line);border-radius:8px;padding:14px;background:rgba(255,255,255,.035)}.source-list a{display:block;color:var(--ink);font-weight:800;text-decoration:none}.source-list span{display:block;color:var(--muted);font-size:13px;margin-top:5px}.note{color:var(--muted);max-width:900px}.footer{padding:36px 0;color:var(--muted);border-top:1px solid var(--line)}@media(max-width:900px){.side{display:none}.metrics{grid-template-columns:repeat(2,1fr)}.slide{grid-template-columns:1fr;min-height:auto;padding:56px 0}.slide figure{min-height:300px;order:-1}.slide img{min-height:300px}.source-list{grid-template-columns:1fr}.hero{min-height:88vh}.wrap,.slide{width:min(100% - 28px,var(--max))}}@media(max-width:520px){.metrics{grid-template-columns:1fr}.hero h1{font-size:42px}.slide h2{font-size:34px}.point-grid article{padding:14px}.chapterbar .wrap{padding:10px 0}}
+</style></head><body><div class="progress"></div><nav class="side"><a href="#p01">01</a><a href="#p02">02</a><a href="#p03">03</a><a href="#p04">04</a><a href="#p05">05</a><a href="#p06">06</a><a href="#p07">07</a><a href="#p08">08</a><a href="#p09">09</a><a href="#p10">10</a><a href="#p11">11</a><a href="#p12">12</a><a href="#p13">13</a><a href="#p14">14</a><a href="#p15">15</a><a href="#p16">16</a><a href="#p17">17</a><a href="#p18">18</a><a href="#p19">19</a><a href="#p20">20</a><a href="#p21">21</a><a href="#p22">22</a><a href="#p23">23</a><a href="#p24">24</a><a href="#p25">25</a><a href="#p26">26</a><a href="#p27">27</a><a href="#p28">28</a><a href="#p29">29</a><a href="#p30">30</a><a href="#p31">31</a><a href="#p32">32</a><a href="#p33">33</a><a href="#p34">34</a><a href="#p35">35</a><a href="#p36">36</a><a href="#p37">37</a><a href="#p38">38</a><a href="#p39">39</a><a href="#p40">40</a><a href="#p41">41</a><a href="#p42">42</a><a href="#p43">43</a><a href="#p44">44</a></nav>
+<header class="hero"><div class="wrap"><div class="kicker">SpaceX001 · Investor Web Deck · Updated 2026-06-17 HKT</div><h1>SpaceX 不是火箭公司，而是低轨经济的默认入口</h1><p>基于 3 小时访谈全文、SpaceX / NASA / Starlink 公开资料和任务照片，扩展成 44 page 的投资人网页 deck。事实、嘉宾判断和投资推演分开标注。</p><div class="metrics"><div class="metric"><b>44</b><span>Page sections</span></div><div class="metric"><b>36</b><span>访谈章节逐一覆盖</span></div><div class="metric"><b>10,600+</b><span>Starlink 活跃卫星，媒体统计口径</span></div><div class="metric"><b>2030</b><span>NASA 计划 ISS 运营至该年前后并转向商业 LEO</span></div></div></div></header>
+<div class="chapterbar"><div class="wrap"><a href="#p01">Executive</a><a href="#p05">Timeline</a><a href="#p13">People</a><a href="#p20">Manufacturing</a><a href="#p28">Industry Chain</a><a href="#p33">AI x Space</a><a href="#p41">Framework</a><a href="#sources">Sources</a></div></div>
+<main><section class="slide intro" id="p01" data-page="01">
+      <div class="copy"><div class="eyebrow">Executive View · PAGE 01</div><h2>一句话结论</h2><p class="lead">SpaceX 的核心不是火箭，而是把「进入太空」从一次性国家工程压缩成可复用、可排班、可规模化的运输服务；一旦运输成本下降，通信、数据、制造、居住和防务都会被重新定价。</p><ul class="bullets"><li>Base case：Starlink 继续证明低轨通信现金流，Falcon 9 保持发射现金牛。</li><li>Upside case：Starship 把单位入轨成本再压低一个数量级，打开在轨制造、商业空间站、月球/火星物流。</li><li>Option case：xAI/SpaceX 结合让 AI 训练、自治系统和太空基础设施出现新耦合。</li></ul><div class="source">口径：访谈观点 + 公开资料综合</div></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Executive View</figcaption></figure>
+    </section><section class="slide intro" id="p02" data-page="02">
+      <div class="copy"><div class="eyebrow">Investor Question · PAGE 02</div><h2>投资人真正要问的问题</h2><p class="lead">这个材料不是问 SpaceX 会不会发火箭，而是问：当低轨成为可运营基础设施之后，哪一层会捕获价值？</p><ul class="bullets"><li>运输层规模最大但资本开支重。</li><li>通信层已经出现 Starlink 这种现金流曲线。</li><li>应用层尚早，但一旦成本阈值被击穿，增长弹性最大。</li></ul><div class="source">口径：投资推演</div></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Investor Question</figcaption></figure>
+    </section><section class="slide intro" id="p03" data-page="03">
+      <div class="copy"><div class="eyebrow">Data Snapshot · PAGE 03</div><h2>公开数据锚点</h2><p class="lead">截至 2026 年中，公开报道显示 SpaceX 已经进入高频发射阶段；Starlink 用户、卫星数量和 Direct to Cell 都在扩张。</p><ul class="bullets"><li>SpaceXNow 统计：2025 年 SpaceX 完成约 167 次发射，2024 年约 136 次。</li><li>Space.com 报道：2026 年 6 月中旬 Starlink 活跃卫星数超过 10,600 颗，SpaceX 年内发射约 69 次。</li><li>Starlink 官方 PDF：Direct to Cell 2025 年已在美国和新西兰商用，且 2024 年已发射 400+ 颗相关卫星。</li></ul><div class="source">口径：第三方统计 + Starlink 官方</div></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Data Snapshot</figcaption></figure>
+    </section><section class="slide intro" id="p04" data-page="04">
+      <div class="copy"><div class="eyebrow">Source Discipline · PAGE 04</div><h2>事实 / 判断 / 推演分离</h2><p class="lead">页面中三种口径分开处理：事实来自 SpaceX/NASA/Starlink 或公开统计；嘉宾判断来自访谈；投资推演是本站分析。</p><ul class="bullets"><li>事实：NASA 商业空间站、ISS 2030 过渡、SpaceX USDV 等。</li><li>嘉宾判断：太空数据中心、X 控股集团、十年内普通人太空旅行等。</li><li>投资推演：产业链价值捕获、SpaceX Mafia、开放链机会。</li></ul><div class="source">口径：方法论</div></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Source Discipline</figcaption></figure>
+    </section><section class="slide" id="p05" data-page="05">
+      <div class="copy"><div class="eyebrow">00:00:00 · PAGE 05</div><h2>开场：SpaceX IPO与xAI收购的时代背景</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>本次节目是SpaceX即将IPO的加更节目，邀请SpaceX前火箭首席制造工程师洪立德，讨论SpaceX收购xAI后，太空与AI融合背景下，是否会成为人类文明扩张的前奏。嘉宾完成自我介绍，说明自己现在是洛杉矶VC Areas One的GP，专注投资美国硬科技，2012年加入SpaceX，工作7年后于2019年离开。</p></article><article><b>投资人解读</b><p>这不是一篇「火箭公司」材料，而是一个关于低轨基础设施、通信现金流、AI算力瓶颈和多星球叙事如何被同一家公司串起来的案例。</p></article><article><b>产业含义</b><p>把 SpaceX 看成三层平台：运输层降低入轨成本，网络层产生现金流，未来计算/制造/居住层扩展 TAM。</p></article></div></div>
+      <figure><img src="assets/falcon9_lz1.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p06" data-page="06">
+      <div class="copy"><div class="eyebrow">00:03:16 · PAGE 06</div><h2>对202X年SpaceX时间点的判断</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>从资本角度看，今年是太空产业的ChatGPT时刻，之前资本对太空产业没有明确信心，SpaceX启动IPO后，源源不断的资本开始关注太空赛道，是资本端的转折点。从技术开发角度看，所有当前进展都是十几年前就规划好的，技术开发是持续推进的过程，今年没有特别的技术转折点。</p></article><article><b>投资人解读</b><p>资本端的 inflection point 不等于技术端刚发生突变。访谈强调：技术路线早已规划，2026 更像资本终于理解太空产业可变现。</p></article><article><b>产业含义</b><p>投资人要分清「叙事重估」和「工程成熟」。前者驱动估值，后者决定兑现。</p></article></div></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p07" data-page="07">
+      <div class="copy"><div class="eyebrow">00:04:09 · PAGE 07</div><h2>SpaceX早期里程碑：2015年火箭回收</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>2013年马斯克明确SpaceX第一步目标是实现可回收火箭，2015年12月21日，SpaceX第一次成功实现火箭入轨后回收，这一天是所有SpaceX员工的纪念日，回收后的火箭现在放在SpaceX洛杉矶总部供人参观。这次回收是整个航天产业的转折点，之前行业都认为火箭回收不可能，SpaceX一家初创公司做成了这件事，正式开启了可重复使用火箭的时代。</p></article><article><b>投资人解读</b><p>2015-12-21 是商业航天的制度性拐点：一次性火箭向可重复使用运输工具转变。</p></article><article><b>产业含义</b><p>复用不是单点技术，而是商业模型的 unlock。它把发射从项目制拉向运营制。</p></article></div></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p08" data-page="08">
+      <div class="copy"><div class="eyebrow">00:07:15 · PAGE 08</div><h2>SpaceX长期规划逻辑：做一代预研一代</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>2012年SpaceX刚刚成功发射第一支火箭，公司就已经成立了火星小组，启动了星舰项目开发，因为猎鹰九号满足不了火星项目的需求，需要运力更大的火箭。这种做一代预研一代的节奏在SpaceX非常普遍，现在的星链、太空数据中心、登月项目，十几年前就已经在公司内部讨论过，不是马斯克突发奇想的结果。</p></article><article><b>投资人解读</b><p>SpaceX 的打法不是完成一代后再想下一代，而是当前产品商业化、下一代产品并行研发。</p></article><article><b>产业含义</b><p>这解释了为什么 Falcon 9、Starlink、Starship、月球/火星、数据中心不是松散概念，而是同一 roadmap 的不同层。</p></article></div></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p09" data-page="09">
+      <div class="copy"><div class="eyebrow">00:10:45 · PAGE 09</div><h2>星链的开发初衷：为火星任务自筹资金</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>SpaceX的终极目标是火星移民，但是给投资人/政府说这个目标很难获得资金支持，所以SpaceX需要自己解决资金问题。星链就是SpaceX为火星任务准备的现金牛项目，从第一原理看，太空真空环境下信息传输速度比地球光纤快一倍，有天然的速度优势，这个项目2015年就正式启动，刚好是火箭回收成功之后立刻启动的第二步。</p></article><article><b>投资人解读</b><p>Starlink 的意义不只是宽带，而是 SpaceX 用地球现金流资助火星目标的金融引擎。</p></article><article><b>产业含义</b><p>低轨通信是第一条成熟的太空应用曲线，也给未来 orbit-native services 提供客户、频谱、运营和发射闭环。</p></article></div></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p10" data-page="10">
+      <div class="copy"><div class="eyebrow">00:14:27 · PAGE 10</div><h2>SpaceX收购xAI做太空数据中心的底层逻辑</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>AI发展需要大量算力，建设大量数据中心在美国有两个核心难点：一是拿地审批需要花费非常多时间，还要协调周边居民意见；二是美国电网已经有30年以上历史，整体有40%的电力缺口，电动化已经加剧了缺口，AI进一步放大了缺口。太空天然解决这两个问题：不需要拿地面审批，谁先占轨道谁获得资源；太空有无限太阳能，转换效率比地球高10%以上，能满足AI的能源需求，这就是SpaceX和xAI结合的底层逻辑。</p></article><article><b>投资人解读</b><p>访谈把 xAI/SpaceX 结合解释为电力、土地、许可三重约束下的算力迁移想象。</p></article><article><b>产业含义</b><p>这是高不确定但值得跟踪的 optionality：如果地面 data center 受制于电网，轨道能源与散热/维护的 tradeoff 会成为新前沿。</p></article></div></div>
+      <figure><img src="assets/falcon9_lz1.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p11" data-page="11">
+      <div class="copy"><div class="eyebrow">00:19:20 · PAGE 11</div><h2>马斯克的整体布局猜测：x.com整合所有业务</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>2014年马斯克就买下了x.com域名，现在SpaceX整合了xAI，嘉宾猜测未来马斯克可能会把所有和马斯克相关的公司：SpaceX、xAI、特斯拉、Neuralink、无聊公司整合到一个控股集团下，所有公司都服务于人类成为多星球物种的终极目标：特斯拉做实体AI，xAI做通用AI，Neuralink做脑机接口让人脑和AI共存，无聊公司负责在火星/月球地下建造居住地，抵御太空辐射。</p></article><article><b>投资人解读</b><p>这是嘉宾推测，不是事实：X 可能成为 SpaceX、xAI、Tesla、Neuralink、Boring 的控股/接口层。</p></article><article><b>产业含义</b><p>投资含义在于生态协同，而不是简单合并。每家公司分别解决运输、智能、身体接口、居住结构。</p></article></div></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p12" data-page="12">
+      <div class="copy"><div class="eyebrow">00:24:43 · PAGE 12</div><h2>xAI在AI竞赛中的定位</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>当前AI巨头各有定位：Gemini背靠谷歌搜索，聚焦搜索和文字领域；Claude聚焦to B Coding工具领域；OpenAI面向大众C端。xAI的Grok有马斯克生态的独有数据，大概率会聚焦实体AI/世界模型，这和xAI“理解宇宙”的愿景也能对应上。嘉宾预测2026年Grok会有突破性成果，去年Grok已经投入十万张GPU建设超级数据中心，今年成果会逐步落地。</p></article><article><b>投资人解读</b><p>Grok/xAI 的差异化如果存在，可能不在纯文字模型，而在马斯克生态的物理世界数据与 embodied AI。</p></article><article><b>产业含义</b><p>对 SpaceX 材料而言，xAI 应被写作「未来世界模型/自治系统」变量，而不是已验证收入引擎。</p></article></div></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p13" data-page="13">
+      <div class="copy"><div class="eyebrow">00:29:12 · PAGE 13</div><h2>SpaceX IPO的意义</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>如果SpaceX今年成功IPO，意味着主流资本市场正式为太空赛道买单，认可太空是一个可以持续变现的大产业。之前即使SpaceX已经垄断市场，很多资本仍然认为太空是20年以后的机会，这次IPO加上星链近几年的营收增长，会彻底改变资本对太空赛道的信心。</p></article><article><b>投资人解读</b><p>IPO 或上市叙事最大的作用，是让太空从二级小圈子的稀缺股权变成主流资本可配置资产。</p></article><article><b>产业含义</b><p>主流资本进入会重估供应链、发射服务、卫星运营、在轨制造、商业空间站等整条链。</p></article></div></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p14" data-page="14">
+      <div class="copy"><div class="eyebrow">00:31:43 · PAGE 14</div><h2>嘉宾个人职业经历：从食品创业到SpaceX</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>嘉宾出生在中国台湾，幼年随父母移居国外，在广州居住8年，1999年考入斯坦福大学机械工程系，毕业时有两个选择：谷歌早期员工或者爱普生生产工程师，嘉宾选择了爱普生，在俄勒冈州墨水夹工厂工作，一条全自动生产线仅需要2个工人，同期同产线在中国需要55个工人，嘉宾20几岁就成为爱普生全球最年轻的高管，管理整个工厂70几个人。因为每天工作3小时就能完成所有任务，需要在公司待满一整天，嘉宾觉得过于无聊，两年后离开，去牛津读MBA，准备进投行，2008年毕业当天雷曼兄弟倒闭，工作机会被撤回，之后去香港做供应链顾问，2010年初和前老板创业做新食品品牌，两年就开出旗舰店和中央厨房，公司处于盈利状态。</p></article><article><b>投资人解读</b><p>嘉宾路径的重点不是传奇履历，而是「量产经验」如何迁移到火箭制造。</p></article><article><b>产业含义</b><p>这说明 SpaceX 的竞争力来自跨行业方法迁移：食品/汽车/自动化生产的流程能力，比传统航天履历更稀缺。</p></article></div></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p15" data-page="15">
+      <div class="copy"><div class="eyebrow">00:44:20 · PAGE 15</div><h2>加入SpaceX的抉择：放弃亚马逊选择太空</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>2012年斯坦福前老友，SpaceX前100号员工邀请嘉宾加入SpaceX做火箭，同期嘉宾拿到亚马逊日本的高级offer，身边所有人都建议选亚马逊，认为太空没有前途。嘉宾自己思考后，觉得如果SpaceX真的做成开拓宇宙的事业，自己有机会早期加入却不去，一定会后悔一辈子，所以选择加入SpaceX，当时是SpaceX的第1000多名员工。</p></article><article><b>投资人解读</b><p>这段是使命驱动的选择：短期确定性 vs 长期文明级 upside。</p></article><article><b>产业含义</b><p>VC 视角：最强 founder/早期员工往往不是追逐共识回报，而是愿意押注非共识使命。</p></article></div></div>
+      <figure><img src="assets/falcon9_lz1.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p16" data-page="16">
+      <div class="copy"><div class="eyebrow">00:51:20 · PAGE 16</div><h2>马斯克的用人观：偏爱通才，不卡行业背景</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>SpaceX招聘最后一轮必须马斯克亲自面试，当时马斯克去澳洲出差，嘉宾破例写自荐信，解释食品产业其实对大规模量产要求极高，需要短时间生产大量产品，还要保证每一件都通过最严格的品质审核，这种量产经验正好可以用到火箭制造上，马斯克看完一分钟就直接批准入职。SpaceX不喜欢招传统航天行业老人，因为传统航天行业几十年没有大变革，SpaceX需要各行各业的新鲜血液，来实现十倍级的成本降低。</p></article><article><b>投资人解读</b><p>SpaceX 不迷信传统专家，因为传统行业的局部最优可能正是成本结构的来源。</p></article><article><b>产业含义</b><p>招聘原则是找能跨域学习、能承受高压、能做 10x 方案的人。</p></article></div></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p17" data-page="17">
+      <div class="copy"><div class="eyebrow">00:56:37 · PAGE 17</div><h2>平民太空旅行的未来：十年内普通人都能去</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>马斯克的目标是让普通人上太空的成本降到一张飞机头等舱机票的价格，星舰的运力和民航飞机差不多，除了严重疾病外，没有特别高的身体门槛，蓝色起源已经验证，普通人年龄职业不影响上太空，SpaceX已经安排过非专业航天员完成太空任务，就是为了证明任何人都可以自如上下太空。</p></article><article><b>投资人解读</b><p>访谈把太空旅行从宇航员特权想象为类似高端航空服务。</p></article><article><b>产业含义</b><p>但这仍受 Starship 安全性、发射频率、监管、保险和基础设施约束，适合作为长期需求弹性，不应过早收入化。</p></article></div></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p18" data-page="18">
+      <div class="copy"><div class="eyebrow">00:59:13 · PAGE 18</div><h2>早期马斯克的个人风格：极端内向但极其真诚</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>嘉宾2013年初第一次听马斯克全员演讲，2012-2013年的马斯克和现在完全不一样，当时马斯克极端内向，在全公司演讲都非常不自在，台下都能感觉到他的不舒服。但是马斯克非常直接真诚，表里如一，所有对内对外的说法一致，所有人都能感受到他的真诚，这也是大家愿意跟着他奋斗的核心原因。</p></article><article><b>投资人解读</b><p>早期领导力不是表演型 charismatic，而是 mission consistency。</p></article><article><b>产业含义</b><p>组织信任来自目标一致和真实，不一定来自情绪价值。</p></article></div></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p19" data-page="19">
+      <div class="copy"><div class="eyebrow">01:03:58 · PAGE 19</div><h2>早期SpaceX组织架构：极度扁平化，每个人都要干活</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>嘉宾2012年加入SpaceX，当时SpaceX已经成立10年，一共只有1000多员工，同期竞争对手波音/ULA做同样的事情需要10000员工，比例是1:10。组织非常扁平，每个部门只有一个负责人，负责人同时也是工程师，要亲自做采购、生产、开发，每个人都承担核心责任，做不出来全公司都等你，对个人能力要求极高。早期员工大多二十多岁，三十出头就算年龄大的，所有人都非常能吃苦，愿意花大量时间在工作上，传统火箭行业过来的人大多不适应这种文化，能待满6个月就算元老。</p></article><article><b>投资人解读</b><p>1000 人对抗万人级传统承包商，靠的是高 ownership、低层级、少接口损耗。</p></article><article><b>产业含义</b><p>这类组织适合突破期，但对稳定运营、合规和人才保留会有后续挑战。</p></article></div></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p20" data-page="20">
+      <div class="copy"><div class="eyebrow">01:09:30 · PAGE 20</div><h2>猎鹰系列的迭代逻辑：火箭是手段不是目的</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>猎鹰一号成功后立刻退役，因为猎鹰一号最大运力只有1吨，满足不了火星目标，猎鹰九号运力是猎鹰一号的25倍，满足低轨发射需求，所以就保留下来，猎鹰九号成功后，星舰项目立刻启动，星舰运力是猎鹰九号的5倍，满足火星需求。SpaceX从来不会把火箭本身当成目的，所有火箭都是实现开拓宇宙的手段，所以会根据目标不断迭代淘汰旧产品。火箭Lab现在的主力火箭运力还不到猎鹰一号的三分之一，说明猎鹰一号在当年已经非常超前，只是SpaceX不会停留在当前阶段。</p></article><article><b>投资人解读</b><p>Falcon 1 成功后退役，是因为它服务不了终局目标；Falcon 9 保留，是因为它成为 LEO 运输主力。</p></article><article><b>产业含义</b><p>产品线不是按技术成就保留，而按使命与经济性保留。</p></article></div></div>
+      <figure><img src="assets/falcon9_lz1.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p21" data-page="21">
+      <div class="copy"><div class="eyebrow">01:16:20 · PAGE 21</div><h2>成本革命：从1-2万美金每公斤降到100美金每公斤</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>航天产业核心KPI是每公斤入轨成本，SpaceX之前行业平均成本是1-2万美金每公斤，猎鹰九号通过可回收技术把成本降到了3000美金每公斤，降到原来的十分之一，星舰目标是降到100美金以下，再降三十倍，总成本降为原来的两百分之一。成本降到这个水平之后，很多之前天方夜谭的太空项目，现在从经济上就完全可行。</p></article><article><b>投资人解读</b><p>入轨成本是商业航天的核心 KPI。成本下降两个数量级，会把一批过去不能算账的项目变成可讨论。</p></article><article><b>产业含义</b><p>所有下游应用的投资判断，第一问都是：单位质量入轨成本下降后，商业模型是否跨过阈值？</p></article></div></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p22" data-page="22">
+      <div class="copy"><div class="eyebrow">01:19:19 · PAGE 22</div><h2>从飞龙号转到猎鹰九号：做得好就给更多任务</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>嘉宾加入SpaceX后首先负责飞龙号的内部结构，飞龙号是运送货物到国际太空站的飞船，太空人进入太空站第一个接触到的就是飞龙号内部，相当于做全世界最高科技的宜家橱柜，要求最轻还要承受几倍重力，很多部件都需要自己开发，一个橱柜的成本比美国中西部一栋房子还贵。嘉宾在飞龙号做得很好，SpaceX的惯例是你做得越好，给你的任务越多，所以一年后就把嘉宾调到猎鹰九号，负责猎鹰九号的制造扩张，因为马斯克给猎鹰九号定的目标是一年至少发射40次，当时全球一年发射才77次，SpaceX一年才发射1次，直接定40次的目标，需要扩大量产能力，嘉宾有量产经验，所以负责这个项目。</p></article><article><b>投资人解读</b><p>SpaceX 的激励逻辑很硬：能力被验证后，责任不是减少而是指数级增加。</p></article><article><b>产业含义</b><p>这解释了为什么高潜力员工能快速管多个 critical path，也解释了 burn-out 风险。</p></article></div></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p23" data-page="23">
+      <div class="copy"><div class="eyebrow">01:23:25 · PAGE 23</div><h2>Mini Cooper团队为什么能帮SpaceX做量产</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>SpaceX扩张猎鹰九号量产，找了Mini Cooper的团队来搭建生产体系，因为Mini Cooper是所有车企里SKU最多的，同一个车型可以有几十上百种不同配置，生产线能适应高SKU变化的需求。而早期猎鹰九号每次发射都会做改进，没有两只猎鹰九号完全一样，每次发射都会把迭代改进放到下一只火箭，所以需要高变化高量产的生产线，这正好是Mini Cooper团队擅长的，所以这个选择非常匹配SpaceX的需求。</p></article><article><b>投资人解读</b><p>Mini Cooper 的高 SKU 生产体系启发 Falcon 9：高变化、高频迭代也要可制造。</p></article><article><b>产业含义</b><p>核心洞察：火箭量产不是单一型号复制，而是在持续迭代中保持制造节拍。</p></article></div></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p24" data-page="24">
+      <div class="copy"><div class="eyebrow">01:33:18 · PAGE 24</div><h2>马斯克的第一原理沟通：拿可乐罐要求火箭高压桶</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>嘉宾团队自己研发猎鹰九号的超级高压桶，把成本降到原来的十分之一，满足一年40次的量产需求，团队非常自豪，拿成果给马斯克看，马斯克第一句话不是表扬，而是问“你有没有看过可乐罐的生产？”，可乐罐也是耐压产品，一分钟能生产上千个，每个只要几分钱，马斯克认为从第一原理看，火箭高压桶和可乐罐本质是一样的，团队还有非常大的改进空间。这种沟通方式就是马斯克的常态，不会表扬现有成果，持续把团队推向更高的极限。</p></article><article><b>投资人解读</b><p>可乐罐类比不是说火箭等于饮料罐，而是逼团队从材料、压力、吞吐、成本的底层物理重新想。</p></article><article><b>产业含义</b><p>这是一种 brutal benchmarking：不要和行业平均比，要和物理极限与成熟制造业比。</p></article></div></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p25" data-page="25">
+      <div class="copy"><div class="eyebrow">01:51:14 · PAGE 25</div><h2>猎鹰九号的两个核心里程碑</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>猎鹰九号有两个核心里程碑：第一个是2015年成功回收火箭，这是技术上的里程碑；第二个是回收之后实现持续量化生产发射，完成这个里程碑花了两年时间，让猎鹰九号成为可重复使用的成熟产品，现在已经累计发射超过600次，没有再发生严重失败。SpaceX发展分三个阶段：2002-2012年是0到1，2012-2022年是1到1000，2022年之后是第三阶段，开发整个太空产业。</p></article><article><b>投资人解读</b><p>第一阶段是技术证明：能回收。第二阶段是运营证明：能稳定复用并规模发射。</p></article><article><b>产业含义</b><p>很多硬科技公司死在第一阶段到第二阶段之间：demo 成功不等于制造系统成熟。</p></article></div></div>
+      <figure><img src="assets/falcon9_lz1.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p26" data-page="26">
+      <div class="copy"><div class="eyebrow">01:58:48 · PAGE 26</div><h2>2015-2016年猎鹰九号的两次失败：公司最危险的时候</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>2015年第一次回收成功之后，15年16年连续发生两次发射失败，两次失败都和嘉宾负责的部门有关，当时所有人都认为猎鹰九号已经完美了，结果突然爆炸，没有人知道问题出在哪里，公司当时的资金也不多，解决不了问题公司可能直接倒闭，是SpaceX历史上最危险的时候。嘉宾团队压力极大，连续几个月排查，最后找到一个非常边缘的设计问题，修正之后，猎鹰九号到现在600多次发射都没有问题。</p></article><article><b>投资人解读</b><p>重大失败暴露边缘设计问题，也逼出系统可靠性。</p></article><article><b>产业含义</b><p>投资人应看危机后的 learning loop：事故是否转化成长期可靠性优势。</p></article></div></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p27" data-page="27">
+      <div class="copy"><div class="eyebrow">02:07:54 · PAGE 27</div><h2>嘉宾离开SpaceX的原因：发现电动车是更大的机会</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>2018年底马斯克做活动，当天下单当天提特斯拉Model 3送全自动驾驶，嘉宾下单提车，开完之后立刻意识到，电车平台比油车潜力大太多，下一个比SpaceX还大的机会就是电动车，所以2019年嘉宾离开SpaceX，加入了一家做商用车大型电池的初创公司，2020年成功退出，之后开始做VC投资。</p></article><article><b>投资人解读</b><p>嘉宾从 SpaceX 转向 EV，说明硬科技机会会沿着平台成熟度迁移。</p></article><article><b>产业含义</b><p>离开不等于看空，而是识别下一个成本/体验曲线正在变陡。</p></article></div></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p28" data-page="28">
+      <div class="copy"><div class="eyebrow">02:11:27 · PAGE 28</div><h2>航天产业链的上中下游划分</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>航天产业链分三层：上游是火箭、卫星、太空站的开发建造发射，属于重资产的苦活；中游是卫星的运营管理、数据传输回地面；下游是各类应用，星链是现在最大的下游应用，能提供全球无死角的高速网络，这只是下游应用的开始。未来还会有更多应用，比如利用太空无重力环境生产特殊材料，完美球体的人工眼角膜，更高纯度的晶圆，这些都是地球上做不到的。</p></article><article><b>投资人解读</b><p>上游重资产，中游运营网络，下游应用变现。Starlink 是第一个大规模验证的下游应用。</p></article><article><b>产业含义</b><p>投资最好避开纯重资产堆 CAPEX，优先找依赖 SpaceX 平台但毛利/软件/数据属性更好的环节。</p></article></div></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p29" data-page="29">
+      <div class="copy"><div class="eyebrow">02:15:40 · PAGE 29</div><h2>太空创业的两种模式：SpaceX链和开放链</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>现在太空创业分两种模式：一种是SpaceX链，也就是依托SpaceX平台，跟着SpaceX的节奏做配套，需要信任SpaceX的长期规划，一般前SpaceX员工做这个的比较多；另一种是开放安卓链，就是做独立的第三方项目，服务全市场。现在核心创业者都是前SpaceX员工，也就是“SpaceX Mafia”，这些人懂航天底层逻辑，是当前投资市场最受关注的群体。</p></article><article><b>投资人解读</b><p>SpaceX 链类似 Apple ecosystem，开放链类似 Android ecosystem。</p></article><article><b>产业含义</b><p>前 SpaceX 员工创业者是关键群体，因为他们理解真实工程约束和平台节奏。</p></article></div></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p30" data-page="30">
+      <div class="copy"><div class="eyebrow">02:18:11 · PAGE 30</div><h2>当前太空产业的阶段：刚刚起步，仍是一片蓝海</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>现在太空产业仅仅开发了星链，而仅仅是低轨通信，就至少需要十个星链的容量，整个太空产业未来的规模会和地球产业一样大，甚至更大，现在相当于1995年的互联网，才刚刚起步，还有非常大的开发空间，是完完全全的蓝海。</p></article><article><b>投资人解读</b><p>嘉宾类比 1995 年互联网：基础设施刚可用，第一批 killer app 刚出现。</p></article><article><b>产业含义</b><p>蓝海不代表所有公司都能活。早期赛道最大的风险是时点过早、融资周期长、收入来得慢。</p></article></div></div>
+      <figure><img src="assets/falcon9_lz1.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p31" data-page="31">
+      <div class="copy"><div class="eyebrow">02:22:21 · PAGE 31</div><h2>SpaceX的市场定位：现代东印度公司</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>嘉宾把SpaceX比作大航海时代的东印度公司，是开拓太空新市场的核心主体，现在才刚刚开始，未来潜力极大，嘉宾自己持有SpaceX股票，认为SpaceX至少是万亿美金级别的公司，不会出售。</p></article><article><b>投资人解读</b><p>东印度公司类比强调 frontier market 的平台、贸易、运输和制度塑造能力。</p></article><article><b>产业含义</b><p>这个类比有力量也有风险：它暗含准主权能力、垄断和监管冲突。</p></article></div></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p32" data-page="32">
+      <div class="copy"><div class="eyebrow">02:22:51 · PAGE 32</div><h2>SpaceX的竞争观：对手是自己，关注中国航天</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>马斯克原话：SpaceX的竞争对手就是自己的进展速度，同时SpaceX一直密切关注中国航天的发展。嘉宾认为，未来全球航天最大的两个参与者一定是中国和美国，中国有生产和迭代的优势，沿着自己的优势发展就是正确方向，太空足够大，需要两个国家共同开发。</p></article><article><b>投资人解读</b><p>SpaceX 主要竞争对象是自身迭代速度，同时中国航天是唯一具备规模制造与国家意志的长期变量。</p></article><article><b>产业含义</b><p>全球商业航天最终不是单公司竞争，而是产业体系竞争。</p></article></div></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p33" data-page="33">
+      <div class="copy"><div class="eyebrow">02:26:17 · PAGE 33</div><h2>NASA如何给SpaceX让路：从地主变成房东</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>NASA早期都是政府主导，给波音等传统大企业发成本加成合同，花多少钱政府都买单，企业没有降本动力，结果NASA自己开发的SLS登月火箭，从2011年启动，花了250亿美元，运力还不如星舰。NASA意识到问题之后，转变策略，从自己开发变成扶持民营企业，国际太空站2030年退役之后，NASA不再自己建造新太空站，开放给民营企业做，这个转变让SpaceX能快速成长起来。</p></article><article><b>投资人解读</b><p>NASA 从成本加成采购转向扶持商业服务，改变了激励结构。</p></article><article><b>产业含义</b><p>政府不再亲自造所有东西，而是成为 anchor customer，这是 SpaceX 能长大的制度土壤。</p></article></div></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p34" data-page="34">
+      <div class="copy"><div class="eyebrow">02:31:04 · PAGE 34</div><h2>AI和航天的互相影响</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>航天帮助AI：太空能快速建设数据中心，解决美国AI缺电缺位置的问题，给AI提供无限的算力和能源。AI帮助航天：AI能辅助航天开发，加速材料科学的研发和模拟，帮助更快迭代火箭设计。SpaceX本身就是最早用AI模拟做火箭开发的公司，NASA几十年积累的数据给了SpaceX，SpaceX用大量模拟减少实测试验，才能用很少的资源快速推进。</p></article><article><b>投资人解读</b><p>航天给 AI 提供能源/位置/网络想象，AI 给航天提供仿真、材料、自动化和自治系统。</p></article><article><b>产业含义</b><p>真正的交叉点不是「AI 上太空」口号，而是 design loop 和 operating loop 被 AI 缩短。</p></article></div></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p35" data-page="35">
+      <div class="copy"><div class="eyebrow">02:34:59 · PAGE 35</div><h2>太空数据中心的可行性</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>从工程角度看，在太空建AI数据中心是可行的，难点不是发射，而是怎么做到比地面数据中心更划算，只要能做到比地面更划算，这个项目就能成，SpaceX有条件做到，但这不是一条简单的路。</p></article><article><b>投资人解读</b><p>工程上可能，可行性关键是总拥有成本：发射、散热、维护、通信延迟、可靠性。</p></article><article><b>产业含义</b><p>该主题适合写成远期 call option，而不是 base case。</p></article></div></div>
+      <figure><img src="assets/falcon9_lz1.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p36" data-page="36">
+      <div class="copy"><div class="eyebrow">02:40:00 · PAGE 36</div><h2>SpaceX对美国硬科技的贡献：培养了新一代硬件创业者</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>SpaceX和特斯拉一起，在美国培养了一大批懂得做高端硬件的年轻创业者，这些创业者很多都是前SpaceX/特斯拉员工，出来之后会创业各个领域，包括超音速飞机、迷你核能、新晶片，这些创业者会推动美国下一代硬科技发展，现在这些就是嘉宾基金重点投资的方向。</p></article><article><b>投资人解读</b><p>SpaceX/Tesla 是美国硬件创业的人才学校。</p></article><article><b>产业含义</b><p>SpaceX Mafia 可能复制 PayPal Mafia 的外溢效应，只是方向从软件转为 physical infra。</p></article></div></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p37" data-page="37">
+      <div class="copy"><div class="eyebrow">02:48:01 · PAGE 37</div><h2>可控重力太空站：创业新项目</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>嘉宾的基金投资了一个可控地心引力的太空站项目，这是全世界第一个尝试做可控重力的太空站，解决太空无重力环境下生活不便的问题，比如上厕所的问题，这个项目核心团队很多都是前SpaceX员工，技术原理已经被物理验证，现在正在工程实现。</p></article><article><b>投资人解读</b><p>可控重力太空站代表商业空间站从实验平台走向可居住/可生产基础设施。</p></article><article><b>产业含义</b><p>若 LEO economy 成立，重力、辐射、补给、保险都会变成基础设施创业方向。</p></article></div></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p38" data-page="38">
+      <div class="copy"><div class="eyebrow">02:51:05 · PAGE 38</div><h2>马斯克的时间分配：只解决最困难的问题</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>马斯克不会把时间浪费在庆功上，只会出现在公司最困难、解决不了的问题现场，和团队一起解决问题，所有公司都是这样，这就是马斯克的工作方式。</p></article><article><b>投资人解读</b><p>马斯克把自己用在瓶颈处，而不是日常管理处。</p></article><article><b>产业含义</b><p>这要求组织能承受高自主度，也要求核心团队把问题升级得足够准确。</p></article></div></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p39" data-page="39">
+      <div class="copy"><div class="eyebrow">02:53:19 · PAGE 39</div><h2>推荐书籍：《硅谷钢铁侠》</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>嘉宾推荐《硅谷钢铁侠》，认为这本书比马斯克自传更能抓住马斯克的核心，自传堆了很多资料，但是没有抓住马斯克专注做大事的精髓，《硅谷钢铁侠》更能代表真实的马斯克。</p></article><article><b>投资人解读</b><p>嘉宾推荐该书，是因为它更能抓住马斯克专注做大事的核心。</p></article><article><b>产业含义</b><p>页面中保留为延伸阅读，不把它当作事实来源。</p></article></div></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide" id="p40" data-page="40">
+      <div class="copy"><div class="eyebrow">02:58:30 · PAGE 40</div><h2>冷知识：低轨太空垃圾问题</h2>
+      <div class="point-grid"><article><b>原始观点</b><p>现在低轨已经有超过3万个10公分大小的太空垃圾，都在超音速飞行，对航天器运行有很大威胁，这是未来航天产业需要解决的问题。</p></article><article><b>投资人解读</b><p>低轨碎片是商业航天的系统性外部性。</p></article><article><b>产业含义</b><p>LEO 越繁荣，轨道交通管理、碎片监测、避碰软件、退役服务越重要。</p></article></div></div>
+      <figure><img src="assets/falcon9_lz1.jpg" alt="SpaceX visual"/><figcaption>Visual: SpaceX / NASA / Wikimedia Commons</figcaption></figure>
+    </section><section class="slide close" id="p41" data-page="41">
+      <div class="copy"><div class="eyebrow">Value Chain Map · PAGE 41</div><h2>产业链地图：上游苦活，中游运营，下游应用</h2><p class="lead">上游是发射器、卫星、空间站和关键部件；中游是轨道运营、频谱、地面站、数据链路；下游才是互联网、国防、遥感、制造、科研、旅游、AI 计算等应用。</p><ul class="bullets"><li>SpaceX 的强势在于把上游运输与下游 Starlink 现金流打通。</li><li>创业公司若只做上游硬件，融资强度会极高；若依附 SpaceX 平台做应用，时点和平台依赖是核心风险。</li><li>最优区域通常是「平台扩张后必须外包/生态化」的中游软件、运维、监测、安全、保险。</li></ul></div>
+      <figure><img src="assets/starship_launch.jpg" alt="SpaceX visual"/><figcaption>Value Chain Map</figcaption></figure>
+    </section><section class="slide close" id="p42" data-page="42">
+      <div class="copy"><div class="eyebrow">Investment Framework · PAGE 42</div><h2>投资框架：五个可投问题</h2><p class="lead">判断一个太空项目，不要先问故事大不大，先问它是否被 SpaceX 的成本曲线真实解锁。</p><ul class="bullets"><li>成本阈值：Starship/Falcon 9 成本下降后，单位经济是否成立？</li><li>客户阈值：NASA/国防/运营商/企业客户是否已经愿意付费？</li><li>平台阈值：依赖 SpaceX 是 leverage 还是 single-point risk？</li><li>监管阈值：频谱、轨道、出口管制、发射许可是否可控？</li><li>团队阈值：是否有 SpaceX/Tesla 级硬件交付经验？</li></ul></div>
+      <figure><img src="assets/starlink_stack.jpg" alt="SpaceX visual"/><figcaption>Investment Framework</figcaption></figure>
+    </section><section class="slide close" id="p43" data-page="43">
+      <div class="copy"><div class="eyebrow">Risk Register · PAGE 43</div><h2>风险清单：别把文明叙事当成财务模型</h2><p class="lead">SpaceX 的叙事很强，但风险也是真实的：Starship 进度、监管、事故、资本开支、卫星拥堵、地缘政治都会影响兑现。</p><ul class="bullets"><li>工程风险：Starship 完全复用尚需高频验证。</li><li>财务风险：AI/太空数据中心极耗资本，收入兑现周期不明。</li><li>监管风险：频谱、发射、轨道碎片、国家安全审查。</li><li>竞争风险：中国航天、Blue Origin、Rocket Lab、欧洲/印度商业航天。</li><li>外部性风险：天文观测、轨道垃圾、环境争议。</li></ul></div>
+      <figure><img src="assets/crew_dragon_iss.jpg" alt="SpaceX visual"/><figcaption>Risk Register</figcaption></figure>
+    </section><section class="slide close" id="p44" data-page="44">
+      <div class="copy"><div class="eyebrow">Final Thesis · PAGE 44</div><h2>最终判断：SpaceX 是太空时代的平台公司</h2><p class="lead">如果 Falcon 9 是 Model T，Starlink 是现金流，Starship 是平台升级，那么 SpaceX 的真正估值逻辑不是单一发射收入，而是它能否成为低轨经济的默认入口。</p><ul class="bullets"><li>短期看 Starlink 与 Falcon 9 的现金流和发射节奏。</li><li>中期看 Starship 是否把成本曲线继续打穿。</li><li>长期看 AI、在轨制造、商业空间站、月球/火星物流是否出现第二、第三条 Starlink。</li></ul></div>
+      <figure><img src="assets/starship_ignition.jpg" alt="SpaceX visual"/><figcaption>Final Thesis</figcaption></figure>
+    </section></main>
+<section class="facts" id="sources"><div class="wrap"><div class="eyebrow">Sources & Method</div><h2>来源与口径</h2><p class="note">访谈内容来自用户提供的 Markdown 文件；页面没有逐字搬运全文，而是按章节做观点拆解。上市、收入、估值、卫星数量等动态信息采用公开媒体/第三方统计时，均按非官方口径处理。</p><ul class="source-list"><li><a href="https://www.spacex.com/vehicles/falcon-9/" target="_blank" rel="noreferrer">SpaceX Falcon 9</a><span>Falcon 9 reusability and vehicle overview</span></li><li><a href="https://www.spacex.com/rideshare" target="_blank" rel="noreferrer">SpaceX Rideshare</a><span>rideshare price anchor: $350k/50kg and $7k/kg additional mass</span></li><li><a href="https://www.starlink.com/public-files/DIRECT_TO_CELL_SERVICE_FEB_25.pdf" target="_blank" rel="noreferrer">Starlink Direct to Cell PDF</a><span>commercial messaging service, 400+ Direct to Cell satellites, rollout plan</span></li><li><a href="https://www.nasa.gov/faqs-the-international-space-station-transition-plan/" target="_blank" rel="noreferrer">NASA ISS Transition Plan</a><span>ISS through 2030, commercial LEO transition, SpaceX U.S. Deorbit Vehicle</span></li><li><a href="https://www.nasa.gov/humans-in-space/commercial-space/commercial-space-stations/" target="_blank" rel="noreferrer">NASA Commercial Space Stations</a><span>commercial LEO station strategy and Phase 2/3 roadmap</span></li><li><a href="https://spacexnow.com/stats" target="_blank" rel="noreferrer">SpaceXNow Statistics</a><span>launch cadence third-party tracker</span></li><li><a href="https://www.space.com/space-exploration/launches-spacecraft/spacex-starlink-17-54-b1093-vsfb-ocisly" target="_blank" rel="noreferrer">Space.com June 2026 launch report</a><span>2026 launch cadence and Starlink active satellite count reporting</span></li><li><a href="https://www.investopedia.com/spacex-ipo-investors-not-just-buying-rocket-company-how-it-makes-money-ai-starlink-spcx-stock-11993156" target="_blank" rel="noreferrer">Investopedia SpaceX IPO analysis</a><span>IPO/business mix analysis; treated as media analysis, not official company fact</span></li><li><a href="https://commons.wikimedia.org/wiki/Falcon_9" target="_blank" rel="noreferrer">Wikimedia Commons image credits</a><span>SpaceX/NASA/Wikimedia media used as visual references</span></li></ul></div></section>
+<footer class="footer"><div class="wrap">SpaceX001 · Built for investor briefing · Deployed on jocylin.pages.dev · Visuals credited to SpaceX / NASA / Wikimedia Commons where applicable.</div></footer><script>
+const bar=document.querySelector('.progress');const nav=[...document.querySelectorAll('.side a')];const slides=[...document.querySelectorAll('[data-page]')];function tick(){const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;bar.style.width=(h.scrollTop/max*100)+'%';let cur='01';for(const s of slides){if(s.getBoundingClientRect().top<innerHeight*.45)cur=s.dataset.page}nav.forEach(a=>{a.style.background=a.textContent===cur?'rgba(232,185,104,.22)':'';a.style.color=a.textContent===cur?'#f4f1e8':''})}addEventListener('scroll',tick,{passive:true});tick();
+</script></body></html>
