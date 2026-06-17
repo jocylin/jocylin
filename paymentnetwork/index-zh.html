@@ -81,6 +81,18 @@
   .sourcecard p{font-size:14.5px;color:var(--ink-soft);line-height:1.8}
   .sourcecard a{display:inline-block;margin-top:16px;color:var(--ink);text-decoration-color:var(--brass);text-underline-offset:4px}
 
+  .stack{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:var(--white)}
+  .layer{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line);transition:background .2s ease}
+  .layer:last-child{border-bottom:0}
+  .layer:hover{background:var(--paper-deep)}
+  .layer .lbl{padding:24px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;justify-content:center;background:var(--ink);color:var(--white)}
+  .layer .lbl .ln{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--brass);text-transform:uppercase}
+  .layer .lbl .lt{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:18px;line-height:1.25}
+  .layer .desc{padding:24px 28px;display:flex;align-items:center}
+  .layer .desc p{font-size:15px;color:var(--ink-soft);line-height:1.8}
+  .layer .desc strong{color:var(--ink);font-weight:600}
+  .stack-note{margin-top:18px;font-size:13.5px;color:var(--ink-soft);max-width:54ch;line-height:1.8}
+
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:54px}
   .twocol h3{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:20px;margin-bottom:16px}
   .checklist{list-style:none}
@@ -119,6 +131,10 @@
     .principle{grid-template-columns:44px 1fr}
     .cta-card{padding:42px 28px}
     section{padding:56px 0}
+  }
+  @media(max-width:680px){
+    .layer{grid-template-columns:1fr}
+    .layer .lbl{border-right:0;border-bottom:1px solid var(--line);padding:16px 22px;flex-direction:row;align-items:baseline;gap:12px}
   }
   :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
@@ -219,10 +235,49 @@
   </div>
 </section>
 
-<section id="principles" style="background:var(--paper-deep)">
+<section id="stack">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="num">03</div>
+      <div>
+        <h2 class="serif">完整支付价值链，装进一个 network</h2>
+        <p>创始合作伙伴覆盖整条价值链——这样联盟能打通一条完整的支付流，而不是其中某一段。</p>
+      </div>
+    </div>
+    <div class="stack reveal">
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 01</span><span class="lt">资产</span></div>
+        <div class="desc"><p>持牌稳定币与代币化货币的发行方，其价值在网络中流转。</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 02</span><span class="lt">链与结算</span></div>
+        <div class="desc"><p>chain-agnostic 的结算通道。网络不偏向任何单一公链或发行方。</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 03</span><span class="lt">出入金、托管与 PSP</span></div>
+        <div class="desc"><p>联盟的主力层：法币加密出入金通道、托管，以及负责资金进出的支付服务商。</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 04</span><span class="lt">发卡</span></div>
+        <div class="desc"><p>BIN sponsor 与发卡方，把链上余额连到日常的刷卡消费。</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 05</span><span class="lt">Neobank 与收益</span></div>
+        <div class="desc"><p>面向消费者的 neobank，以及让余额产生收益的 yield 层。</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 06</span><span class="lt">合规</span></div>
+        <div class="desc"><p>从一开始就内置筛查与监控，让合规成为共享标准，而非事后补课。</p></div>
+      </div>
+    </div>
+    <p class="stack-note">创始合作伙伴在以上各层中择优准入。具体公司名单在联盟准入流程中，向潜在成员私下披露。</p>
+  </div>
+</section>
+
+<section id="principles" style="background:var(--paper-deep)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">04</div>
       <div>
         <h2 class="serif">设计原则</h2>
         <p>联盟如何在结构上保持中立、并值得加入。以下是创始阶段的设计承诺——与创始成员共同打磨，而非既定条款。</p>
@@ -264,7 +319,7 @@
 <section id="sources">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="num">04</div>
+      <div class="num">05</div>
       <div>
         <h2 class="serif">事实底座</h2>
         <p>页面里的核心判断建立在公开监管文件与官方材料之上；商业结构仍需由创始成员共同确定。</p>
@@ -296,7 +351,7 @@
 <section id="founders">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="num">05</div>
+      <div class="num">06</div>
       <div>
         <h2 class="serif">创始合作伙伴得到什么、付出什么</h2>
       </div>

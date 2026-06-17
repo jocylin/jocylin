@@ -94,6 +94,19 @@
   .principle h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-.01em;margin-bottom:8px}
   .principle p{color:var(--ink-soft);font-size:15.5px;max-width:62ch}
 
+  /* value-chain stack */
+  .stack{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:var(--white)}
+  .layer{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--line);transition:background .2s ease}
+  .layer:last-child{border-bottom:0}
+  .layer:hover{background:var(--paper-deep)}
+  .layer .lbl{padding:24px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;justify-content:center;background:var(--ink);color:var(--white)}
+  .layer .lbl .ln{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--brass);text-transform:uppercase}
+  .layer .lbl .lt{font-family:'Fraunces',serif;font-weight:500;font-size:19px;line-height:1.15}
+  .layer .desc{padding:24px 28px;display:flex;align-items:center}
+  .layer .desc p{font-size:15px;color:var(--ink-soft);line-height:1.55}
+  .layer .desc strong{color:var(--ink);font-weight:600}
+  .stack-note{margin-top:18px;font-size:13.5px;color:var(--ink-soft);max-width:62ch}
+
   /* who founder partners */
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:54px}
   .twocol h3{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:16px}
@@ -143,6 +156,10 @@
   }
   :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+  @media(max-width:680px){
+    .layer{grid-template-columns:1fr}
+    .layer .lbl{border-right:0;border-bottom:1px solid var(--line);padding:16px 22px;flex-direction:row;align-items:baseline;gap:12px}
+  }
 
   /* scroll reveal */
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
@@ -242,10 +259,49 @@
   </div>
 </section>
 
-<section id="principles" style="background:var(--paper-deep)">
+<section id="stack">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="num">03</div>
+      <div>
+        <h2 class="serif">The payment value chain, in one network</h2>
+        <p>Founding partners are drawn across the full stack, so the alliance can interconnect a complete payment flow rather than a single slice of it.</p>
+      </div>
+    </div>
+    <div class="stack reveal">
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 01</span><span class="lt">Asset</span></div>
+        <div class="desc"><p>Regulated stablecoin and tokenized-money issuers whose value moves across the network.</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 02</span><span class="lt">Chain &amp; Settlement</span></div>
+        <div class="desc"><p>Chain-agnostic settlement rails. The network favors no single chain or issuer.</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 03</span><span class="lt">On / Off-ramp, Custody &amp; PSP</span></div>
+        <div class="desc"><p>The working core of the alliance: fiat-crypto ramps, custody, and payment service providers that move money in and out.</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 04</span><span class="lt">Card Issuance</span></div>
+        <div class="desc"><p>BIN sponsors and issuers connecting on-chain balances to everyday card spending.</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 05</span><span class="lt">Neobank &amp; Yield</span></div>
+        <div class="desc"><p>Consumer-facing neobanks and the yield layer that makes balances productive.</p></div>
+      </div>
+      <div class="layer">
+        <div class="lbl"><span class="ln">Layer 06</span><span class="lt">Compliance</span></div>
+        <div class="desc"><p>Screening and monitoring built in from the start, so compliance is a shared standard, not an afterthought.</p></div>
+      </div>
+    </div>
+    <p class="stack-note">Founding partners are admitted across these layers. Company names are shared privately with prospective members under the alliance's admission process.</p>
+  </div>
+</section>
+
+<section id="principles" style="background:var(--paper-deep)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="num">04</div>
       <div>
         <h2 class="serif">Design principles</h2>
         <p>How the alliance is structured to stay neutral and worth belonging to. These are the founding design commitments — refined together with the founding cohort, not fixed terms.</p>
@@ -287,7 +343,7 @@
 <section id="founders">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="num">04</div>
+      <div class="num">05</div>
       <div>
         <h2 class="serif">What founding partners get — and give</h2>
       </div>
