@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anoria Investment Memo | IOSG</title>
+  <meta name="description" content="Anoria investment memo redesigned as a readable LP/IC page.">
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --paper: #fffdf8;
+      --ink: #171412;
+      --muted: #6f675f;
+      --line: #ded6ca;
+      --soft: #eee7dc;
+      --accent: #8a5b2d;
+      --green: #2f6b4f;
+      --red: #9d3c35;
+      --blue: #315f86;
+      --shadow: 0 18px 50px rgba(44, 34, 24, .09);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    img { display: block; max-width: 100%; height: auto; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(222, 214, 202, .85);
+      background: rgba(247, 244, 239, .92);
+      backdrop-filter: blur(14px);
+    }
+
+    nav {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    .brand { font-weight: 750; letter-spacing: .03em; }
+    .links { display: flex; gap: 18px; color: var(--muted); white-space: nowrap; overflow-x: auto; }
+    .links a { text-decoration: none; }
+
+    .hero {
+      display: grid;
+      align-items: start;
+      padding: 86px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(360px, .82fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .11em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 6.4vw, 82px);
+      line-height: .96;
+      letter-spacing: 0;
+      max-width: 820px;
+    }
+
+    .dek {
+      max-width: 780px;
+      margin: 24px 0 0;
+      color: #3f3934;
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.45;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      background: var(--ink);
+      color: white;
+      text-decoration: none;
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+
+    .verdict {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .verdict img {
+      width: 100%;
+      aspect-ratio: 1.65;
+      object-fit: cover;
+      object-position: center;
+      border-bottom: 1px solid var(--line);
+      background: white;
+    }
+
+    .verdict-body { padding: 22px; }
+    .score-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .score {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: white;
+      font-size: 28px;
+      font-weight: 850;
+    }
+    .recommendation strong { display: block; font-size: 21px; line-height: 1.2; }
+    .recommendation span { color: var(--muted); font-size: 14px; }
+
+    .quick {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 20px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .quick div { padding: 16px; background: #fbf8f2; }
+    .quick b { display: block; font-size: 20px; line-height: 1.2; }
+    .quick span { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.35; }
+
+    section { padding: 72px 0; border-top: 1px solid rgba(222, 214, 202, .7); }
+    .section-head {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 42px;
+      margin-bottom: 28px;
+      align-items: start;
+    }
+
+    .kicker { color: var(--accent); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+    h2 { margin: 4px 0 0; font-size: clamp(28px, 3.8vw, 48px); line-height: 1.06; letter-spacing: 0; }
+    h3 { margin: 0 0 10px; font-size: 19px; line-height: 1.25; letter-spacing: 0; }
+    p { margin: 0 0 14px; }
+    .lead { margin: 0; color: #3e3832; font-size: 20px; line-height: 1.5; max-width: 850px; }
+    .muted { color: var(--muted); }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 22px;
+      box-shadow: 0 10px 28px rgba(44, 34, 24, .05);
+    }
+    .card.compact { padding: 18px; }
+    .card.good { border-top: 4px solid var(--green); }
+    .card.bad { border-top: 4px solid var(--red); }
+    .card.blue { border-top: 4px solid var(--blue); }
+    .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      background: var(--soft);
+      color: #4e453c;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .num { display: block; margin-bottom: 4px; font-size: clamp(28px, 4vw, 44px); line-height: 1; font-weight: 850; }
+
+    .image-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+    .image-panel img { width: 100%; }
+    .caption { padding: 10px 14px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); background: #fbf8f2; }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 30px;
+      align-items: start;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      font-size: 14px;
+    }
+    th, td { padding: 13px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: #4a423b; background: #f1ebe2; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+    tr:last-child td { border-bottom: 0; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .step {
+      position: relative;
+      min-height: 128px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+    .step b { display: block; font-size: 18px; }
+    .step span { color: var(--muted); font-size: 13px; }
+
+    .quote {
+      padding: 28px;
+      border-left: 5px solid var(--accent);
+      background: #efe6d7;
+      border-radius: 0 8px 8px 0;
+      font-size: 22px;
+      line-height: 1.45;
+      font-weight: 680;
+    }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .toc a {
+      min-height: 74px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, .74);
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .toc b { display: block; color: var(--ink); font-size: 14px; margin-bottom: 3px; }
+
+    footer {
+      padding: 34px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    @media (max-width: 960px) {
+      .hero { padding-top: 38px; }
+      .hero-grid, .section-head, .split { grid-template-columns: 1fr; }
+      .quick, .grid-3, .grid-2, .timeline, .toc { grid-template-columns: 1fr 1fr; }
+      .links { display: none; }
+      section { padding: 52px 0; }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 28px, 1180px); }
+      h1 { font-size: 46px; }
+      .quick, .grid-3, .grid-2, .timeline, .toc { grid-template-columns: 1fr; }
+      .verdict-body, .card { padding: 18px; }
+      th, td { padding: 11px; font-size: 13px; }
+      .hero-actions .btn { width: 100%; }
+      .quote { font-size: 18px; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <div class="brand">ANORIA / IOSG MEMO</div>
+      <div class="links">
+        <a href="#verdict">结论</a>
+        <a href="#product">产品</a>
+        <a href="#traction">进展</a>
+        <a href="#market">竞对</a>
+        <a href="#risk">风险</a>
+        <a href="#diligence">待办</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Seed Investment Memo · June 2026</p>
+          <h1>Anoria: 情绪版 Whoop</h1>
+          <p class="dek">一条融合麦克风、PPG 心率、EDA 与数字情境的手环，用 SOMI 推理模型生成实时 Flow Score，并通过灯光与触觉做全天情绪提示。</p>
+          <div class="hero-actions">
+            <a class="btn" href="#verdict">读投资结论</a>
+            <a class="btn secondary" href="https://www.anoria.com/">官网</a>
+            <a class="btn secondary" href="https://docsend.com/view/v9j2yikcj2hd527f">Deck</a>
+          </div>
+          <div class="toc">
+            <a href="#product"><b>01 产品</b>多模态情绪推理</a>
+            <a href="#traction"><b>02 Traction</b>40 beta DAU / 4,000 waitlist</a>
+            <a href="#team"><b>03 团队</b>Apple / Meta / F-16 / Cambridge</a>
+            <a href="#market"><b>04 市场</b>Whoop、Oura、Friend、Bee</a>
+            <a href="#risk"><b>05 风险</b>隐私、冷启动、量产、GTM</a>
+            <a href="#diligence"><b>06 Next</b>IC voting + diligence</a>
+          </div>
+        </div>
+
+        <aside class="verdict" id="verdict">
+          <img src="assets/33df5762-6c4f-49e1-9865-0b4e7450b4aa.png" alt="Anoria prototype evolution">
+          <div class="verdict-body">
+            <div class="score-row">
+              <div class="score">B+</div>
+              <div class="recommendation">
+                <strong>建议：小额战略票 $250K–500K</strong>
+                <span>$5M seed @ $40M cap SAFE · IC decision needed tomorrow</span>
+              </div>
+            </div>
+            <div class="quick">
+              <div><b>$40M</b><span>SAFE cap</span></div>
+              <div><b>$2.3M</b><span>已到账，无 lead</span></div>
+              <div><b>18 mo</b><span>runway to Dec 2027</span></div>
+              <div><b>$0</b><span>当前收入</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">One-Line Judgment</div>
+          <h2>可以投，但只能按 optionality 定价。</h2>
+        </div>
+        <p class="lead">这不是一笔“已验证情绪护城河”的重注，而是一张押团队、供应链增值和品类早期位置的小额战略票。最锋利的 upside 是 AI wearable 的下一层状态变量；最硬的风险是 always-on microphone 带来的隐私与合规接受度。</p>
+      </div>
+      <div class="wrap grid-3">
+        <div class="card good">
+          <span class="tag">Why now</span>
+          <h3>情绪是可穿戴的下一块空白</h3>
+          <p>睡眠、恢复、负荷之后，用户真正缺的是“我现在处在什么状态、什么事件改变了状态”。Calm/Headspace 仍偏内容订阅，缺少连续状态层。</p>
+        </div>
+        <div class="card blue">
+          <span class="tag">Why this team</span>
+          <h3>硬件与消费品能力密度高</h3>
+          <p>前 Apple iPhone 产品设计、Meta Neural Band、F-16 EE、剑桥计算神经科学，5 人团队具备把产品造出来的基础能力。</p>
+        </div>
+        <div class="card bad">
+          <span class="tag">Why small</span>
+          <h3>核心验证还没过闸门</h3>
+          <p>79% 是 within-person，小样本、早期数据。真正需要证明的是 cross-person cold-start：新用户开箱即用是否准。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="product">
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">Product</div>
+          <h2>从单点健康指标，升级为实时情绪状态。</h2>
+        </div>
+        <p class="lead">Anoria 同时读取声音、心率、HRV、皮肤电与数字情境，提取约 150 个实时指标。产品输出 Energy、Mood、Focus，并合成为 Flow Score。</p>
+      </div>
+      <div class="wrap split">
+        <div class="image-panel">
+          <img src="assets/Screenshot_2026-06-25_at_3.18.46_PM.png" alt="Anoria app screens">
+          <div class="caption">App 展示全天 Flow 曲线、事件影响和用户自报输入。</div>
+        </div>
+        <div class="grid-2">
+          <div class="card compact">
+            <h3>Microphone</h3>
+            <p>Always-on 语音识别与说话人分离，读取对话语境、词汇丰富度、提问频率、pitch、tone、shimmer、jitter、register。</p>
+          </div>
+          <div class="card compact">
+            <h3>PPG</h3>
+            <p>读取心率、HRV 与恢复状态，用于判断 arousal 与身体压力，但单独不足以识别情绪。</p>
+          </div>
+          <div class="card compact">
+            <h3>EDA</h3>
+            <p>读取皮肤电，作为出汗代理信号，用来关联皮质醇和压力反应。</p>
+          </div>
+          <div class="card compact">
+            <h3>Digital Context</h3>
+            <p>融合 App、日历、音乐、位置等上下文，把生理变化映射回具体事件，例如晨走、会议或 Instagram。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="traction">
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">Traction & Hardware</div>
+          <h2>需求信号强，硬件仍很早。</h2>
+        </div>
+        <p class="lead">成立约 3–3.5 个月，40 名 beta DAU 佩戴 V1，收入为 0。需求端有 launch 观看、waitlist 和预订，但供应链、定制电芯、结构固定和续航仍是关键执行风险。</p>
+      </div>
+      <div class="wrap grid-3">
+        <div class="card"><span class="num">5.5–5.8M</span><span class="muted">launch views</span></div>
+        <div class="card"><span class="num">4,000+</span><span class="muted">waitlist</span></div>
+        <div class="card"><span class="num">$34K</span><span class="muted">invite-only pre-orders in two weeks</span></div>
+      </div>
+      <div class="wrap" style="margin-top:18px">
+        <div class="image-panel">
+          <img src="assets/Screenshot_2026-06-25_at_3.19.18_PM.png" alt="Anoria traction slide">
+          <div class="caption">自报需求信号：views、waitlist、pre-orders 与 Coca-Cola LOI。</div>
+        </div>
+      </div>
+      <div class="wrap timeline">
+        <div class="step"><b>Jun 2026</b><span>Seed round</span></div>
+        <div class="step"><b>Aug 2026</b><span>2,500 plastic beta devices</span></div>
+        <div class="step"><b>Dec 2026</b><span>300 final form factor pilot</span></div>
+        <div class="step"><b>Jun 2027</b><span>MP ship · 20K pre-order target</span></div>
+        <div class="step"><b>Dec 2027</b><span>18 months runway</span></div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">Team</div>
+          <h2>能造出来，不等于已经证明。</h2>
+        </div>
+        <p class="lead">创始人 Michael Belhassen 是前 Apple iPhone 硬件/产品设计，帝国理工机械工程，自称研究量化情绪 10 年。团队 5 名全职，近期计划扩到 9 人。</p>
+      </div>
+      <div class="wrap grid-3">
+        <div class="card compact"><h3>Michael Belhassen</h3><p>CEO，前 Apple iPhone 硬件，Apple 期间每年约三个月驻深圳。</p></div>
+        <div class="card compact"><h3>Akash Mahtani</h3><p>创始 EE，曾为 F-16 战机设计硅芯片。</p></div>
+        <div class="card compact"><h3>Saad Haq</h3><p>创始产品设计工程师，Apple 与 Michael 共事，后在 Meta 主导 Meta Neural Band 设计。</p></div>
+        <div class="card compact"><h3>Jack Clarkson</h3><p>创始 ML，剑桥，计算神经科学背景。</p></div>
+        <div class="card compact"><h3>Rebecca Laub</h3><p>CMO，两次创业者，曾获法国顶级 VC 投资。</p></div>
+        <div class="card compact"><h3>Next hires</h3><p>in-house 神经科学家、全栈工程师、中国运营、硬件 UI/UX。</p></div>
+      </div>
+    </section>
+
+    <section id="business">
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">Business Model</div>
+          <h2>Oura 式硬件 + 订阅，但定位更像首饰。</h2>
+        </div>
+        <p class="lead">$300 设备、$6/月订阅、$80 表带。主张与手表共戴，而不是取代手表；目标是当前不戴可穿戴的创意人群。</p>
+      </div>
+      <div class="wrap split">
+        <div class="image-panel">
+          <img src="assets/Screenshot_2026-06-25_at_3.17.11_PM.png" alt="Anoria pricing and bracelets">
+          <div class="caption">$300 device / $6 monthly / $80 bracelets，目标 2027 年 6 月 20K pre-orders。</div>
+        </div>
+        <table>
+          <thead><tr><th>项目</th><th>当前数字</th></tr></thead>
+          <tbody>
+            <tr><td>轮次</td><td>$5M @ $40M cap SAFE，撑到 Series A</td></tr>
+            <tr><td>单位经济</td><td>$126 量产 BOM，$300 零售，58% 毛利</td></tr>
+            <tr><td>量产资金</td><td>由预订款覆盖，不动用本轮募资</td></tr>
+            <tr><td>资金用途</td><td>团队 42.5%，硬件 22.5%，营销 15%，行政 8.1%，软件 8.1%，神经科学 3.8%</td></tr>
+            <tr><td>GTM</td><td>education、线下 activation、DTC/零售/会员俱乐部/品牌合作 distribution</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="wrap" style="margin-top:18px">
+        <div class="image-panel">
+          <img src="assets/Screenshot_2026-06-25_at_3.25.05_PM.png" alt="Anoria fundraising timeline and use of proceeds">
+          <div class="caption">融资目标、里程碑与 use of proceeds。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="market">
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">Market Map</div>
+          <h2>大厂吞噬是核心赌注。</h2>
+        </div>
+        <p class="lead">Apple、Amazon、Google 都可以把情绪推理塞进既有设备。Anoria 的反驳是现有玩家硬件迭代慢，而它可用数据飞轮先占品类。</p>
+      </div>
+      <div class="wrap">
+        <table>
+          <thead><tr><th>公司</th><th>估值 / 状态</th><th>是什么</th><th>Anoria 差异</th><th>对手优势</th></tr></thead>
+          <tbody>
+            <tr><td>Whoop</td><td>$10.1B</td><td>无屏 performance 手环</td><td>直接测情绪，而非恢复/负荷代理</td><td>传感精度、量产、品牌已验证</td></tr>
+            <tr><td>Oura</td><td>$11B</td><td>睡眠/恢复智能戒指</td><td>首饰级情绪层 + 主动干预</td><td>品类龙头，累计售出 5.5M 戒指</td></tr>
+            <tr><td>Friend</td><td>约 $7–8M</td><td>AI 陪伴吊坠</td><td>有生理量化与数据飞轮</td><td>病毒级消费品牌</td></tr>
+            <tr><td>Bee</td><td>$7M seed，被 Amazon 收购</td><td>记忆/助理手环</td><td>情绪是核心产品，不是附属功能</td><td>Amazon 资本与分销</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="upside">
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">Upside Case</div>
+          <h2>押的是“情绪状态 API”。</h2>
+        </div>
+        <p class="lead">如果跨过准确率阈值，Anoria 不只是手环，而是设备、App 与用户行为之间的情绪情境层。</p>
+      </div>
+      <div class="wrap grid-3">
+        <div class="card good"><h3>赛道 beta</h3><p>AI 把智力商品化后，人的价值更转向创造力与连接，而二者都由情绪驱动。</p></div>
+        <div class="card good"><h3>公司 alpha</h3><p>团队有硬件、神经科学、消费产品和供应链经验，单位经济从第一天就看起来可成立。</p></div>
+        <div class="card good"><h3>结构性不对称</h3><p>$40M cap 对标 $10B+ 品类龙头，早期需求信号密集，且 IOSG 在深圳供应链上能即时增值。</p></div>
+      </div>
+    </section>
+
+    <section id="risk">
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">Risk Register</div>
+          <h2>最强差异化，也是最大软肋。</h2>
+        </div>
+        <p class="lead">麦克风让情绪识别更可能成立，也让产品落入最敏感的隐私区间。Amazon Halo Tone 的关停和 Friend 的隐私反噬是不能轻描淡写的前车之鉴。</p>
+      </div>
+      <div class="wrap grid-2">
+        <div class="card bad"><h3>01 隐私与社会接受度</h3><p>Always-on microphone 是整套产品里最受监管、最脆弱的部件。推理在云端、加密说法含糊、端侧推理推后，均未降低风险。</p></div>
+        <div class="card bad"><h3>02 Cold-start 准确率</h3><p>79% 是 within-person。真正要看新用户无校准开箱即用的 cross-person 准确率，以及几周 baseline 期间的留存。</p></div>
+        <div class="card bad"><h3>03 量产执行</h3><p>尚未选定代工厂，电池仍外置，固定结构未定型，还要在首饰尺寸内做到 always-on microphone + 24 小时续航。</p></div>
+        <div class="card bad"><h3>04 GTM 与估值</h3><p>$300 + $6/月 + $80 表带，面向未验证且有隐私包袱的新消费硬件。$40M cap 对 pre-validation 阶段并不便宜。</p></div>
+      </div>
+      <div class="wrap" style="margin-top:22px">
+        <div class="quote">作为“团队 + 供应链 optionality”的小额战略票成立；作为“已验证情绪护城河”的重注，证据还不够。</div>
+      </div>
+    </section>
+
+    <section id="diligence">
+      <div class="wrap section-head">
+        <div>
+          <div class="kicker">Next Steps</div>
+          <h2>投前必须把四个问题问穿。</h2>
+        </div>
+        <p class="lead">IC voting 可以推进，但 conviction 的提升来自方法学和执行路径，而不是更多 founder narrative。</p>
+      </div>
+      <div class="wrap grid-2">
+        <div class="card blue"><h3>Cross-person / cold-start</h3><p>要求准确率方法学、样本量、标注方式、新用户无校准表现，以及 6 分钟快捷基线与几周 normal baseline 的差异。</p></div>
+        <div class="card blue"><h3>Coca-Cola LOI</h3><p>看原文与实际承诺内容：是营销兴趣、试点合作、预算承诺，还是只是品牌接触。</p></div>
+        <div class="card blue"><h3>Privacy architecture</h3><p>音频在哪里存储和处理；云端推理下 E2E encryption + 用户持密钥具体意味着什么；旁人同意和数据留存方案是什么。</p></div>
+        <div class="card blue"><h3>Manufacturing plan</h3><p>候选供应商、定制电芯交期、2,500 台 beta 与 20,000 台量产路径、认证与质量控制计划。</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Prepared for IOSG IC review · Project lead: Jocy, Yiping · Source: Anoria memo export and deck screenshots.</div>
+  </footer>
+</body>
+</html>
