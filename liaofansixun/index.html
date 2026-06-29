@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>了凡四训</title>
+  <meta name="description" content="《了凡四训》PDF 阅读页，适配桌面与移动端。">
+  <meta property="og:title" content="了凡四训">
+  <meta property="og:description" content="《了凡四训》PDF 阅读页。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./cover.png">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f7f2e8;
+      --ink: #211c16;
+      --muted: #6e6254;
+      --line: rgba(77, 62, 42, .18);
+      --panel: rgba(255, 252, 245, .88);
+      --accent: #8c4b2f;
+      --accent-2: #234a41;
+      --shadow: 0 24px 80px rgba(42, 31, 18, .18);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-serif, "Songti SC", "Noto Serif CJK SC", "STSong", Georgia, serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(35, 74, 65, .07) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, rgba(140, 75, 47, .06), transparent 38rem),
+        var(--paper);
+      background-size: 28px 28px, auto, auto;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: max(18px, env(safe-area-inset-top)) 0 max(22px, env(safe-area-inset-bottom));
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 390px);
+      gap: clamp(22px, 4vw, 56px);
+      align-items: end;
+      min-height: min(58vh, 620px);
+      padding: clamp(18px, 4vw, 46px) 0 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kicker {
+      margin: 0 0 16px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0;
+      color: var(--accent-2);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 10vw, 126px);
+      line-height: .98;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.78;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, .52);
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .button.primary {
+      color: #fffaf2;
+      background: var(--accent);
+      border-color: transparent;
+    }
+
+    .cover {
+      width: min(100%, 390px);
+      justify-self: end;
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      background: #fffaf2;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
+
+    .reader {
+      padding-top: 28px;
+    }
+
+    .reader-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pdf-frame {
+      width: 100%;
+      height: min(78vh, 980px);
+      min-height: 620px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+      box-shadow: 0 14px 48px rgba(42, 31, 18, .12);
+    }
+
+    .fallback {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100% - 24px, 560px);
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 26px;
+      }
+
+      .cover {
+        justify-self: start;
+        width: min(72vw, 320px);
+        order: -1;
+      }
+
+      .intro {
+        font-size: 17px;
+      }
+
+      .button {
+        flex: 1 1 150px;
+      }
+
+      .reader-bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .pdf-frame {
+        height: 74vh;
+        min-height: 520px;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #17130f;
+        --ink: #f3eadb;
+        --muted: #b8aa97;
+        --line: rgba(238, 221, 190, .18);
+        --panel: rgba(28, 23, 18, .88);
+        --accent: #b76842;
+        --accent-2: #86b8a8;
+        --shadow: 0 24px 80px rgba(0, 0, 0, .38);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero" aria-label="书籍介绍">
+      <div>
+        <p class="kicker">Ming Dynasty moral classic · 袁了凡家训</p>
+        <h1>了凡四训</h1>
+        <p class="intro">立命之学、改过之法、积善之方、谦德之效。这个页面已把原始 PDF 调整成适合手机和桌面阅读的网页版本，并保留原文件下载。</p>
+        <div class="actions">
+          <a class="button primary" href="#reader">在线阅读</a>
+          <a class="button" href="./liaofan-sixun.pdf" target="_blank" rel="noopener">打开 PDF</a>
+          <a class="button" href="./liaofan-sixun.pdf" download>下载原文</a>
+        </div>
+      </div>
+      <img class="cover" src="./cover.png" alt="《了凡四训》PDF 封面预览">
+    </section>
+
+    <section class="reader" id="reader" aria-label="PDF 阅读器">
+      <div class="reader-bar">
+        <strong>在线阅读</strong>
+        <span>若手机浏览器不显示内嵌 PDF，点“打开 PDF”会更稳定。</span>
+      </div>
+      <iframe class="pdf-frame" src="./liaofan-sixun.pdf#view=FitH" title="了凡四训 PDF"></iframe>
+      <p class="fallback">备用链接：<a href="./liaofan-sixun.pdf" target="_blank" rel="noopener">liaofan-sixun.pdf</a></p>
+    </section>
+  </main>
+</body>
+</html>
