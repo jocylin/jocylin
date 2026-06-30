@@ -117,7 +117,11 @@
     }
 
     .reader {
-      padding-top: 28px;
+      min-height: min(100dvh, 920px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px 0;
     }
 
     .reader-bar {
@@ -147,6 +151,7 @@
       height: 100%;
       display: block;
       background: #050505;
+      object-fit: contain;
     }
 
     .fallback {
@@ -159,13 +164,14 @@
 
     @media (max-width: 760px) {
       .shell {
-        width: min(100% - 24px, 560px);
+        width: 100%;
+        padding: 0;
       }
 
       .hero {
         grid-template-columns: 1fr;
         min-height: auto;
-        padding-top: 26px;
+        padding: 26px 12px 28px;
       }
 
       .cover {
@@ -183,11 +189,58 @@
       }
 
       .reader-bar {
+        padding: 0 12px;
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .video-frame { border-radius: 4px; }
+      .reader {
+        min-height: 100dvh;
+        padding: max(12px, env(safe-area-inset-top)) 0 max(12px, env(safe-area-inset-bottom));
+        background: #050505;
+      }
+
+      .video-frame {
+        width: 100vw;
+        max-height: calc(100dvh - 116px);
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .video-frame video {
+        width: 100vw;
+        height: auto;
+        max-height: calc(100dvh - 116px);
+      }
+
+      .reader-bar,
+      .fallback {
+        color: rgba(255, 250, 242, .82);
+      }
+
+      .fallback {
+        padding: 0 12px;
+      }
+    }
+
+    @media (max-height: 560px) and (orientation: landscape) {
+      .reader {
+        min-height: 100dvh;
+        padding: 0;
+      }
+
+      .reader-bar,
+      .fallback {
+        display: none;
+      }
+
+      .video-frame,
+      .video-frame video {
+        width: 100vw;
+        height: 100dvh;
+        max-height: none;
+      }
     }
 
     @media (prefers-color-scheme: dark) {
@@ -206,6 +259,20 @@
 </head>
 <body>
   <main class="shell">
+    <section class="reader" id="reader" aria-label="视频播放器">
+      <div class="reader-bar">
+        <strong>视频阅读</strong>
+        <span>手机端可直接播放；若浏览器拦截内嵌播放，可点“打开视频”。</span>
+      </div>
+      <div class="video-frame">
+        <video controls playsinline preload="metadata" poster="./cover.png">
+          <source src="./liaofan-sixun-mobile.mp4" type="video/mp4">
+          当前浏览器不支持内嵌视频播放。
+        </video>
+      </div>
+      <p class="fallback">备用链接：<a href="./liaofan-sixun-mobile.mp4" target="_blank" rel="noopener">liaofan-sixun-mobile.mp4</a> · <a href="./liaofan-sixun.pdf" target="_blank" rel="noopener">liaofan-sixun.pdf</a></p>
+    </section>
+
     <section class="hero" aria-label="书籍介绍">
       <div>
         <p class="kicker">Ming Dynasty moral classic · 袁了凡家训</p>
@@ -219,20 +286,6 @@
         </div>
       </div>
       <img class="cover" src="./cover.png" alt="《了凡四训》PDF 封面预览">
-    </section>
-
-    <section class="reader" id="reader" aria-label="视频播放器">
-      <div class="reader-bar">
-        <strong>视频阅读</strong>
-        <span>手机端可直接播放；若浏览器拦截内嵌播放，可点“打开视频”。</span>
-      </div>
-      <div class="video-frame">
-        <video controls playsinline preload="metadata" poster="./cover.png">
-          <source src="./liaofan-sixun-mobile.mp4" type="video/mp4">
-          当前浏览器不支持内嵌视频播放。
-        </video>
-      </div>
-      <p class="fallback">备用链接：<a href="./liaofan-sixun-mobile.mp4" target="_blank" rel="noopener">liaofan-sixun-mobile.mp4</a> · <a href="./liaofan-sixun.pdf" target="_blank" rel="noopener">liaofan-sixun.pdf</a></p>
     </section>
   </main>
 </body>
