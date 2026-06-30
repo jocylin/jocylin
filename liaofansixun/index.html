@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>了凡四训</title>
-  <meta name="description" content="《了凡四训》PDF 阅读页，适配桌面与移动端。">
+  <meta name="description" content="《了凡四训》视频阅读页，适配桌面与移动端。">
   <meta property="og:title" content="了凡四训">
-  <meta property="og:description" content="《了凡四训》PDF 阅读页。">
+  <meta property="og:description" content="《了凡四训》手机可播放的视频阅读页。">
   <meta property="og:type" content="website">
   <meta property="og:image" content="./cover.png">
   <style>
@@ -131,14 +131,22 @@
       font-size: 14px;
     }
 
-    .pdf-frame {
+    .video-frame {
       width: 100%;
-      height: min(78vh, 980px);
-      min-height: 620px;
+      aspect-ratio: 16 / 9;
       border: 1px solid var(--line);
       border-radius: 6px;
-      background: var(--panel);
+      background: #050505;
       box-shadow: 0 14px 48px rgba(42, 31, 18, .12);
+      display: block;
+      overflow: hidden;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #050505;
     }
 
     .fallback {
@@ -179,10 +187,7 @@
         flex-direction: column;
       }
 
-      .pdf-frame {
-        height: 74vh;
-        min-height: 520px;
-      }
+      .video-frame { border-radius: 4px; }
     }
 
     @media (prefers-color-scheme: dark) {
@@ -205,9 +210,10 @@
       <div>
         <p class="kicker">Ming Dynasty moral classic · 袁了凡家训</p>
         <h1>了凡四训</h1>
-        <p class="intro">立命之学、改过之法、积善之方、谦德之效。这个页面已把原始 PDF 调整成适合手机和桌面阅读的网页版本，并保留原文件下载。</p>
+        <p class="intro">立命之学、改过之法、积善之方、谦德之效。这个页面已把原始 PDF 转成适合手机浏览器播放的视频版本，并保留原文件下载。</p>
         <div class="actions">
-          <a class="button primary" href="#reader">在线阅读</a>
+          <a class="button primary" href="#reader">播放视频</a>
+          <a class="button" href="./liaofan-sixun-mobile.mp4" target="_blank" rel="noopener">打开视频</a>
           <a class="button" href="./liaofan-sixun.pdf" target="_blank" rel="noopener">打开 PDF</a>
           <a class="button" href="./liaofan-sixun.pdf" download>下载原文</a>
         </div>
@@ -215,13 +221,18 @@
       <img class="cover" src="./cover.png" alt="《了凡四训》PDF 封面预览">
     </section>
 
-    <section class="reader" id="reader" aria-label="PDF 阅读器">
+    <section class="reader" id="reader" aria-label="视频播放器">
       <div class="reader-bar">
-        <strong>在线阅读</strong>
-        <span>若手机浏览器不显示内嵌 PDF，点“打开 PDF”会更稳定。</span>
+        <strong>视频阅读</strong>
+        <span>手机端可直接播放；若浏览器拦截内嵌播放，可点“打开视频”。</span>
       </div>
-      <iframe class="pdf-frame" src="./liaofan-sixun.pdf#view=FitH" title="了凡四训 PDF"></iframe>
-      <p class="fallback">备用链接：<a href="./liaofan-sixun.pdf" target="_blank" rel="noopener">liaofan-sixun.pdf</a></p>
+      <div class="video-frame">
+        <video controls playsinline preload="metadata" poster="./cover.png">
+          <source src="./liaofan-sixun-mobile.mp4" type="video/mp4">
+          当前浏览器不支持内嵌视频播放。
+        </video>
+      </div>
+      <p class="fallback">备用链接：<a href="./liaofan-sixun-mobile.mp4" target="_blank" rel="noopener">liaofan-sixun-mobile.mp4</a> · <a href="./liaofan-sixun.pdf" target="_blank" rel="noopener">liaofan-sixun.pdf</a></p>
     </section>
   </main>
 </body>
