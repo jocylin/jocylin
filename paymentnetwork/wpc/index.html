@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asia Payment Network 中文白皮书</title>
+<title>Asia Payment Network 白皮書</title>
 <style>
   :root{
     --ink:#16202e;
@@ -15,22 +15,83 @@
     --white:#fbfaf6;
   }
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
     margin:0;
-    min-height:100vh;
-    display:grid;
-    place-items:center;
-    padding:24px;
+    overflow-x:hidden;
     background:var(--paper);
     color:var(--ink);
-    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
     -webkit-font-smoothing:antialiased;
   }
-  main{
-    width:min(720px,100%);
+  a{color:inherit}
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:1px solid var(--line);
+    background:rgba(243,239,230,.94);
+    backdrop-filter:blur(14px);
+  }
+  .topbar-inner{
+    max-width:1120px;
+    margin:0 auto;
+    min-height:64px;
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+    font-weight:650;
+    letter-spacing:0;
+  }
+  .brand-dot{
+    width:9px;
+    height:9px;
+    flex:0 0 auto;
+    border-radius:50%;
+    background:var(--brass);
+  }
+  .brand span{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex:0 0 auto;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:38px;
+    padding:0 14px;
     border:1px solid var(--line);
-    background:var(--paper-deep);
-    padding:34px;
+    border-radius:4px;
+    background:var(--white);
+    color:var(--ink);
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+  }
+  .btn.primary{
+    border-color:var(--brass);
+    background:var(--brass);
+    color:#1d1608;
+  }
+  .hero{
+    max-width:1120px;
+    margin:0 auto;
+    padding:34px 18px 18px;
   }
   .eyebrow{
     color:var(--brass);
@@ -40,60 +101,157 @@
     text-transform:uppercase;
   }
   h1{
-    margin:14px 0 12px;
-    font-family:Georgia,"Times New Roman",serif;
-    font-size:clamp(30px,7vw,48px);
+    margin:12px 0 8px;
+    max-width:780px;
+    font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+    font-size:clamp(31px,5vw,56px);
     line-height:1.08;
     font-weight:500;
     letter-spacing:0;
   }
-  p{
+  .lede{
     margin:0;
+    max-width:760px;
     color:var(--ink-soft);
     font-size:17px;
     line-height:1.65;
   }
-  .actions{
-    margin-top:26px;
-    display:flex;
-    flex-wrap:wrap;
+  .hero-actions{
+    display:none;
+    margin-top:18px;
     gap:10px;
+    flex-wrap:wrap;
   }
-  a{
-    display:inline-flex;
+  .reader{
+    max-width:1120px;
+    margin:0 auto;
+    padding:18px;
+  }
+  .reader-toolbar{
+    display:flex;
+    justify-content:space-between;
     align-items:center;
-    justify-content:center;
-    min-height:40px;
-    padding:0 14px;
-    border:1px solid var(--line);
-    border-radius:4px;
-    background:var(--white);
-    color:var(--ink);
-    text-decoration:none;
+    gap:12px;
+    padding:12px 0;
+    color:var(--ink-soft);
     font-size:14px;
-    font-weight:650;
   }
-  a.primary{
-    border-color:var(--brass);
-    background:var(--brass);
-    color:#1d1608;
+  .pages{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
   }
-  @media(max-width:560px){
-    body{padding:14px}
-    main{padding:24px 20px}
-    .actions{display:grid}
-    a{width:100%}
+  .page{
+    width:100%;
+    max-width:920px;
+    height:auto;
+    display:block;
+    background:white;
+    border:1px solid var(--line);
+    box-shadow:0 12px 36px rgba(22,32,46,.14);
+  }
+  .fallback{
+    max-width:920px;
+    margin:18px auto 42px;
+    padding:18px;
+    border:1px solid var(--line);
+    background:var(--paper-deep);
+    color:var(--ink-soft);
+    font-size:14px;
+    line-height:1.55;
+  }
+  @media(max-width:720px){
+    .topbar-inner{
+      min-height:58px;
+      padding:10px 12px;
+    }
+    .brand span{max-width:36vw}
+    .actions{gap:8px}
+    .btn{
+      min-height:34px;
+      padding:0 10px;
+      font-size:13px;
+    }
+    .topbar .actions{display:none}
+    .hero-actions{display:flex}
+    .hero{padding:24px 14px 10px}
+    .reader{padding:10px 0 24px}
+    .reader-toolbar{
+      padding:8px 14px;
+      font-size:13px;
+    }
+    .reader-toolbar span:last-child{display:none}
+    .pages{gap:10px}
+    .page{
+      border-left:0;
+      border-right:0;
+      box-shadow:0 7px 20px rgba(22,32,46,.12);
+    }
+    .fallback{
+      margin:14px 0 32px;
+      border-left:0;
+      border-right:0;
+    }
   }
 </style>
 </head>
 <body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../">
+      <span class="brand-dot"></span>
+      <span>Asia Payment Network</span>
+    </a>
+    <nav class="actions" aria-label="Whitepaper actions">
+      <a class="btn" href="../wpe/">English</a>
+      <a class="btn" href="./asia-payment-network-whitepaper-zh.pdf" target="_blank" rel="noopener">PDF</a>
+      <a class="btn primary" href="./asia-payment-network-whitepaper-zh.pdf" download>Save</a>
+    </nav>
+  </div>
+</header>
+
 <main>
-  <div class="eyebrow">Whitepaper · Chinese</div>
-  <h1>中文白皮书</h1>
-  <p>中文版本会放在这个路径。英文白皮书已经可以阅读和下载。</p>
-  <div class="actions">
-    <a class="primary" href="../wpe/">Read English Whitepaper</a>
-    <a href="../">Back to Asia Payment Network</a>
+  <section class="hero">
+    <div class="eyebrow">Whitepaper · 繁體中文</div>
+    <h1>Asia Payment Network 白皮書</h1>
+    <p class="lede">繁體中文版白皮書已轉為適合手機閱讀的頁面。每一頁會依照螢幕寬度自動縮放，原始 PDF 也保留供開啟、分享與下載。</p>
+    <div class="hero-actions">
+      <a class="btn" href="../wpe/">English</a>
+      <a class="btn" href="./asia-payment-network-whitepaper-zh.pdf" target="_blank" rel="noopener">PDF</a>
+      <a class="btn primary" href="./asia-payment-network-whitepaper-zh.pdf" download>Save</a>
+    </div>
+  </section>
+
+  <section class="reader" aria-label="Whitepaper pages">
+    <div class="reader-toolbar">
+      <span>18 頁</span>
+      <span>已優化手機閱讀</span>
+    </div>
+    <div class="pages">
+      <img class="page" src="./pages/page-01.jpg" alt="Asia Payment Network 白皮書第 1 頁" width="1500" height="2122" loading="eager" decoding="async">
+      <img class="page" src="./pages/page-02.jpg" alt="Asia Payment Network 白皮書第 2 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-03.jpg" alt="Asia Payment Network 白皮書第 3 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-04.jpg" alt="Asia Payment Network 白皮書第 4 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-05.jpg" alt="Asia Payment Network 白皮書第 5 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-06.jpg" alt="Asia Payment Network 白皮書第 6 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-07.jpg" alt="Asia Payment Network 白皮書第 7 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-08.jpg" alt="Asia Payment Network 白皮書第 8 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-09.jpg" alt="Asia Payment Network 白皮書第 9 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-10.jpg" alt="Asia Payment Network 白皮書第 10 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-11.jpg" alt="Asia Payment Network 白皮書第 11 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-12.jpg" alt="Asia Payment Network 白皮書第 12 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-13.jpg" alt="Asia Payment Network 白皮書第 13 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-14.jpg" alt="Asia Payment Network 白皮書第 14 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-15.jpg" alt="Asia Payment Network 白皮書第 15 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-16.jpg" alt="Asia Payment Network 白皮書第 16 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-17.jpg" alt="Asia Payment Network 白皮書第 17 頁" width="1500" height="2122" loading="lazy" decoding="async">
+      <img class="page" src="./pages/page-18.jpg" alt="Asia Payment Network 白皮書第 18 頁" width="1500" height="2122" loading="lazy" decoding="async">
+    </div>
+  </section>
+
+  <div class="fallback">
+    想看原始檔案？可以 <a href="./asia-payment-network-whitepaper-zh.pdf" target="_blank" rel="noopener">開啟 PDF</a>，或使用上方 Save 下載。
   </div>
 </main>
 </body>
