@@ -40,6 +40,7 @@
   .brandmark{display:flex;align-items:center;gap:12px}
   .brandmark .dot{width:9px;height:9px;background:var(--brass);border-radius:50%}
   .brandmark span{font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:.01em}
+  .toplinks{display:flex;align-items:center;gap:18px}
   .langtoggle{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
   .langtoggle:hover{color:var(--ink);border-color:var(--brass)}
 
@@ -154,6 +155,11 @@
     .cta-card{padding:42px 28px}
     section{padding:56px 0}
   }
+  @media(max-width:520px){
+    .toplinks{gap:12px}
+    .brandmark span{font-size:16px}
+    .mono{font-size:11px}
+  }
   :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
   @media(max-width:680px){
@@ -171,7 +177,10 @@
 <div class="topbar">
   <div class="wrap">
     <div class="brandmark"><span class="dot"></span><span>Asia Payment Network</span></div>
-    <a class="langtoggle mono" href="./index-zh.html">中文</a>
+    <div class="toplinks">
+      <a class="langtoggle mono" href="./wpe/">Whitepaper</a>
+      <a class="langtoggle mono" href="./index-zh.html">中文</a>
+    </div>
   </div>
 </div>
 
