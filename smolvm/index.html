@@ -115,7 +115,7 @@ tr.detail td b { color: var(--accent); }
 }
 
 
-/* Smolmachines LP section */
+/* Smolmachines project section */
 .company-hero { background: var(--accent-soft); border: 1px solid rgba(212,0,111,.18); border-radius: 14px; padding: 28px; margin-bottom: 26px; }
 .company-hero .lede { margin-bottom: 0; }
 .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 22px 0 0; }
@@ -149,10 +149,10 @@ tr.detail td b { color: var(--accent); }
 .stack-item b { color: var(--accent); }
 .thesis-line { background: var(--accent-soft); border: 1px solid rgba(212,0,111,.18); border-radius: 12px; padding: 22px 24px; margin-top: 24px; font-family: var(--serif); font-size: 20px; line-height: 1.55; }
 .thesis-line b { color: var(--accent); }
-.lp-summary { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
-.lp-summary p { color: var(--muted); font-size: 16px; margin-bottom: 14px; }
-.lp-summary p:last-child { margin-bottom: 0; }
-.lp-summary b { color: var(--text); }
+.project-summary { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+.project-summary p { color: var(--muted); font-size: 16px; margin-bottom: 14px; }
+.project-summary p:last-child { margin-bottom: 0; }
+.project-summary b { color: var(--text); }
 .signal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
 .signal { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 20px; min-height: 150px; }
 .signal strong { display: block; color: var(--accent); font-family: var(--serif); font-size: 20px; line-height: 1.25; margin-bottom: 8px; }
@@ -170,7 +170,7 @@ tr.detail td b { color: var(--accent); }
   h1 .en { font-size: 18px; }
   .hero-tagline { font-size: 18px; }
   .metric { min-height: auto; }
-  .plain-card, .lp-summary { padding: 20px; }
+  .plain-card, .project-summary { padding: 20px; }
   .thesis-line { font-size: 18px; padding: 18px 20px; }
   .signal { min-height: auto; }
   table { table-layout: fixed; }
@@ -183,15 +183,15 @@ tr.detail td b { color: var(--accent); }
 <body>
 <div class="wrap">
 <div class="hero">
-<div class="brand">IOSG Ventures · LP Brief · 2026-07-02</div>
+<div class="brand">IOSG Ventures · Investment Brief · 2026-07-02</div>
 <h1>AI Agent Sandbox 与 Smolmachines<span class="en">Market Thesis + Company Snapshot</span></h1>
-<p class="hero-tagline">Smolmachines 不是又一个 sandbox API，而是在赌 AI agent 时代需要一层新的 <b>portable microVM 计算地基</b>。这页先用 LP 能快速理解的方式讲清项目、跟投逻辑和主要风险，再展开技术分层与行业研究。</p>
+<p class="hero-tagline">Smolmachines 不是又一个 sandbox API，而是在赌 AI agent 时代需要一层新的 <b>portable microVM 计算地基</b>。这页先用一句话讲清项目定位，再展开共同投资逻辑、主要风险、技术分层与行业研究。</p>
 </div>
-<!-- 00 · LP PROJECT INTRO -->
+<!-- 00 · PROJECT INTRO -->
 <section id="project-intro">
-<div class="sec-label">00 · LP Project Intro</div>
-<h2>先给 LP 的一句话：这是一个早期、底层、非共识的 AI infra call option</h2>
-<div class="lp-summary">
+<div class="sec-label">00 · Project Intro</div>
+<h2>一句话：这是一个早期、底层、非共识的 AI infra call option</h2>
+<div class="project-summary">
 <p><b>Smolmachines 想做 AI 时代的一层新“计算地基”：</b>让任何一段软件，尤其是 AI agent 自动生成、没人预先审过的代码，都能在一个又快、又安全、又能打包带走的隔离小空间里运行。</p>
 <p>如果今天的云服务器像一间需要提前装修、按固定规格付租金的房子，Smolmachines 想做的是一种能瞬间弹出、用完即拆、还能整间打包带走的智能房间。它不是直接对标 E2B / Daytona 那类“出租房服务”，而是试图成为它们下面的新地基。</p>
 <p><b>我们的判断：</b>这不是一个已经被收入证明的 growth deal，而是一个值得小额参与、持续跟踪、可能拿到早期 access 的底层 infra option。赢的前提是：agent workload 真的需要可移植、可 fork、VM 级隔离的 runtime，并且 Smolmachines 能跨过 production trust。</p>
@@ -206,7 +206,7 @@ tr.detail td b { color: var(--accent); }
 </div>
 <div class="coinvest-box">
 <div>
-<h3>跟投逻辑</h3>
+<h3>共同投资逻辑</h3>
 <p>适合用“小额 access + 持续验证”的方式参与：不是押它今天已经赢，而是押它在 agent infra 栈里切到了一个可能被低估的底层位置。</p>
 </div>
 <div>
@@ -522,7 +522,7 @@ tr.detail td b { color: var(--accent); }
 </tbody>
 </table>
 </div>
-<p class="note">注：融资、客户、收入等数据为公司沟通与公开资料整理，面向 LP 展示时按“需进一步验证”的早期判断处理。</p>
+<p class="note">注：融资、客户、收入等数据为公司沟通与公开资料整理，按“需进一步验证”的早期判断处理。</p>
 </section>
 <section class="closing">
 <div class="punch">真正赚钱的,从来不是改写边界的人,<br/>是围绕新边界做<b>中立工具</b>与<b>运维刚需</b>的人。</div>
