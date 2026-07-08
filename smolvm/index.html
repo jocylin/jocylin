@@ -106,6 +106,7 @@ tr.detail td b { color: var(--accent); }
 
 @media (max-width: 860px) {
   h1 { font-size: 36px; }
+  h2 { font-size: 29px; line-height: 1.28; }
   .wrap { padding: 40px 20px 60px; }
   .geo-grid { grid-template-columns: 1fr; }
   .dir-grid { grid-template-columns: 1fr; }
@@ -134,8 +135,23 @@ tr.detail td b { color: var(--accent); }
 .table-scroll table { min-width: 760px; }
 .table-scroll tbody td:first-child { white-space: normal; }
 .note { color: var(--muted); font-size: 12.5px; margin-top: 12px; }
+.intro-split { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr); gap: 28px; align-items: start; }
+.plain-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 26px; }
+.plain-card h3 { font-family: var(--serif); font-size: 23px; margin-bottom: 12px; }
+.plain-card p { color: var(--muted); font-size: 15.5px; margin-bottom: 14px; }
+.plain-card p:last-child { margin-bottom: 0; }
+.plain-card b { color: var(--text); }
+.layer-figure { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.layer-figure img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.caption { color: var(--muted); font-size: 12.5px; line-height: 1.55; margin-top: 12px; }
+.stack-list { display: grid; gap: 12px; margin-top: 18px; }
+.stack-item { border-left: 3px solid var(--border); padding-left: 14px; color: var(--muted); font-size: 14.5px; }
+.stack-item b { color: var(--accent); }
+.thesis-line { background: var(--accent-soft); border: 1px solid rgba(212,0,111,.18); border-radius: 12px; padding: 22px 24px; margin-top: 24px; font-family: var(--serif); font-size: 20px; line-height: 1.55; }
+.thesis-line b { color: var(--accent); }
 @media (max-width: 860px) { .metric-grid, .brief-grid { grid-template-columns: 1fr 1fr; } .company-hero, .brief-card, .callout { padding: 20px; } }
-@media (max-width: 560px) { .metric-grid, .brief-grid { grid-template-columns: 1fr; } h1 .en { font-size: 18px; } .hero-tagline { font-size: 18px; } .metric { min-height: auto; } }
+@media (max-width: 860px) { .intro-split { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .metric-grid, .brief-grid { grid-template-columns: 1fr; } h1 .en { font-size: 18px; } .hero-tagline { font-size: 18px; } .metric { min-height: auto; } .plain-card { padding: 20px; } .thesis-line { font-size: 18px; padding: 18px 20px; } }
 </style>
 </head>
 <body>
@@ -143,8 +159,49 @@ tr.detail td b { color: var(--accent); }
 <div class="hero">
 <div class="brand">IOSG Ventures · LP Brief · 2026-07-02</div>
 <h1>AI Agent Sandbox 与 Smolmachines<span class="en">Market Thesis + Company Snapshot</span></h1>
-<p class="hero-tagline">原有 <b>AI Agent Sandbox</b> 行业研究完整保留；Smolmachines / smolvm 被整理成 LP 可快速理解的公司快照、投资判断与主要风险。</p>
+<p class="hero-tagline">先用一张分层图讲清 <b>Smolmachines 到底押在哪一层</b>；再完整保留原有 AI Agent Sandbox 行业研究，并接入 Smolmachines / smolvm 的公司快照、投资判断与主要风险。</p>
 </div>
+<!-- 00 · PLAIN ENGLISH INTRO -->
+<section id="plain-english">
+<div class="sec-label">00 · Plain English</div>
+<h2>先把故事讲简单：AI agent 需要一间隔离小房间</h2>
+<div class="intro-split">
+<div>
+<div class="plain-card">
+<h3>为什么需要 sandbox</h3>
+<p>想象每个 AI agent 就像一个刚招进来的实习生，你让它自己写代码、自己跑代码。问题是：它写的代码你没看过，可能有 bug，甚至可能一条命令就把整台电脑的文件删光。你肯定不敢让这个实习生直接在自己的电脑上乱跑。</p>
+<p>所以你需要给它一间<b>隔离的小房间</b>：让它在里面随便折腾，把房间拆了都行，但绝不能碰到房间外面真正重要的东西。跑完了，房间一拆，干净利落。这个“小房间”就是 sandbox。</p>
+<p><b>E2B</b> 做的事，就是把这种小房间当成云服务出租。开发者不想自己搭隔离环境，于是调用 E2B 的 API，一行代码，云端秒开一间房，agent 在里面跑代码，跑完拆掉。它卖的是“成熟、省心、API 好用”。</p>
+</div>
+<div class="stack-list">
+<div class="stack-item"><b>用户层：</b>AI agent / 开发者，需要一间隔离小房间跑不可信代码。</div>
+<div class="stack-item"><b>出租房层：</b>E2B、Daytona 在这里，卖的是“拎包入住、一行 API 开一间房”的便利。</div>
+<div class="stack-item"><b>地基层：</b>Firecracker 在这里，Smolmachines 押的也是这一层，目标是成为更好用的 VM primitive。</div>
+<div class="stack-item"><b>物理层：</b>AWS、GCP、自部署机器和硬件资源。</div>
+</div>
+</div>
+<figure class="layer-figure">
+<img alt="AI agent sandbox 分层定位：用户层、E2B 和 Daytona 所在的 sandbox as a service 出租房层、Firecracker 与 Smolmachines 所在的底层 VM primitive 地基层，以及物理云和硬件层" src="smolmachines-layering.jpg"/>
+<figcaption class="caption">分层定位：Smolmachines 押注底层 VM primitive，与 Firecracker 同层，而非 E2B/Daytona 所在的 sandbox 应用层——这是它估值想象空间与执行难度的共同来源。</figcaption>
+</figure>
+</div>
+<div class="thesis-line"><b>一句话点题：</b>E2B 建在 Firecracker 这种地基之上；BinBin 的野心是让 Smolmachines 成为比 Firecracker 更好用的地基，连 E2B 那类公司理论上都该建在它之上。这也解释了为什么他反复强调“我是 AWS 的竞品，不是又一个 sandbox API”。</div>
+<div class="brief-grid" style="margin-top:26px">
+<div class="brief-card">
+<h3>Smolmachines 的三个差异点</h3>
+<ol>
+<li><b>单文件 artifact：</b>把整台虚拟机的系统、软件和状态打包成一个 <code>.smolmachine</code> 文件，像把房子连同家具塞进箱子搬走。</li>
+<li><b>弹性伸缩：</b>传统 VM 像固定房间，资源用不满浪费、用超了崩；Smolmachines 试图按真实负载自动变大变小，提高单机密度。</li>
+<li><b>低成本 fork：</b>agent 经常从同一个起点分几条路试错。Smolmachines 希望复制房间时只为差异部分付成本，但这些复制体需要留在同一台物理机上。</li>
+</ol>
+</div>
+<div class="brief-card">
+<h3>E2B 与 Smolmachines 各自的价值</h3>
+<p><b>E2B</b> 现在就在收钱，价值是成熟和省心：客户要一个企业敢用的隔离执行环境，直接调 API。</p>
+<p><b>Smolmachines</b> 赌的是更底层的位置：如果 agent 时代真的需要可打包、可秒开、可低成本复制、本地云端一致的虚拟机，它可能成为新一层基础设施。地基一旦盖成，壁垒很深；但能不能盖成、客户敢不敢把生产业务放上来，是最大未知数。</p>
+</div>
+</div>
+</section>
 <!-- 01 · KERNEL BOUNDARY -->
 <section>
 <div class="sec-label">01 · The Kernel Boundary</div>
