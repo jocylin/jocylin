@@ -149,9 +149,35 @@ tr.detail td b { color: var(--accent); }
 .stack-item b { color: var(--accent); }
 .thesis-line { background: var(--accent-soft); border: 1px solid rgba(212,0,111,.18); border-radius: 12px; padding: 22px 24px; margin-top: 24px; font-family: var(--serif); font-size: 20px; line-height: 1.55; }
 .thesis-line b { color: var(--accent); }
+.lp-summary { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+.lp-summary p { color: var(--muted); font-size: 16px; margin-bottom: 14px; }
+.lp-summary p:last-child { margin-bottom: 0; }
+.lp-summary b { color: var(--text); }
+.signal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+.signal { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 20px; min-height: 150px; }
+.signal strong { display: block; color: var(--accent); font-family: var(--serif); font-size: 20px; line-height: 1.25; margin-bottom: 8px; }
+.signal span { display: block; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.coinvest-box { background: var(--accent-soft); border: 1px solid rgba(212,0,111,.18); border-radius: 12px; padding: 24px 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.coinvest-box h3 { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; }
+.coinvest-box p, .coinvest-box li { color: var(--muted); font-size: 14.5px; line-height: 1.7; }
+.coinvest-box ul { padding-left: 20px; }
+.coinvest-box li { margin: 6px 0; }
 @media (max-width: 860px) { .metric-grid, .brief-grid { grid-template-columns: 1fr 1fr; } .company-hero, .brief-card, .callout { padding: 20px; } }
 @media (max-width: 860px) { .intro-split { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .metric-grid, .brief-grid { grid-template-columns: 1fr; } h1 .en { font-size: 18px; } .hero-tagline { font-size: 18px; } .metric { min-height: auto; } .plain-card { padding: 20px; } .thesis-line { font-size: 18px; padding: 18px 20px; } }
+@media (max-width: 860px) { .signal-grid, .coinvest-box { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .metric-grid, .brief-grid { grid-template-columns: 1fr; }
+  h1 .en { font-size: 18px; }
+  .hero-tagline { font-size: 18px; }
+  .metric { min-height: auto; }
+  .plain-card, .lp-summary { padding: 20px; }
+  .thesis-line { font-size: 18px; padding: 18px 20px; }
+  .signal { min-height: auto; }
+  table { table-layout: fixed; }
+  th, td { overflow-wrap: anywhere; word-break: break-word; }
+  .table-scroll table { min-width: 0; }
+  .pill { white-space: normal; overflow-wrap: anywhere; }
+}
 </style>
 </head>
 <body>
@@ -159,11 +185,43 @@ tr.detail td b { color: var(--accent); }
 <div class="hero">
 <div class="brand">IOSG Ventures · LP Brief · 2026-07-02</div>
 <h1>AI Agent Sandbox 与 Smolmachines<span class="en">Market Thesis + Company Snapshot</span></h1>
-<p class="hero-tagline">先用一张分层图讲清 <b>Smolmachines 到底押在哪一层</b>；再完整保留原有 AI Agent Sandbox 行业研究，并接入 Smolmachines / smolvm 的公司快照、投资判断与主要风险。</p>
+<p class="hero-tagline">Smolmachines 不是又一个 sandbox API，而是在赌 AI agent 时代需要一层新的 <b>portable microVM 计算地基</b>。这页先用 LP 能快速理解的方式讲清项目、跟投逻辑和主要风险，再展开技术分层与行业研究。</p>
 </div>
-<!-- 00 · PLAIN ENGLISH INTRO -->
+<!-- 00 · LP PROJECT INTRO -->
+<section id="project-intro">
+<div class="sec-label">00 · LP Project Intro</div>
+<h2>先给 LP 的一句话：这是一个早期、底层、非共识的 AI infra call option</h2>
+<div class="lp-summary">
+<p><b>Smolmachines 想做 AI 时代的一层新“计算地基”：</b>让任何一段软件，尤其是 AI agent 自动生成、没人预先审过的代码，都能在一个又快、又安全、又能打包带走的隔离小空间里运行。</p>
+<p>如果今天的云服务器像一间需要提前装修、按固定规格付租金的房子，Smolmachines 想做的是一种能瞬间弹出、用完即拆、还能整间打包带走的智能房间。它不是直接对标 E2B / Daytona 那类“出租房服务”，而是试图成为它们下面的新地基。</p>
+<p><b>我们的判断：</b>这不是一个已经被收入证明的 growth deal，而是一个值得小额参与、持续跟踪、可能拿到早期 access 的底层 infra option。赢的前提是：agent workload 真的需要可移植、可 fork、VM 级隔离的 runtime，并且 Smolmachines 能跨过 production trust。</p>
+</div>
+<div class="signal-grid">
+<div class="signal"><strong>为什么现在</strong><span>AI agent 开始自己写代码、自己跑代码，安全隔离从“工程最佳实践”变成刚需。传统 container 共享 host kernel，传统 VM 又太重，中间层正在重新被定义。</span></div>
+<div class="signal"><strong>为什么独特</strong><span>创始人没有从 cloud sandbox API 切入，而是从底层 VM primitive 切入：单文件 artifact、弹性伸缩、低成本 fork，本地和云端用同一个运行单元。</span></div>
+<div class="signal"><strong>为什么值得看</strong><span>开源半年已拿到 4,000+ GitHub stars、30 位贡献者、70+ 次 release；公司沟通中提到已商业化，每天启动数千个 VM，但收入、留存和付费客户仍需核实。</span></div>
+<div class="signal"><strong>为什么团队匹配</strong><span>BinBin He 曾在 AWS 参与 ECS / Fargate / Firecracker 相关系统，是从问题内部走出来的 founder。底层 infra 创业里，这种 founder-market fit 很关键。</span></div>
+<div class="signal"><strong>为什么可能有空间</strong><span>E2B、Daytona、Modal 已验证 agent sandbox / AI compute 方向有资本关注。Smolmachines 位置更底层，如果成为默认 primitive，空间比单点 API 更大。</span></div>
+<div class="signal"><strong>为什么有风险</strong><span>最大风险不是 demo 速度，而是 production trust：客户测试觉得好用，不等于敢把核心 workload 放上去。大厂覆盖、团队厚度、商业化数据也都还早。</span></div>
+</div>
+<div class="coinvest-box">
+<div>
+<h3>跟投逻辑</h3>
+<p>适合用“小额 access + 持续验证”的方式参与：不是押它今天已经赢，而是押它在 agent infra 栈里切到了一个可能被低估的底层位置。</p>
+</div>
+<div>
+<h3>下一步要验证</h3>
+<ul>
+<li>真实付费客户、ARR、留存和 gross margin。</li>
+<li>单机密度、fork 成本、failure rate 是否在生产环境成立。</li>
+<li>团队扩张速度，以及是否能把开源热度转成 production adoption。</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- 01 · PLAIN ENGLISH INTRO -->
 <section id="plain-english">
-<div class="sec-label">00 · Plain English</div>
+<div class="sec-label">01 · Plain English</div>
 <h2>先把故事讲简单：AI agent 需要一间隔离小房间</h2>
 <div class="intro-split">
 <div>
@@ -204,7 +262,7 @@ tr.detail td b { color: var(--accent); }
 </section>
 <!-- 01 · KERNEL BOUNDARY -->
 <section>
-<div class="sec-label">01 · The Kernel Boundary</div>
+<div class="sec-label">02 · The Kernel Boundary</div>
 <h2>三次重写，每一次都因租户更不可信</h2>
 <p class="lede">每一代虚拟化的跃迁，都是把"<b>共享什么</b>"和"<b>隔离什么</b>"的边界重画一次。驱动力始终一样：<b>新租户的可信度下降</b>。裸机时代你信任全部代码；容器时代你信任自己写的代码；agent 时代，代码是 LLM 现写的，你一行没读过。</p>
 <div class="story">Docker 一位工程师在 2026 年 5 月写道：<b>"我在二十年里看着这个行业重建了三次信任模型。"</b>共享 kernel 在容器时代没问题，因为威胁是你自己软件里的 bug，不是你刚请进门的租户带来的意外。他对结局的预判是：<b>microVM 的争论会重走同一条弧线——争论大约一年，三年内成为常识。</b>
@@ -250,7 +308,7 @@ tr.detail td b { color: var(--accent); }
 </div></section>
 <!-- 02 · ISOLATION FRONTIER -->
 <section>
-<div class="sec-label">02 · The Isolation Frontier</div>
+<div class="sec-label">03 · The Isolation Frontier</div>
 <h2>性能的来源，永远是少做隔离工作</h2>
 <p class="lede">"做更轻的方案该砍哪层隔离"没有标准答案，只有一条连续光谱：每砍一层，换来更快的冷启动和更高的密度,<b>但逃逸所需的漏洞类别也少一类</b>。行业据此分裂成三种赌注,差异不在好坏,而在<b>威胁模型与负载形态是否匹配</b>。</p>
 <div class="geo-grid">
@@ -293,7 +351,7 @@ tr.detail td b { color: var(--accent); }
 </section>
 <!-- 03 · PLAYERS & VALUE -->
 <section>
-<div class="sec-label">03 · Players &amp; Value</div>
+<div class="sec-label">04 · Players &amp; Value</div>
 <h2>三强跑出 $4.65B,但价值未必归他们</h2>
 <p class="lede">需求侧不是预测,是已经发生的负载:Lovable 在 48 小时内跑了 100 万个 Modal sandbox。价值最不成比例地沉淀在 <b>L2 独立平台</b>,但 L1 隔离底座(Firecracker、gVisor)全是大厂开源——<b>创造标准≠捕获价值</b>,这正是本赛道最大的投资陷阱。</p>
 <div class="kpi-row">
@@ -334,7 +392,7 @@ tr.detail td b { color: var(--accent); }
 </section>
 <!-- 04 · WHERE TO BET -->
 <section>
-<div class="sec-label">04 · Where to Bet</div>
+<div class="sec-label">05 · Where to Bet</div>
 <h2>有状态运行时,是最硬的护城河</h2>
 <p class="lede">RL 后训练正从游戏模拟器转向真实有状态环境:Tree-GRPO 需要从 checkpoint 分叉 rollout。这凭空造出一个 <b>fork/snapshot 的需求类别</b>——一种新负载形态需要一种新原语,而 hyperscaler 的通用产品恰恰最不擅长精细的 fork/checkpoint 语义。</p>
 <div class="chart-box">
@@ -385,7 +443,7 @@ tr.detail td b { color: var(--accent); }
 
 <!-- 05 · SMOLMACHINES UPDATE -->
 <section id="smolmachines-update">
-<div class="sec-label">05 · Company Snapshot</div>
+<div class="sec-label">06 · Company Snapshot</div>
 <h2>Smolmachines / smolvm：一个更底层的 portable microVM primitive</h2>
 <div class="company-hero">
 <p class="lede">Smolmachines 的核心不是再做一个 cloud sandbox API，而是把微型虚拟机变成开发者可以本地运行、云端部署、单文件携带的 runtime primitive。对 AI agent 来说，它解决的是同一个问题：模型生成的代码越来越不可信，但执行环境仍需要足够快、可复制、可迁移。</p>
