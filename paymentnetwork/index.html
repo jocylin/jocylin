@@ -40,7 +40,6 @@
   .brandmark{display:flex;align-items:center;gap:12px}
   .brandmark .dot{width:9px;height:9px;background:var(--brass);border-radius:50%}
   .brandmark span{font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:.01em}
-  .toplinks{display:flex;align-items:center;gap:18px}
   .langtoggle{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
   .langtoggle:hover{color:var(--ink);border-color:var(--brass)}
 
@@ -95,19 +94,6 @@
   .principle h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-.01em;margin-bottom:8px}
   .principle p{color:var(--ink-soft);font-size:15.5px;max-width:62ch}
 
-  /* value-chain stack */
-  .stack{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:var(--white)}
-  .layer{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--line);transition:background .2s ease}
-  .layer:last-child{border-bottom:0}
-  .layer:hover{background:var(--paper-deep)}
-  .layer .lbl{padding:24px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;justify-content:center;background:var(--ink);color:var(--white)}
-  .layer .lbl .ln{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--brass);text-transform:uppercase}
-  .layer .lbl .lt{font-family:'Fraunces',serif;font-weight:500;font-size:19px;line-height:1.15}
-  .layer .desc{padding:24px 28px;display:flex;align-items:center}
-  .layer .desc p{font-size:15px;color:var(--ink-soft);line-height:1.55}
-  .layer .desc strong{color:var(--ink);font-weight:600}
-  .stack-note{margin-top:18px;font-size:13.5px;color:var(--ink-soft);max-width:62ch}
-
   /* who founder partners */
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:54px}
   .twocol h3{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin-bottom:16px}
@@ -137,7 +123,7 @@
   .btn:hover{background:#b58e44;transform:translateY(-1px)}
   .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.3)}
   .btn-ghost:hover{background:rgba(255,255,255,.06);border-color:var(--brass)}
- .cta-note{color:#9a917b;font-size:13px}
+  .cta-note{color:#9a917b;font-size:13px}
 
   /* footer */
   footer{border-top:1px solid var(--line);padding:40px 0 60px}
@@ -155,13 +141,21 @@
     .cta-card{padding:42px 28px}
     section{padding:56px 0}
   }
-  @media(max-width:520px){
-    .toplinks{gap:12px}
-    .brandmark span{font-size:16px}
-    .mono{font-size:11px}
-  }
   :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+
+  /* value-chain stack */
+  .stack{border:1px solid var(--line);border-radius:2px;overflow:hidden;background:var(--white)}
+  .layer{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--line);transition:background .2s ease}
+  .layer:last-child{border-bottom:0}
+  .layer:hover{background:var(--paper-deep)}
+  .layer .lbl{padding:24px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px;justify-content:center;background:var(--ink);color:var(--white)}
+  .layer .lbl .ln{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--brass);text-transform:uppercase}
+  .layer .lbl .lt{font-family:'Fraunces',serif;font-weight:500;font-size:19px;line-height:1.15}
+  .layer .desc{padding:24px 28px;display:flex;align-items:center}
+  .layer .desc p{font-size:15px;color:var(--ink-soft);line-height:1.55}
+  .layer .desc strong{color:var(--ink);font-weight:600}
+  .stack-note{margin-top:18px;font-size:13.5px;color:var(--ink-soft);max-width:62ch}
   @media(max-width:680px){
     .layer{grid-template-columns:1fr}
     .layer .lbl{border-right:0;border-bottom:1px solid var(--line);padding:16px 22px;flex-direction:row;align-items:baseline;gap:12px}
@@ -170,14 +164,52 @@
   /* scroll reveal */
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
+
+  /* v2 additions */
+  .hero .cta-row{margin-top:40px;display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+  .value3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .value3 .v{background:var(--white);padding:32px 30px}
+  .value3 .v .vn{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--brass);text-transform:uppercase}
+  .value3 .v h3{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:20px;margin:12px 0 10px}
+  .value3 .v p{font-size:14.5px;color:var(--ink-soft);line-height:1.8}
+  .boundary{background:var(--ink);color:var(--white);padding:76px 0}
+  .boundary .mono{color:var(--brass)}
+  .boundary h2{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:clamp(24px,3.4vw,36px);margin-top:18px;line-height:1.35}
+  .boundary .bgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:54px;margin-top:34px}
+  .boundary .bgrid p{color:#c8bfa8;font-size:15.5px;line-height:1.9}
+  .boundary .bgrid p+p{margin-top:14px}
+  .boundary .bgrid strong{color:var(--white)}
+  .boundary .blist{list-style:none}
+  .boundary .blist li{padding:13px 0 13px 26px;border-bottom:1px solid rgba(255,255,255,.14);position:relative;font-size:15px;color:#d8d3c4;line-height:1.75}
+  .boundary .blist li:before{content:"";position:absolute;left:0;top:20px;width:9px;height:9px;border:1.5px solid var(--brass)}
+  .boundary .blist li strong{color:var(--white)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:14px}
+  .stat{background:var(--white);padding:26px 24px}
+  .stat .n{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:clamp(23px,2.5vw,31px);color:var(--ink)}
+  .stat .d{font-size:13.5px;color:var(--ink-soft);margin-top:8px;line-height:1.65}
+  .stat .s{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#9a917b;margin-top:10px;letter-spacing:.03em;display:block}
+  .stats-note{font-size:12.5px;color:#9a917b;margin-bottom:48px}
+  .tl{border-left:2px solid var(--brass);margin-left:6px}
+  .tl-item{position:relative;padding:0 0 30px 30px}
+  .tl-item:last-child{padding-bottom:4px}
+  .tl-item:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--paper);border:2.5px solid var(--brass);border-radius:50%}
+  .tl-item .td{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--brass);text-transform:uppercase}
+  .tl-item h4{font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:18px;margin:6px 0 6px}
+  .tl-item p{font-size:14.5px;color:var(--ink-soft);max-width:66ch;line-height:1.8}
+  .refnote{background:var(--paper-deep);border-left:3px solid var(--brass);padding:22px 26px;margin-top:40px;font-size:14.5px;color:var(--ink-soft);line-height:1.85}
+  .refnote strong{color:var(--ink)}
+  @media(max-width:860px){
+    .value3{grid-template-columns:1fr}
+    .boundary .bgrid{grid-template-columns:1fr;gap:28px}
+    .stats{grid-template-columns:1fr 1fr}
+  }
 </style>
 </head>
 <body>
-
 <div class="topbar">
   <div class="wrap">
     <div class="brandmark"><span class="dot"></span><span>Asia Payment Network</span></div>
-    <div class="toplinks">
+    <div style="display:flex;gap:26px;align-items:center">
       <a class="langtoggle mono" href="./wpe/">Whitepaper</a>
       <a class="langtoggle mono" href="./index-zh.html">中文</a>
     </div>
@@ -186,220 +218,341 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="mono eyebrow">Founding Partner Invitation · Hong Kong · 2026</div>
-    <h1 class="serif">A neutral payment alliance, built by its <em>members</em>.</h1>
-    <p class="lede">Asia Payment Network is an admission-controlled alliance of licensed and crypto-native payment companies, organized in Hong Kong. We invite a small group of founding partners to shape its governance, its standards, and its economics from day one.</p>
+    <div class="mono eyebrow">Founding Partner Invitation · Asia · 2026</div>
+    <h1 class="serif">An Asian settlement network built by its <em>members</em></h1>
+    <p class="lede">Asia Payment Network is a permissioned, compliance-first, chain-agnostic settlement network for cross-border stablecoin payments — connecting licensed financial institutions across Singapore, Japan, Korea, Hong Kong and Southeast Asia through a neutral architecture with 24/7 near-instant, multi-currency PvP settlement. Members write the rules, contribute the corridors, and share the standards.</p>
     <div class="meta">
       <div><span class="mono">Convened by</span><strong>IOSG Ventures</strong></div>
-      <div><span class="mono">Founding cohort</span><strong>6–10 anchor members</strong></div>
-      <div><span class="mono">Base</span><strong>Hong Kong</strong></div>
+      <div><span class="mono">Founding cohort</span><strong>5–10 anchors</strong></div>
+      <div><span class="mono">Coverage</span><strong>Singapore · Tokyo · Seoul · Hong Kong · SEA</strong></div>
+    </div>
+    <div class="cta-row">
+      <a class="btn" href="mailto:jocy@iosg.vc?subject=APN%20Founding%20Partner">Apply as a founding partner</a>
+      <a class="langtoggle mono" href="./wpe/">Read the whitepaper →</a>
     </div>
   </div>
 </header>
 <hr class="rule-h">
 
-<section id="why">
+<section style="padding:56px 0 64px">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="num">01</div>
-      <div>
-        <h2 class="serif">Why now</h2>
-        <p>Three independent shifts have opened a window that did not exist eighteen months ago.</p>
+    <div class="value3">
+      <div class="v reveal">
+        <div class="vn">Value 01</div>
+        <h3>Compliance-first</h3>
+        <p>A permissioned network open to licensed financial institutions only. The FATF Travel Rule and counterparty risk controls are built into the protocol, not bolted on — every member keeps the final right to approve or decline each inbound transaction.</p>
       </div>
+      <div class="v reveal">
+        <div class="vn">Value 02</div>
+        <h3>Neutral · chain-agnostic</h3>
+        <p>No binding to a single chain, no mandated issuer. Each institution chooses the blockchains it runs on and the compliant settlement stablecoins it uses, by its own risk and compliance requirements; the network operator is never a counterparty.</p>
+      </div>
+      <div class="v reveal">
+        <div class="vn">Value 03</div>
+        <h3>One integration, many corridors</h3>
+        <p>A single integration reaches corridors across multiple Asian markets — no bilateral agreements negotiated one by one, no nostro accounts and pre-funding to maintain, freeing meaningful trapped working capital.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">01</span>
+      <div><h2 class="serif">Why now</h2>
+      <p>Three independent shifts have opened a window that did not exist 18 months ago: Asian regimes landing in parallel, stablecoins crossing into real payments, and cross-border settlement searching for a neutral organizer.</p></div>
     </div>
     <div class="forces">
       <div class="force reveal">
         <div class="k">Regulation</div>
-        <h3 class="serif">A live regulatory perimeter</h3>
-        <p>Hong Kong's Stablecoins Ordinance took effect in August 2025, and the LEAP framework now covers stablecoins, virtual-asset dealing, and tokenized real-world assets end to end. With only a handful of licenses expected initially, coordination — not scale alone — is what gets companies to the front of the queue.</p>
+        <h3>Asia's regimes are landing in parallel</h3>
+        <p>Japan's revised Payment Services Act took effect on 1 June 2026, opening a compliance path for trust-type and foreign stablecoins; Hong Kong's Stablecoins Ordinance came into force in August 2025; Singapore's MAS has finalised its stablecoin framework; Korea's legislation is advancing; and the US GENIUS Act anchors dollar stablecoins. Multiple jurisdictions issuing clear rules in the same window — this is the moment to build a compliant network.</p>
       </div>
       <div class="force reveal">
         <div class="k">Market</div>
-        <h3 class="serif">A deal-flow peak</h3>
-        <p>Crypto-payment companies are raising and exiting at record valuations across card issuing, cross-border PSP, and tokenization rails. The category has momentum, capital, and live revenue — but no shared, neutral home in Asia.</p>
+        <h3>Asia originates ~60% of real stablecoin payments</h3>
+        <p>McKinsey and Artemis place real stablecoin payment volume near USD 390 billion a year, more than doubling year-on-year, with roughly 60% originating in Asia — concentrated in Singapore, Hong Kong and Japan. B2B is the fastest-growing use case at ~733% YoY. What the market lacks is no longer another issuer — it is the settlement layer that connects licensed issuers, PSPs, banks, card programs, custody and compliance tooling.</p>
       </div>
       <div class="force reveal">
         <div class="k">Structure</div>
-        <h3 class="serif">An organizer vacuum</h3>
-        <p>The most credible neutral conveners of cross-border settlement have stepped back, leaving the multilateral middle empty. The opening is for a privately organized, compliance-first commercial rail — not another single-bloc platform.</p>
+        <h3>An organizer vacuum</h3>
+        <p>No single company can simultaneously earn multi-jurisdiction regulatory trust, commercial neutrality, and network effects. The opportunity for Asia Payment Network is not to be another wallet or payment company — it is to organize a settlement network whose members define the rules, contribute corridor volume, and share the standards.</p>
       </div>
     </div>
   </div>
 </section>
 
 <div class="gap">
-  <div class="wrap reveal">
-    <div class="mono">The opening</div>
-    <p class="serif">Today, not one of these companies sits inside a multilateral, neutral, Asia-organized alliance. <em>That is the space this network is built to occupy.</em></p>
+  <div class="wrap">
+    <span class="mono">The opening</span>
+    <p>Tokyo, Singapore, Hong Kong and Seoul have each opened their regulatory doors; the market has proven real stablecoin payment demand. What is missing in between is a credible layer of <em>multilateral coordination</em>. That is exactly the position this network is built to hold.</p>
   </div>
 </div>
 
-<section id="functions">
+<section id="what">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="num">02</div>
-      <div>
-        <h2 class="serif">What the network does</h2>
-        <p>Four functions, each designed to be useful to members from the first quarter — not a conference, and not a standards body without a rail.</p>
-      </div>
+    <div class="sec-head"><span class="num">02</span>
+      <div><h2 class="serif">What the network does</h2>
+      <p>Four capabilities, drawn from the network design in Whitepaper v1.0 — not a conference, and not a standards body without rails, but a network that settles.</p></div>
     </div>
     <div class="funcs">
       <div class="func reveal">
-        <div class="fn">Function 01</div>
-        <h3 class="serif">Convene</h3>
-        <p>A closed-door working group of founding members meeting quarterly, plus an annual Hong Kong summit. A room where the people building Asia's payment rails actually set the agenda together.</p>
+        <div class="fn">Capability 01</div>
+        <h3>Three-tier architecture</h3>
+        <p>Originating (OFI) and Beneficiary (BFI) financial institutions form the settlement core; an orchestration layer runs counterparty discovery, RFQ quote aggregation, routing and encrypted compliance exchange — modeled on Circle Payments Network's production design. The network operator holds no funds and is never a counterparty.</p>
       </div>
       <div class="func reveal">
-        <div class="fn">Function 02</div>
-        <h3 class="serif">Interconnect</h3>
-        <p>Members integrate with one another — card issuing meeting cross-border channels, tokenized assets settling over stablecoin rails, compliance tooling shared across PSPs. The network is the matchmaker.</p>
+        <div class="fn">Capability 02</div>
+        <h3>One API, one integration</h3>
+        <p>Members connect once and reach every corridor on the network — no bilateral negotiations, no nostro accounts, no pre-funding. Quotes are aggregated off-chain with locked FX rates, eliminating in-flight currency risk; settlement happens on public chains.</p>
       </div>
       <div class="func reveal">
-        <div class="fn">Function 03</div>
-        <h3 class="serif">Represent</h3>
-        <p>A single, collective voice in dialogue with Hong Kong regulators and policy bodies. Engaging on framework and use-case clarity is far cheaper and more credible as a group than company by company.</p>
+        <div class="fn">Capability 03</div>
+        <h3>Multi-currency PvP settlement</h3>
+        <p>USD and HKD stablecoins are the settlement media today; a JPY-denominated stablecoin joins as the third core leg on admission. Both currency legs are atomically bound — both complete or neither does — removing settlement risk. End-to-end in minutes, 24/7.</p>
       </div>
       <div class="func reveal">
-        <div class="fn">Function 04</div>
-        <h3 class="serif">Research</h3>
-        <p>A quarterly Asia payment research report and a maintained member directory — shared market intelligence that raises the standing of every participant.</p>
+        <div class="fn">Capability 04</div>
+        <h3>Compliance built in</h3>
+        <p>A permissioned network open to licensed financial institutions only: FATF Travel Rule data is exchanged encrypted between OFI and BFI; members self-configure risk controls across geography, payment type, counterparty and tier — and keep the final right to approve or decline every inbound transaction.</p>
       </div>
+    </div>
+    <div class="refnote reveal">
+      <strong>Architectural reference, complementary by design.</strong> APN's architecture follows the "orchestration layer + permissioned access + compliance-first" paradigm of Circle Payments Network, and draws on the OpenUSD consortium's principle that a network should belong to its participants. APN is complementary to these global networks — focused on Asian regional corridors, regional regulatory fit, and multi-stablecoin, multi-chain neutrality, while staying open to interconnection with global networks.
     </div>
   </div>
 </section>
+
+<div class="boundary">
+  <div class="wrap">
+    <span class="mono">Network role &amp; boundaries</span>
+    <h2>APN is a network, not a counterparty.</h2>
+    <div class="bgrid">
+      <div class="reveal">
+        <p>APN is a coordination and standards layer for licensed institutions: it sets the network rules, defines the technical protocol, reviews eligibility, and orchestrates corridor discovery and settlement coordination. Clearing and settlement happen <strong>directly between member institutions</strong> — each member transacts within its own licences, under its own risk policies, serving its own customers.</p>
+        <p>The convener, <strong>IOSG Ventures</strong>, has a deliberately bounded role: convening, research, and equity investment in key companies. The network is shaped by its members, and is built to outlive any single organizer.</p>
+      </div>
+      <ul class="blist reveal">
+        <li><strong>No licence</strong> — neither the network nor the convener holds a payment licence, nor needs one: the members are the licensed parties.</li>
+        <li><strong>No custody</strong> — no holding of funds, no accounts held on behalf of customers, no moving of funds.</li>
+        <li><strong>Never a counterparty</strong> — never enters the transaction path; forms no counterparty relationship with any member or customer.</li>
+        <li><strong>No issuance</strong> — issues no stablecoin; compliant stablecoins are admitted as settlement media through governance assessment.</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <section id="stack">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="num">03</div>
-      <div>
-        <h2 class="serif">The payment value chain, in one network</h2>
-        <p>Founding partners are drawn across the full stack, so the alliance can interconnect a complete payment flow rather than a single slice of it.</p>
-      </div>
+    <div class="sec-head"><span class="num">03</span>
+      <div><h2 class="serif">The full payments value chain, in one network</h2>
+      <p>Founding partners span the entire value chain — so the network can complete a full payment flow, not just one segment of it.</p></div>
     </div>
     <div class="stack reveal">
-      <div class="layer">
-        <div class="lbl"><span class="ln">Layer 01</span><span class="lt">Asset</span></div>
-        <div class="desc"><p>Regulated stablecoin and tokenized-money issuers whose value moves across the network.</p></div>
-      </div>
-      <div class="layer">
-        <div class="lbl"><span class="ln">Layer 02</span><span class="lt">Chain &amp; Settlement</span></div>
-        <div class="desc"><p>Chain-agnostic settlement rails. The network favors no single chain or issuer.</p></div>
-      </div>
-      <div class="layer">
-        <div class="lbl"><span class="ln">Layer 03</span><span class="lt">On / Off-ramp, Custody &amp; PSP</span></div>
-        <div class="desc"><p>The working core of the alliance: fiat-crypto ramps, custody, and payment service providers that move money in and out.</p></div>
-      </div>
-      <div class="layer">
-        <div class="lbl"><span class="ln">Layer 04</span><span class="lt">Card Issuance</span></div>
-        <div class="desc"><p>BIN sponsors and issuers connecting on-chain balances to everyday card spending.</p></div>
-      </div>
-      <div class="layer">
-        <div class="lbl"><span class="ln">Layer 05</span><span class="lt">Neobank &amp; Yield</span></div>
-        <div class="desc"><p>Consumer-facing neobanks and the yield layer that makes balances productive.</p></div>
-      </div>
-      <div class="layer">
-        <div class="lbl"><span class="ln">Layer 06</span><span class="lt">Compliance</span></div>
-        <div class="desc"><p>Screening and monitoring built in from the start, so compliance is a shared standard, not an afterthought.</p></div>
-      </div>
+      <div class="layer"><div class="lbl"><span class="ln">Layer 01</span><span class="lt">Assets</span></div><div class="desc"><p>Licensed issuers of stablecoins and tokenized money — the USD, HKD and (on admission) JPY settlement legs whose value moves through the network. <strong>Issuer-agnostic</strong>: no single issuer is mandated.</p></div></div>
+      <div class="layer"><div class="lbl"><span class="ln">Layer 02</span><span class="lt">Chains &amp; settlement</span></div><div class="desc"><p><strong>Chain-agnostic</strong> settlement rails. The network favors no single chain; members choose their operating chains by their own risk and compliance needs.</p></div></div>
+      <div class="layer"><div class="lbl"><span class="ln">Layer 03</span><span class="lt">Ramps, custody &amp; PSPs</span></div><div class="desc"><p>The network's workhorse layer: fiat-crypto on/off-ramps, custody, and the payment service providers and licensed remitters acting as OFIs / BFIs that move money in and out.</p></div></div>
+      <div class="layer"><div class="lbl"><span class="ln">Layer 04</span><span class="lt">Card issuing</span></div><div class="desc"><p>BIN sponsors and issuers connecting on-chain balances to everyday card spend — following the stablecoin-card path Visa and Mastercard already run in production.</p></div></div>
+      <div class="layer"><div class="lbl"><span class="ln">Layer 05</span><span class="lt">Neobanks &amp; yield</span></div><div class="desc"><p>Consumer-facing neobanks, and the yield layer that puts balances to work.</p></div></div>
+      <div class="layer"><div class="lbl"><span class="ln">Layer 06</span><span class="lt">Compliance</span></div><div class="desc"><p>Travel Rule, on-chain screening and monitoring built in from day one — compliance as a shared standard, not an afterthought.</p></div></div>
     </div>
-    <p class="stack-note">Founding partners are admitted across these layers. Company names are shared privately with prospective members under the alliance's admission process.</p>
+    <p class="stack-note">Founding partners are admitted selectively across these layers. The specific company list is disclosed privately to prospective members during the admission process.</p>
   </div>
 </section>
 
-<section id="principles" style="background:var(--paper-deep)">
+<section id="roles" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="num">04</div>
-      <div>
-        <h2 class="serif">Design principles</h2>
-        <p>How the alliance is structured to stay neutral and worth belonging to. These are the founding design commitments — refined together with the founding cohort, not fixed terms.</p>
+    <div class="sec-head"><span class="num">04</span>
+      <div><h2 class="serif">Purpose-built for every kind of institution</h2>
+      <p>Different roles get different things from the network — a value proposition by role, and the starting point for the admission conversation.</p></div>
+    </div>
+    <div class="funcs">
+      <div class="func reveal">
+        <div class="fn">Originators · OFI</div>
+        <h3>Payment companies, ramps, licensed exchanges</h3>
+        <p>Run customer verification and local-currency conversion inside your own licences and compliance framework, and reach payout corridors across the region through one integration — no bilateral agreements one by one, sharply lower nostro pre-funding, and you keep your own pricing and customer relationships.</p>
       </div>
+      <div class="func reveal">
+        <div class="fn">Payout side · BFI</div>
+        <h3>Licensed remitters, local payout networks, banks</h3>
+        <p>Provide local-currency payout through domestic rails and grow inbound flow from institutions across the region — replacing correspondent clearing queues with 24/7 near-instant settlement, and earning new corridor revenue under the three-tier fee model on infrastructure you already run.</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Issuers</div>
+        <h3>Compliant stablecoin issuers</h3>
+        <p>The network is issuer-agnostic by charter: compliant stablecoins are admitted as settlement media through governance assessment — reserve transparency, fiat liquidity, risk controls, compliance reporting. One admission, and every member becomes a distribution counterparty. Distribution answers the use-case question.</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Service &amp; infrastructure</div>
+        <h3>Compliance, liquidity, custody, reconciliation</h3>
+        <p>Join as a value-adding service provider — liquidity / FX, custody, risk screening, Travel Rule and reconciliation capabilities for members — expanding your coverage as corridors grow, and building a new institutional revenue line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="principles" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">05</span>
+      <div><h2 class="serif">Design principles</h2>
+      <p>How the network stays structurally neutral — and worth joining. These are founding-phase design commitments, refined with founding members rather than handed down.</p></div>
     </div>
     <div class="principles">
-      <div class="principle reveal">
-        <div class="pn">P1</div>
-        <div>
-          <h3 class="serif">Contribution-linked economics</h3>
-          <p>The alliance is designed so that economic value generated at the shared settlement layer is allocated by contribution to the network, rather than captured solely by an issuer. The intent is structural alignment among members; specific mechanics are developed with the founding cohort.</p>
-        </div>
+      <div class="principle reveal"><span class="pn">P1</span>
+        <div><h3>The operator is never a counterparty</h3>
+        <p>The network operator holds no funds, moves no funds, and never enters the transaction path — it is a coordination protocol and a rulebook, not another payment company. Members hold their own licences, carry their own transaction risk, and keep their own customer relationships.</p></div>
       </div>
-      <div class="principle reveal">
-        <div class="pn">P2</div>
-        <div>
-          <h3 class="serif">Non-discriminatory pricing</h3>
-          <p>Members are treated on equal pricing terms regardless of size, following the cooperative model used by established clearing utilities. No member buys advantage simply by being large.</p>
-        </div>
+      <div class="principle reveal"><span class="pn">P2</span>
+        <div><h3>Contribution-linked economics, non-discriminatory pricing</h3>
+        <p>A three-tier fee model (payout fees, FX spreads, network fees) flows to the members who actually provide payout capacity, liquidity and compliance services; members of the same class face consistent, transparent fee rules. No member can buy advantage on size alone.</p></div>
       </div>
-      <div class="principle reveal">
-        <div class="pn">P3</div>
-        <div>
-          <h3 class="serif">Jurisdiction-neutral governance</h3>
-          <p>The board is designed so that no single jurisdiction can dominate. Neutrality is the asset; the alliance is deliberately not built as any one bloc's instrument.</p>
-        </div>
+      <div class="principle reveal"><span class="pn">P3</span>
+        <div><h3>Jurisdiction-neutral governance, no single controlling party</h3>
+        <p>Governance is designed so that no single jurisdiction — and no single entity — can dominate rules, issuance or reserves. Access and pricing do not discriminate by a member's home country; review depth is tiered by risk, not nationality. Neutrality is the asset.</p></div>
       </div>
-      <div class="principle reveal">
-        <div class="pn">P4</div>
-        <div>
-          <h3 class="serif">Compliance-first, chain-agnostic</h3>
-          <p>A Western-compliance posture and admission control are built in from the start, and the network is not tied to any single chain or issuer. Real assets and real rails, not a logo collection.</p>
-        </div>
+      <div class="principle reveal"><span class="pn">P4</span>
+        <div><h3>Compliance-first, chain-agnostic, issuer-agnostic</h3>
+        <p>Compliance posture and admission controls are built in from the start, with no binding to any single chain or issuer. Compliant stablecoins are admitted as settlement media through governance assessment — reserve transparency, fiat liquidity, risk controls, reporting. Real assets and real rails, not a collection of logos.</p></div>
+      </div>
+    </div>
+    <div class="organizer reveal" style="margin-top:44px">
+      <span class="mono">Governance &amp; economics · design principles, not promised returns</span>
+      <p>One of APN's design principles is that the economic value the network generates should track members' contribution to the network — rather than concentrate in a single entity. Governance is open to founding partners: the Rulebook, eligibility standards and fee rules are decided by a governance mechanism that represents the collective interest, not controlled unilaterally by the convener — <strong>founding members write the rules rather than inherit them</strong>.</p>
+      <p>To be explicit: the above are the network's <strong>design principles and governance intent</strong> — not a promise of returns or guaranteed income to any member. Specific economic arrangements will be finalised as regulatory frameworks mature and the network goes live, and will operate within each jurisdiction's licensing and compliance boundaries. Government bodies may support the direction; that does not constitute an endorsement of APN.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sources" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">06</span>
+      <div><h2 class="serif">The factual base</h2>
+      <p>The figures below are market and opportunity indicators, plus public regulatory milestones — not APN performance. Sources and dates are labelled line by line; the commercial structure remains to be shaped with founding members.</p></div>
+    </div>
+    <div class="stats">
+      <div class="stat reveal">
+        <div class="n">~$190T</div>
+        <div class="d">Annual global cross-border payment volume</div>
+        <span class="s">World Bank / FXC Intelligence · 2024</span>
+      </div>
+      <div class="stat reveal">
+        <div class="n">~60%</div>
+        <div class="d">Share of real stablecoin payments originating in Asia — concentrated in Singapore, Hong Kong and Japan</div>
+        <span class="s">McKinsey / Artemis · 2025</span>
+      </div>
+      <div class="stat reveal">
+        <div class="n">6.36%</div>
+        <div class="d">Global average cost of sending USD 200 in remittances — far above the UN's 3% target</div>
+        <span class="s">World Bank RPW · 2025 Q3</span>
+      </div>
+      <div class="stat reveal">
+        <div class="n">$1.9T</div>
+        <div class="d">Base-case projection for stablecoin issuance by 2030 (bull case $4.0T)</div>
+        <span class="s">Citi GPS · Sep 2025</span>
+      </div>
+    </div>
+    <p class="stats-note">These are market and opportunity indicators, not APN network performance; the network is in its founding anchor phase, and real corridor data will be published once live and auditable.</p>
+    <div class="tl">
+      <div class="tl-item reveal">
+        <span class="td">Aug 2023 · Singapore</span>
+        <h4>MAS finalises its single-currency stablecoin framework</h4>
+        <p>Covering reserves, redemption and disclosure — among the earliest stablecoin regimes in Asia. <a href="https://www.mas.gov.sg/regulation" target="_blank" rel="noopener" style="color:var(--brass)">MAS regulation →</a></p>
+      </div>
+      <div class="tl-item reveal">
+        <span class="td">Aug 2025 · Hong Kong</span>
+        <h4>Stablecoins Ordinance comes into force</h4>
+        <p>The HKMA brings fiat-referenced stablecoin issuance under licensing. <a href="https://www.info.gov.hk/gia/general/202506/06/P2025060600275.htm" target="_blank" rel="noopener" style="color:var(--brass)">Government notice →</a></p>
+      </div>
+      <div class="tl-item reveal">
+        <span class="td">Apr 2026 · Hong Kong</span>
+        <h4>HKMA grants the first stablecoin issuer licences</h4>
+        <p>Licensed issuance enters live operation — a regulated issuance base for the HKD and USD settlement legs.</p>
+      </div>
+      <div class="tl-item reveal">
+        <span class="td">Jun 2026 · Japan</span>
+        <h4>Revised Payment Services Act takes effect</h4>
+        <p>A compliance path for foreign trust-type stablecoins and a lighter intermediary licence category — the regulatory base for the JPY settlement leg is in place. <a href="https://www.fsa.go.jp/en/" target="_blank" rel="noopener" style="color:var(--brass)">JFSA →</a></p>
+      </div>
+      <div class="tl-item reveal">
+        <span class="td">Advancing · Korea</span>
+        <h4>Stablecoin legislation in progress</h4>
+        <p>Korea's Digital Asset Basic Act legislation continues to advance; Seoul is among the next hubs in the network's coverage plan.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="founders">
+<section id="founders" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="num">05</div>
-      <div>
-        <h2 class="serif">What founding partners get — and give</h2>
+    <div class="sec-head"><span class="num">07</span>
+      <div><h2 class="serif">Three ways to participate — and what founding means</h2>
+      <p>The three models are independent. An institution can enter with any one and add the others as the network proves itself.</p></div>
+    </div>
+    <div class="funcs" style="margin-bottom:54px">
+      <div class="func reveal">
+        <div class="fn">Model 01</div>
+        <h3>Founding Anchor Member</h3>
+        <p>Join the 5–10 institution founding cohort (2026 anchor window); co-write the Rulebook, eligibility standards and stablecoin-admission criteria — with a governance seat and corridor priority. Founding anchors write these rules rather than inherit them.</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Model 02</div>
+        <h3>Issuer Member</h3>
+        <p>Submit a compliant stablecoin to the settlement-media governance assessment — reserve transparency, fiat liquidity, risk controls, compliance reporting. One admission, and every network member becomes a distribution counterparty. Distribution answers the use-case question.</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Model 03</div>
+        <h3>Corridor Operator</h3>
+        <p>A licensed exchange / ramp as OFI and a licensed remitter as BFI operating a corridor — new corridor revenue under the three-tier fee model, on infrastructure the member already runs. New revenue, zero new build.</p>
+      </div>
+      <div class="func reveal">
+        <div class="fn">Roadmap</div>
+        <h3>The path</h3>
+        <p>Anchor phase confirms 5–10 founding members and joint Rulebook drafting → first corridor live with real payment volume in Q4 2026 → corridor expansion and agentic-payment interfaces in 2027. Acceleration and convergence thresholds are published in the whitepaper.</p>
       </div>
     </div>
     <div class="twocol">
-      <div class="reveal">
-        <h3 class="serif">As a founding partner, you</h3>
+      <div>
+        <h3 class="serif">As a founding partner, you will</h3>
         <ul class="checklist">
-          <li>Help <strong>write the governance</strong> — board structure, admission rules, and economic design are set with the founding cohort, not handed down.</li>
-          <li>Sit at the <strong>quarterly working group</strong> and shape the annual summit agenda.</li>
-          <li>Gain <strong>cross-member integration</strong> — warm introductions and technical interconnection with other anchors.</li>
-          <li>Join the <strong>collective regulatory dialogue</strong> in Hong Kong as part of a recognized group.</li>
-          <li>Receive <strong>founding recognition</strong> in the network's research and public identity.</li>
+          <li>Help <strong>write the governance rules</strong> — the Rulebook, eligibility standards and economics are shaped by founding members, not handed down.</li>
+          <li>Sit in the <strong>quarterly working group</strong> and shape the agenda of the annual Asia summit (rotating host city).</li>
+          <li>Get <strong>member-to-member interconnection</strong> — warm introductions, corridor matching and technical integration with other anchors.</li>
+          <li>Join the <strong>collective dialogue with regulators and policymakers across Asian jurisdictions</strong>, as part of a recognized group.</li>
+          <li>Be recognized as a <strong>founding member</strong> in the network's research and public presence.</li>
         </ul>
       </div>
-      <div class="reveal">
+      <div>
         <h3 class="serif">In return, we ask partners to</h3>
         <ul class="checklist">
-          <li>Commit a <strong>named senior representative</strong> to the working group.</li>
-          <li>Engage in good faith on <strong>interconnection</strong> with other members where it makes commercial sense.</li>
-          <li>Uphold the alliance's <strong>compliance and admission standards</strong>.</li>
-          <li>Help <strong>refine the founding charter</strong> during the first two quarters.</li>
+          <li>Name a <strong>senior representative</strong> to the working group.</li>
+          <li>Collaborate in good faith on <strong>corridor interconnection</strong> where it makes commercial sense.</li>
+          <li>Meet the network's <strong>compliance and eligibility standards</strong>.</li>
+          <li>Help <strong>refine the founding Rulebook</strong> over the first two quarters.</li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="organizer" style="padding-top:0">
-  <div class="wrap">
-    <div class="organizer reveal">
-      <span class="mono">On the organizer</span>
-      <p>Asia Payment Network is convened by <strong>IOSG Ventures</strong>, an investment firm active in digital-asset and payment infrastructure since 2017.</p>
-      <p>IOSG's role is deliberately bounded: <strong>to organize, to research, and to invest in the equity of key companies</strong>. The alliance is member-shaped, and IOSG holds no license and operates no payment business of its own. The aim is a network that outlasts and outgrows any single organizer.</p>
+    <div class="organizer reveal" style="margin-top:54px">
+      <span class="mono">Founding design partners</span>
+      <p>APN is designing the network rules, eligibility standards and technical protocol together with licensed payment institutions, banks, compliant stablecoin issuers and compliance-technology firms across multiple Asian jurisdictions — ensuring the network meets the high bar for trust and operational integrity that the region's leading financial institutions expect.</p>
+      <p>The founding design partner list is disclosed privately to prospective members during the admission process, and will be published as members once the network is live and permissions are granted.</p>
+    </div>
+    <div class="organizer reveal" style="margin-top:24px">
+      <span class="mono">About the convener</span>
+      <p>Asia Payment Network is convened by <strong>IOSG Ventures</strong>, an investment firm active in digital assets and payments infrastructure since 2017, headquartered in Hong Kong and New York, with ~USD 300M AUM and 100+ portfolio companies.</p>
+      <p>IOSG's role is deliberately bounded: <strong>convening, research, and equity investment in key companies</strong>. The network is shaped by its members — IOSG holds no licence, operates no payment business, and never enters the transaction path. The goal is a network that outlives and outgrows any single organizer.</p>
     </div>
   </div>
 </section>
 
-<section class="cta" id="join" style="padding-top:24px">
+<section class="cta" style="padding-top:0">
   <div class="wrap">
     <div class="cta-card reveal">
-      <h2 class="serif">The founding cohort is small by design.</h2>
-      <p>We're holding the first cohort to six to ten anchor members so governance stays workable and every founding voice carries weight. If your company builds payment, settlement, or tokenization rails in or into Asia, we'd like to talk.</p>
+      <h2 class="serif">The founding cohort is deliberately small.</h2>
+      <p>We are keeping the first cohort to 5–10 anchors, so governance stays workable and every founding voice carries weight. If your company builds stablecoin payments, settlement or tokenization rails in Asia — whether you are based in Singapore, Tokyo, Seoul, Hong Kong or Southeast Asia — we want to talk.</p>
       <div class="cta-row">
-        <a class="btn" href="#founders">View founding partner terms</a>
-        <a class="btn btn-ghost" href="./index-zh.html">Read the Chinese brief</a>
-        <span class="cta-note">Founding cohort · Hong Kong · 2026</span>
+        <a class="btn" href="mailto:jocy@iosg.vc?subject=APN%20Founding%20Partner">Apply as a founding partner</a>
+        <a class="btn btn-ghost" href="./wpe/">Read the whitepaper</a>
+        <span class="cta-note">Founding cohort · Asia · 2026</span>
       </div>
     </div>
   </div>
@@ -409,11 +562,11 @@
   <div class="wrap">
     <div>
       <div class="brandmark"><span class="dot"></span><span>Asia Payment Network</span></div>
-      <p>An admission-controlled payment alliance organized in Hong Kong. Convened by IOSG Ventures.</p>
+      <p>A permissioned, Asia-facing settlement network for cross-border stablecoin payments. Convened by IOSG Ventures.</p>
     </div>
     <div style="max-width:50%">
       <div class="disclaimer">
-        This page is an invitation to explore founding partnership and is provided for information only. It is not an offer of securities, a solicitation of investment, a promise of financial return, or financial, legal, or regulatory advice. The alliance's design principles are commitments of intent, developed together with founding members, and are not final terms. Any reference to economic allocation describes a structural design objective, not a guaranteed return. Participation is subject to the alliance's admission process and applicable law.
+        This page is an invitation to discuss founding partnership and is for information only. It is not an offer of securities, a solicitation of investment, a promise of returns, or financial, legal or regulatory advice. Regulatory information and market figures reflect public materials, are labelled with sources and dates line by line, and describe market and opportunity size rather than network performance. Design principles are directional commitments to be shaped with founding members, not final terms. Any statement about economics describes structural design intent, not guaranteed returns. Neither the network operator nor the convener holds a licence, holds funds, or acts as a counterparty. Participation is subject to the network's admission process and applicable law.
       </div>
     </div>
   </div>
