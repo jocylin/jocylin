@@ -1,0 +1,2423 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090a0a" />
+  <meta name="color-scheme" content="dark" />
+  <title>Kimpton AI — Institutional Decision Infrastructure</title>
+  <meta name="description" content="Kimpton AI investment brief: an institution-specific AI decision system for asset managers, connecting mandates, strategies, portfolios and trade proposals." />
+  <meta property="og:title" content="Kimpton AI — Institutional Decision Infrastructure" />
+  <meta property="og:description" content="从机构信息与投资规则，到研究、交易建议与人类决策的闭环。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jocylin.pages.dev/KimptonAI/" />
+  <meta property="og:image" content="https://jocylin.pages.dev/KimptonAI/assets/kimpton-hero.jpg" />
+  <link rel="preload" as="image" href="./assets/kimpton-hero.jpg" fetchpriority="high" />
+  <style>
+    :root {
+      --bg: #090a0a;
+      --bg-soft: #0d0f0f;
+      --panel: rgba(255, 255, 255, 0.035);
+      --panel-strong: rgba(255, 255, 255, 0.065);
+      --line: rgba(255, 255, 255, 0.12);
+      --line-strong: rgba(222, 173, 92, 0.32);
+      --text: #f3f0e9;
+      --muted: #a5a39e;
+      --subtle: #74736f;
+      --gold: #dda956;
+      --gold-soft: #f0cf91;
+      --green: #81d19a;
+      --red: #f09a91;
+      --teal: #7dbfb8;
+      --max: 1180px;
+      --radius: 24px;
+      --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+    }
+
+    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 84% 12%, rgba(221, 169, 86, 0.08), transparent 28rem),
+        radial-gradient(circle at 8% 42%, rgba(125, 191, 184, 0.045), transparent 32rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+    ::selection { color: #111; background: var(--gold-soft); }
+
+    .progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 100;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+      box-shadow: 0 0 18px rgba(221, 169, 86, 0.65);
+    }
+    .nav {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .nav-inner {
+      width: min(var(--max), calc(100% - 48px));
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 760;
+      letter-spacing: 0.18em;
+      text-decoration: none;
+    }
+    .brand-mark {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(240, 207, 145, 0.5);
+      border-radius: 50%;
+    }
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+    }
+    .brand-mark::before { inset: 6px; }
+    .brand-mark::after {
+      width: 4px;
+      height: 4px;
+      top: 4px;
+      right: 3px;
+      background: var(--gold);
+      border: 0;
+      box-shadow: -16px 13px 0 rgba(125, 191, 184, 0.9);
+    }
+    .nav-meta {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 780px;
+      display: grid;
+      align-items: center;
+      isolation: isolate;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+    }
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 62% center;
+      opacity: 0.88;
+    }
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(9, 10, 10, 1) 0%, rgba(9, 10, 10, 0.95) 24%, rgba(9, 10, 10, 0.56) 55%, rgba(9, 10, 10, 0.12) 86%),
+        linear-gradient(0deg, rgba(9, 10, 10, 0.96) 0%, transparent 38%),
+        linear-gradient(180deg, rgba(9, 10, 10, 0.42) 0%, transparent 32%);
+    }
+    .hero-grid {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 152px 0 112px;
+    }
+    .hero-copy { max-width: 730px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 22px;
+      color: var(--gold-soft);
+      font-size: 11px;
+      font-weight: 760;
+      line-height: 1.4;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1, h2, h3, p { overflow-wrap: anywhere; }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(46px, 6.6vw, 88px);
+      font-weight: 540;
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+    h1 .accent {
+      color: var(--gold-soft);
+      font-weight: 650;
+    }
+    .hero-lede {
+      max-width: 660px;
+      margin: 28px 0 0;
+      color: #d3d0c9;
+      font-size: clamp(17px, 1.8vw, 21px);
+      line-height: 1.72;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 34px;
+    }
+    .pill {
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #d8d4cc;
+      background: rgba(9, 10, 10, 0.38);
+      backdrop-filter: blur(12px);
+      font-size: 12px;
+      letter-spacing: 0.025em;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      max-width: 920px;
+      margin-top: 76px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+    .hero-stat {
+      min-width: 0;
+      padding: 20px 20px 18px;
+      background: rgba(10, 11, 11, 0.82);
+      backdrop-filter: blur(18px);
+    }
+    .hero-stat strong {
+      display: block;
+      color: var(--text);
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 590;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+    .hero-stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hero-note {
+      margin: 12px 0 0;
+      color: var(--subtle);
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .section {
+      padding: 112px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .section.compact { padding: 84px 0; }
+    .wrap {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+      gap: 70px;
+      align-items: end;
+      margin-bottom: 54px;
+    }
+    .kicker {
+      margin: 0 0 15px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 64px);
+      font-weight: 520;
+      line-height: 1.04;
+      letter-spacing: -0.045em;
+    }
+    .section-intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+    .section-intro strong { color: var(--text); font-weight: 620; }
+
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .snapshot-card {
+      position: relative;
+      min-height: 260px;
+      padding: 26px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+        var(--bg-soft);
+    }
+    .snapshot-card::after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      right: -85px;
+      bottom: -90px;
+      border: 1px solid rgba(221, 169, 86, 0.14);
+      border-radius: 50%;
+      box-shadow: 0 0 70px rgba(221, 169, 86, 0.04);
+    }
+    .card-num {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 780;
+      letter-spacing: 0.14em;
+    }
+    .snapshot-card h3 {
+      margin: 42px 0 12px;
+      font-size: 21px;
+      font-weight: 590;
+      line-height: 1.22;
+      letter-spacing: -0.025em;
+    }
+    .snapshot-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .plain-grid {
+      display: grid;
+      grid-template-columns: 0.84fr 1.16fr;
+      gap: 70px;
+      align-items: start;
+    }
+    .plain-copy {
+      position: sticky;
+      top: 34px;
+    }
+    .plain-copy .quote {
+      margin: 28px 0 0;
+      padding-left: 22px;
+      border-left: 2px solid var(--gold);
+      color: #d8d4cc;
+      font-size: 19px;
+      line-height: 1.68;
+    }
+    .plain-steps {
+      display: grid;
+      gap: 14px;
+      counter-reset: step;
+    }
+    .plain-step {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 20px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+    }
+    .plain-step::before {
+      content: "0" counter(step);
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      color: var(--gold-soft);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    .plain-step h3 {
+      margin: 2px 0 9px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .plain-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: 1fr 34px 1fr 34px 1fr 34px 1fr 34px 1fr;
+      align-items: stretch;
+      margin-top: 56px;
+    }
+    .workflow-node {
+      min-width: 0;
+      min-height: 166px;
+      padding: 22px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(160deg, var(--panel-strong), var(--panel));
+    }
+    .workflow-node .node-tag {
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+    .workflow-node h3 {
+      margin: 23px 0 8px;
+      font-size: 18px;
+      font-weight: 620;
+      line-height: 1.18;
+    }
+    .workflow-node p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .workflow-arrow {
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 20px;
+    }
+
+    .feature-visuals {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 0 0 88px;
+    }
+    .feature-visual {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 22px;
+      background: #070808;
+      box-shadow: var(--shadow);
+    }
+    .feature-visual-media {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #050606;
+    }
+    .feature-visual-media::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 42%;
+      pointer-events: none;
+      background: linear-gradient(0deg, rgba(7, 8, 8, 0.72), transparent);
+    }
+    .feature-visual button {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      cursor: zoom-in;
+      background: transparent;
+    }
+    .feature-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease, filter 0.7s ease;
+    }
+    .feature-visual:hover img {
+      transform: scale(1.025);
+      filter: brightness(1.06);
+    }
+    .feature-visual figcaption {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      min-height: 94px;
+      padding: 20px 21px 22px;
+    }
+    .feature-visual-index {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 760;
+    }
+    .feature-visual-copy strong {
+      display: block;
+      color: #e6e1d7;
+      font-size: 15px;
+      font-weight: 590;
+      line-height: 1.35;
+    }
+    .feature-visual-copy span {
+      display: block;
+      margin-top: 7px;
+      color: var(--subtle);
+      font-size: 10px;
+      line-height: 1.5;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .product-stack { display: grid; gap: 88px; }
+    .product-row {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.68fr) minmax(0, 1.32fr);
+      gap: 54px;
+      align-items: center;
+    }
+    .product-row.reverse {
+      grid-template-columns: minmax(0, 1.32fr) minmax(250px, 0.68fr);
+    }
+    .product-row.reverse .product-copy { order: 2; }
+    .product-copy .step-label {
+      display: inline-flex;
+      padding: 7px 10px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--gold-soft);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .product-copy h3 {
+      margin: 18px 0 14px;
+      font-size: clamp(27px, 3vw, 42px);
+      font-weight: 540;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+    .product-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .product-copy ul {
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .product-copy li {
+      position: relative;
+      margin-top: 11px;
+      padding-left: 20px;
+      color: #d2cfc8;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .product-copy li::before {
+      content: "";
+      position: absolute;
+      top: 0.68em;
+      left: 0;
+      width: 7px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .media-pair {
+      position: relative;
+      min-width: 0;
+      min-height: 450px;
+    }
+    .mock-stack {
+      position: relative;
+      min-width: 0;
+      min-height: 470px;
+    }
+    .mock-window {
+      position: absolute;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 18px;
+      background: #080909;
+      box-shadow: var(--shadow);
+    }
+    .mock-window:first-child {
+      inset: 0 9% 13% 0;
+      z-index: 1;
+    }
+    .mock-window:last-child {
+      inset: 19% 0 0 16%;
+      z-index: 2;
+    }
+    .mock-chrome {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 34px;
+      padding: 0 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: #111313;
+    }
+    .mock-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4a4c4a;
+    }
+    .mock-dot:first-child { background: #9b5d57; }
+    .mock-dot:nth-child(2) { background: #a6874f; }
+    .mock-dot:nth-child(3) { background: #5b8b69; }
+    .mock-url {
+      min-width: 0;
+      margin-left: 8px;
+      overflow: hidden;
+      color: #666963;
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+    .mock-app {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      height: calc(100% - 34px);
+    }
+    .mock-sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.07);
+      background: #0b0c0c;
+    }
+    .mock-sidebar span {
+      width: 13px;
+      height: 13px;
+      border: 1px solid #75603b;
+      border-radius: 3px;
+      opacity: 0.72;
+    }
+    .mock-sidebar span.active {
+      border-color: var(--gold);
+      background: rgba(221, 169, 86, 0.18);
+      box-shadow: 0 0 12px rgba(221, 169, 86, 0.2);
+    }
+    .mock-main {
+      min-width: 0;
+      padding: 22px;
+      overflow: hidden;
+    }
+    .mock-label {
+      color: #676a66;
+      font-size: 8px;
+      font-weight: 720;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .mock-title {
+      margin-top: 7px;
+      color: #e8e4dc;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .mock-subtitle {
+      margin-top: 6px;
+      color: #6f726d;
+      font-size: 8px;
+      line-height: 1.45;
+    }
+    .mock-rule {
+      height: 1px;
+      margin: 14px 0;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .mock-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+      margin-top: 14px;
+    }
+    .mock-kpi {
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+    .mock-kpi strong {
+      display: block;
+      color: #ded9d0;
+      font-size: 12px;
+      font-weight: 560;
+    }
+    .mock-kpi span {
+      display: block;
+      margin-top: 4px;
+      color: #626560;
+      font-size: 7px;
+      text-transform: uppercase;
+    }
+    .portfolio-visual {
+      display: grid;
+      grid-template-columns: 105px 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-top: 16px;
+    }
+    .demo-donut {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: conic-gradient(#dda956 0 28%, #7dbfb8 28% 47%, #af7ec5 47% 61%, #81d19a 61% 76%, #cf7c6e 76% 88%, #6387c6 88% 100%);
+      box-shadow: inset 0 0 0 25px #0b0c0c;
+    }
+    .allocation-list {
+      display: grid;
+      gap: 8px;
+    }
+    .allocation-row {
+      display: grid;
+      grid-template-columns: 7px 1fr 28px;
+      gap: 7px;
+      align-items: center;
+      color: #7c7f79;
+      font-size: 8px;
+    }
+    .allocation-row i {
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: var(--gold);
+    }
+    .allocation-row:nth-child(2) i { background: var(--teal); }
+    .allocation-row:nth-child(3) i { background: #af7ec5; }
+    .allocation-row:nth-child(4) i { background: var(--green); }
+    .allocation-row b {
+      color: #b7b4ad;
+      font-weight: 500;
+      text-align: right;
+    }
+    .doc-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 15px;
+    }
+    .doc-row {
+      display: grid;
+      grid-template-columns: 20px 1fr auto;
+      gap: 9px;
+      align-items: center;
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .doc-icon {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border: 1px solid rgba(221, 169, 86, 0.35);
+      border-radius: 5px;
+      color: var(--gold);
+      font-size: 7px;
+    }
+    .doc-row strong {
+      display: block;
+      color: #b9b6af;
+      font-size: 8px;
+      font-weight: 520;
+    }
+    .doc-row span {
+      color: #555854;
+      font-size: 7px;
+    }
+    .doc-status {
+      padding: 3px 5px;
+      border-radius: 999px;
+      color: #84765e !important;
+      background: rgba(221, 169, 86, 0.08);
+      text-transform: uppercase;
+    }
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 15px;
+    }
+    .policy-card {
+      min-height: 56px;
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .policy-card span {
+      color: #6d705f;
+      font-size: 7px;
+      text-transform: uppercase;
+    }
+    .policy-card strong {
+      display: block;
+      margin-top: 8px;
+      color: #bcb8af;
+      font-size: 9px;
+      font-weight: 520;
+    }
+    .text-lines {
+      display: grid;
+      gap: 7px;
+      margin-top: 15px;
+    }
+    .text-lines i {
+      display: block;
+      height: 4px;
+      border-radius: 999px;
+      background: #292b29;
+    }
+    .text-lines i:nth-child(2) { width: 90%; }
+    .text-lines i:nth-child(3) { width: 72%; }
+    .text-lines i:nth-child(4) { width: 84%; }
+    .agent-steps {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 17px;
+    }
+    .agent-step {
+      flex: 1;
+      padding: 8px 5px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 7px;
+      color: #747770;
+      font-size: 7px;
+      text-align: center;
+    }
+    .agent-step.done {
+      color: var(--gold-soft);
+      border-color: rgba(221, 169, 86, 0.28);
+      background: rgba(221, 169, 86, 0.06);
+    }
+    .agent-arrow { color: #4c4f4a; font-size: 8px; }
+    .proposal-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 15px;
+    }
+    .proposal-row {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .proposal-direction {
+      color: var(--green);
+      font-size: 7px;
+      font-weight: 720;
+      text-transform: uppercase;
+    }
+    .proposal-row.reduce .proposal-direction { color: var(--red); }
+    .proposal-row.exit .proposal-direction { color: #d7b878; }
+    .proposal-row strong {
+      color: #b9b6af;
+      font-size: 8px;
+      font-weight: 520;
+    }
+    .proposal-row span:last-child {
+      color: #5e615c;
+      font-size: 7px;
+    }
+    .report-preview {
+      display: grid;
+      grid-template-columns: 1fr 0.74fr;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .report-page,
+    .deck-page {
+      min-height: 126px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 7px;
+      background: #111212;
+    }
+    .report-page h4,
+    .deck-page h4 {
+      margin: 0;
+      color: #d8d3c9;
+      font-size: 9px;
+      font-weight: 560;
+    }
+    .report-page .text-lines { margin-top: 12px; }
+    .deck-page {
+      display: grid;
+      align-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 70% 25%, rgba(221, 169, 86, 0.18), transparent 40%),
+        #0d0e0e;
+    }
+    .deck-orbit {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 10px;
+      border: 1px solid rgba(221, 169, 86, 0.45);
+      border-radius: 50%;
+      box-shadow:
+        inset 0 0 0 11px #0d0e0e,
+        inset 0 0 0 12px rgba(221, 169, 86, 0.25);
+    }
+    .mock-footnote {
+      position: absolute;
+      right: 12px;
+      bottom: 9px;
+      color: #484b47;
+      font-size: 6px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .shot {
+      position: absolute;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-radius: 18px;
+      background: #050606;
+      box-shadow: var(--shadow);
+    }
+    .shot:first-child {
+      inset: 0 11% 14% 0;
+      z-index: 1;
+    }
+    .shot:last-child {
+      inset: 18% 0 0 18%;
+      z-index: 2;
+    }
+    .shot button,
+    .single-shot button,
+    .gallery-card button {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      cursor: zoom-in;
+      background: transparent;
+    }
+    .shot img,
+    .single-shot img,
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .single-shot {
+      overflow: hidden;
+      min-width: 0;
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-radius: 20px;
+      background: #050606;
+      box-shadow: var(--shadow);
+    }
+
+    .traction-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(310px, 0.9fr);
+      gap: 54px;
+      align-items: center;
+    }
+    .traction-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .metric {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+    .metric strong {
+      display: block;
+      color: var(--gold-soft);
+      font-size: 29px;
+      font-weight: 590;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .metric span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .evidence-note {
+      grid-column: 1 / -1;
+      margin: 4px 0 0;
+      padding: 16px 18px;
+      border-left: 2px solid var(--gold);
+      color: var(--muted);
+      background: rgba(221, 169, 86, 0.05);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .flywheel {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 42px;
+    }
+    .flywheel-card {
+      position: relative;
+      min-height: 210px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+    }
+    .flywheel-card::before {
+      content: attr(data-index);
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 10px;
+    }
+    .flywheel-card h3 {
+      margin: 30px 0 10px;
+      font-size: 18px;
+      font-weight: 590;
+    }
+    .flywheel-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .flywheel-caption {
+      max-width: 760px;
+      margin: 24px auto 0;
+      color: var(--subtle);
+      font-size: 12px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .positioning {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .position-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: var(--panel);
+    }
+    .position-card.featured {
+      border-color: rgba(221, 169, 86, 0.46);
+      background: linear-gradient(145deg, rgba(221, 169, 86, 0.12), rgba(221, 169, 86, 0.03));
+    }
+    .position-card .layer {
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+    .position-card h3 {
+      margin: 26px 0 11px;
+      font-size: 20px;
+      font-weight: 610;
+    }
+    .position-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .position-card .names {
+      margin-top: 20px;
+      color: #d7d3cb;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .valuation-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+      gap: 72px;
+      align-items: start;
+    }
+    .valuation-callout {
+      position: sticky;
+      top: 34px;
+      padding: 30px;
+      border: 1px solid var(--line-strong);
+      border-radius: 22px;
+      background: linear-gradient(150deg, rgba(221, 169, 86, 0.12), rgba(255, 255, 255, 0.02));
+    }
+    .valuation-callout strong {
+      display: block;
+      color: var(--gold-soft);
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 560;
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+    }
+    .valuation-callout h3 {
+      margin: 18px 0 0;
+      font-size: 21px;
+      font-weight: 570;
+      line-height: 1.35;
+    }
+    .valuation-callout p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .scenario-list { display: grid; gap: 12px; }
+    .scenario {
+      display: grid;
+      grid-template-columns: 92px 1fr 110px;
+      gap: 20px;
+      align-items: center;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+    .scenario .multiple {
+      color: var(--gold-soft);
+      font-size: 22px;
+      font-weight: 580;
+      letter-spacing: -0.03em;
+    }
+    .scenario .need {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .scenario .clients {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      text-align: right;
+    }
+    .scenario-foot {
+      margin: 18px 0 0;
+      color: var(--subtle);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .case-card {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+    }
+    .case-card.upside { border-top-color: rgba(129, 209, 154, 0.6); }
+    .case-card.risk { border-top-color: rgba(240, 154, 145, 0.6); }
+    .case-card h3 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 580;
+    }
+    .case-card ul {
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .case-card li {
+      position: relative;
+      margin-top: 16px;
+      padding-left: 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .case-card li::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: var(--green);
+      content: "+";
+      font-weight: 700;
+    }
+    .case-card.risk li::before {
+      color: var(--red);
+      content: "–";
+    }
+
+    .risk-visual {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.58fr);
+      gap: 50px;
+      align-items: center;
+      margin-top: 54px;
+    }
+    .risk-visual .single-shot { box-shadow: none; }
+    .risk-copy {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--panel);
+    }
+    .risk-copy h3 {
+      margin: 0 0 13px;
+      font-size: 22px;
+      font-weight: 580;
+    }
+    .risk-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .integration-map {
+      position: relative;
+      min-height: 390px;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(221, 169, 86, 0.08), transparent 45%),
+        var(--panel);
+    }
+    .integration-map::before,
+    .integration-map::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      border: 1px solid rgba(221, 169, 86, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .integration-map::before { width: 250px; height: 250px; }
+    .integration-map::after { width: 350px; height: 350px; }
+    .integration-core {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 136px;
+      height: 136px;
+      padding: 20px;
+      border: 1px solid rgba(221, 169, 86, 0.45);
+      border-radius: 50%;
+      color: var(--gold-soft);
+      background: #0e0f0f;
+      box-shadow: 0 0 60px rgba(221, 169, 86, 0.1);
+      font-size: 12px;
+      font-weight: 620;
+      line-height: 1.35;
+      text-align: center;
+      transform: translate(-50%, -50%);
+    }
+    .integration-node {
+      position: absolute;
+      z-index: 2;
+      width: 108px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: #bcb8af;
+      background: #111212;
+      font-size: 10px;
+      text-align: center;
+    }
+    .integration-node:nth-of-type(2) { top: 28px; left: calc(50% - 54px); }
+    .integration-node:nth-of-type(3) { top: calc(50% - 22px); right: 24px; }
+    .integration-node:nth-of-type(4) { bottom: 28px; left: calc(50% - 54px); }
+    .integration-node:nth-of-type(5) { top: calc(50% - 22px); left: 24px; }
+    .integration-note {
+      position: absolute;
+      right: 18px;
+      bottom: 13px;
+      color: #4f524d;
+      font-size: 7px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      counter-reset: verify;
+    }
+    .check {
+      counter-increment: verify;
+      position: relative;
+      min-height: 148px;
+      padding: 24px 24px 24px 74px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+    .check::before {
+      content: counter(verify);
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 11px;
+    }
+    .check h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .check p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .gallery-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+    .gallery-card .gallery-image {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #050606;
+    }
+    .gallery-card figcaption {
+      padding: 15px 17px 17px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .closing {
+      position: relative;
+      overflow: hidden;
+      padding: 130px 0;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(221, 169, 86, 0.12), transparent 28rem),
+        var(--bg);
+    }
+    .closing::before,
+    .closing::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border: 1px solid rgba(221, 169, 86, 0.11);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .closing::before { width: 620px; height: 620px; }
+    .closing::after { width: 420px; height: 420px; }
+    .closing-inner {
+      position: relative;
+      z-index: 1;
+      width: min(850px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .closing h2 {
+      font-size: clamp(40px, 7vw, 82px);
+    }
+    .closing p {
+      max-width: 700px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+    .closing-line {
+      width: 72px;
+      height: 1px;
+      margin: 38px auto;
+      background: var(--gold);
+    }
+    .closing strong {
+      color: var(--gold-soft);
+      font-size: 16px;
+      font-weight: 570;
+      letter-spacing: 0.02em;
+    }
+    footer {
+      padding: 28px 0 36px;
+      border-top: 1px solid var(--line);
+      color: var(--subtle);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+    .footer-inner {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    dialog {
+      width: min(1180px, calc(100% - 32px));
+      max-width: none;
+      max-height: calc(100vh - 32px);
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      color: var(--text);
+      background: #050606;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.75);
+    }
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.84);
+      backdrop-filter: blur(7px);
+    }
+    .lightbox-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 52px;
+      padding: 10px 14px 10px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .lightbox-caption {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .lightbox-close {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--text);
+      cursor: pointer;
+      background: var(--panel);
+    }
+    .lightbox-image-wrap {
+      max-height: calc(100vh - 86px);
+      overflow: auto;
+    }
+    .lightbox-image {
+      width: 100%;
+      height: auto;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero { min-height: 760px; }
+      .hero-stats,
+      .snapshot-grid,
+      .flywheel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+      .plain-grid {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+      .plain-copy,
+      .valuation-callout { position: static; }
+      .workflow {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .workflow-node { min-height: 0; }
+      .workflow-arrow { min-height: 28px; transform: rotate(90deg); }
+      .product-row,
+      .product-row.reverse {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+      .feature-visuals { grid-template-columns: 1fr; }
+      .product-row.reverse .product-copy { order: 0; }
+      .traction-layout,
+      .valuation-layout,
+      .risk-visual { grid-template-columns: 1fr; }
+      .positioning,
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      .nav-inner,
+      .hero-grid,
+      .wrap,
+      .footer-inner {
+        width: min(100% - 28px, var(--max));
+      }
+      .nav-inner { min-height: 62px; }
+      .nav-meta { display: none; }
+      .hero {
+        min-height: auto;
+        align-items: end;
+      }
+      .hero-media img {
+        object-position: 64% 28%;
+        opacity: 0.72;
+      }
+      .hero-media::after {
+        background:
+          linear-gradient(0deg, rgba(9, 10, 10, 1) 0%, rgba(9, 10, 10, 0.9) 48%, rgba(9, 10, 10, 0.25) 100%),
+          linear-gradient(90deg, rgba(9, 10, 10, 0.72), rgba(9, 10, 10, 0.08));
+      }
+      .hero-grid { padding: 330px 0 56px; }
+      h1 {
+        font-size: clamp(42px, 13.5vw, 60px);
+        line-height: 1;
+      }
+      .hero-lede {
+        margin-top: 20px;
+        font-size: 16px;
+        line-height: 1.65;
+      }
+      .hero-pills { margin-top: 24px; }
+      .hero-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 36px;
+      }
+      .hero-stat { padding: 17px 15px; }
+      .hero-stat strong { font-size: 25px; }
+      .section { padding: 78px 0; }
+      .section.compact { padding: 64px 0; }
+      .section-head { margin-bottom: 34px; }
+      .section-intro { font-size: 15px; line-height: 1.72; }
+      .snapshot-grid,
+      .flywheel,
+      .positioning,
+      .gallery,
+      .case-grid,
+      .checklist,
+      .traction-cards { grid-template-columns: 1fr; }
+      .snapshot-card { min-height: 220px; }
+      .plain-step {
+        grid-template-columns: 42px 1fr;
+        gap: 15px;
+        padding: 21px;
+      }
+      .plain-step::before { width: 42px; height: 42px; }
+      .product-stack { gap: 70px; }
+      .feature-visuals { margin-bottom: 70px; }
+      .feature-visual { border-radius: 16px; }
+      .feature-visual figcaption { min-height: 0; padding: 17px; }
+      .product-row,
+      .product-row.reverse { gap: 26px; }
+      .media-pair { min-height: 330px; }
+      .mock-stack { min-height: 350px; }
+      .mock-window:first-child { inset: 0 6% 14% 0; }
+      .mock-window:last-child { inset: 19% 0 0 11%; }
+      .mock-main { padding: 15px; }
+      .portfolio-visual { grid-template-columns: 82px 1fr; gap: 12px; }
+      .demo-donut {
+        width: 76px;
+        height: 76px;
+        box-shadow: inset 0 0 0 20px #0b0c0c;
+      }
+      .mock-kpi-row { gap: 4px; }
+      .mock-kpi { padding: 7px; }
+      .report-preview { grid-template-columns: 1fr; }
+      .deck-page { display: none; }
+      .shot:first-child { inset: 0 7% 16% 0; }
+      .shot:last-child { inset: 20% 0 0 12%; }
+      .shot { border-radius: 13px; }
+      .scenario {
+        grid-template-columns: 72px 1fr;
+        gap: 12px;
+        padding: 18px;
+      }
+      .scenario .clients {
+        grid-column: 1 / -1;
+        text-align: left;
+      }
+      .risk-copy,
+      .case-card,
+      .valuation-callout { padding: 23px; }
+      .integration-map { min-height: 330px; }
+      .integration-map::after { width: 290px; height: 290px; }
+      .integration-node { width: 92px; padding: 10px 6px; font-size: 9px; }
+      .integration-node:nth-of-type(3) { right: 8px; }
+      .integration-node:nth-of-type(5) { left: 8px; }
+      .check { padding: 22px 20px 22px 66px; }
+      .check::before { top: 22px; left: 20px; }
+      .gallery-card:nth-child(n+5) { display: none; }
+      .closing { padding: 100px 0; }
+      .closing-inner { width: min(100% - 28px, 850px); }
+      .closing p { font-size: 16px; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="页面导航">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="返回页面顶部">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>KIMPTON AI</span>
+      </a>
+      <div class="nav-meta">Investment Brief · July 2026</div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-media" aria-hidden="true">
+        <img src="./assets/kimpton-hero.jpg" alt="" width="1672" height="941" fetchpriority="high" />
+      </div>
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Institutional AI · Asset Management</p>
+          <h1>让 AI 读懂一家基金，<br /><span class="accent">再参与它的决策。</span></h1>
+          <p class="hero-lede">
+            Kimpton 将投资授权、策略、持仓、内部研究与市场数据写进同一套系统，
+            让 AI 在机构约束内完成研究、检查风险并提出交易建议。
+          </p>
+          <div class="hero-pills" aria-label="项目标签">
+            <span class="pill">Mandate-to-Trade</span>
+            <span class="pill">Enterprise Workflow</span>
+            <span class="pill">Human-in-the-loop</span>
+          </div>
+        </div>
+
+        <div class="hero-stats reveal" aria-label="关键数据">
+          <div class="hero-stat"><strong>$144K</strong><span>Institutional cARR*</span></div>
+          <div class="hero-stat"><strong>$3.3B</strong><span>Client AUM*</span></div>
+          <div class="hero-stat"><strong>5</strong><span>Team members*</span></div>
+          <div class="hero-stat"><strong>$40M</strong><span>Latest SAFE cap*</span></div>
+        </div>
+        <p class="hero-note">* 公司披露；合同、回款、实际使用与融资承诺仍待独立核实。资料截至 2026 年 7 月 16 日。</p>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Investment Snapshot</p>
+            <h2>方向成立。<br />复制待证。</h2>
+          </div>
+          <p class="section-intro">
+            这不是又一个金融搜索框，而是把 <strong>机构规则、研究与组合动作</strong> 连起来的决策系统。
+            当前最重要的不是再多十个功能，而是证明第一份六位数合同可以低成本复制。
+          </p>
+        </div>
+
+        <div class="snapshot-grid">
+          <article class="snapshot-card reveal">
+            <span class="card-num">01 · WEDGE</span>
+            <h3>切进最深的工作流</h3>
+            <p>从 Mandate 与 Strategy 出发，最终落到增持、减持和退出建议，而不止停留在信息检索。</p>
+          </article>
+          <article class="snapshot-card reveal">
+            <span class="card-num">02 · PROOF</span>
+            <h3>六位数 ACV 已出现</h3>
+            <p>公司称约 6 周试用转为 $144K 年度合同，说明管理效率与组合透明度本身可能已有预算。</p>
+          </article>
+          <article class="snapshot-card reveal">
+            <span class="card-num">03 · UPSIDE</span>
+            <h3>数据闭环可能形成壁垒</h3>
+            <p>若持续沉淀“建议—基金经理决策—实际结果”，系统可积累机构专属评测与切换成本。</p>
+          </article>
+          <article class="snapshot-card reveal">
+            <span class="card-num">04 · RISK</span>
+            <h3>估值已提前价格化</h3>
+            <p>$40M cap 对当前披露 ARR 约为 267×–278×；下一阶段必须用客户复制与交付效率消化。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="plain-grid">
+          <div class="plain-copy reveal">
+            <p class="kicker">Plain English</p>
+            <h2>通用 AI 知道市场，<br />却不懂“你这只基金”。</h2>
+            <p class="quote">
+              同一条新闻，对不同 Mandate、仓位和风险边界的基金，应该导向不同动作。
+              Kimpton 想把这种机构语境变成机器可读、可检查、可执行的系统。
+            </p>
+          </div>
+
+          <div class="plain-steps">
+            <article class="plain-step reveal">
+              <div>
+                <h3>信息散落</h3>
+                <p>持仓、研究、投资授权、策略与交易历史分布在文件、数据终端和核心系统中。</p>
+              </div>
+            </article>
+            <article class="plain-step reveal">
+              <div>
+                <h3>规则难以持续执行</h3>
+                <p>CIO 很难实时知道组合是否越界、基金经理为什么持有，以及哪些变化需要行动。</p>
+              </div>
+            </article>
+            <article class="plain-step reveal">
+              <div>
+                <h3>建议必须可治理</h3>
+                <p>机构需要有来源、有规则检查、可审计并由人批准的建议，不是黑箱式自动交易。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="workflow reveal" aria-label="Kimpton 产品工作流">
+          <article class="workflow-node">
+            <span class="node-tag">Context</span>
+            <h3>Portfolio + Vault</h3>
+            <p>持仓、内部文件、市场数据与交易历史。</p>
+          </article>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <article class="workflow-node">
+            <span class="node-tag">Rules</span>
+            <h3>Mandate + Strategy</h3>
+            <p>可投范围、风险约束与基金经理判断框架。</p>
+          </article>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <article class="workflow-node">
+            <span class="node-tag">Reasoning</span>
+            <h3>Agent Research</h3>
+            <p>多步骤研究、约束检查与情景分析。</p>
+          </article>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <article class="workflow-node">
+            <span class="node-tag">Action</span>
+            <h3>Trade Proposal</h3>
+            <p>增持、减持、退出、名义金额与换手率。</p>
+          </article>
+          <div class="workflow-arrow" aria-hidden="true">→</div>
+          <article class="workflow-node">
+            <span class="node-tag">Feedback</span>
+            <h3>PM Decision + P&amp;L</h3>
+            <p>人类审批；结果反馈闭环仍属待验证愿景。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Product Walkthrough</p>
+            <h2>从机构记忆，<br />走到组合动作。</h2>
+          </div>
+          <p class="section-intro">
+            附件中的真实产品画面显示核心架构已经出现：
+            <strong>信息层 → 规则层 → 代理任务 → 交易建议 → 输出层</strong>。
+            它证明团队做出了广覆盖产品，但还不能证明稳定性、建议准确率或 Alpha。
+          </p>
+        </div>
+
+        <div class="feature-visuals reveal" aria-label="Kimpton 产品逻辑概念视觉">
+          <figure class="feature-visual">
+            <div class="feature-visual-media">
+              <button type="button" data-lightbox="./assets/kimpton-vault.jpg" data-caption="Institutional Memory：把组合、研究与规则组织成可调用的机构上下文；概念视觉，不含客户数据">
+                <img src="./assets/kimpton-vault.jpg" alt="机构文件、组合数据与规则连接到中央决策系统的概念视觉" width="1600" height="900" loading="lazy" />
+              </button>
+            </div>
+            <figcaption>
+              <span class="feature-visual-index">01</span>
+              <span class="feature-visual-copy"><strong>机构记忆，不只是文档库。</strong><span>Institutional context · Concept visualization · No client data</span></span>
+            </figcaption>
+          </figure>
+          <figure class="feature-visual">
+            <div class="feature-visual-media">
+              <button type="button" data-lightbox="./assets/mandate-to-trade.jpg" data-caption="Mandate-to-Trade：政策约束、建议生成、审计轨迹与人类审批；概念视觉，不含客户数据">
+                <img src="./assets/mandate-to-trade.jpg" alt="投资规则经过治理关卡后形成组合建议并等待人类审批的概念视觉" width="1600" height="900" loading="lazy" />
+              </button>
+            </div>
+            <figcaption>
+              <span class="feature-visual-index">02</span>
+              <span class="feature-visual-copy"><strong>建议可以自动化，责任不能。</strong><span>Governed workflow · Human approval · Audit trail</span></span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="product-stack">
+          <article class="product-row reveal">
+            <div class="product-copy">
+              <span class="step-label">01 · Institutional Context</span>
+              <h3>先知道基金拥有什么、相信什么。</h3>
+              <p>Portfolio 汇总组合与仓位；Vault 承载内部文件、市场报告和投资规则。它们构成机构专属的信息底座。</p>
+              <ul>
+                <li>示例组合展示 25 个持仓，账号标注为 Personal。</li>
+                <li>Vault 的产品设计更接近机构知识系统，而不是聊天记录。</li>
+              </ul>
+            </div>
+            <div class="mock-stack" aria-label="脱敏重构的 Portfolio 与 Vault 界面示意">
+              <div class="mock-window">
+                <div class="mock-chrome"><i class="mock-dot"></i><i class="mock-dot"></i><i class="mock-dot"></i><span class="mock-url">Demo workspace · Portfolio</span></div>
+                <div class="mock-app">
+                  <div class="mock-sidebar"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+                  <div class="mock-main">
+                    <div class="mock-label">Portfolio intelligence</div>
+                    <div class="mock-title">Illustrative Portfolio</div>
+                    <div class="mock-subtitle">Position context, allocation and policy-aware monitoring</div>
+                    <div class="portfolio-visual">
+                      <div class="demo-donut" aria-hidden="true"></div>
+                      <div class="allocation-list">
+                        <div class="allocation-row"><i></i><span>Core exposure</span><b>28%</b></div>
+                        <div class="allocation-row"><i></i><span>Growth sleeve</span><b>19%</b></div>
+                        <div class="allocation-row"><i></i><span>Hedge book</span><b>14%</b></div>
+                        <div class="allocation-row"><i></i><span>Other assets</span><b>39%</b></div>
+                      </div>
+                    </div>
+                    <span class="mock-footnote">Illustrative reconstruction · no client data</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-window">
+                <div class="mock-chrome"><i class="mock-dot"></i><i class="mock-dot"></i><i class="mock-dot"></i><span class="mock-url">Demo workspace · Vault</span></div>
+                <div class="mock-app">
+                  <div class="mock-sidebar"><span></span><span></span><span class="active"></span><span></span><span></span></div>
+                  <div class="mock-main">
+                    <div class="mock-label">Institutional memory</div>
+                    <div class="mock-title">Vault</div>
+                    <div class="mock-subtitle">Documents, research and policy objects for the organization</div>
+                    <div class="doc-list">
+                      <div class="doc-row"><i class="doc-icon">M</i><div><strong>Investment Mandate</strong><span>Eligibility · limits · controls</span></div><span class="doc-status">Policy</span></div>
+                      <div class="doc-row"><i class="doc-icon">S</i><div><strong>Strategy Framework</strong><span>Thesis · signals · review cadence</span></div><span class="doc-status">Strategy</span></div>
+                      <div class="doc-row"><i class="doc-icon">R</i><div><strong>Internal Research</strong><span>Notes · reports · models</span></div><span class="doc-status">Research</span></div>
+                    </div>
+                    <span class="mock-footnote">Illustrative reconstruction · no client data</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-row reverse reveal">
+            <div class="product-copy">
+              <span class="step-label">02 · Policy Layer</span>
+              <h3>把隐性的投资方法，变成可检查的规则。</h3>
+              <p>Strategy 描述基金经理如何判断机会；Mandate 定义投资目标、可交易范围、敞口与风险限制。</p>
+              <ul>
+                <li>这是 Kimpton 与通用金融 AI 最清晰的产品差异。</li>
+                <li>也是治理风险最高的一层：规则录入错误会污染所有下游建议。</li>
+              </ul>
+            </div>
+            <div class="mock-stack" aria-label="脱敏重构的 Strategy 与 Mandate 界面示意">
+              <div class="mock-window">
+                <div class="mock-chrome"><i class="mock-dot"></i><i class="mock-dot"></i><i class="mock-dot"></i><span class="mock-url">Demo workspace · Strategy</span></div>
+                <div class="mock-app">
+                  <div class="mock-sidebar"><span></span><span></span><span class="active"></span><span></span><span></span></div>
+                  <div class="mock-main">
+                    <div class="mock-label">Investment logic</div>
+                    <div class="mock-title">Strategy Framework</div>
+                    <div class="mock-subtitle">How the team evaluates opportunities and updates conviction</div>
+                    <div class="policy-grid">
+                      <div class="policy-card"><span>Signal</span><strong>Business quality</strong></div>
+                      <div class="policy-card"><span>Signal</span><strong>Estimate revision</strong></div>
+                      <div class="policy-card"><span>Review</span><strong>Thesis change</strong></div>
+                      <div class="policy-card"><span>Review</span><strong>Risk trigger</strong></div>
+                    </div>
+                    <span class="mock-footnote">Illustrative reconstruction · no client data</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-window">
+                <div class="mock-chrome"><i class="mock-dot"></i><i class="mock-dot"></i><i class="mock-dot"></i><span class="mock-url">Demo workspace · Mandate</span></div>
+                <div class="mock-app">
+                  <div class="mock-sidebar"><span></span><span></span><span></span><span class="active"></span><span></span></div>
+                  <div class="mock-main">
+                    <div class="mock-label">Policy object</div>
+                    <div class="mock-title">Investment Mandate</div>
+                    <div class="mock-subtitle">Eligible universe, exposure constraints and approval rules</div>
+                    <div class="mock-kpi-row">
+                      <div class="mock-kpi"><strong>Defined</strong><span>Universe</span></div>
+                      <div class="mock-kpi"><strong>Bounded</strong><span>Exposure</span></div>
+                      <div class="mock-kpi"><strong>Human</strong><span>Approval</span></div>
+                    </div>
+                    <div class="text-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                    <span class="mock-footnote">Illustrative reconstruction · no client data</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-row reveal">
+            <div class="product-copy">
+              <span class="step-label">03 · Mandate-to-Trade</span>
+              <h3>研究不止生成答案，而是生成组合建议。</h3>
+              <p>一次任务可绑定 Portfolio、Mandate、Strategy 与 Universe，再输出增持、减持和退出建议，以及仓位变化与换手率。</p>
+              <ul>
+                <li>产品终点比研究助手更深，理论上离预算与切换成本更近。</li>
+                <li>现有材料没有采纳率、错误率或后续 P&amp;L，建议质量仍未验证。</li>
+              </ul>
+            </div>
+            <div class="mock-stack" aria-label="脱敏重构的 Agent Run 与 Trade Proposals 界面示意">
+              <div class="mock-window">
+                <div class="mock-chrome"><i class="mock-dot"></i><i class="mock-dot"></i><i class="mock-dot"></i><span class="mock-url">Demo workspace · Agent run</span></div>
+                <div class="mock-app">
+                  <div class="mock-sidebar"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+                  <div class="mock-main">
+                    <div class="mock-label">Governed agent workflow</div>
+                    <div class="mock-title">Portfolio Review</div>
+                    <div class="mock-kpi-row">
+                      <div class="mock-kpi"><strong>Portfolio</strong><span>Context</span></div>
+                      <div class="mock-kpi"><strong>Mandate</strong><span>Policy</span></div>
+                      <div class="mock-kpi"><strong>Strategy</strong><span>Reasoning</span></div>
+                    </div>
+                    <div class="agent-steps">
+                      <div class="agent-step done">Research</div><span class="agent-arrow">→</span>
+                      <div class="agent-step done">Check</div><span class="agent-arrow">→</span>
+                      <div class="agent-step">Propose</div>
+                    </div>
+                    <span class="mock-footnote">Illustrative reconstruction · no client data</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-window">
+                <div class="mock-chrome"><i class="mock-dot"></i><i class="mock-dot"></i><i class="mock-dot"></i><span class="mock-url">Demo workspace · Trade proposals</span></div>
+                <div class="mock-app">
+                  <div class="mock-sidebar"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+                  <div class="mock-main">
+                    <div class="mock-label">Decision proposals</div>
+                    <div class="mock-title">Mandate-aware actions</div>
+                    <div class="mock-subtitle">Illustrative directions only; no securities, sizing or client positions shown</div>
+                    <div class="proposal-list">
+                      <div class="proposal-row"><span class="proposal-direction">Increase</span><strong>Illustrative asset A</strong><span>Within policy</span></div>
+                      <div class="proposal-row reduce"><span class="proposal-direction">Reduce</span><strong>Illustrative asset B</strong><span>Risk limit</span></div>
+                      <div class="proposal-row exit"><span class="proposal-direction">Exit</span><strong>Illustrative asset C</strong><span>Mandate breach</span></div>
+                    </div>
+                    <span class="mock-footnote">Illustrative reconstruction · no client data</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-row reverse reveal">
+            <div class="product-copy">
+              <span class="step-label">04 · Analyst Outputs</span>
+              <h3>报告、模型与演示文稿进入现有工作流。</h3>
+              <p>系统可生成长篇研究、PDF 预览、Excel 模型和 PowerPoint，帮助分析师与管理层直接消费结果。</p>
+              <ul>
+                <li>输出能力有助于 ACV，但也是大型金融 AI 平台最容易复制的部分。</li>
+                <li>真正的差异必须回到机构规则与组合决策，而不是材料生成。</li>
+              </ul>
+            </div>
+            <div class="mock-stack" aria-label="脱敏重构的报告与演示文稿输出界面示意">
+              <div class="mock-window">
+                <div class="mock-chrome"><i class="mock-dot"></i><i class="mock-dot"></i><i class="mock-dot"></i><span class="mock-url">Demo workspace · Research report</span></div>
+                <div class="mock-app">
+                  <div class="mock-sidebar"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+                  <div class="mock-main">
+                    <div class="mock-label">Research output</div>
+                    <div class="mock-title">Investment Research Report</div>
+                    <div class="report-preview">
+                      <div class="report-page">
+                        <h4>Executive summary</h4>
+                        <div class="text-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                      </div>
+                      <div class="deck-page">
+                        <div class="deck-orbit" aria-hidden="true"></div>
+                        <h4>Decision-ready deck</h4>
+                      </div>
+                    </div>
+                    <span class="mock-footnote">Illustrative reconstruction · no client data</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mock-window">
+                <div class="mock-chrome"><i class="mock-dot"></i><i class="mock-dot"></i><i class="mock-dot"></i><span class="mock-url">Demo workspace · Output package</span></div>
+                <div class="mock-app">
+                  <div class="mock-sidebar"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+                  <div class="mock-main">
+                    <div class="mock-label">Export package</div>
+                    <div class="mock-title">From analysis to team workflow</div>
+                    <div class="doc-list">
+                      <div class="doc-row"><i class="doc-icon">R</i><div><strong>Research report</strong><span>Sources · thesis · risks</span></div><span class="doc-status">PDF</span></div>
+                      <div class="doc-row"><i class="doc-icon">M</i><div><strong>Financial model</strong><span>Assumptions · scenarios</span></div><span class="doc-status">XLSX</span></div>
+                      <div class="doc-row"><i class="doc-icon">D</i><div><strong>Decision deck</strong><span>Summary · evidence · action</span></div><span class="doc-status">PPTX</span></div>
+                    </div>
+                    <span class="mock-footnote">Illustrative reconstruction · no client data</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Commercial Signal</p>
+            <h2>首个六位数合同，<br />是起点，不是结论。</h2>
+          </div>
+          <p class="section-intro">
+            公司称 prosumer 产品曾扩展至 1,200 名用户，随后转向机构市场；
+            一份 $9.5K 试用据称转为 <strong>$144K 年度合同</strong>。
+            这个信号说明 ACV 可能成立，但单一客户约占 96% ARR。
+          </p>
+        </div>
+
+        <div class="traction-layout">
+          <div class="single-shot reveal">
+            <button type="button" data-lightbox="./assets/01_traction_09-08.svg" data-caption="公司展示的 cARR 与 upmarket 进展；未经独立核实">
+              <img src="./assets/01_traction_09-08.svg" alt="Kimpton 公司材料展示的 cARR 与 upmarket 进展" width="1280" height="720" loading="lazy" />
+            </button>
+          </div>
+          <div class="traction-cards reveal">
+            <div class="metric"><strong>6 weeks</strong><span>Reported pilot duration</span></div>
+            <div class="metric"><strong>$9.5K</strong><span>Reported pilot value</span></div>
+            <div class="metric"><strong>$12K</strong><span>Reported monthly contract</span></div>
+            <div class="metric"><strong>15</strong><span>Potential institutional users*</span></div>
+            <p class="evidence-note">
+              公司披露、尚待核实：已签合同、发票与银行回款；按角色拆分的活跃度；
+              交易建议采纳率；续约与终止条款。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Potential Moat</p>
+            <h2>功能不是壁垒。<br />结果数据才可能是。</h2>
+          </div>
+          <p class="section-intro">
+            报告、PPT 与多模型编排都会被复制。Kimpton 真正可能积累的是
+            <strong>机构规则、系统连接、决策历史与实际结果</strong>。
+          </p>
+        </div>
+
+        <div class="flywheel">
+          <article class="flywheel-card reveal" data-index="01">
+            <h3>机构信息标准化</h3>
+            <p>持仓、交易、内部文件与研究数据进入统一语境。</p>
+          </article>
+          <article class="flywheel-card reveal" data-index="02">
+            <h3>规则进入系统</h3>
+            <p>Mandate 与 Strategy 变成可复用、可审核的产品对象。</p>
+          </article>
+          <article class="flywheel-card reveal" data-index="03">
+            <h3>建议与决策留痕</h3>
+            <p>记录系统建议、基金经理接受或拒绝及其理由。</p>
+          </article>
+          <article class="flywheel-card reveal" data-index="04">
+            <h3>结果反哺评测</h3>
+            <p>用真实 P&amp;L、错误和合规结果持续改进——这一步尚未被证明。</p>
+          </article>
+        </div>
+        <p class="flywheel-caption">只有客户持续使用并愿意把关键决策留在系统里，这个闭环才会从产品愿景变成真正的切换成本。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Competitive Position</p>
+            <h2>最清晰的差异，<br />是 Mandate-to-Trade。</h2>
+          </div>
+          <p class="section-intro">
+            Kimpton 夹在研究代理、金融 AI 平台和既有核心系统之间。
+            <strong>不要以功能数量竞争；要把机构约束到组合动作的路径做深。</strong>
+          </p>
+        </div>
+
+        <div class="positioning">
+          <article class="position-card featured reveal">
+            <span class="layer">Decision system</span>
+            <h3>Institution-specific</h3>
+            <p>机构规则、组合语境、交易建议与结果反馈。</p>
+            <div class="names">Kimpton · WithAI</div>
+          </article>
+          <article class="position-card reveal">
+            <span class="layer">Research agents</span>
+            <h3>Signal &amp; monitoring</h3>
+            <p>持续跟踪新闻、财报与市场变化，生成解释和想法。</p>
+            <div class="names">Cohesion</div>
+          </article>
+          <article class="position-card reveal">
+            <span class="layer">Workflow platforms</span>
+            <h3>Research &amp; outputs</h3>
+            <p>企业搜索、文档分析、Excel、PPT 与多步骤工作流。</p>
+            <div class="names">Rogo · Hebbia · Model ML</div>
+          </article>
+          <article class="position-card reveal">
+            <span class="layer">Content layer</span>
+            <h3>Data &amp; distribution</h3>
+            <p>内容版权、市场情报、搜索历史与既有采购预算。</p>
+            <div class="names">AlphaSense</div>
+          </article>
+          <article class="position-card reveal">
+            <span class="layer">Systems of record</span>
+            <h3>Portfolio &amp; orders</h3>
+            <p>持仓、订单、权限、合规与交易核心基础设施。</p>
+            <div class="names">PMS · OMS · Internal stack</div>
+          </article>
+          <article class="position-card reveal">
+            <span class="layer">Strategic test</span>
+            <h3>Integration, not replacement</h3>
+            <p>先证明能连接核心系统并创造增量价值，再谈替换与交易执行。</p>
+            <div class="names">The near-term path</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="valuation-layout">
+          <div class="valuation-callout reveal">
+            <p class="kicker">Valuation Lens</p>
+            <strong>$40M</strong>
+            <h3>买的不是今天的收入，而是首单能否复制。</h3>
+            <p>按公司披露的 $144K 机构 ACV 计算，估值要回到 10×–20× ARR，需要约 14–28 个同等客户。</p>
+          </div>
+
+          <div>
+            <div class="section-head reveal" style="display:block;margin-bottom:32px">
+              <h2>估值背后的<br />经营门槛。</h2>
+              <p class="section-intro" style="margin-top:20px">
+                以下只是把估值要求算清楚，不是收入预测，也不是可比公司倍数判断。
+              </p>
+            </div>
+            <div class="scenario-list reveal">
+              <div class="scenario">
+                <div class="multiple">20×</div>
+                <div class="need">所需 ARR：$2.0M</div>
+                <div class="clients">≈ 14 clients</div>
+              </div>
+              <div class="scenario">
+                <div class="multiple">15×</div>
+                <div class="need">所需 ARR：$2.67M</div>
+                <div class="clients">≈ 19 clients</div>
+              </div>
+              <div class="scenario">
+                <div class="multiple">10×</div>
+                <div class="need">所需 ARR：$4.0M</div>
+                <div class="clients">≈ 28 clients</div>
+              </div>
+            </div>
+            <p class="scenario-foot">计算基于 $144K ACV；未考虑折扣、实施收入、流失、扩张或融资稀释。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Investment Case</p>
+            <h2>上行来自闭环，<br />下行来自交付。</h2>
+          </div>
+          <p class="section-intro">
+            这是一个产品方向已经成形、商业验证刚开始的机会。
+            真正的判断分水岭，是它能否从 <strong>高接触式首单</strong> 走向 <strong>标准化企业软件</strong>。
+          </p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card upside reveal">
+            <h3>Why it could work</h3>
+            <ul>
+              <li>Mandate-to-Trade 比“金融搜索”更接近高价值决策与长期预算。</li>
+              <li>公司披露的首单显示，中型资管机构可能愿意支付六位数年费。</li>
+              <li>若沉淀建议、决策与结果数据，可形成专有评测与切换成本。</li>
+              <li>五人团队已展示组合、规则、代理任务和输出层，产品速度较快。</li>
+            </ul>
+          </article>
+          <article class="case-card risk reveal">
+            <h3>What can break</h3>
+            <ul>
+              <li>约 96% ARR 集中在单一客户，且合同、回款与使用尚未核实。</li>
+              <li>没有建议采纳率、错误率、P&amp;L 或续约数据，不能证明 Alpha。</li>
+              <li>深度定制连接可能把公司拖入 services trap，吞噬毛利与产品速度。</li>
+              <li>安全、权限、审计与受托责任都是机构准入的硬门槛。</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="risk-visual reveal">
+          <div class="integration-map" aria-label="待验证的机构系统集成层示意">
+            <div class="integration-core">Kimpton<br />Data Layer</div>
+            <div class="integration-node">Portfolio<br />Systems</div>
+            <div class="integration-node">Market<br />Data</div>
+            <div class="integration-node">Documents<br />&amp; Research</div>
+            <div class="integration-node">Orders<br />&amp; Compliance</div>
+            <span class="integration-note">Architecture concept · integrations require verification</span>
+          </div>
+          <div class="risk-copy">
+            <h3>连接器决定它是软件，还是项目。</h3>
+            <p>
+              公司材料提及文件存储、市场数据与 PMS 等集成方向，但现有材料不能证明生产稳定性。
+              部署时间、每客户工程投入和贡献利润是必须追踪的指标。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Next Proof Points</p>
+            <h2>接下来只看<br />六件事。</h2>
+          </div>
+          <p class="section-intro">
+            任何新功能都不如这些证据重要。最关键的催化剂是
+            <strong>第二、第三个 $100K+ ACV 机构客户</strong>。
+          </p>
+        </div>
+
+        <div class="checklist">
+          <article class="check reveal">
+            <h3>核实收入</h3>
+            <p>合同、订单、发票、银行回款、终止条款与客户访谈。</p>
+          </article>
+          <article class="check reveal">
+            <h3>证明真实使用</h3>
+            <p>按角色拆分 WAU、建议次数、报告量、采纳率与续约意愿。</p>
+          </article>
+          <article class="check reveal">
+            <h3>复制两名客户</h3>
+            <p>拿下第二、第三个六位数机构合同，排除首单偶然性。</p>
+          </article>
+          <article class="check reveal">
+            <h3>压缩部署成本</h3>
+            <p>部署少于 4 周，且单客户所需工程时间持续下降。</p>
+          </article>
+          <article class="check reveal">
+            <h3>量化决策效果</h3>
+            <p>建议错误、合规收益、PM 采纳与拒绝、后续 P&amp;L。</p>
+          </article>
+          <article class="check reveal">
+            <h3>补齐机构治理</h3>
+            <p>SOC 2 计划、租户隔离、权限、审计日志与事故响应。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="kicker">Evidence Discipline</p>
+            <h2>看到什么，<br />就只证明什么。</h2>
+          </div>
+          <p class="section-intro">
+            为保护机构与客户信息，上方产品画面是依据会议演示制作的
+            <strong>脱敏界面重构</strong>，不包含真实持仓、交易金额、用户身份或 workspace 标识。
+          </p>
+        </div>
+
+        <div class="positioning">
+          <article class="position-card featured reveal">
+            <span class="layer">Directly observed</span>
+            <h3>产品广度已经出现</h3>
+            <p>演示覆盖 Portfolio、Vault、Strategy、Mandate、Agent Run、Trade Proposals 与多种输出。</p>
+          </article>
+          <article class="position-card reveal">
+            <span class="layer">Company-reported</span>
+            <h3>商业验证需要核实</h3>
+            <p>$144K cARR、$3.3B AUM 客户、15 名潜在用户与 $40M SAFE cap 均来自公司口径。</p>
+          </article>
+          <article class="position-card reveal">
+            <span class="layer">Still unproven</span>
+            <h3>结果与复制尚无证据</h3>
+            <p>生产连接稳定性、建议准确率、采纳率、P&amp;L、续约与标准化部署仍需后续验证。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="closing-inner reveal">
+        <p class="kicker">Bottom Line</p>
+        <h2>下一批客户，<br />比下一批功能更重要。</h2>
+        <p>
+          Kimpton 对“机构 AI 应该理解本机构投资方法”的判断有说服力。
+          但 $40M cap 已经要求它快速证明：首单真实、客户可复制、部署可标准化、决策效果可量化。
+        </p>
+        <div class="closing-line"></div>
+        <strong>Attractive direction. Evidence still catching up.</strong>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Kimpton AI · Investment Brief · July 2026</span>
+      <span>Based on company-provided materials. For discussion only. Not investment advice.</span>
+    </div>
+  </footer>
+
+  <dialog id="lightbox" aria-label="产品截图放大查看">
+    <div class="lightbox-top">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+      <button class="lightbox-close" id="lightbox-close" type="button" aria-label="关闭">×</button>
+    </div>
+    <div class="lightbox-image-wrap">
+      <img class="lightbox-image" id="lightbox-image" src="" alt="" />
+    </div>
+  </dialog>
+
+  <script>
+    const progress = document.getElementById("progress");
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+    };
+    addEventListener("scroll", updateProgress, { passive: true });
+    addEventListener("resize", updateProgress);
+    updateProgress();
+
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reveals = document.querySelectorAll(".reveal");
+    if (reduced || !("IntersectionObserver" in window)) {
+      reveals.forEach((element) => element.classList.add("is-visible"));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -40px" });
+      reveals.forEach((element) => observer.observe(element));
+    }
+
+    const dialog = document.getElementById("lightbox");
+    const dialogImage = document.getElementById("lightbox-image");
+    const dialogCaption = document.getElementById("lightbox-caption");
+    const closeButton = document.getElementById("lightbox-close");
+
+    document.querySelectorAll("[data-lightbox]").forEach((button) => {
+      button.addEventListener("click", () => {
+        dialogImage.src = button.dataset.lightbox;
+        dialogImage.alt = button.querySelector("img")?.alt || "";
+        dialogCaption.textContent = button.dataset.caption || "";
+        dialog.showModal();
+      });
+    });
+    closeButton.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+      dialogImage.src = "";
+    });
+  </script>
+</body>
+</html>
