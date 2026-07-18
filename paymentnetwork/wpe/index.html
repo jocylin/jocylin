@@ -9,7 +9,6 @@
     --ink:#16202e;
     --ink-soft:#445267;
     --paper:#f3efe6;
-    --paper-deep:#e9e3d5;
     --brass:#a17c3c;
     --line:#cfc7b4;
     --white:#fbfaf6;
@@ -83,11 +82,6 @@
     font-size:14px;
     font-weight:600;
   }
-  .btn.primary{
-    border-color:var(--brass);
-    background:var(--brass);
-    color:#1d1608;
-  }
   .hero{
     max-width:1120px;
     margin:0 auto;
@@ -151,16 +145,6 @@
     border:1px solid var(--line);
     box-shadow:0 12px 36px rgba(22,32,46,.14);
   }
-  .fallback{
-    max-width:920px;
-    margin:18px auto 42px;
-    padding:18px;
-    border:1px solid var(--line);
-    background:var(--paper-deep);
-    color:var(--ink-soft);
-    font-size:14px;
-    line-height:1.55;
-  }
   @media(max-width:720px){
     .topbar-inner{
       min-height:58px;
@@ -188,11 +172,6 @@
       border-right:0;
       box-shadow:0 7px 20px rgba(22,32,46,.12);
     }
-    .fallback{
-      margin:14px 0 32px;
-      border-left:0;
-      border-right:0;
-    }
   }
 </style>
 </head>
@@ -206,8 +185,6 @@
     <nav class="actions" aria-label="Whitepaper actions">
       <a class="btn" href="../wpc/">简体中文</a>
       <a class="btn" href="../wpj/">日本語</a>
-      <a class="btn" href="./asia-payment-network-whitepaper-en.pdf" target="_blank" rel="noopener">PDF</a>
-      <a class="btn primary" href="./asia-payment-network-whitepaper-en.pdf" download>Save</a>
     </nav>
   </div>
 </header>
@@ -216,12 +193,10 @@
   <section class="hero">
     <div class="eyebrow">Whitepaper · English · Version 1.0</div>
     <h1>Asia Payment Network Whitepaper</h1>
-    <p class="lede">A neutral, compliance-first settlement network for cross-border stablecoin payments. Each page is rendered responsively for phone screens, with the original PDF preserved for opening, sharing, and download.</p>
+    <p class="lede">A neutral, compliance-first settlement network for cross-border stablecoin payments. Each page is rendered responsively for comfortable reading on phones and desktop screens.</p>
     <div class="hero-actions">
       <a class="btn" href="../wpc/">简体中文</a>
       <a class="btn" href="../wpj/">日本語</a>
-      <a class="btn" href="./asia-payment-network-whitepaper-en.pdf" target="_blank" rel="noopener">PDF</a>
-      <a class="btn primary" href="./asia-payment-network-whitepaper-en.pdf" download>Save</a>
     </div>
   </section>
 
@@ -258,9 +233,6 @@
     </div>
   </section>
 
-  <div class="fallback">
-    Prefer the original file? <a href="./asia-payment-network-whitepaper-en.pdf" target="_blank" rel="noopener">Open the PDF</a> or use Save above.
-  </div>
 </main>
 </body>
 </html>
