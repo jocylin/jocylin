@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=900">
+<meta name="description" content="Anson's 4th Birthday Splash Party invitation">
+<title>Anson's 4th Birthday Splash Party</title>
+<style>
+@font-face{
+  font-family:'Baloo 2';font-style:normal;font-weight:500 800;font-display:swap;
+  src:url('./baloo2-latin.woff2') format('woff2')
+}
+:root{
+  --pool:#19AECE; --deep:#0B79A8; --sun:#FFC93C; --mango:#F59E2B;
+  --maya:#E2593B; --coral:#FF6F61; --hib:#F2497C; --cream:#FFFBEF; --ink:#0A5E82;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+.zhf{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-weight:700}
+html{min-height:100%;background:#EAF8FC}
+body{width:900px;height:1280px;margin:0 auto;overflow:hidden;position:relative;
+  background:linear-gradient(180deg,#FFE9B8 0%, #BFEAF5 26%, #8FD8EC 52%, #35B9DA 80%, #19AECE 100%);
+  font-family:'Baloo 2','PingFang SC','Microsoft YaHei',sans-serif;color:var(--ink)}
+
+/* bunting flags */
+.bunting{position:absolute;top:0;left:0;width:900px;height:120px;z-index:5}
+
+/* sun */
+.sun{position:absolute;top:-80px;left:-80px;width:250px;height:250px;border-radius:50%;
+  background:radial-gradient(circle at 40% 40%, #FFE28A, var(--sun));
+  box-shadow:0 0 0 24px rgba(255,201,60,.30), 0 0 0 50px rgba(255,201,60,.15)}
+.cloud{position:absolute;background:#fff;border-radius:60px;opacity:.92}
+.cloud::before,.cloud::after{content:'';position:absolute;background:#fff;border-radius:50%}
+.c1{width:140px;height:42px;top:150px;right:200px}
+.c1::before{width:56px;height:56px;top:-26px;left:22px}
+.c1::after{width:40px;height:40px;top:-16px;left:72px}
+.palm{position:absolute;top:-16px;right:-30px;width:250px;height:220px;z-index:4}
+.palmL{position:absolute;top:120px;left:-60px;width:200px;height:180px;transform:scaleX(-1);z-index:4;opacity:.9}
+.hibiscus{position:absolute;z-index:6}
+.hibiscus-right{top:236px;right:24px}
+.hibiscus-left{top:100px;left:250px}
+
+/* headline */
+.eyebrow{position:absolute;top:128px;width:100%;text-align:center;z-index:6;
+  font-weight:800;font-size:26px;letter-spacing:6px;color:#0A6E97;text-transform:uppercase}
+.name{position:absolute;top:162px;width:100%;text-align:center;z-index:6;
+  font-weight:800;font-size:126px;line-height:1;color:#fff;
+  text-shadow:0 5px 0 #0E86B4, 0 11px 0 rgba(10,94,130,.35);letter-spacing:2px}
+.sub{position:absolute;top:281px;width:100%;text-align:center;z-index:6;
+  font-weight:800;font-size:44px;color:var(--maya);text-shadow:0 3px 0 #fff;line-height:1.15;letter-spacing:1px}
+.aloha{position:absolute;top:338px;width:100%;text-align:center;z-index:8;line-height:1;
+  font-weight:700;font-size:22px;color:#0A8FB8;letter-spacing:3px}
+
+/* swim ring with 4 */
+.ring4{position:absolute;top:120px;left:86px;width:142px;height:142px;border-radius:50%;z-index:7;
+  background:repeating-conic-gradient(var(--maya) 0 45deg, #fff 45deg 90deg);
+  box-shadow:inset 0 0 0 6px rgba(0,0,0,.05), 0 12px 22px rgba(9,79,110,.28);
+  display:flex;align-items:center;justify-content:center;transform:rotate(-12deg)}
+.ring4::before{content:'';position:absolute;width:74px;height:74px;border-radius:50%;
+  background:linear-gradient(180deg,#8FD8EC,#35B9DA);box-shadow:inset 0 4px 8px rgba(9,79,110,.35)}
+.ring4 b{position:relative;font-family:'Baloo 2';font-weight:800;font-size:60px;color:#fff;text-shadow:0 4px 0 #0E86B4}
+
+/* pineapple left of card */
+.pine{position:absolute;z-index:7}
+.pine-left{bottom:196px;left:26px}
+
+/* wavy card */
+.card{position:absolute;left:66px;right:66px;top:404px;height:668px;z-index:6;
+  background:var(--cream);border-radius:44px;
+  box-shadow:0 18px 40px rgba(8,84,117,.30), inset 0 0 0 5px #fff}
+.card::before{content:'';position:absolute;left:0;right:0;top:-16px;height:36px;
+  background:radial-gradient(circle 18px at 18px 36px, var(--cream) 17px, transparent 18px);
+  background-size:36px 36px;background-position:14px 0;background-repeat:repeat-x}
+.card::after{content:'';position:absolute;left:0;right:0;bottom:-16px;height:36px;
+  background:radial-gradient(circle 18px at 18px 0px, var(--cream) 17px, transparent 18px);
+  background-size:36px 36px;background-position:14px 0;background-repeat:repeat-x}
+.inner{position:absolute;inset:0;padding:48px 54px 34px;text-align:center}
+
+.rowline{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:11px}
+.rowline .lab{font-weight:800;font-size:24px;color:#fff;background:var(--coral);
+  padding:3px 18px;border-radius:20px;letter-spacing:1px;box-shadow:0 3px 0 #D14A3E}
+.rowline .val{font-weight:800;font-size:30px;color:var(--ink)}
+.place-en{font-weight:700;font-size:21px;color:#2E96BC;margin-top:2px}
+.addr{font-weight:600;font-size:16.5px;color:#3FA3C4;margin-top:3px;letter-spacing:.2px}
+.divider{margin:13px auto 10px;width:76%;height:14px}
+
+.remind-title{font-weight:800;font-size:27px;color:var(--maya);letter-spacing:2px;margin-bottom:14px}
+.tips{display:flex;justify-content:center;gap:20px}
+.tip{width:198px;background:#EAF8FC;border:3px dashed #8ED4E8;border-radius:26px;padding:14px 10px 12px}
+.tip .ico{height:70px;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.tip .t1{font-weight:800;font-size:20px;color:var(--ink);line-height:1.3}
+
+.funline{margin-top:14px;font-weight:800;font-size:24px;color:#0A6E97;line-height:1.45}
+.funline b{color:var(--maya)}
+.famline{margin-top:6px;font-weight:700;font-size:20px;color:#12839F;line-height:1.45}
+
+/* bottom scene */
+.scene{position:absolute;left:0;right:0;bottom:0;height:230px;z-index:3}
+.hosted{position:absolute;bottom:20px;width:100%;text-align:center;z-index:9;
+  font-weight:800;font-size:22px;color:#fff;text-shadow:0 2px 6px rgba(7,70,98,.5)}
+</style>
+</head>
+<body>
+
+<div class="sun"></div>
+<svg class="bunting" viewBox="0 0 900 120">
+  <path d="M-10 6 Q450 96 910 6" fill="none" stroke="#0A6E97" stroke-width="4"/>
+  <g>
+    <path d="M60 42 l22 -4 l-8 34 Z" fill="#FF6F61"/>
+    <path d="M150 58 l22 -3 l-9 34 Z" fill="#FFC93C"/>
+    <path d="M245 70 l23 -2 l-10 33 Z" fill="#19AECE"/>
+    <path d="M345 79 l23 -1 l-11 33 Z" fill="#F2497C"/>
+    <path d="M450 82 l23 0 l-11 33 Z" fill="#2FA46B"/>
+    <path d="M555 79 l23 1 l-12 32 Z" fill="#FFC93C"/>
+    <path d="M655 70 l23 2 l-13 32 Z" fill="#FF6F61"/>
+    <path d="M750 58 l22 3 l-13 31 Z" fill="#19AECE"/>
+    <path d="M838 43 l22 4 l-14 30 Z" fill="#F2497C"/>
+  </g>
+</svg>
+<div class="cloud c1"></div>
+
+<svg class="palm" viewBox="0 0 260 230">
+  <g fill="#2FA46B">
+    <path d="M255 30 C190 -10 110 5 80 55 C140 30 205 30 255 30 Z" opacity=".92"/>
+    <path d="M258 36 C200 45 150 90 145 145 C185 105 230 70 258 36 Z" opacity=".85"/>
+    <path d="M256 32 C210 70 200 130 220 180 C230 130 245 80 256 32 Z"/>
+  </g>
+  <circle cx="248" cy="42" r="9" fill="#B4763C"/><circle cx="262" cy="58" r="9" fill="#C98A4B"/>
+</svg>
+<svg class="palmL" viewBox="0 0 260 230">
+  <g fill="#3BB27A" opacity=".9">
+    <path d="M255 30 C190 -10 110 5 80 55 C140 30 205 30 255 30 Z"/>
+    <path d="M258 36 C200 45 150 90 145 145 C185 105 230 70 258 36 Z" opacity=".85"/>
+  </g>
+</svg>
+
+<!-- hibiscus flowers -->
+<svg class="hibiscus hibiscus-right" width="86" height="86" viewBox="0 0 86 86">
+  <g transform="translate(43,43)">
+    <g fill="#F2497C">
+      <ellipse rx="15" ry="24" transform="rotate(0) translate(0,-18)"/>
+      <ellipse rx="15" ry="24" transform="rotate(72) translate(0,-18)"/>
+      <ellipse rx="15" ry="24" transform="rotate(144) translate(0,-18)"/>
+      <ellipse rx="15" ry="24" transform="rotate(216) translate(0,-18)"/>
+      <ellipse rx="15" ry="24" transform="rotate(288) translate(0,-18)"/>
+    </g>
+    <circle r="10" fill="#FFC93C"/>
+  </g>
+</svg>
+<svg class="hibiscus hibiscus-left" width="60" height="60" viewBox="0 0 86 86">
+  <g transform="translate(43,43)">
+    <g fill="#FF8B5E">
+      <ellipse rx="15" ry="24" transform="rotate(0) translate(0,-18)"/>
+      <ellipse rx="15" ry="24" transform="rotate(72) translate(0,-18)"/>
+      <ellipse rx="15" ry="24" transform="rotate(144) translate(0,-18)"/>
+      <ellipse rx="15" ry="24" transform="rotate(216) translate(0,-18)"/>
+      <ellipse rx="15" ry="24" transform="rotate(288) translate(0,-18)"/>
+    </g>
+    <circle r="10" fill="#fff"/>
+  </g>
+</svg>
+
+<div class="eyebrow">You're Invited</div>
+<div class="name">ANSON</div>
+<div class="sub ">4th Birthday Splash Party!</div>
+<div class="aloha">Aloha! A Hawaiian pool bash</div>
+
+<div class="ring4"><b>4</b></div>
+
+<!-- pineapple -->
+<svg class="pine pine-left" width="96" height="150" viewBox="0 0 96 150">
+  <g fill="#2FA46B">
+    <path d="M48 34 C30 10 18 6 6 12 C22 16 32 26 48 34Z"/>
+    <path d="M48 34 C66 10 78 6 90 12 C74 16 64 26 48 34Z"/>
+    <path d="M48 36 C42 10 44 2 48 -4 C52 2 54 10 48 36Z" transform="translate(0,6)"/>
+  </g>
+  <ellipse cx="48" cy="92" rx="38" ry="52" fill="#F5A623" stroke="#D98A12" stroke-width="3"/>
+  <g stroke="#D98A12" stroke-width="2.5" opacity=".8">
+    <path d="M14 66 L82 118 M10 86 L74 134 M22 50 L88 100 M34 42 L92 82"/>
+    <path d="M82 66 L14 118 M86 86 L22 134 M74 50 L8 100 M62 42 L4 82"/>
+  </g>
+</svg>
+
+<div class="card"><div class="inner">
+  <div class="rowline"><span class="lab">DATE</span><span class="val">Sat, 15th Aug 2026</span></div>
+  <div class="rowline"><span class="lab">TIME</span><span class="val">11:00 am – 4:00 pm</span></div>
+  <div class="rowline"><span class="lab">PLACE</span><span class="val ">Playa Maya Water Park</span></div>
+  <div class="place-en">玛雅水公园 · Inside Happy Valley</div>
+  <div class="addr">No. 1 Qiaocheng West Street, Nanshan District, Shenzhen, Guangdong</div>
+
+  <svg class="divider" viewBox="0 0 600 14" preserveAspectRatio="none">
+    <path d="M0 8 Q25 0 50 8 T100 8 T150 8 T200 8 T250 8 T300 8 T350 8 T400 8 T450 8 T500 8 T550 8 T600 8"
+      fill="none" stroke="#8ED4E8" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+
+  <div class="remind-title">SPLASH CHECKLIST</div>
+  <div class="tips">
+    <div class="tip">
+      <div class="ico"><svg width="70" height="66" viewBox="0 0 72 70">
+        <path d="M22 8 h10 v14 c0 6 8 6 8 0 V8 h10 l6 46 c-8 6 -32 6 -40 0 Z" fill="#19AECE" stroke="#0B79A8" stroke-width="3" stroke-linejoin="round"/>
+        <circle cx="30" cy="40" r="3.5" fill="#FFC93C"/><circle cx="42" cy="34" r="3.5" fill="#FFC93C"/><circle cx="38" cy="48" r="3.5" fill="#fff"/>
+      </svg></div>
+      <div class="t1">Bring your swimsuit</div>
+    </div>
+    <div class="tip">
+      <div class="ico"><svg width="84" height="66" viewBox="0 0 86 70">
+        <g transform="rotate(-8 26 35)"><ellipse cx="26" cy="38" rx="17" ry="27" fill="#FFC93C" stroke="#E8A81E" stroke-width="3"/>
+        <path d="M26 24 C16 32 20 40 26 44 C32 40 36 32 26 24" fill="none" stroke="#E2593B" stroke-width="4" stroke-linecap="round"/></g>
+        <g transform="rotate(8 60 35)"><ellipse cx="60" cy="38" rx="17" ry="27" fill="#FF8B5E" stroke="#E2593B" stroke-width="3"/>
+        <path d="M60 24 C50 32 54 40 60 44 C66 40 70 32 60 24" fill="none" stroke="#0B79A8" stroke-width="4" stroke-linecap="round"/></g>
+      </svg></div>
+      <div class="t1">Bring flip-flops</div>
+    </div>
+    <div class="tip">
+      <div class="ico"><svg width="72" height="66" viewBox="0 0 76 70">
+        <circle cx="38" cy="35" r="26" fill="none" stroke="#E2593B" stroke-width="13"/>
+        <path d="M38 9 a26 26 0 0 1 26 26" fill="none" stroke="#fff" stroke-width="13"/>
+        <path d="M38 61 a26 26 0 0 1 -26 -26" fill="none" stroke="#fff" stroke-width="13"/>
+        <circle cx="38" cy="35" r="26" fill="none" stroke="#C7472B" stroke-width="2"/>
+        <circle cx="38" cy="35" r="13" fill="none" stroke="#C7472B" stroke-width="2"/>
+      </svg></div>
+      <div class="t1">Swim rings on us!</div>
+    </div>
+  </div>
+
+  <div class="funline ">Slides, splash fights &amp; the <b>coolest summer chill</b>!</div>
+  <div class="famline ">Parents welcome — make it a fun family getaway in Shenzhen!</div>
+</div></div>
+
+<svg class="scene" viewBox="0 0 900 230" preserveAspectRatio="none">
+  <g transform="translate(575,0)" opacity=".95">
+    <rect x="30" y="118" width="240" height="38" fill="#E2A23B"/>
+    <rect x="55" y="85" width="190" height="36" fill="#E2593B"/>
+    <rect x="85" y="54" width="130" height="34" fill="#E2A23B"/>
+    <rect x="112" y="28" width="76" height="28" fill="#E2593B"/>
+    <rect x="130" y="8" width="40" height="22" fill="#E2A23B"/>
+    <g fill="#3FB9D3">
+      <path d="M70 100 h14 v14 h-14z"/><path d="M215 100 h14 v14 h-14z"/>
+      <path d="M100 66 l10 16 h-20z"/><path d="M190 66 l10 16 h-20z"/>
+      <path d="M142 36 h16 v14 h-16z"/>
+    </g>
+  </g>
+  <path d="M110 22 C 250 32 290 108 420 138" fill="none" stroke="#B14FC0" stroke-width="24" stroke-linecap="round"/>
+  <path d="M110 22 C 250 32 290 108 420 138" fill="none" stroke="#D77CE4" stroke-width="11" stroke-linecap="round"/>
+  <rect x="96" y="14" width="30" height="112" rx="8" fill="#E2A23B"/>
+  <!-- water gun spray -->
+  <g transform="translate(468,120)">
+    <rect x="0" y="10" width="46" height="20" rx="9" fill="#FF6F61" stroke="#D14A3E" stroke-width="2.5"/>
+    <rect x="10" y="26" width="14" height="20" rx="6" fill="#FFC93C" stroke="#D98A12" stroke-width="2.5"/>
+    <rect x="44" y="14" width="16" height="10" rx="5" fill="#19AECE"/>
+    <g fill="#EAF9FD"><circle cx="72" cy="14" r="5"/><circle cx="86" cy="8" r="4"/><circle cx="98" cy="3" r="3"/></g>
+  </g>
+  <path d="M0 148 Q56 116 112 148 T224 148 T336 148 T448 148 T560 148 T672 148 T784 148 T900 148 V230 H0 Z" fill="#1FB6D6"/>
+  <path d="M0 174 Q56 146 112 174 T224 174 T336 174 T448 174 T560 174 T672 174 T784 174 T900 174 V230 H0 Z" fill="#0E93BE"/>
+  <path d="M0 200 Q56 176 112 200 T224 200 T336 200 T448 200 T560 200 T672 200 T784 200 T900 200 V230 H0 Z" fill="#0B79A8"/>
+  <g transform="translate(205,162)"><circle r="24" fill="none" stroke="#FFC93C" stroke-width="12"/><path d="M-24 0 a24 24 0 0 1 24 -24" fill="none" stroke="#fff" stroke-width="12"/><path d="M24 0 a24 24 0 0 1 -24 24" fill="none" stroke="#fff" stroke-width="12"/></g>
+  <g transform="translate(705,184)"><circle r="20" fill="none" stroke="#E2593B" stroke-width="10"/><path d="M-20 0 a20 20 0 0 1 20 -20" fill="none" stroke="#fff" stroke-width="10"/><path d="M20 0 a20 20 0 0 1 -20 20" fill="none" stroke="#fff" stroke-width="10"/></g>
+  <g fill="#EAF9FD">
+    <circle cx="430" cy="134" r="7"/><circle cx="452" cy="120" r="5"/><circle cx="412" cy="118" r="4"/><circle cx="396" cy="132" r="3.5"/>
+  </g>
+</svg>
+
+<div class="hosted ">With love from Anson's family 💙</div>
+</body>
+</html>
