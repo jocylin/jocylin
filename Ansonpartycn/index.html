@@ -17,9 +17,13 @@
 *{margin:0;padding:0;box-sizing:border-box}
 .zhf{font-family:'PingFang SC','Microsoft YaHei',sans-serif;font-weight:700}
 html{min-height:100%;background:#EAF8FC}
-body{width:900px;height:1280px;margin:0 auto;overflow:hidden;position:relative;
-  background:linear-gradient(180deg,#FFE9B8 0%, #BFEAF5 26%, #8FD8EC 52%, #35B9DA 80%, #19AECE 100%);
+body{width:900px;min-height:100%;margin:0 auto;overflow-x:hidden;
   font-family:'Baloo 2','PingFang SC','Microsoft YaHei',sans-serif;color:var(--ink)}
+.cover-page{width:900px;line-height:0;background:#376FA6}
+.cover-page img{display:block;width:100%;height:auto}
+.invitation-page{width:900px;height:1280px;overflow:hidden;position:relative;
+  background:linear-gradient(180deg,#FFE9B8 0%, #BFEAF5 26%, #8FD8EC 52%, #35B9DA 80%, #19AECE 100%);
+}
 
 /* bunting flags */
 .bunting{position:absolute;top:0;left:0;width:900px;height:120px;z-index:5}
@@ -101,6 +105,13 @@ body{width:900px;height:1280px;margin:0 auto;overflow:hidden;position:relative;
 </head>
 <body>
 
+<section class="cover-page" aria-label="Anson 四岁生日邀请函">
+  <img src="./anson-birthday-invitation.jpg"
+    alt="Anson 四岁生日邀请函：8 月 15 日上午 11 时，深圳玛雅水上公园"
+    width="1280" height="907" loading="eager" fetchpriority="high" decoding="async">
+</section>
+
+<section class="invitation-page" aria-label="Anson 四岁生日派对详情">
 <div class="sun"></div>
 <svg class="bunting" viewBox="0 0 900 120">
   <path d="M-10 6 Q450 96 910 6" fill="none" stroke="#0A6E97" stroke-width="4"/>
@@ -260,5 +271,6 @@ body{width:900px;height:1280px;margin:0 auto;overflow:hidden;position:relative;
 </svg>
 
 <div class="hosted zhf">Anson 一家诚挚邀请 💙</div>
+</section>
 </body>
 </html>
