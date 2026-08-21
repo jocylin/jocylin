@@ -1,0 +1,1453 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#17152f">
+  <meta name="description" content="把 Ethereum 作为一套结算网络拆账：协议收费、验证者收入、L2 单位经济、ETH 价值捕获与估值边界。">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="以太坊的商业模式：完整现金流、收入与 ETH 价值捕获">
+  <meta property="og:description" content="生态价值很大，不等于 ETH 自动捕获价值。一份逐层去重的 Ethereum economics 研究报告。">
+  <meta property="og:url" content="https://jocylin.pages.dev/ethvalue/">
+  <title>以太坊的商业模式｜ETH Value Capture</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#report">跳到正文</a>
+
+  <div class="layout">
+    <aside class="rail" aria-label="报告目录">
+      <a class="brand" href="./" aria-label="返回报告顶部">
+        <span class="brand-mark" aria-hidden="true">Ξ</span>
+        <span>
+          <strong>ETH VALUE</strong>
+          <small>Protocol Economics</small>
+        </span>
+      </a>
+
+      <div class="rail-rule"></div>
+      <p class="rail-label">研究目录</p>
+      <button class="toc-toggle" id="toc-toggle" type="button" aria-expanded="false" aria-controls="toc-wrap">
+        展开目录 <span aria-hidden="true">↓</span>
+      </button>
+      <div class="toc-wrap" id="toc-wrap">
+        <nav id="TOC" role="doc-toc">
+          <ul>
+          <li><a href="#一结论先行"
+          id="toc-一结论先行">一、结论先行</a></li>
+          <li><a href="#二ethereum-的商业模式画布"
+          id="toc-二ethereum-的商业模式画布">二、Ethereum
+          的商业模式画布</a></li>
+          <li><a href="#三一张完整现金流地图"
+          id="toc-三一张完整现金流地图">三、一张完整现金流地图</a></li>
+          <li><a href="#四所有重要现金流的会计归属"
+          id="toc-四所有重要现金流的会计归属">四、所有重要现金流的会计归属</a></li>
+          <li><a href="#五四本账谁真正赚钱"
+          id="toc-五四本账谁真正赚钱">五、四本账：谁真正赚钱？</a></li>
+          <li><a href="#六截至-2026-08-21-的经营仪表盘"
+          id="toc-六截至-2026-08-21-的经营仪表盘">六、截至 2026-08-21
+          的经营仪表盘</a></li>
+          <li><a href="#七从采用到-eth-价值哪里能捕获哪里会漏掉"
+          id="toc-七从采用到-eth-价值哪里能捕获哪里会漏掉">七、从采用到
+          ETH 价值：哪里能捕获，哪里会漏掉？</a></li>
+          <li><a href="#八价值框架与反向门槛这不是目标价"
+          id="toc-八价值框架与反向门槛这不是目标价">八、价值框架与反向门槛：这不是目标价</a></li>
+          <li><a href="#九bull--base--bear真正需要押注什么"
+          id="toc-九bull--base--bear真正需要押注什么">九、Bull / Base /
+          Bear：真正需要押注什么</a></li>
+          <li><a href="#十主要风险与可证伪条件"
+          id="toc-十主要风险与可证伪条件">十、主要风险与可证伪条件</a></li>
+          <li><a href="#十一每月应追踪的-10-个指标"
+          id="toc-十一每月应追踪的-10-个指标">十一、每月应追踪的 10
+          个指标</a></li>
+          <li><a href="#十二最终研究判断"
+          id="toc-十二最终研究判断">十二、最终研究判断</a></li>
+          <li><a href="#附录-a核心公式与防重复规则"
+          id="toc-附录-a核心公式与防重复规则">附录
+          A：核心公式与防重复规则</a></li>
+          <li><a href="#附录-b数据口径与来源"
+          id="toc-附录-b数据口径与来源">附录 B：数据口径与来源</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="rail-actions">
+        <a href="./ethereum-business-model.md" download>下载 Markdown <span aria-hidden="true">↗</span></a>
+        <a href="./ethereum-business-model.md">查看纯文本 <span aria-hidden="true">→</span></a>
+      </div>
+    </aside>
+
+    <main id="report" tabindex="-1">
+      <header class="hero">
+        <p class="eyebrow">ETHEREUM · BUSINESS MODEL · 2026</p>
+        <h1>以太坊的商业模式</h1>
+        <p class="deck">完整现金流、收入与 ETH 价值捕获</p>
+        <p class="thesis">生态价值很大，不等于 ETH 自动捕获价值。关键是把协议、验证者、L2、应用与持有人分开记账。</p>
+        <div class="meta-grid" aria-label="报告元数据">
+          <div><span>DATA AS OF</span><strong>2026.08.21 · HKT</strong></div>
+          <div><span>METHOD</span><strong>Cash-flow attribution</strong></div>
+          <div><span>READING TIME</span><strong>约 28 分钟</strong></div>
+        </div>
+      </header>
+
+      <article class="content">
+        <blockquote>
+        <p><strong>研究日期：2026-08-21（HKT）</strong><br />
+        <strong>数据快照：约 11:52 HKT；金额默认 USD</strong><br />
+        <strong>研究目的：</strong> 回答三个问题——Ethereum
+        到底卖什么、钱最终去了哪里、生态成功如何（或为何不能）转化成 ETH
+        价值。<br />
+        <strong>重要口径：</strong> Ethereum 不是公司，ETH
+        不是股票。本报告分别核算协议、验证者、L2、应用与 ETH
+        持有者，避免把同一笔钱重复记为“收入”。</p>
+        </blockquote>
+        <hr />
+        <h2 id="一结论先行">一、结论先行</h2>
+        <h3 id="1-ethereum-的商业本质">1. Ethereum 的商业本质</h3>
+        <p>Ethereum
+        是一个开放的数字结算经济体，出售四种相互绑定的服务：</p>
+        <ol type="1">
+        <li><strong>Execution /
+        blockspace</strong>：执行交易与智能合约；</li>
+        <li><strong>Ordering</strong>：交易排序和确定性 inclusion；</li>
+        <li><strong>Data availability</strong>：向 rollup 出售
+        blobspace；</li>
+        <li><strong>Settlement + finality</strong>：以 PoS
+        抵押资本为状态和资产提供最终结算。</li>
+        </ol>
+        <p>它更像一个<strong>不留公司利润、把一部分收费直接销毁、再用新发行购买安全的数字经济体</strong>，而不是传统收费公路公司。</p>
+        <h3 id="2-ethereum-收入至少有四种不同口径">2. “Ethereum
+        收入”至少有四种不同口径</h3>
+        <table>
+        <thead>
+        <tr>
+        <th>口径</th>
+        <th>2026-08-21 应如何定义</th>
+        <th>谁真正受益</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><strong>用户总网络费</strong></td>
+        <td>execution base fee + priority fee + blob fee</td>
+        <td>burn + 验证者/区块生产链</td>
+        </tr>
+        <tr>
+        <td><strong>严格协议现金收入</strong></td>
+        <td>协议 treasury 实际收到并可支配的现金</td>
+        <td><strong>约等于 0</strong>；base/blob fee
+        没有进入公司账户</td>
+        </tr>
+        <tr>
+        <td><strong>Supply-reduction proxy</strong></td>
+        <td>被销毁的 execution base fee + blob base fee；数据商常称
+        holder revenue</td>
+        <td>所有 ETH 持有人，表现为供给减少，而非现金分红</td>
+        </tr>
+        <tr>
+        <td><strong>Validator revenue</strong></td>
+        <td>共识层 rewards + self-build tips/direct MEV
+        <strong>或</strong> external builder payment</td>
+        <td>承担质押、运维、流动性及 slashing 风险的验证者</td>
+        </tr>
+        </tbody>
+        </table>
+        <p><strong>因此，“Ethereum
+        年收入多少”没有先定义口径，就不是一个完整问题。</strong></p>
+        <h3
+        id="3-当前最重要的事实生态价值很大但-eth-的-fee-capture-很薄">3.
+        当前最重要的事实：生态价值很大，但 ETH 的 fee capture 很薄</h3>
+        <p>[事实] 过去 30 个完整 UTC 日，Ethereum L1 用户支付约
+        <strong>$8.167M</strong> 网络费；DeFiLlama 估算其中约
+        <strong>$1.974M</strong> 被销毁，差额 <strong>$6.193M</strong>
+        是 priority-fee residual，而非审计级 validator revenue；链下 MEV
+        另计。过去 365 日，网络费约 <strong>$230.1M</strong>、burn
+        estimate 约 <strong>$78.0M</strong>。<a
+        href="https://api.llama.fi/summary/fees/ethereum?dataType=dailyFees">DeFiLlama
+        fees</a> / <a
+        href="https://api.llama.fi/summary/fees/ethereum?dataType=dailyRevenue">revenue</a></p>
+        <p>[事实] Ultrasound.money 的 rolling 30 日年化口径为：扣除
+        penalties 后的共识层净发行（net CL issuance）约 <strong>1.060M
+        ETH/年</strong>、fee burn <strong>13.12K
+        ETH/年</strong>、净供给增加约 <strong>1.047M
+        ETH/年</strong>，供应增速 <strong>+0.8586%/年</strong>。当前 net
+        CL issuance 约为 burn 的 <strong>80.85 倍</strong>。<a
+        href="https://ultrasound.money/api/v2/fees/gauge-rates">Gauge
+        rates</a></p>
+        <p>[判断] 这意味着当前 ETH 价格无法靠 fee burn
+        的“类股票现金流”解释。ETH 约 <strong>$284B</strong>
+        的市值主要依赖：</p>
+        <ul>
+        <li>货币与储备溢价；</li>
+        <li>结算、抵押与安全资本需求；</li>
+        <li>流动性、标准与 credible neutrality 的网络效应；</li>
+        <li>未来区块空间重新稀缺的期权价值。</li>
+        </ul>
+        <h3 id="4-l2-成功不自动等于-eth-成功">4. L2 成功不自动等于 ETH
+        成功</h3>
+        <p>[事实] Growthepie 的 2026-07-21 至 08-19
+        可复现窗口中，严格选取 fees、rent、txcount 三条序列均完整的 23
+        条 Ethereum L2 后，用户付费约 <strong>$6.129M</strong>，向 L1
+        支付的 gross rent 约 <strong>$50.75K</strong>，即
+        <strong>observed gross L1 rent ratio 约 0.828%</strong>。余下约
+        99.17% 不是净利润，而是 L2 在支付
+        prover、sequencer、节点、alt-DA、激励、返利等成本前未支付给 L1
+        的 gross spread。<a
+        href="https://api.growthepie.com/v1/export/fees.json">Fees</a> /
+        <a
+        href="https://api.growthepie.com/v1/export/rent_paid.json">rent</a></p>
+        <p>[判断] 当前商业模式对用户、L2
+        sequencer、应用和验证者更友好，对被动 ETH 持有人的直接 fee
+        capture 较弱。<strong>多头必须证明的是“生态使用量增长 → ETH
+        需求或 burn 增长”的桥，而不是只展示 TPS、TVL
+        或稳定币规模。</strong></p>
+        <hr />
+        <h2 id="二ethereum-的商业模式画布">二、Ethereum
+        的商业模式画布</h2>
+        <table>
+        <thead>
+        <tr>
+        <th>维度</th>
+        <th>内容</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><strong>产品</strong></td>
+        <td>L1 execution、交易排序、blob
+        DA、状态结算、finality、抗审查与可退出性</td>
+        </tr>
+        <tr>
+        <td><strong>客户</strong></td>
+        <td>L1 用户与应用；L2/rollup operator
+        是最重要的批发客户；机构、稳定币与 RWA 发行方是间接客户</td>
+        </tr>
+        <tr>
+        <td><strong>计价/支付资产</strong></td>
+        <td>ETH。账户抽象或 paymaster 可以遮蔽用户感知，但最终协议 payer
+        仍需支付 ETH</td>
+        </tr>
+        <tr>
+        <td><strong>定价方式</strong></td>
+        <td>execution gas 与 blob gas 两个动态市场；base fee
+        随拥堵调整，priority fee 争取排序</td>
+        </tr>
+        <tr>
+        <td><strong>供应商</strong></td>
+        <td>validators、full
+        nodes、builders、searchers、relays、客户端与核心开发者</td>
+        </tr>
+        <tr>
+        <td><strong>资本</strong></td>
+        <td>质押 ETH
+        是可罚没的安全抵押；硬件、带宽、运维是实际资源成本</td>
+        </tr>
+        <tr>
+        <td><strong>收入分配</strong></td>
+        <td>execution/blob base fee 销毁；priority fee 与 proposer MEV
+        给区块生产链；发行给验证者</td>
+        </tr>
+        <tr>
+        <td><strong>治理目标</strong></td>
+        <td>链下多方协调，不以股东利润最大化为唯一目标；ETH
+        数量不是公司式投票权，<a
+        href="https://ethereum.org/governance/">官方治理说明</a></td>
+        </tr>
+        <tr>
+        <td><strong>护城河</strong></td>
+        <td>安全、流动性、EVM 标准、应用/资产网络、credible
+        neutrality、长期可验证与退出</td>
+        </tr>
+        </tbody>
+        </table>
+        <p>核心矛盾是：</p>
+        <blockquote>
+        <p><strong>Ethereum 需要把区块空间做得足够便宜以扩大采用，但 ETH
+        持有人又需要付费需求最终超过容量扩张，才能形成持续
+        burn。</strong></p>
+        </blockquote>
+        <p>收入恒等式仍然是：</p>
+        <p><strong>协议收费 = 单位价格 × 付费使用量。</strong></p>
+        <p>TPS
+        增长只代表数量；如果扩容令单位价格下降更快，总收费仍会下跌。</p>
+        <hr />
+        <h2 id="三一张完整现金流地图">三、一张完整现金流地图</h2>
+        <h3 id="1-总览">1. 总览</h3>
+        <pre><code>L1 用户
+  ├─ 转账/交易本金 ─────────────→ 交易对手、合约或桥（不是收入）
+  ├─ 应用费 ───────────────────→ LP、lender、应用 treasury、issuer（不是 L1 收入）
+  ├─ execution base fee ───────→ 销毁（全体 ETH 的供给价值捕获）
+  ├─ priority fee ─────────────→ proposer / pool / builder 经济链
+  └─ MEV 损失或 side payment ─→ searcher → builder → proposer，分配取决于订单流结构
+
+L2 用户
+  ├─ L2 execution / operator fee → sequencer / L2 fee vault
+  ├─ L2 MEV ───────────────────→ sequencer、searcher、builder 或用户返利
+  └─ 分摊的 L1 DA/settlement ──→ L1 execution/blob fee
+                                     ├─ base/blob fee → 销毁
+                                     └─ priority fee → L1 proposer
+
+Ethereum 协议
+  └─ 共识层新发行 ETH ─────────→ validators（安全预算；对全体持有人是稀释性分配）
+
+Validators
+  ├─ 运维/硬件/带宽/托管/池费 ─→ 服务商
+  └─ penalty/slashing ─────────→ 部分无对手方扣减，部分奖励举报者/提议者</code></pre>
+        <h3 id="2-l1-用户的一笔交易">2. L1 用户的一笔交易</h3>
+        <p>用户总经济支出：</p>
+        <p><strong>User outflow = principal + app fee + execution fee +
+        explicit side payment / MEV loss</strong></p>
+        <p>其中：</p>
+        <ul>
+        <li><strong>Principal</strong>：转账本金、swap input、bridge
+        deposit、抵押物，只是资产转移；</li>
+        <li><strong>App fee</strong>：DEX fee、借贷 spread、NFT
+        royalty、bridge fee，属于应用、LP、lender 或发行人；</li>
+        <li><strong>Execution fee</strong>：base fee + priority
+        fee；</li>
+        <li><strong>MEV loss</strong>：例如
+        sandwich、抢跑或清算相关价值转移，不一定体现在标准 gas
+        fee。</li>
+        </ul>
+        <p>EIP-1559 下：</p>
+        <p><strong>Execution fee = gas used × base fee + gas used ×
+        effective priority price</strong></p>
+        <ul>
+        <li>execution base fee 被销毁；</li>
+        <li>priority fee 给 execution payload 的 fee recipient；</li>
+        <li>max fee 只是上限，不是实际收费；</li>
+        <li>reverted transaction 的状态会回滚，但已消耗 gas
+        仍需支付。</li>
+        </ul>
+        <p>协议依据：<a
+        href="https://eips.ethereum.org/EIPS/eip-1559">EIP-1559</a> / <a
+        href="https://ethereum.org/developers/docs/gas/">Ethereum gas
+        文档</a></p>
+        <h3 id="3-l2-用户的一笔交易">3. L2 用户的一笔交易</h3>
+        <p>典型账单必须把网络费与应用费分开：</p>
+        <p><strong>L2 network fee = L2 execution/sequencing + allocated
+        L1 DA/settlement + proof cost allocation + operator markup/risk
+        buffer</strong></p>
+        <p><strong>Total L2 user outflow = principal + L2 network fee +
+        app fee + MEV loss</strong></p>
+        <p>L2 operator 的经济贡献：</p>
+        <p><strong>L2 contribution = observable L2 network fees +
+        separately observed non-overlapping MEV − L1 posting cost −
+        proof cost − sequencer/prover/node OPEX −
+        incentives/rebates</strong></p>
+        <p>Ethereum L1 只能捕获其中实际支付给 L1 的部分：</p>
+        <ol type="1">
+        <li>batch/proof/state update 交易的 execution base fee；</li>
+        <li>execution priority fee；</li>
+        <li>blob base fee；</li>
+        <li>其他明确支付给 L1 proposer 的排序价值。</li>
+        </ol>
+        <p>Growthepie 的 <code>fees_paid</code> 是用户支付的
+        <strong>network fee</strong>，不含 app fee；部分链的 network fee
+        可能已包含 Timeboost 等 inclusion-prioritization
+        revenue，因此不能再机械叠加 sequencer MEV。<strong>L2
+        用户总收费、L2 sequencer MEV 和 L2 operator fee 不能全部记成
+        Ethereum 收入。</strong></p>
+        <h3 id="4-blob--da-现金流">4. Blob / DA 现金流</h3>
+        <p>Blob 交易同时面对两个独立市场：</p>
+        <p><strong>Blob fee = blob gas × blob base fee</strong></p>
+        <p><strong>Type-3 transaction total L1 fee = blob fee + ordinary
+        execution base fee + ordinary execution priority
+        fee</strong></p>
+        <ul>
+        <li>blob base fee 全部销毁；</li>
+        <li>blob 没有独立 priority fee；</li>
+        <li>inclusion 激励来自普通 execution tip 或 builder/MEV
+        支付；</li>
+        <li>blob fee 与 execution fee 都是 L2 posting cost
+        的组成，不应再和 L1 总费重复相加。</li>
+        </ul>
+        <p>协议依据：<a
+        href="https://eips.ethereum.org/EIPS/eip-4844">EIP-4844</a>。Fusaka
+        的 PeerDAS/BPO 扩大了 blob 供给，<a
+        href="https://eips.ethereum.org/EIPS/eip-7918">EIP-7918</a> 则给
+        blob 价格增加与 execution cost 相关的 reserve
+        mechanism；它防止价格信号完全塌缩，但不保证高额垄断租金。</p>
+        <h3 id="5-mev--builder-现金流">5. MEV / builder 现金流</h3>
+        <p>MEV 是排序权产生的经济租，不是协议正式开出的统一账单：</p>
+        <p><strong>Searcher profit = gross opportunity − gas − builder
+        payment − failed transaction cost − infrastructure</strong></p>
+        <p><strong>Builder profit = 去重后的 execution-payload value −
+        proposer bid − infrastructure</strong></p>
+        <p>其中 execution-payload value 可能来自 tips、searcher order
+        flow 与 builder 自有 MEV；这些来源会互相重叠，不能机械相加。</p>
+        <p>对 proposer：</p>
+        <ul>
+        <li>本地建块时，收入可表现为 tips + 直接 MEV；</li>
+        <li>使用外部 builder 时，winning builder bid 往往已包含
+        tips、searcher bids 与 builder 自有 MEV。</li>
+        </ul>
+        <p><strong>不能再把 payload tips 与 builder bid 机械相加，否则会
+        double count。</strong><br />
+        MEV 的真实分配还受到 private order
+        flow、返利和链下支付影响，公开链上数据无法完整还原。<a
+        href="https://ethereum.org/developers/docs/mev">Ethereum MEV
+        说明</a></p>
+        <hr />
+        <h2
+        id="四所有重要现金流的会计归属">四、所有重要现金流的会计归属</h2>
+        <table>
+        <thead>
+        <tr>
+        <th>事件</th>
+        <th>付款方</th>
+        <th>收款方/去向</th>
+        <th>应记在哪本账</th>
+        <th>对 ETH 的意义</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>L1 转账、swap、bridge 本金</td>
+        <td>用户</td>
+        <td>对手方/合约/桥</td>
+        <td>资产流量，不是收入</td>
+        <td>无直接供给影响</td>
+        </tr>
+        <tr>
+        <td>DEX、借贷、NFT、RWA 应用费</td>
+        <td>用户</td>
+        <td>LP、lender、应用、issuer、custodian</td>
+        <td>应用收入</td>
+        <td>只通过其产生的 gas 间接影响 ETH</td>
+        </tr>
+        <tr>
+        <td>Execution base fee</td>
+        <td>L1 用户/L2 poster</td>
+        <td>销毁</td>
+        <td>supply-reduction proxy</td>
+        <td>直接减少 ETH 供给</td>
+        </tr>
+        <tr>
+        <td>Priority fee</td>
+        <td>L1 用户/L2 poster</td>
+        <td>proposer / pool / builder 链</td>
+        <td>validator/区块生产收入</td>
+        <td>不减少供给，是现有 ETH 转移</td>
+        </tr>
+        <tr>
+        <td>Blob base fee</td>
+        <td>L2 poster</td>
+        <td>销毁</td>
+        <td>supply-reduction proxy</td>
+        <td>直接减少 ETH 供给</td>
+        </tr>
+        <tr>
+        <td>L2 execution/operator fee</td>
+        <td>L2 用户</td>
+        <td>sequencer / L2 vault</td>
+        <td>L2 收入</td>
+        <td>不自动进入 L1</td>
+        </tr>
+        <tr>
+        <td>L2 sequencer MEV</td>
+        <td>用户/套利机会</td>
+        <td>sequencer/searcher/builder</td>
+        <td>L2 排序经济</td>
+        <td>只有明确回流 L1 的部分与 ETH staker 有关</td>
+        </tr>
+        <tr>
+        <td>共识层发行</td>
+        <td>协议</td>
+        <td>validators</td>
+        <td>安全预算/validator 收入</td>
+        <td>增加供给，对未质押者构成稀释</td>
+        </tr>
+        <tr>
+        <td>Staking deposit</td>
+        <td>staker</td>
+        <td>staking system</td>
+        <td>资产锁定</td>
+        <td>不是收入，不减少总供给</td>
+        </tr>
+        <tr>
+        <td>Withdrawal</td>
+        <td>staking system</td>
+        <td>staker 地址</td>
+        <td>本金解锁/既有奖励兑现</td>
+        <td>不应在提现时再次计算发行</td>
+        </tr>
+        <tr>
+        <td>Penalty/slashing</td>
+        <td>validator</td>
+        <td>无对手方扣减及部分 reporter/proposer credit</td>
+        <td>安全惩罚</td>
+        <td>只有净无对手方扣减才减少供给</td>
+        </tr>
+        <tr>
+        <td>LST/pool commission</td>
+        <td>staker</td>
+        <td>staking provider</td>
+        <td>服务商收入</td>
+        <td>不是 Ethereum 协议收入</td>
+        </tr>
+        <tr>
+        <td>Restaking/AVS reward</td>
+        <td>AVS/外部协议</td>
+        <td>restaker/operator</td>
+        <td>外部服务收入</td>
+        <td>不是 Ethereum 收入，并引入额外风险</td>
+        </tr>
+        <tr>
+        <td>Stablecoin 储备利息</td>
+        <td>国债/银行资产</td>
+        <td>stablecoin issuer</td>
+        <td>发行人收入</td>
+        <td>Ethereum 只捕获相关链上 gas</td>
+        </tr>
+        <tr>
+        <td>RPC、wallet、custody、paymaster 费</td>
+        <td>用户/应用</td>
+        <td>服务商</td>
+        <td>生态服务收入</td>
+        <td>不是 L1 收入</td>
+        </tr>
+        <tr>
+        <td>Ethereum Foundation 捐赠/资产收益</td>
+        <td>捐赠者/资产</td>
+        <td>Foundation</td>
+        <td>独立组织资金</td>
+        <td>与协议 fee revenue 分开</td>
+        </tr>
+        </tbody>
+        </table>
+        <hr />
+        <h2 id="五四本账谁真正赚钱">五、四本账：谁真正赚钱？</h2>
+        <h3 id="a-protocol-ledger">A. Protocol ledger</h3>
+        <p>严格企业会计口径：</p>
+        <ul>
+        <li>retained fee revenue：<strong>约 0</strong></li>
+        <li>base/blob fees：直接销毁</li>
+        <li>没有向 ETH holder 承诺股息、清算权或 residual claim</li>
+        </ul>
+        <p>Token economics 口径：</p>
+        <ul>
+        <li>gross network fees = base burn + blob burn + priority
+        fees</li>
+        <li>supply-reduction proxy（数据商常称 holder revenue）= base
+        burn + blob burn</li>
+        <li>holder monetary accrual proxy = burn − net CL issuance = −
+        net supply change</li>
+        </ul>
+        <p>最后一项是供给变化代理，不是 GAAP
+        profit、现金分红或公司回购；没有 treasury asset、residual claim
+        或现金账户可领取。</p>
+        <h3 id="b-validator-pl">B. Validator P&amp;L</h3>
+        <p><strong>Validator operating income before OPEX = consensus
+        balance rewards − penalties + execution-payload proceeds +
+        service income</strong></p>
+        <p>其中 execution-payload proceeds 必须按区块二选一：</p>
+        <ul>
+        <li><strong>self-build</strong>：priority fees +
+        直接捕获且已去重的 MEV；</li>
+        <li><strong>external builder</strong>：builder payment；该
+        payment 通常已包含 payload tips 与 MEV，不能再加 priority
+        fees。</li>
+        </ul>
+        <p>减去：</p>
+        <ul>
+        <li>服务器、硬件折旧、电力、带宽、云、监控；</li>
+        <li>client / relay /地域冗余；</li>
+        <li>staking pool、custody、insurance、tax；</li>
+        <li>financing 与 32–2,048 ETH 工作资本的机会成本；</li>
+        <li>downtime、missed rewards、penalty 与 slashing
+        尾部损失。</li>
+        </ul>
+        <p>共识层 rewards 是验证者的名义收入，但对全体 ETH
+        持有人合并来看主要是内部稀释性转移。staking provider commission
+        通常只是从客户奖励中抽取的服务费，在 validator + staker
+        合并账中也要抵销。<a
+        href="https://ethereum.org/developers/docs/consensus-mechanisms/pos/rewards-and-penalties/">PoS
+        rewards and penalties</a></p>
+        <h3 id="c-l2-pl">C. L2 P&amp;L</h3>
+        <p><strong>L2 gross economics = observable network fees +
+        separately observed non-overlapping MEV − L1 rent −
+        prover/sequencer/node cost − incentives/rebates</strong></p>
+        <p>L1 rent 是 Ethereum 收入桥，但只是一项 COGS。L2
+        还能保留：</p>
+        <ul>
+        <li>L2 base fee；</li>
+        <li>priority fee；</li>
+        <li>operator fee；</li>
+        <li>sequencer spread；</li>
+        <li>在多数 centralized-sequencer 架构下主要停留于
+        L2、但份额无法可靠量化的排序经济；</li>
+        <li>wallet、bridge 与应用入口关系。</li>
+        </ul>
+        <p>所以 L2 既是 Ethereum
+        的客户，也是渠道商，更可能成为经济层面的竞争者。</p>
+        <h3 id="d-application--issuer-pl">D. Application / issuer
+        P&amp;L</h3>
+        <p>稳定币、DEX、借贷、RWA、NFT
+        与钱包可以建立很好的商业模式，但这些利润不属于 Ethereum：</p>
+        <ul>
+        <li>稳定币 issuer 赚 reserve yield；</li>
+        <li>DEX 的 fee 给 LP、协议或 front-end；</li>
+        <li>借贷利息给 lender、reserve 或协议；</li>
+        <li>RWA 管理、发行、托管费给对应机构；</li>
+        <li>Ethereum 只捕获它们为使用 L1/L2 settlement
+        实际支付的费用，以及由此形成的 ETH 货币/抵押需求。</li>
+        </ul>
+        <h3 id="e-可观察不可观察与外部补贴">E.
+        可观察、不可观察与外部补贴</h3>
+        <p>“协议 treasury 收入约 0”不等于网络运行成本约 0。Ethereum
+        的完整经济账还必须承认三层观测边界：</p>
+        <table>
+        <thead>
+        <tr>
+        <th>层级</th>
+        <th>当前能看到什么</th>
+        <th>不能据此推出什么</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><strong>直接可观察</strong></td>
+        <td>L1 gross fees、burn estimate、CL balance delta、L2 network
+        fees、gross L1 rent</td>
+        <td>不能直接推出 validator、L2 或 ETH holder 净利润</td>
+        </tr>
+        <tr>
+        <td><strong>部分可观察</strong></td>
+        <td>priority fees、部分 builder payments、staking
+        commission、公开 sequencer fee vault</td>
+        <td>private order flow、链下 builder payment、rebate、全量
+        MEV、validator/L2 OPEX 仍不完整</td>
+        </tr>
+        <tr>
+        <td><strong>协议外部资助</strong></td>
+        <td>EF/生态 grants、客户端团队、研究、公共
+        RPC/relay、无协议补偿的 full nodes</td>
+        <td>这些成本不是 protocol P&amp;L 的 0，却也不能凭公开 dashboard
+        汇总为一张审计级损益表</td>
+        </tr>
+        </tbody>
+        </table>
+        <p>因此，本报告所称“完整现金流”是<strong>归属框架完整</strong>，不是声称每条链下现金流都已被精确量化。无法观察的部分明确留空，不用残差伪装成利润。</p>
+        <hr />
+        <h2 id="六截至-2026-08-21-的经营仪表盘">六、截至 2026-08-21
+        的经营仪表盘</h2>
+        <h3 id="1-资产与安全资本">1. 资产与安全资本</h3>
+        <table>
+        <thead>
+        <tr>
+        <th>指标</th>
+        <th style="text-align: right;">当前值</th>
+        <th>说明/来源</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>ETH 价格</td>
+        <td style="text-align: right;"><strong>$2,346.20</strong></td>
+        <td>2026-08-21 11:58 HKT，<a
+        href="https://api.coingecko.com/api/v3/coins/ethereum?localization=false&amp;tickers=false&amp;market_data=true&amp;community_data=false&amp;developer_data=false&amp;sparkline=false">CoinGecko</a></td>
+        </tr>
+        <tr>
+        <td>数据商市值</td>
+        <td style="text-align: right;"><strong>$283.17B</strong></td>
+        <td>CoinGecko；按其 120.682M circulating supply 计算</td>
+        </tr>
+        <tr>
+        <td>协议状态供应量</td>
+        <td style="text-align: right;"><strong>121.971M
+        ETH</strong></td>
+        <td><a
+        href="https://ultrasound.money/api/v2/fees/supply-over-time">Ultrasound.money
+        supply series</a>；同价隐含 network value 约
+        $286.17B，不与数据商口径静默混用</td>
+        </tr>
+        <tr>
+        <td>有效质押余额</td>
+        <td style="text-align: right;"><strong>42.324M ETH</strong></td>
+        <td><a
+        href="https://launchpad.ethereum.org/.netlify/functions/beaconchain-api?path=epoch%2Flatest&amp;url=https%3A%2F%2Fmainnet.beaconcha.in">Beaconcha.in
+        proxy</a> 与 <a
+        href="https://ultrasound.money/api/v2/fees/effective-balance-sum">Ultrasound.money</a>
+        基本一致</td>
+        </tr>
+        <tr>
+        <td>有效质押占比</td>
+        <td style="text-align: right;"><strong>34.700%</strong></td>
+        <td>以 121.971M 协议状态供应量为分母</td>
+        </tr>
+        <tr>
+        <td>Validator indices</td>
+        <td style="text-align: right;"><strong>901,918</strong></td>
+        <td>近实时 epoch 快照；Pectra 后 validator index 不再等于固定 32
+        ETH</td>
+        </tr>
+        <tr>
+        <td>31 日平均 staking APR</td>
+        <td style="text-align: right;"><strong>2.6348%</strong></td>
+        <td>CL 2.5377% + EL 0.0972%；最近完整 Beacon 日为
+        2.8343%，不等于无风险收益，<a
+        href="https://launchpad.ethereum.org/.netlify/functions/beaconchain-api?path=ethstore%2Flatest&amp;url=https%3A%2F%2Fmainnet.beaconcha.in">Launchpad
+        ethstore</a></td>
+        </tr>
+        </tbody>
+        </table>
+        <h3 id="2-l1-网络费与价值分配">2. L1 网络费与价值分配</h3>
+        <p>以下均为截至 2026-08-20 UTC
+        的完整自然日窗口，而非截至抓取秒的 rolling window：</p>
+        <table>
+        <thead>
+        <tr>
+        <th>窗口</th>
+        <th style="text-align: right;">用户总网络费</th>
+        <th style="text-align: right;">Base/blob burn estimate</th>
+        <th style="text-align: right;">Priority-fee residual</th>
+        <th style="text-align: right;">Burn 占总费</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>30 日</td>
+        <td style="text-align: right;"><strong>$8.167M</strong></td>
+        <td style="text-align: right;"><strong>$1.974M</strong></td>
+        <td style="text-align: right;"><strong>$6.193M</strong></td>
+        <td style="text-align: right;"><strong>24.2%</strong></td>
+        </tr>
+        <tr>
+        <td>90 日</td>
+        <td style="text-align: right;"><strong>$26.747M</strong></td>
+        <td style="text-align: right;"><strong>$6.781M</strong></td>
+        <td style="text-align: right;"><strong>$19.967M</strong></td>
+        <td style="text-align: right;"><strong>25.4%</strong></td>
+        </tr>
+        <tr>
+        <td>365 日</td>
+        <td style="text-align: right;"><strong>$230.050M</strong></td>
+        <td style="text-align: right;"><strong>$77.974M</strong></td>
+        <td style="text-align: right;"><strong>$152.076M</strong></td>
+        <td style="text-align: right;"><strong>33.9%</strong></td>
+        </tr>
+        </tbody>
+        </table>
+        <p>来源：<a
+        href="https://github.com/DefiLlama/dimension-adapters/blob/master/fees/ethereum">DeFiLlama
+        Ethereum fee adapter</a>。该 adapter 以区块内最低
+        <code>effective_gas_price</code> 近似 execution base
+        fee，而不是逐区块直接读取审计级 base-fee 序列；因此 burn
+        是估算，<code>gross fee − burn</code> 只是 priority-fee
+        residual。若区块没有零 tip 交易，burn 可能被高估、residual
+        被低估；链下 MEV 也未包含。</p>
+        <p>同一 2026-07-22 至 08-20 UTC 窗口，Etherscan 记录约
+        <strong>69.18M</strong> 笔 L1 交易，gross network fee 粗略平均约
+        <strong>$0.118/tx</strong>。<a
+        href="https://etherscan.io/chart/tx?output=csv">Etherscan tx
+        CSV</a>
+        这只是混合交易类型的平均数，不代表复杂合约调用的边际成本。</p>
+        <h3 id="3-货币政策">3. 货币政策</h3>
+        <table>
+        <thead>
+        <tr>
+        <th>指标</th>
+        <th style="text-align: right;">30 日年化 run-rate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Net CL issuance（已扣 penalties）</td>
+        <td style="text-align: right;"><strong>1,060,369
+        ETH/年</strong></td>
+        </tr>
+        <tr>
+        <td>Base/blob burn</td>
+        <td style="text-align: right;"><strong>13,116
+        ETH/年</strong></td>
+        </tr>
+        <tr>
+        <td>Net supply change</td>
+        <td style="text-align: right;"><strong>+1,047,254
+        ETH/年</strong></td>
+        </tr>
+        <tr>
+        <td>Supply growth</td>
+        <td style="text-align: right;"><strong>+0.8586%/年</strong></td>
+        </tr>
+        <tr>
+        <td>Net CL issuance / burn</td>
+        <td style="text-align: right;"><strong>80.85×</strong></td>
+        </tr>
+        </tbody>
+        </table>
+        <p>按当前 $2,346.20 标记：</p>
+        <ul>
+        <li>年化 net CL issuance 约 <strong>$2.488B</strong>；</li>
+        <li>年化 burn 约 <strong>$30.77M</strong>；</li>
+        <li>年化 net supply increase 约 <strong>$2.457B</strong>。</li>
+        </ul>
+        <p>Ultrasound 对 rolling 30 日 burn 按每日价格路径计值后年化约
+        <strong>$25.37M</strong>；DeFiLlama adapter 的 burn estimate
+        年化约 <strong>$24.02M</strong>；两者又都不同于用当前 spot price
+        重估 ETH run-rate 得出的 <strong>$30.77M</strong>。差异来自 burn
+        估算方法与价格路径，三者不可混作同一口径。</p>
+        <p><strong>结论：当前不是净通缩状态。</strong> “ETH
+        永远通缩”并不是协议保证，而是 fee demand 与 issuance
+        的动态结果。</p>
+        <h3 id="4-l2-单位经济">4. L2 单位经济</h3>
+        <p>在截至 2026-08-19 的 30
+        日完整窗口，严格取三条指标序列均完整的 23 条 L2：</p>
+        <table>
+        <thead>
+        <tr>
+        <th>指标</th>
+        <th style="text-align: right;">数值</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>跟踪 L2 交易数</td>
+        <td style="text-align: right;"><strong>772.1M</strong></td>
+        </tr>
+        <tr>
+        <td>L2 用户费</td>
+        <td style="text-align: right;"><strong>$6.129M</strong></td>
+        </tr>
+        <tr>
+        <td>支付给 L1 的 rent</td>
+        <td style="text-align: right;"><strong>$50.75K</strong></td>
+        </tr>
+        <tr>
+        <td>Observed gross L1 rent ratio</td>
+        <td style="text-align: right;"><strong>0.828%</strong></td>
+        </tr>
+        <tr>
+        <td>平均 L2 用户费</td>
+        <td style="text-align: right;"><strong>$0.00794/tx</strong></td>
+        </tr>
+        <tr>
+        <td>平均 L1 rent</td>
+        <td
+        style="text-align: right;"><strong>$0.000066/tx</strong></td>
+        </tr>
+        <tr>
+        <td>2026-08-19 L2/L1 交易数</td>
+        <td style="text-align: right;"><strong>11.85×</strong></td>
+        </tr>
+        </tbody>
+        </table>
+        <p>来源：<a
+        href="https://api.growthepie.com/v1/export/txcount.json">Growthepie
+        tx count</a>、<a
+        href="https://api.growthepie.com/v1/export/fees.json">fees</a>、<a
+        href="https://api.growthepie.com/v1/export/rent_paid.json">rent</a>。排除
+        Ethereum mainnet、Polygon PoS、fee 序列缺失的 Fraxtal，以及 rent
+        序列停在 2026-06-12 的 zkSync Era。Robinhood 与 Base 合计占
+        matched fees
+        <strong>86.53%</strong>，所以该比率也受链组合影响；11.85× 的当日
+        L2/L1 交易数只用于 activity 比较，采用 Growthepie
+        全跟踪集合，不与上述 23 链单位经济分母混用。</p>
+        <p>这说明 rollup 扩容在用户体验上成功，但当前 <strong>observed
+        gross L1 rent / observed L2 network fee</strong>
+        很低。它不是协议设定的 revenue share，也不是被动 ETH holder
+        capture：$50.75K 还要拆成 burn 与 proposer proceeds，且 L1 rent
+        已包含在 L1 总网络费内，不能再与 $8.167M 相加。</p>
+        <h3 id="5-生态需求指标规模很大但不是收入">5.
+        生态需求指标：规模很大，但不是收入</h3>
+        <table>
+        <thead>
+        <tr>
+        <th>指标</th>
+        <th style="text-align: right;">当前/最近完整窗口</th>
+        <th>ETH 价值含义</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>Ethereum L1 USD stablecoins</td>
+        <td style="text-align: right;"><strong>$146.94B</strong></td>
+        <td>强结算/流动性网络，但 issuer 的国债利息不归 ETH，<a
+        href="https://stablecoins.llama.fi/stablecoinchains">DefiLlama</a></td>
+        </tr>
+        <tr>
+        <td>Ethereum DeFi TVL</td>
+        <td style="text-align: right;"><strong>约 $47.35B</strong></td>
+        <td>抵押与流动性需求；TVL 不是协议资产或收入，<a
+        href="https://api.llama.fi/v2/chains">DefiLlama chains</a></td>
+        </tr>
+        <tr>
+        <td>Ethereum DEX volume，30 日</td>
+        <td style="text-align: right;"><strong>$26.23B</strong></td>
+        <td>代表应用活动；不能与 gas fee 相加，<a
+        href="https://api.llama.fi/overview/dexs/ethereum?excludeTotalDataChart=false&amp;excludeTotalDataChartBreakdown=true&amp;dataType=dailyVolume">DefiLlama
+        DEX</a></td>
+        </tr>
+        <tr>
+        <td>L2 value secured</td>
+        <td style="text-align: right;"><strong>$29.36B</strong></td>
+        <td>22 个 rollups + 6 个 validiums/optimiums；Ethereum
+        作为结算/安全锚的需求指标，<a
+        href="https://l2beat.com/layer2s/tvs?tab=rollups">L2BEAT</a></td>
+        </tr>
+        <tr>
+        <td>L2 对 blob 数据占比，rolling 1Y</td>
+        <td style="text-align: right;"><strong>97.37%</strong></td>
+        <td>Rollup 是 blobspace 核心客户；不代表 blob rent 已经很高，<a
+        href="https://l2beat.com/data-availability/throughput">L2BEAT</a></td>
+        </tr>
+        </tbody>
+        </table>
+        <p>数据源在 stablecoin、TVL 与 supply
+        的资产覆盖、桥接及重复计算方法上并不完全一致。本报告只在同一数据源内部做趋势和比例，不把不同
+        endpoint 伪装成单一会计真值。</p>
+        <hr />
+        <h2 id="七从采用到-eth-价值哪里能捕获哪里会漏掉">七、从采用到
+        ETH 价值：哪里能捕获，哪里会漏掉？</h2>
+        <table>
+        <thead>
+        <tr>
+        <th>活动</th>
+        <th>创造的价值</th>
+        <th>主要经济捕获者</th>
+        <th>ETH 能捕获什么</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>L1 transfer/contract call</td>
+        <td>即时执行、结算、可组合性</td>
+        <td>validators/builders + 全体 holders</td>
+        <td>base burn、tips、MEV</td>
+        </tr>
+        <tr>
+        <td>Stablecoin</td>
+        <td>美元结算与全球流动性</td>
+        <td>issuer、银行/国债资产、支付渠道</td>
+        <td>gas、抵押/流动性需求、网络溢价</td>
+        </tr>
+        <tr>
+        <td>DEX/DeFi</td>
+        <td>交易、杠杆、借贷、清算</td>
+        <td>LP、lender、protocol、front-end、MEV 链</td>
+        <td>相关 gas burn/tips；ETH collateral demand</td>
+        </tr>
+        <tr>
+        <td>L2</td>
+        <td>低成本执行与规模化</td>
+        <td>sequencer、prover、L2 operator、apps</td>
+        <td>blob/execution rent、L1 finality、潜在 ETH 储备需求</td>
+        </tr>
+        <tr>
+        <td>RWA/tokenization</td>
+        <td>资产发行、登记、转让</td>
+        <td>issuer、manager、custodian、broker</td>
+        <td>gas、settlement 与可信中立溢价</td>
+        </tr>
+        <tr>
+        <td>Staking</td>
+        <td>网络安全与 finality</td>
+        <td>validators、pools、LST providers</td>
+        <td>ETH 作为可罚没资本；tips/builder payments 是 non-issuance
+        proposer proceeds</td>
+        </tr>
+        <tr>
+        <td>MEV</td>
+        <td>套利、清算、排序；也可能损害用户</td>
+        <td>searcher、builder、proposer、order-flow owner</td>
+        <td>proposer 收入；被动 holder 不直接获得 MEV</td>
+        </tr>
+        </tbody>
+        </table>
+        <h3 id="ethereumeth-的六条价值通道">Ethereum/ETH
+        的六条价值通道</h3>
+        <h4 id="1-fee-burn最机械最可验证">1. Fee
+        burn：最机械、最可验证</h4>
+        <p>L1 execution 与 blob 的 base fee 被销毁，直接减少
+        supply。它是最机械的 <strong>supply sink</strong>，但不是公司
+        buyback：</p>
+        <ul>
+        <li>不是现金 dividend；</li>
+        <li>没有公司利润账户；</li>
+        <li>若 issuance 更高，净货币收益仍为负；</li>
+        <li>扩容会压低单位价格，必须由更多付费需求补偿。</li>
+        </ul>
+        <h4 id="2-gas-与-working-capital">2. Gas 与 working capital</h4>
+        <p>所有 L1 协议级费用最终以 ETH 支付。Paymaster 可以让用户只看到
+        USDC，但幕后 payer 仍要持有/购买 ETH。</p>
+        <p>不过 gas 的货币需求取决于周转率：如果钱包、sequencer
+        与做市商高效管理库存，同样交易量只需很少 working balance。</p>
+        <h4 id="3-pos-collateral">3. PoS collateral</h4>
+        <p>ETH 是网络安全资本。质押需求锁定大量 ETH 并创造对 ETH
+        的结构性用途。</p>
+        <p>但锁定不等于销毁；LST
+        又会恢复流动性。因此估值不能把全部质押量直接当作永久供给减少。</p>
+        <h4 id="4-defil2-collateral-与-reserve-asset">4. DeFi/L2
+        collateral 与 reserve asset</h4>
+        <p>如果 ETH 是 DeFi、L2 treasury、bridge、stablecoin
+        与机构链上资产的默认
+        collateral/reserve，它可能获得货币溢价；这个通道可能主导价格，却最难量化，不能作为填补
+        fee 缺口的 residual plug。</p>
+        <h4 id="5-network-and-standards-premium">5. Network and
+        standards premium</h4>
+        <p>安全、流动性、EVM
+        tooling、资产与应用密度、长期中立性降低了迁移与协调成本。Ethereum
+        提供 canonical commitment、近期 DA 与 L1
+        finality；但长期状态恢复和退出保证仍取决于每个 L2
+        的数据保留、proof、bridge、upgrade keys 与 sequencer trust
+        model，不能一概而论。</p>
+        <h4 id="6-future-congestion-option">6. Future congestion
+        option</h4>
+        <p>当付费需求持续超过 execution/blob target，EIP-1559
+        会提高价格并增强 burn。持有 ETH
+        相当于持有对未来网络稀缺性的期权。</p>
+        <p>风险是 Ethereum 路线图持续扩容。若 capacity growth 长期快于
+        paid demand，这个期权不会兑现。</p>
+        <hr />
+        <h2
+        id="八价值框架与反向门槛这不是目标价">八、价值框架与反向门槛：这不是目标价</h2>
+        <p>当前 burn 以 ETH 计量；若先用当前 ETH
+        价格把它换成美元、再乘一个倍数反推 ETH
+        价值，会把待求价格重新当作输入，形成循环论证。因此本报告不把
+        burn 做成伪 DCF，也不输出 fair value 或 price target。</p>
+        <h3 id="1-supply-yield最硬的无价格口径">1. Supply
+        yield：最硬的无价格口径</h3>
+        <p>以 121.971M ETH 协议状态供应量为分母：</p>
+        <ul>
+        <li>gross burn yield = 13,116 / 121.971M =
+        <strong>0.01075%/年</strong>；</li>
+        <li>net CL issuance yield 约 <strong>0.8694%/年</strong>；</li>
+        <li>holder monetary accrual yield = burn − net CL issuance =
+        <strong>−0.8586%/年</strong>。</li>
+        </ul>
+        <p>要让供给仅仅达到净零，年化 burn 就须从约 13.1K ETH 升至
+        <strong>1.060M ETH</strong>，即当前的
+        <strong>80.85×</strong>。这是比“美元 burn ×
+        任意倍数”更有意义的第一道反向门槛。</p>
+        <p>仅作敏感性诊断：若有人坚持用 30× gross burn shortcut 去解释
+        CoinGecko 的 $283.17B 市值，隐含年 burn 约 <strong>$9.44B /
+        4.02M ETH / 协议供应量的 3.30%</strong>，约为当前 burn 的
+        <strong>307×</strong>。这不是 fair value——它没有增长率、折现率或
+        terminal assumption，只说明当前 fee regime
+        无法独立解释市场价格。</p>
+        <h3 id="2-staking-carry拆掉名义-apr-幻觉">2. Staking
+        carry：拆掉“名义 APR 幻觉”</h3>
+        <p>ETH.STORE 的 31 日平均 realized staking APR 约
+        <strong>2.635%</strong>，其中 CL 2.538%、可观察 EL priority-fee
+        component 0.097%。该口径不含完整 builder bids、direct MEV
+        或链下支付，因此不是 validator all-in return。扣除当前
+        <strong>0.8586%</strong>
+        的全网供应增长，质押者相对总供应的份额增速约：</p>
+        <p><strong>2.635% − 0.8586% = 1.78%</strong></p>
+        <p>这还没有扣：</p>
+        <ul>
+        <li>validator/pool OPEX；</li>
+        <li>slashing 与 smart-contract 风险；</li>
+        <li>流动性和退出风险；</li>
+        <li>ETH 本金波动；</li>
+        <li>税务与托管成本。</li>
+        </ul>
+        <p>质押者最直接的基准是<strong>持有未质押 ETH</strong>，因为
+        2.635% 是 ETH-denominated return。同期美国 3 个月国债收益率约
+        <strong>3.86%</strong>（2026-08-18），<a
+        href="https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS3MO">FRED
+        DGS3MO</a>，只能作为 USD 机会成本背景，不能与 staking APR
+        直接横比；若要比较 USD-hedged return，还必须扣掉
+        hedge/basis、融资、托管和税务成本。</p>
+        <p>更重要的是，staking 收益中：</p>
+        <ul>
+        <li>issuance 是持有人之间的再分配；</li>
+        <li>priority fee、builder payment 与 direct MEV 是 non-issuance
+        proposer proceeds，但在合并 ETH 经济体内仍可能只是
+        transactor/searcher 向 proposer
+        的价值转移，不自动等于外部现金流。</li>
+        </ul>
+        <h3 id="3-monetary-premium不是答案而是待证明的-residual">3.
+        Monetary premium：不是答案，而是待证明的 residual</h3>
+        <p>ETH 的价值通道可以画成一张 map，但不能机械相加成 SOTP：</p>
+        <ul>
+        <li><strong>fee supply sink</strong>：execution/blob burn；</li>
+        <li><strong>validator economics</strong>：CL
+        rewards、non-issuance proposer proceeds 减真实成本；</li>
+        <li><strong>monetary/collateral
+        demand</strong>：gas、储备、抵押、质押安全资本；</li>
+        <li><strong>platform option</strong>：未来 L1/L2
+        互操作、排序回流与更多付费需求。</li>
+        </ul>
+        <p>同一枚 ETH 可能同时出现在 TVL、LST、restaking、bridge 与
+        treasury 中；burn、staking 与 monetary premium
+        又相互作用，因此不能重复资本化。当前 fee supply yield
+        很低，市场价格显然主要在交易货币性、安全性、网络效应与未来稀缺性的预期；<strong>这个
+        residual
+        不是估值证据，恰恰是多头必须用未来数据证明的部分。</strong></p>
+        <p>所以 reverse diagnostic 应回答：未来 burn 何时追上 net CL
+        issuance？observed gross L1 rent ratio 能否改善？ETH
+        在抵押/储备中的去重份额能否维持？在这些变量没有可验证预测前，本报告只给价值捕获框架，不伪造单点估值。</p>
+        <h3 id="4-eth-最合适的资产分类">4. ETH 最合适的资产分类</h3>
+        <p>ETH 同时具有：</p>
+        <ul>
+        <li>商品：是购买 execution/DA/security 的生产投入；</li>
+        <li>货币：是原生 gas、结算与抵押资产；</li>
+        <li>资本资产：质押后参与生产并获得 fee/MEV；</li>
+        <li>供应机制：付费使用会消耗 ETH，但这只是 supply
+        sink，不是公司回购。</li>
+        </ul>
+        <p>但它没有：</p>
+        <ul>
+        <li>法定 residual claim；</li>
+        <li>董事会、清算权或股息承诺；</li>
+        <li>按持币比例进行协议治理的股东投票；</li>
+        <li>固定票息、到期日和面值赎回。</li>
+        </ul>
+        <p>因此最准确的简称是：</p>
+        <blockquote>
+        <p><strong>ETH 是具有 fee burn 与 productive staking
+        的货币商品，而不是 Ethereum 的股票。</strong></p>
+        </blockquote>
+        <hr />
+        <h2 id="九bull--base--bear真正需要押注什么">九、Bull / Base /
+        Bear：真正需要押注什么</h2>
+        <p>以下只是经营状态机，不是 price
+        target、概率加权估值或交易建议。数据不足以诚实地给出后者。</p>
+        <table>
+        <thead>
+        <tr>
+        <th>情景</th>
+        <th>经营路径</th>
+        <th>需要看到的指标</th>
+        <th>ETH 价值来源</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td><strong>Bear</strong></td>
+        <td>L2/应用增长，但单位 DA 与 execution 价格贴近
+        floor；sequencer、issuer、apps 保留经济价值</td>
+        <td>burn / net CL issuance 长期低于 10%；observed gross L1 rent
+        ratio 低于 1%；ETH collateral 份额下降</td>
+        <td>只剩有限安全/结算溢价，fee thesis 失效</td>
+        </tr>
+        <tr>
+        <td><strong>Base</strong></td>
+        <td>容量扩张继续压价，生态规模增长；ETH
+        保持主要安全与抵押资产</td>
+        <td>burn / net CL issuance 回升至 20–50%；stablecoin/RWA/L2
+        使用增长；ETH reserve share 稳定</td>
+        <td>主要靠 monetary premium，fee burn 是辅助</td>
+        </tr>
+        <tr>
+        <td><strong>Bull</strong></td>
+        <td>原生 blob 与 L1 blockspace 持续接近 target；Ethereum
+        成为全球中立结算与默认 collateral</td>
+        <td>burn ≥ net CL issuance；排序经济出现可验证回流；ETH
+        collateral 与 treasury adoption 上升</td>
+        <td>supply contraction + non-issuance proposer proceeds +
+        强货币溢价共同驱动</td>
+        </tr>
+        </tbody>
+        </table>
+        <h3 id="最强反方不是ethereum-会消失">最强反方，不是“Ethereum
+        会消失”</h3>
+        <p>最值得认真对待的空头论证是：</p>
+        <blockquote>
+        <p><strong>Ethereum 可以在技术上非常成功、承载大量
+        stablecoin/RWA/L2，却把经济利润留给 L2 sequencer、应用、发行人和
+        MEV 中间商；L1 只成为低价 DA/settlement 公共设施，ETH
+        则成为高周转率 gas token。</strong></p>
+        </blockquote>
+        <p>这正是为什么“生态繁荣”与“token value
+        capture”必须分两张表。</p>
+        <hr />
+        <h2 id="十主要风险与可证伪条件">十、主要风险与可证伪条件</h2>
+        <h3 id="1-scaling-paradox">1. Scaling paradox</h3>
+        <p>PeerDAS、BPO 和更高 gas limit 增加供给、改善 UX，却可能使单位
+        fee 与 burn 下降。规模战略只有在 paid demand 增长快于 capacity
+        时才兑现。</p>
+        <h3 id="2-l2-value-leakage">2. L2 value leakage</h3>
+        <p>L2 保留 execution fee、operator fee 与 customer
+        relationship；在多数 centralized-sequencer
+        架构下，排序经济主要停留于
+        L2，但公开数据无法可靠量化具体份额。当前 observed gross L1 rent
+        ratio 不到 1%；based/shared sequencing
+        能否形成可验证回流仍未证明。</p>
+        <h3 id="3-da-competition">3. DA competition</h3>
+        <p>Rollup 可以选择 Celestia、EigenDA、Avail 或 validium
+        模式，但切换会改变 DA 安全假设，项目也可能从 rollup 被重新归类为
+        validium/optimium/other，并非无成本替代。Ethereum 原生 DA
+        的安全溢价若不被市场付费，blobspace 会接近商品化。</p>
+        <h3 id="4-stablecoin-replaces-eth-as-money">4. Stablecoin
+        replaces ETH as money</h3>
+        <p>稳定币更适合计价和支付；gas abstraction 又降低终端用户持有
+        ETH 的需要。ETH 必须守住 collateral、reserve 与 security
+        capital，而不只是后台 gas。</p>
+        <h3 id="5-mev--staking-centralization">5. MEV / staking
+        centralization</h3>
+        <p>LST、staking pool、builder、private order flow
+        和云基础设施可能跨层集中，导致审查、单点故障与经济租外流。</p>
+        <h3 id="6-governanceholder-objective-mismatch">6.
+        Governance–holder objective mismatch</h3>
+        <p>Ethereum
+        治理优先可信中立、低费与公共基础设施并不错误，但这些目标不等于最大化
+        ETH holder cash flow。持有人也没有公司式权利阻止 fee routing 或
+        issuance 政策改变。</p>
+        <h3 id="7-securityregulatory-与-discount-rate-risk">7.
+        Security、regulatory 与 discount-rate risk</h3>
+        <p>客户端 bug、finality 事故、争议性 social
+        rollback、slashing、staking/稳定币监管与更高无风险利率，都会压缩货币和风险溢价。</p>
+        <h3 id="建议采用的-kill-conditions">建议采用的 Kill
+        Conditions</h3>
+        <p>以下是研究者设定的 operational
+        thresholds，并非协议事实；每项都写明当前 baseline 与 breach
+        rule：</p>
+        <ol type="1">
+        <li><strong>Burn coverage</strong>：当前 burn / net CL issuance
+        = <strong>1.237%</strong>；若同口径 trailing-12M 连续 12
+        个月低于 10%，同时 L2 tx 或 Ethereum stablecoin supply
+        同比增长超过 25%，判为采用未转化成供给捕获；</li>
+        <li><strong>Observed gross L1 rent</strong>：当前 23-chain
+        matched ratio = <strong>0.828%</strong>；若固定
+        cohort/字段后连续 8 个季度低于 1%，且无可验证 sequencing/MEV
+        回流，判为 L2 rent bridge 失效；</li>
+        <li><strong>原生 DA moat</strong>：当前 L2 blob bytes rolling-1Y
+        share = <strong>97.37%</strong>；若同一 L2 universe 连续 12
+        个月低于 50%，判为原生 DA 主导地位失效；</li>
+        <li><strong>货币性</strong>：目前没有可信、去重后的生态
+        collateral/reserve share baseline，故暂不启用“跌破
+        25%”这类伪精确 kill
+        condition；先建立资产集合、分母与去重规则；</li>
+        <li><strong>生产性收益</strong>：当前质押者供应份额增速约
+        1.78%、尚未扣成本；若扣 OPEX、流动性与 slashing 风险后相对未质押
+        ETH 的增量收益连续 12 个月为负，判为 staking economics
+        失效；</li>
+        <li><strong>稀缺性政策</strong>：当前 supply growth =
+        <strong>+0.8586%</strong>；若 rolling-24M 连续高于
+        1%，又没有可验证的 cost-of-corruption / value-at-risk
+        改善，判为安全预算未产生相称价值；</li>
+        <li><strong>可信中立</strong>：出现 finalized invalid
+        state、持续系统性审查，或必须依赖高度争议的 social rollback
+        才能恢复；</li>
+        <li><strong>先扩容后变现</strong>：以当前 BPO2 14/21 blob 参数为
+        baseline，未来 8 个季度 paid demand、burn coverage 与已定义的
+        ETH collateral share 均无改善。</li>
+        </ol>
+        <hr />
+        <h2 id="十一每月应追踪的-10-个指标">十一、每月应追踪的 10
+        个指标</h2>
+        <ol type="1">
+        <li>Execution base burn、blob burn 与 priority fees；</li>
+        <li>Burn / net CL issuance、net supply growth；</li>
+        <li>L1 gross fee / market cap 与 burn / market cap；</li>
+        <li>Blob target utilization、每 blob 平均价格、L2 rent；</li>
+        <li>Observed gross L1 rent ratio，并拆出 passive-holder
+        burn、validator proceeds 与可测 sequencing/MEV；</li>
+        <li>L1 与 L2 交易数、但同时看单位 fee，避免只看 TPS；</li>
+        <li>ETH 在 DeFi、L2 treasury、RWA/stablecoin collateral
+        中的去重份额；</li>
+        <li>Native Ethereum DA 与外部 DA 的数据字节份额；</li>
+        <li>Staking APR 的 issuance、tips、MEV、cost
+        拆分及验证者集中度；</li>
+        <li>Stablecoin、DEX、RWA、开发者和应用活动相对
+        Solana/其他结算层的份额。</li>
+        </ol>
+        <p>其中最关键的三个：</p>
+        <blockquote>
+        <p><strong>Observed gross L1 rent ratio、burn / net CL
+        issuance、ETH 的 collateral/reserve share。</strong></p>
+        </blockquote>
+        <hr />
+        <h2 id="十二最终研究判断">十二、最终研究判断</h2>
+        <ol type="1">
+        <li><strong>Ethereum 的“商业模式”成立。</strong>
+        它有真实客户、真实产品、真实收费、真实供应商和安全资本。</li>
+        <li><strong>但这不是公司商业模式。</strong>
+        协议不保留利润，收费在 burn、validators、builders 与 sequencers
+        之间分配。</li>
+        <li><strong>当前 fee capture 很弱。</strong> 30 日 run-rate
+        下，按 spot 标记的年化 burn 约 $30.77M，而数据商市值约
+        $283.17B；net CL issuance 约为 burn 的 80.85 倍。</li>
+        <li><strong>L2 是增长引擎，也是价值泄漏风险点。</strong> 当前
+        23-chain observed gross L1 rent ratio 约 0.828%，且其中还要拆
+        burn 与 proposer proceeds；L2 TPS 增长本身不构成 ETH
+        多头证据。</li>
+        <li><strong>ETH
+        的主要价值不是当前现金流，而是货币商品属性。</strong>
+        它必须继续成为 gas、staking collateral、DeFi/L2 reserve
+        和全球中立结算资产。</li>
+        <li><strong>真正的多头条件：</strong> 付费需求增长快于
+        execution/blob 容量，burn 最终追上 issuance，同时 ETH
+        的抵押与储备份额不被 stablecoin、BTC 或其他链取代。</li>
+        </ol>
+        <p>一句话收束：</p>
+        <blockquote>
+        <p><strong>Ethereum
+        已经证明自己能创造生态价值；尚未完全证明的是，它能把足够多的生态价值稳定地捕获回
+        ETH。</strong></p>
+        </blockquote>
+        <hr />
+        <h2 id="附录-a核心公式与防重复规则">附录
+        A：核心公式与防重复规则</h2>
+        <h3 id="供应变化">供应变化</h3>
+        <p><strong>ΔSupply = consensus-layer balance delta（rewards −
+        penalty debits）− execution base burn − blob burn</strong></p>
+        <p>Deposit、withdrawal、bridge lock、普通 transfer
+        均不改变合并经济供给。</p>
+        <h3 id="eth-持有人货币收益代理">ETH 持有人货币收益代理</h3>
+        <p><strong>Net monetary accrual = execution/base burn + blob
+        burn − net CL issuance</strong></p>
+        <p>正数代表收缩，负数代表稀释；它不是现金 dividend。</p>
+        <h3 id="质押者供应份额调整收益">质押者供应份额调整收益</h3>
+        <p><strong>Relative staking yield ≈ nominal staking APR − net
+        supply growth − OPEX/risk costs</strong></p>
+        <h3 id="l1-capture-ratio">L1 capture ratio</h3>
+        <p><strong>L1 capture ratio = L2 支付的 L1 fee + 明确返还 L1 的
+        sequencing/MEV ÷ L2 用户费及 sequencer MEV</strong></p>
+        <h3 id="十条防重复规则">十条防重复规则</h3>
+        <ol type="1">
+        <li>gas fee 已包含 burn，不能二次相加；</li>
+        <li>issuance 是 validator 收入，但不是全体 ETH
+        持有者的外部收入；</li>
+        <li>L2 rent 已包含在 L1 gross fees 中；</li>
+        <li>L1 DA cost 通常已包含在 L2 user fee 中；</li>
+        <li>TVL、stablecoin supply、DEX volume、交易额不是收入；</li>
+        <li>builder bid 经常已包含 tips/MEV，不能再次加 tips；</li>
+        <li>staking lock 不是 burn；</li>
+        <li>withdrawal 不是新发行，奖励在 balance credit 时已发生；</li>
+        <li>restaking/AVS reward 不是 Ethereum 收入；</li>
+        <li>同一 ETH 在 LST、restaking、bridge、TVL 中必须去重。</li>
+        </ol>
+        <hr />
+        <h2 id="附录-b数据口径与来源">附录 B：数据口径与来源</h2>
+        <h3 id="口径说明">口径说明</h3>
+        <ul>
+        <li><strong>市场估值口径：</strong> 使用 CoinGecko $2,346.20
+        价格、120.682M circulating supply 与 $283.168B 市值；</li>
+        <li><strong>货币政策趋势：</strong> 使用 Ultrasound.money
+        同一序列内部变化。其协议状态序列约 121.971M ETH，比 CoinGecko
+        circulating supply 高约 1.289M ETH（1.07%），同价隐含 network
+        value 约 $286.169B。差异主要来自 consensus issuance
+        accounting，故不静默混用；有效质押占比与所有 supply yield
+        均以协议状态供应量为分母；</li>
+        <li><strong>美元费用：</strong> DeFiLlama
+        按每日价格换算；spot-marked burn 使用当前 ETH
+        价格，二者会因价格路径产生差异；</li>
+        <li><strong>L2：</strong> Growthepie 30 日完整窗口截至
+        2026-08-19，排除 Ethereum mainnet 和 Polygon PoS；</li>
+        <li><strong>MEV：</strong> 公开链上与 relay 数据无法观察全部
+        private order
+        flow、返利及链下支付，报告只将其单列，不伪造全量数值；</li>
+        <li><strong>动态数据：</strong> 所有 dashboard
+        数字均会变化，应以趋势和同口径比例为主。</li>
+        </ul>
+        <h3 id="协议与一手资料">协议与一手资料</h3>
+        <ul>
+        <li><a
+        href="https://eips.ethereum.org/EIPS/eip-1559">EIP-1559：execution
+        fee market 与 base fee burn</a></li>
+        <li><a
+        href="https://eips.ethereum.org/EIPS/eip-4844">EIP-4844：blob
+        transaction 与 blob fee burn</a></li>
+        <li><a
+        href="https://eips.ethereum.org/EIPS/eip-7918">EIP-7918：blob
+        base fee reserve mechanism</a></li>
+        <li><a href="https://ethereum.org/developers/docs/gas/">Ethereum
+        gas 文档</a></li>
+        <li><a
+        href="https://ethereum.org/developers/docs/consensus-mechanisms/pos/rewards-and-penalties/">Ethereum
+        PoS rewards and penalties</a></li>
+        <li><a href="https://ethereum.org/developers/docs/mev">Ethereum
+        MEV 文档</a></li>
+        <li><a href="https://ethereum.org/governance/">Ethereum
+        governance</a></li>
+        <li><a href="https://ethereum.org/roadmap/pectra/">Pectra
+        roadmap</a></li>
+        <li><a href="https://ethereum.org/roadmap/fusaka/">Fusaka
+        roadmap</a></li>
+        </ul>
+        <h3 id="数据源">数据源</h3>
+        <ul>
+        <li><a
+        href="https://api.coingecko.com/api/v3/coins/ethereum?localization=false&amp;tickers=false&amp;market_data=true&amp;community_data=false&amp;developer_data=false&amp;sparkline=false">CoinGecko
+        Ethereum API</a></li>
+        <li><a href="https://etherscan.io/stat/supply">Etherscan ETH
+        supply</a></li>
+        <li><a
+        href="https://ultrasound.money/api/v2/fees/gauge-rates">Ultrasound.money
+        gauge rates</a></li>
+        <li><a
+        href="https://ultrasound.money/api/v2/fees/burn-sums">Ultrasound.money
+        burn sums</a></li>
+        <li><a
+        href="https://ultrasound.money/api/v2/fees/supply-over-time">Ultrasound.money
+        supply over time</a></li>
+        <li><a
+        href="https://api.llama.fi/summary/fees/ethereum?dataType=dailyFees">DeFiLlama
+        Ethereum fees</a></li>
+        <li><a
+        href="https://api.llama.fi/summary/fees/ethereum?dataType=dailyRevenue">DeFiLlama
+        Ethereum burn/revenue</a></li>
+        <li><a
+        href="https://stablecoins.llama.fi/stablecoinchains">DefiLlama
+        stablecoins by chain</a></li>
+        <li><a href="https://docs.growthepie.com/">Growthepie data API
+        docs</a></li>
+        <li><a href="https://l2beat.com/">L2BEAT</a></li>
+        <li><a
+        href="https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS3MO">FRED
+        3-month Treasury</a></li>
+        </ul>
+      </article>
+
+      <footer class="footer">
+        <p>研究用途，不构成投资建议。动态指标以来源页面最新读数为准。</p>
+        <a href="#report">回到顶部 ↑</a>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const progress = document.getElementById('progress');
+      const toggle = document.getElementById('toc-toggle');
+      const tocWrap = document.getElementById('toc-wrap');
+
+      const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        progress.style.transform = 'scaleX(' + Math.min(1, Math.max(0, ratio)) + ')';
+      };
+
+      toggle?.addEventListener('click', () => {
+        const open = tocWrap.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.firstChild.textContent = open ? '收起目录 ' : '展开目录 ';
+      });
+
+      const tocLinks = [...document.querySelectorAll('#TOC a[href^="#"]')];
+      const headings = [...document.querySelectorAll('.content h2[id], .content h3[id]')];
+      const linkById = new Map(tocLinks.map(link => [decodeURIComponent(link.hash.slice(1)), link]));
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (!visible) return;
+        tocLinks.forEach(link => link.removeAttribute('aria-current'));
+        linkById.get(visible.target.id)?.setAttribute('aria-current', 'location');
+      }, { rootMargin: '-15% 0px -72% 0px', threshold: 0 });
+      headings.forEach(heading => observer.observe(heading));
+
+      document.querySelectorAll('.content a[href^="http"]').forEach(link => {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      });
+
+      document.querySelectorAll('.content table').forEach(table => {
+        const wrap = document.createElement('div');
+        wrap.className = 'table-wrap';
+        table.parentNode.insertBefore(wrap, table);
+        wrap.appendChild(table);
+      });
+
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
